@@ -16,3 +16,7 @@ erDiagram
 初步字段：customer(id)、product(id,sku 唯一,price)、inventory(product_id 唯一,available,version)、purchase_order(id,customer_id,idempotency_key 唯一,status,total)、order_item(id,order_id,product_id,quantity,unit_price)。实际字段、外键、事务/库存策略必须在独立 Feature 指定，不属于当前迁移。
 ## 大表方向
 先测百万/千万行、覆盖索引、游标分页与深 OFFSET；再比较分区裁剪、维护成本、分表路由与跨表事务。MySQL 分区唯一键限制和外键限制要按目标版本验证。不得先分库分表再寻找理由。
+
+## 002 已实现的实验 Schema
+先前“未来规划”描述的是完整订单业务（含库存、幂等和状态机），仍未实施。当前新增 lab_user/lab_product/lab_order/lab_order_item 作为数据与索引实验结构，另有 experiment_ownership/dataset安全元数据；无业务 API。详见 [当前ER和字段](../../specs/002-mysql-index-baseline/data-model.md)。
+0002保留主键/唯一/FK支持索引，0003新增 email 与用户时间/全局时间索引。实验 CLI 只允许独立实例上的固定实验库，无清空选项。基础应用数据库仅在明确运行 Alembic upgrade后获得该结构，应用启动仍不建表。

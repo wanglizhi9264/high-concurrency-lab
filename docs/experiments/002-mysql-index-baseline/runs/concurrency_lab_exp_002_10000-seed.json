@@ -1,0 +1,10 @@
+{
+  "orders": 10000,
+  "items": 20000,
+  "seed": 20261023,
+  "batch_size": 1000,
+  "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+  "generator_version": 1,
+  "duration_seconds": 1.677253199974075,
+  "orders_per_second": 5962.129033442636
+}

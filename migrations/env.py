@@ -5,6 +5,7 @@ from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from concurrency_lab.core.config import Settings
+from concurrency_lab.models import commerce  # noqa: F401
 from concurrency_lab.models.marker import Base
 
 
@@ -15,7 +16,10 @@ def configure(connection):
 
 
 async def online():
-    engine = create_async_engine(Settings().database_url, poolclass=pool.NullPool)
+    engine = create_async_engine(
+        context.config.attributes.get("database_url") or Settings().database_url,
+        poolclass=pool.NullPool,
+    )
     try:
         async with engine.connect() as connection:
             await connection.run_sync(configure)
@@ -25,7 +29,7 @@ async def online():
 
 if context.is_offline_mode():
     context.configure(
-        url=Settings().database_url,
+        url=context.config.attributes.get("database_url") or Settings().database_url,
         target_metadata=Base.metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},

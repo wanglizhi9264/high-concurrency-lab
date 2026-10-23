@@ -1,0 +1,642 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-23T06:54:25.425756+00:00",
+  "database": "concurrency_lab_exp_002_10000",
+  "phase": "optimized",
+  "revision": "0003",
+  "dataset": {
+    "table_checksums": {
+      "lab_user": 2062112869,
+      "lab_product": 3647997267,
+      "lab_order": 2404724479,
+      "lab_order_item": 1127435545
+    },
+    "seed": 20261023,
+    "order_count": 10000,
+    "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+    "generator_version": 1,
+    "counts": {
+      "lab_user": 1000,
+      "lab_product": 100,
+      "lab_order": 10000,
+      "lab_order_item": 20000
+    }
+  },
+  "seed_generation": {
+    "orders": 10000,
+    "items": 20000,
+    "seed": 20261023,
+    "batch_size": 1000,
+    "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+    "generator_version": 1,
+    "duration_seconds": 1.677253199974075,
+    "orders_per_second": 5962.129033442636
+  },
+  "repeats": 7,
+  "environment": {
+    "mysql": {
+      "mysql_version": "8.4.13",
+      "buffer_pool_bytes": 134217728,
+      "isolation_level": "REPEATABLE-READ",
+      "page_bytes": 16384
+    },
+    "client_os": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.14 (main, Aug 14 2026, 15:40:22) [MSC v.1944 64 bit (AMD64)]",
+    "sqlalchemy": "2.1.6",
+    "asyncmy": "0.2.17",
+    "clients": 1,
+    "concurrency": 1,
+    "cache": "warm; no buffer-pool flush",
+    "threads_connected": 1,
+    "cpu_utilization": null,
+    "memory_utilization": null,
+    "resource_note": "CPU/memory utilization not sampled; serial QPS is not concurrent API RPS"
+  },
+  "sizes": {
+    "tables": [
+      {
+        "table_name": "alembic_version",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "experiment_dataset",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "experiment_ownership",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "lab_marker",
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "lab_order",
+        "estimated_rows": 9709,
+        "clustered_bytes_estimate": 1589248,
+        "secondary_bytes_estimate": 868352
+      },
+      {
+        "table_name": "lab_order_item",
+        "estimated_rows": 19722,
+        "clustered_bytes_estimate": 1589248,
+        "secondary_bytes_estimate": 3178496
+      },
+      {
+        "table_name": "lab_product",
+        "estimated_rows": 100,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 16384
+      },
+      {
+        "table_name": "lab_user",
+        "estimated_rows": 1000,
+        "clustered_bytes_estimate": 114688,
+        "secondary_bytes_estimate": 114688
+      }
+    ],
+    "indexes": [
+      {
+        "table_name": "alembic_version",
+        "index_name": "PRIMARY",
+        "position": 1,
+        "column_name": "version_num",
+        "non_unique": 0
+      },
+      {
+        "table_name": "experiment_dataset",
+        "index_name": "PRIMARY",
+        "position": 1,
+        "column_name": "id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "experiment_ownership",
+        "index_name": "PRIMARY",
+        "position": 1,
+        "column_name": "id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_marker",
+        "index_name": "PRIMARY",
+        "position": 1,
+        "column_name": "id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_order",
+        "index_name": "ix_order_time",
+        "position": 1,
+        "column_name": "created_at",
+        "non_unique": 1
+      },
+      {
+        "table_name": "lab_order",
+        "index_name": "ix_order_time",
+        "position": 2,
+        "column_name": "id",
+        "non_unique": 1
+      },
+      {
+        "table_name": "lab_order",
+        "index_name": "ix_order_user",
+        "position": 1,
+        "column_name": "user_id",
+        "non_unique": 1
+      },
+      {
+        "table_name": "lab_order",
+        "index_name": "ix_order_user_time",
+        "position": 1,
+        "column_name": "user_id",
+        "non_unique": 1
+      },
+      {
+        "table_name": "lab_order",
+        "index_name": "ix_order_user_time",
+        "position": 2,
+        "column_name": "created_at",
+        "non_unique": 1
+      },
+      {
+        "table_name": "lab_order",
+        "index_name": "ix_order_user_time",
+        "position": 3,
+        "column_name": "id",
+        "non_unique": 1
+      },
+      {
+        "table_name": "lab_order",
+        "index_name": "PRIMARY",
+        "position": 1,
+        "column_name": "id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_order_item",
+        "index_name": "ix_item_product",
+        "position": 1,
+        "column_name": "product_id",
+        "non_unique": 1
+      },
+      {
+        "table_name": "lab_order_item",
+        "index_name": "PRIMARY",
+        "position": 1,
+        "column_name": "id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_order_item",
+        "index_name": "uq_item_order_product",
+        "position": 1,
+        "column_name": "order_id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_order_item",
+        "index_name": "uq_item_order_product",
+        "position": 2,
+        "column_name": "product_id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_product",
+        "index_name": "PRIMARY",
+        "position": 1,
+        "column_name": "id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_product",
+        "index_name": "sku",
+        "position": 1,
+        "column_name": "sku",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_user",
+        "index_name": "ix_user_email",
+        "position": 1,
+        "column_name": "email",
+        "non_unique": 1
+      },
+      {
+        "table_name": "lab_user",
+        "index_name": "PRIMARY",
+        "position": 1,
+        "column_name": "id",
+        "non_unique": 0
+      },
+      {
+        "table_name": "lab_user",
+        "index_name": "username",
+        "position": 1,
+        "column_name": "username",
+        "non_unique": 0
+      }
+    ],
+    "individual_indexes": [
+      {
+        "table": "alembic_version",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "experiment_dataset",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "experiment_ownership",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "lab_marker",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "lab_order",
+        "index": "PRIMARY",
+        "pages": 97,
+        "bytes_estimate": 1589248
+      },
+      {
+        "table": "lab_order",
+        "index": "ix_order_time",
+        "pages": 15,
+        "bytes_estimate": 245760
+      },
+      {
+        "table": "lab_order",
+        "index": "ix_order_user",
+        "pages": 18,
+        "bytes_estimate": 294912
+      },
+      {
+        "table": "lab_order",
+        "index": "ix_order_user_time",
+        "pages": 20,
+        "bytes_estimate": 327680
+      },
+      {
+        "table": "lab_order_item",
+        "index": "PRIMARY",
+        "pages": 97,
+        "bytes_estimate": 1589248
+      },
+      {
+        "table": "lab_order_item",
+        "index": "ix_item_product",
+        "pages": 97,
+        "bytes_estimate": 1589248
+      },
+      {
+        "table": "lab_order_item",
+        "index": "uq_item_order_product",
+        "pages": 97,
+        "bytes_estimate": 1589248
+      },
+      {
+        "table": "lab_product",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "lab_product",
+        "index": "sku",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "lab_user",
+        "index": "PRIMARY",
+        "pages": 7,
+        "bytes_estimate": 114688
+      },
+      {
+        "table": "lab_user",
+        "index": "ix_user_email",
+        "pages": 4,
+        "bytes_estimate": 65536
+      },
+      {
+        "table": "lab_user",
+        "index": "username",
+        "pages": 3,
+        "bytes_estimate": 49152
+      }
+    ],
+    "semantics": "InnoDB allocated page estimates, not exact row bytes or physical file sizes; TABLE_ROWS is estimated. Per-index stats null if permission unavailable."
+  },
+  "cursor_lookup_ms": 4.098500008694828,
+  "cursor": {
+    "created_at": "2025-01-01 04:39:00",
+    "id": 5835
+  },
+  "offset": 8000,
+  "page_ids": {
+    "offset": [
+      4052,
+      1315,
+      7434,
+      7239,
+      7050,
+      6022,
+      3947,
+      1639,
+      1619,
+      19,
+      7005,
+      5481,
+      4190,
+      2725,
+      1057,
+      1015,
+      9765,
+      7081,
+      6596,
+      6592
+    ],
+    "keyset": [
+      4052,
+      1315,
+      7434,
+      7239,
+      7050,
+      6022,
+      3947,
+      1639,
+      1619,
+      19,
+      7005,
+      5481,
+      4190,
+      2725,
+      1057,
+      1015,
+      9765,
+      7081,
+      6596,
+      6592
+    ]
+  },
+  "queries": {
+    "primary_key": {
+      "sql": "SELECT id, total FROM lab_order WHERE id=:id",
+      "parameters": {
+        "id": 5000
+      },
+      "result_count": 1,
+      "wall_ms_samples": [
+        2.315299992915243,
+        1.95870001334697,
+        1.8167000089306384,
+        1.632600004086271,
+        2.0644000032916665,
+        2.0998000109102577,
+        1.9524999952409416
+      ],
+      "p50_ms": 1.95870001334697,
+      "p95_ms": 2.2506499983137473,
+      "p99_ms": 2.302369993994944,
+      "serial_queries_per_second": 505.78034577116927,
+      "error_rate": 0,
+      "explain_analyze_tree": "-> Rows fetched before execution  (cost=0..0 rows=1) (actual time=461e-6..501e-6 rows=1 loops=1)\n",
+      "iterators": [
+        {
+          "operator": "-> Rows fetched before execution  (cost=0..0 rows=1)",
+          "first_row_ms": 0.000461,
+          "iterator_ms_per_loop": 0.000501,
+          "actual_rows_per_loop": 1.0,
+          "loops": 1.0,
+          "access_rows": 1.0
+        }
+      ],
+      "access_operator_rows": 1.0
+    },
+    "by_user": {
+      "sql": "SELECT id FROM lab_order WHERE user_id=:user_id ORDER BY id LIMIT 20",
+      "parameters": {
+        "user_id": 500
+      },
+      "result_count": 10,
+      "wall_ms_samples": [
+        2.6144000003114343,
+        2.383699989877641,
+        1.872900000307709,
+        2.2584999969694763,
+        2.1852999925613403,
+        1.7624000029172748,
+        1.8928000063169748
+      ],
+      "p50_ms": 2.1852999925613403,
+      "p95_ms": 2.5451899971812963,
+      "p99_ms": 2.6005579996854067,
+      "serial_queries_per_second": 467.6018707428977,
+      "error_rate": 0,
+      "explain_analyze_tree": "-> Limit: 20 row(s)  (cost=1.25 rows=10) (actual time=0.0115..0.0147 rows=10 loops=1)\n    -> Covering index lookup on lab_order using ix_order_user (user_id=500)  (cost=1.25 rows=10) (actual time=0.0106..0.0133 rows=10 loops=1)\n",
+      "iterators": [
+        {
+          "operator": "-> Limit: 20 row(s)  (cost=1.25 rows=10)",
+          "first_row_ms": 0.0115,
+          "iterator_ms_per_loop": 0.0147,
+          "actual_rows_per_loop": 10.0,
+          "loops": 1.0,
+          "access_rows": null
+        },
+        {
+          "operator": "-> Covering index lookup on lab_order using ix_order_user (user_id=500)  (cost=1.25 rows=10)",
+          "first_row_ms": 0.0106,
+          "iterator_ms_per_loop": 0.0133,
+          "actual_rows_per_loop": 10.0,
+          "loops": 1.0,
+          "access_rows": 10.0
+        }
+      ],
+      "access_operator_rows": 10.0
+    },
+    "user_time": {
+      "sql": "SELECT id, created_at FROM lab_order WHERE user_id=:user_id ORDER BY created_at DESC, id DESC LIMIT 20",
+      "parameters": {
+        "user_id": 500
+      },
+      "result_count": 10,
+      "wall_ms_samples": [
+        1.8841999990399927,
+        2.9426999972201884,
+        2.4158000014722347,
+        2.982200006954372,
+        2.622699976200238,
+        2.503600000636652,
+        1.8632999854162335
+      ],
+      "p50_ms": 2.503600000636652,
+      "p95_ms": 2.970350004034117,
+      "p99_ms": 2.979830006370321,
+      "serial_queries_per_second": 406.63394309700277,
+      "error_rate": 0,
+      "explain_analyze_tree": "-> Limit: 20 row(s)  (cost=1.99 rows=10) (actual time=0.0123..0.0179 rows=10 loops=1)\n    -> Covering index lookup on lab_order using ix_order_user_time (user_id=500) (reverse)  (cost=1.99 rows=10) (actual time=0.0114..0.0164 rows=10 loops=1)\n",
+      "iterators": [
+        {
+          "operator": "-> Limit: 20 row(s)  (cost=1.99 rows=10)",
+          "first_row_ms": 0.0123,
+          "iterator_ms_per_loop": 0.0179,
+          "actual_rows_per_loop": 10.0,
+          "loops": 1.0,
+          "access_rows": null
+        },
+        {
+          "operator": "-> Covering index lookup on lab_order using ix_order_user_time (user_id=500) (reverse)  (cost=1.99 rows=10)",
+          "first_row_ms": 0.0114,
+          "iterator_ms_per_loop": 0.0164,
+          "actual_rows_per_loop": 10.0,
+          "loops": 1.0,
+          "access_rows": 10.0
+        }
+      ],
+      "access_operator_rows": 10.0
+    },
+    "offset": {
+      "sql": "SELECT id, created_at FROM lab_order ORDER BY created_at DESC, id DESC LIMIT 20 OFFSET :offset",
+      "parameters": {
+        "offset": 8000
+      },
+      "result_count": 20,
+      "wall_ms_samples": [
+        3.169600007822737,
+        4.010299977380782,
+        3.9638000016566366,
+        3.431799996178597,
+        3.2915000047069043,
+        3.07579999207519,
+        3.515399992465973
+      ],
+      "p50_ms": 3.431799996178597,
+      "p95_ms": 3.9963499846635386,
+      "p99_ms": 4.007509978837334,
+      "serial_queries_per_second": 286.202582689306,
+      "error_rate": 0,
+      "explain_analyze_tree": "-> Limit/Offset: 20/8000 row(s)  (cost=683 rows=20) (actual time=1.8..1.8 rows=20 loops=1)\n    -> Covering index scan on lab_order using ix_order_time (reverse)  (cost=683 rows=8020) (actual time=0.105..1.59 rows=8020 loops=1)\n",
+      "iterators": [
+        {
+          "operator": "-> Limit/Offset: 20/8000 row(s)  (cost=683 rows=20)",
+          "first_row_ms": 1.8,
+          "iterator_ms_per_loop": 1.8,
+          "actual_rows_per_loop": 20.0,
+          "loops": 1.0,
+          "access_rows": null
+        },
+        {
+          "operator": "-> Covering index scan on lab_order using ix_order_time (reverse)  (cost=683 rows=8020)",
+          "first_row_ms": 0.105,
+          "iterator_ms_per_loop": 1.59,
+          "actual_rows_per_loop": 8020.0,
+          "loops": 1.0,
+          "access_rows": 8020.0
+        }
+      ],
+      "access_operator_rows": 8020.0
+    },
+    "keyset": {
+      "sql": "SELECT id, created_at FROM lab_order WHERE created_at < :cursor_time OR (created_at = :cursor_time AND id < :cursor_id) ORDER BY created_at DESC, id DESC LIMIT 20",
+      "parameters": {
+        "cursor_time": "2025-01-01 04:39:00",
+        "cursor_id": 5835
+      },
+      "result_count": 20,
+      "wall_ms_samples": [
+        2.885699999751523,
+        1.9705000158865005,
+        1.956899999640882,
+        2.523899980587885,
+        2.035099983913824,
+        1.957800006493926,
+        1.8693000019993633
+      ],
+      "p50_ms": 1.9705000158865005,
+      "p95_ms": 2.777159994002431,
+      "p99_ms": 2.863991998601705,
+      "serial_queries_per_second": 460.55055564769594,
+      "error_rate": 0,
+      "explain_analyze_tree": "-> Limit: 20 row(s)  (cost=406 rows=20) (actual time=0.0371..0.0645 rows=20 loops=1)\n    -> Filter: ((lab_order.created_at < TIMESTAMP'2025-01-01 04:39:00') or ((lab_order.created_at = TIMESTAMP'2025-01-01 04:39:00') and (lab_order.id < 5835)))  (cost=406 rows=2000) (actual time=0.0359..0.0624 rows=20 loops=1)\n        -> Covering index range scan on lab_order using ix_order_time over (created_at < '2025-01-01 04:39:00.000000') OR (created_at = '2025-01-01 04:39:00.000000' AND id < 5835) (reverse)  (cost=406 rows=2000) (actual time=0.0328..0.0578 rows=20 loops=1)\n",
+      "iterators": [
+        {
+          "operator": "-> Limit: 20 row(s)  (cost=406 rows=20)",
+          "first_row_ms": 0.0371,
+          "iterator_ms_per_loop": 0.0645,
+          "actual_rows_per_loop": 20.0,
+          "loops": 1.0,
+          "access_rows": null
+        },
+        {
+          "operator": "-> Filter: ((lab_order.created_at < TIMESTAMP'2025-01-01 04:39:00') or ((lab_order.created_at = TIMESTAMP'2025-01-01 04:39:00') and (lab_order.id < 5835)))  (cost=406 rows=2000)",
+          "first_row_ms": 0.0359,
+          "iterator_ms_per_loop": 0.0624,
+          "actual_rows_per_loop": 20.0,
+          "loops": 1.0,
+          "access_rows": null
+        },
+        {
+          "operator": "-> Covering index range scan on lab_order using ix_order_time over (created_at < '2025-01-01 04:39:00.000000') OR (created_at = '2025-01-01 04:39:00.000000' AND id < 5835) (reverse)  (cost=406 rows=2000)",
+          "first_row_ms": 0.0328,
+          "iterator_ms_per_loop": 0.0578,
+          "actual_rows_per_loop": 20.0,
+          "loops": 1.0,
+          "access_rows": 20.0
+        }
+      ],
+      "access_operator_rows": 20.0
+    },
+    "email": {
+      "sql": "SELECT id FROM lab_user WHERE email=:email",
+      "parameters": {
+        "email": "user0500@example.invalid"
+      },
+      "result_count": 1,
+      "wall_ms_samples": [
+        2.0126000163145363,
+        2.743799996096641,
+        2.212299994425848,
+        1.7402000084985048,
+        1.6041999915614724,
+        1.7692999972496182,
+        2.1791999752167612
+      ],
+      "p50_ms": 2.0126000163145363,
+      "p95_ms": 2.5843499955954026,
+      "p99_ms": 2.711909995996393,
+      "serial_queries_per_second": 490.82851924952604,
+      "error_rate": 0,
+      "explain_analyze_tree": "-> Covering index lookup on lab_user using ix_user_email (email='user0500@example.invalid')  (cost=0.85 rows=1) (actual time=0.0104..0.0126 rows=1 loops=1)\n",
+      "iterators": [
+        {
+          "operator": "-> Covering index lookup on lab_user using ix_user_email (email='user0500@example.invalid')  (cost=0.85 rows=1)",
+          "first_row_ms": 0.0104,
+          "iterator_ms_per_loop": 0.0126,
+          "actual_rows_per_loop": 1.0,
+          "loops": 1.0,
+          "access_rows": 1.0
+        }
+      ],
+      "access_operator_rows": 1.0
+    }
+  },
+  "scan_metric_note": "access_operator_rows is sum(actual output rows * loops) for scan/lookup iterators; it is not engine physical I/O, not LIMIT output, and node times must not be summed."
+}
