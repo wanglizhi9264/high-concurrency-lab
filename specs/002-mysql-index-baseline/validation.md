@@ -28,3 +28,10 @@ Existing upstream httpx TestClient deprecation warning remains; functionality pa
 
 ## Publication
 This feature is delivered through a branch and PR to protected main. Remote CI outcome and merge are verified against the PR, rather than inferred from local tests. See the final delivery message / PR checks for the actual remote run and merge SHA.
+
+## Converge and remote publication evidence
+Converge reviewed9functional requirements,5success criteria,11constitution principles, plan decisions and all12tasks against the implemented code/evidence. No actionable missing/partial/contradictory/unrequested code was found; no empty convergence phase was appended. Publication status is verified through [PR#1](https://github.com/wanglizhi9264/high-concurrency-lab/pull/1), which is the authoritative record for final merge/check status.
+
+Remote initial feature commit f95ff14: [GitHub Actions](https://github.com/wanglizhi9264/high-concurrency-lab/actions/runs/39915226411) quality and integration both passed on Ubuntu. This includes20unit tests,3foundation integration tests and a fresh4-test experimental pipeline; committed three-scale evidence validation also passed. These results apply to that exact commit; subsequent documentation-only completion update must pass required PR checks again before merge.
+
+Final local quality command confirmed20unit tests passed, Ruff/format passed, mypy22source files passed. Feature changes span44files, including9raw measured JSON files; staged credential scan passed. No main-branch push performed: all feature changes are submitted on feature/002-mysql-index-baseline and merged only through the protected PR after required checks.

@@ -17,7 +17,7 @@ Input: spec.md,plan.md,research.md,data-model.md,contracts/cli.md. Tests explici
 - [X] T010 [US3] 编写 docs/experiments/002-mysql-index-baseline/{README,dbeaver}.md，含 ER/教程/核心概念；依赖 T009；标准：命令一致且原始计划/估算说明准确；验证逐项复核。(FR-008)
 ## Phase 6: Validation and Convergence
 - [X] T011 全量质量/集成/迁移验证，写 specs/002-mysql-index-baseline/validation.md；依赖 T010；标准：实际结果完整；验证所有 SC。
-- [ ] T012 执行 Converge、提交 feature 分支、创建 PR，等待 CI并经 PR 合并；依赖 T011；标准：无未解决缺口、main只经 PR修改；验证远端与干净工作区。(FR-009/SC-005)
+- [X] T012 执行 Converge、提交 feature 分支、创建 PR，等待 CI并经 PR 合并；依赖 T011；标准：无未解决缺口、main只经 PR修改；验证远端与干净工作区。(FR-009/SC-005)
 ## Dependencies & Execution Order
 顺序 T001->T012，US1->US2->US3。测试先于对应实现，阶段检查后继续。
 ## Parallel Opportunities
