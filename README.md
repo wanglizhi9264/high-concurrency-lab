@@ -1,7 +1,7 @@
 # High Concurrency Lab
 
 用于系统学习高并发、MySQL、Redis、数据库优化、异步任务和后端架构的长期实验工程。
-当前仅实现 `001-project-foundation`：可复现环境、两条健康 API、共享连接池、最小迁移、测试及 SDD。
+当前已实现 `001-project-foundation` 基础环境与健康API，以及 `002-mysql-index-baseline` 的关系模型、批量数据和索引/分页实验。
 
 技术栈：Python 3.11+（开发/CI 3.12）、FastAPI、Pydantic v2、SQLAlchemy 2/asyncmy、Alembic、MySQL 8.4、Redis 7、uv、pytest/httpx、Ruff、mypy、Locust。解析版本以 uv.lock 为准。
 
@@ -59,7 +59,7 @@ down 保留 MySQL volume，down -v 会删除数据。Redis 当前不承诺持久
 在 Codex 用 `$speckit-constitution`、`$speckit-specify`、`$speckit-clarify`（必要时）、`$speckit-plan`、`$speckit-tasks`、`$speckit-analyze`、`$speckit-implement`、`$speckit-converge`。这些是 Agent skills，不是 CLI 子命令。Linux 可执行同样的 uv/Compose 命令；官方工作流脚本为 PowerShell，需 pwsh，或新项目初始化时选择 --script sh。
 
 后续独立 Feature 顺序：01 MySQL 索引与 EXPLAIN ANALYZE；02 同步/异步 API 和连接池/Locust；03 Cache-Aside 与一致性；04 并发库存与幂等；05 异步队列/Streams/Worker；06 百万数据、覆盖索引、深分页、分区/分表比较。
-每项先保存基线，再做优化；本轮无性能结果、缓存业务、订单、锁或 Worker。
+每项先保存基线，再做优化；002 已有 SQL 性能实测结果；仍无缓存业务、订单 API、锁或 Worker。
 
 详细设计见 [架构](docs/architecture/overview.md)、[ADR](docs/architecture/decisions/0001-foundation.md)、[数据库](docs/database/design.md)、[开发指南](docs/guides/local-development.md)。实际执行结果见 [验收记录](specs/001-project-foundation/validation.md)。
 
@@ -74,3 +74,8 @@ git push -u origin feature/002-mysql-index-baseline
 gh pr create --base main
 ```
 PR 需附规格、变更说明和实际测试结果，quality 与 integration 通过后再合并。合并后删除已完成的功能分支。
+
+## 002: MySQL 索引基线实验
+已实现用于实验的用户、商品、订单及明细表、两阶段 Alembic迁移、确定性分批造数和 SQL计划/分页测量，无新增订单 API。
+独立 MySQL 实验实例默认端口13306；详见 [实验命令与ER图](docs/experiments/002-mysql-index-baseline/README.md)、[DBeaver教程](docs/experiments/002-mysql-index-baseline/dbeaver.md)、[实测报告](docs/experiments/002-mysql-index-baseline/report.md)。
+已提交结果只能读取，新实验指定新 output-dir；已有数据库不会被自动清空。执行 `uv run python scripts/verify_index_lab.py --verify-only` 校验仓库内证据。
