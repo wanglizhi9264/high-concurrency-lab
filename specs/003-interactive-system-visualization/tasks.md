@@ -24,3 +24,7 @@ API schema与前端类型可在合同稳定后并行编辑；本轮不委派实�
 ## Phase7: Convergence
 - [X] T011 修复生命周期页并发可视化per FR-003（contradicts）：frontend/src/views/TraceView.vue和style.css中将MySQL/Redis显示为明确并行探针分组；前置T010；完成标准：无MySQL→Redis串行箭头；验证E2E分组与真实200。
 - [X] T012 修复真实长页截图的滚动上下文per FR-010（partial）：frontend/e2e/platform.spec.ts截图前回到页顶、重采三张截图；前置T011；完成标准：固定侧栏位于顶部，源码/数据不变；验证实际截图及独立修复PR CI。
+
+## Phase8: Storage learning clarity
+- [X] T013 per FR-002：StorageLearning.vue及ArchitectureView/CSS中增加角色、内容、命令和逐步场景；切换重置、结束可重来、健康并发与缓存教学标识；依赖T012；验证真实浏览器路径与深浅色。
+- [X] T014 per FR-009/010：补E2E场景断言、指南、实际验证与Converge，独立修复PR并保持本地预览可用；依赖T013。

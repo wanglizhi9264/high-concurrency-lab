@@ -24,3 +24,6 @@ Live Trace事件从handler进入、service开始、两探针开始/完成、serv
 界面：深色侧栏、浅色实验画布、紫/绿信号色，中文解释+英文组件名，明确DATA来源badge；支持dark和常见桌面。错误组件统一重试，不堆静态装饰指标。
 ## Complexity Tracking
 无Pinia/分布式追踪/业务API。未来Locust导入与Prometheus snapshot走独立观测adapter/DTO，不把模拟数据接入真实查询。
+
+## Learning clarity correction
+在ArchitectureView顶部嵌入StorageLearning.vue。独立局部状态承载四个场景与逐步推进，蓝色MySQL/红色Redis卡片、当前步骤高亮、表格与键值内容、明确的实际健康路径并发说明；链接真实Trace与现有索引页。无后端/API/Schema变更。先更新Spec/Plan/Tasks/Analyze再实现，使用现有E2E验证场景切换和状态。

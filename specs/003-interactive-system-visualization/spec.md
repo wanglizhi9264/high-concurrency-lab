@@ -61,3 +61,6 @@ ArchitectureNode、SourceRef、ExperimentResult、PlanNode、TraceEvent（来源
 
 ## Assumptions
 仅本地教学开发，不生产部署。Vite代理同源/API；无需CORS通配或登录。API源码引用只提供固定仓库相对路径和https链接，无磁盘绝对路径。无需重大架构澄清，Clarify跳过。新增实时快照仅池size/checkedout/overflow，等待队列/纯pool_wait未接入。
+
+## Learning clarity correction (2026-10-24)
+FR-002补充：全景首页先展示MySQL权威关系表与Redis临时键值的职责对照；提供真实健康路径说明，以及首次读取/缓存命中/过期的逐步教学路径，显示命令、数据内容、当前访问目标。缓存示例必须标Simulation/尚未实现，不执行真实业务SQL或Redis读写，不提供虚构延迟。切换场景重置步骤。
