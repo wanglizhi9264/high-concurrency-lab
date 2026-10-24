@@ -27,3 +27,6 @@ Live Trace事件从handler进入、service开始、两探针开始/完成、serv
 
 ## Learning clarity correction
 在ArchitectureView顶部嵌入StorageLearning.vue。独立局部状态承载四个场景与逐步推进，蓝色MySQL/红色Redis卡片、当前步骤高亮、表格与键值内容、明确的实际健康路径并发说明；链接真实Trace与现有索引页。无后端/API/Schema变更。先更新Spec/Plan/Tasks/Analyze再实现，使用现有E2E验证场景切换和状态。
+
+## Probe detail plan
+新增只读ProbeGuide DTO和GET /api/v1/observability/probe-guide，读取当前Settings中数据库名及预算/池超时；不执行探针，不返回地址/用户/密码。ProbeWalkthrough组件用于Trace顶部详细说明和首页折叠说明：HTTP接口对照、完整路径、目标库/命令/结果和成功失败规则、可展开具体代码、源码与排障。Trace使用独立probeSimulation.ts生成无虚构耗时的分步预设，真实结果始终展示两个checks及原始响应；网络错误与HTTP503分开解释。所有故障教学纯前端，不停止容器。测试后端投影/秘密/两种单失败/真实预算超时、前端分支及真实浏览器成功和结构化503。

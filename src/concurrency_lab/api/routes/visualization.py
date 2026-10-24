@@ -12,6 +12,7 @@ from concurrency_lab.schemas.visualization import (
     ExperimentDetail,
     ExperimentSummary,
     PoolSnapshot,
+    ProbeGuide,
     QueryPlan,
     ResultPair,
     TraceResponse,
@@ -21,6 +22,17 @@ from concurrency_lab.services.health import readiness
 from concurrency_lab.services.tracing import TraceRecorder
 
 router = APIRouter(prefix="/api/v1", tags=["visualization"])
+
+
+@router.get("/observability/probe-guide", response_model=ProbeGuide)
+async def probe_guide(request: Request) -> ProbeGuide:
+    settings = request.app.state.resources.settings
+    return ProbeGuide(
+        mysql_database=settings.mysql_database,
+        readiness_timeout_seconds=settings.readiness_timeout,
+        io_timeout_seconds=settings.io_timeout,
+        pool_timeout_seconds=settings.db_pool_timeout,
+    )
 
 
 def require_id(experiment_id: str) -> None:
@@ -92,8 +104,19 @@ async def plans(
 async def health_trace(request: Request) -> JSONResponse:
     resources = request.app.state.resources
     recorder = TraceRecorder()
-    recorder.emit("Handler entered", "router", "running", "已匹配路由；未单独计量路由匹配耗时。")
-    recorder.emit("Service entered", "service", "running", "接下来并发检查两项依赖。")
+    recorder.emit(
+        "Handler entered",
+        "router",
+        "running",
+        "GET /api/v1/observability/health-trace，无请求体；"
+        "health_trace取共享资源，创建记录器。未计量路由匹配耗时。",
+    )
+    recorder.emit(
+        "Service entered",
+        "service",
+        "running",
+        "readiness通过asyncio.gather并发运行MySQL与Redis两个bounded_check；不会先后串行等待。",
+    )
     checks = await readiness(
         resources.engine,
         resources.redis,
@@ -102,7 +125,12 @@ async def health_trace(request: Request) -> JSONResponse:
     )
     healthy = all(value == "ok" for value in checks.values())
     state = "success" if healthy else "failure"
-    recorder.emit("Service completed", "service", state, "两个有界探针已完成。")
+    recorder.emit(
+        "Service completed",
+        "service",
+        state,
+        f"两个有界探针已完成：mysql={checks['mysql']}，redis={checks['redis']}；全部ok才就绪。",
+    )
     recorder.emit(
         "Response prepared", "router", state, "响应即将序列化返回；不代表字节已经发送或浏览器收到。"
     )

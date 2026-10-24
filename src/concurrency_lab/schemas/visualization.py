@@ -35,6 +35,14 @@ class TraceResponse(DTO):
     limitations: list[str]
 
 
+class ProbeGuide(DTO):
+    mysql_database: str
+    redis_database: Literal[0] = 0
+    readiness_timeout_seconds: float = Field(gt=0)
+    io_timeout_seconds: float = Field(gt=0)
+    pool_timeout_seconds: float = Field(gt=0)
+
+
 class ArchitectureNode(DTO):
     id: str
     label: str

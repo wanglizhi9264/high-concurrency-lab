@@ -3,37 +3,18 @@ import { computed, ref, watch } from 'vue'
 import { api } from '../api'
 import type { TraceResponse, TraceEvent } from '../types'
 import { usePlayback } from '../composables/usePlayback'
+import ProbeWalkthrough from '../components/ProbeWalkthrough.vue'
+import { probeScenarios, simulateProbe, type ProbeScenario } from '../lib/probeSimulation'
 const mode = ref<'live' | 'simulation'>('live'),
   trace = ref<TraceResponse | null>(null),
   loading = ref(false),
   error = ref(''),
   browserMs = ref<number | null>(null)
-const simulation: TraceResponse = {
-  mode: 'simulation',
-  http_status: 200,
-  checks: { mysql: 'simulated', redis: 'simulated' },
-  server_elapsed_ms: 0,
-  limitations: ['Simulation预设事件，不访问数据库；示意时间不是实测性能。'],
-  events: [
-    '浏览器发送请求',
-    'Router匹配（概念）',
-    'Service调用（概念）',
-    'MySQL与Redis检查（概念）',
-    '响应返回（概念）',
-  ].map((name, i) => ({
-    id: `simulation-${i}`,
-    name,
-    component: ['client', 'router', 'service', 'mysql', 'router'][i]!,
-    state: i === 4 ? 'success' : 'running',
-    offset_ms: i * 100,
-    source: 'teaching.preset',
-    evidence: 'simulation',
-    detail: '预设教学事件，无真实耗时或依赖结果。',
-  })),
-}
-const currentTrace = computed(() => (mode.value === 'simulation' ? simulation : trace.value))
+const scenario = ref<ProbeScenario>('success')
+const simulation = computed(() => simulateProbe(scenario.value))
+const currentTrace = computed(() => (mode.value === 'simulation' ? simulation.value : trace.value))
 const events = computed<TraceEvent[]>(() => {
-    if (mode.value === 'simulation') return simulation.events
+    if (mode.value === 'simulation') return simulation.value.events
     if (!trace.value) return []
     return [
       {
@@ -44,7 +25,8 @@ const events = computed<TraceEvent[]>(() => {
         offset_ms: 0,
         source: 'browser.performance.now',
         evidence: 'measured',
-        detail: '浏览器调用fetch的时间点；不代表字节实际离开网卡的时间。',
+        detail:
+          '发送 GET /api/v1/observability/health-trace，无请求体；经同源开发代理访问FastAPI。这里只是调用fetch的时间点，不代表字节离开网卡。',
       },
       ...trace.value.events,
       {
@@ -63,6 +45,26 @@ const events = computed<TraceEvent[]>(() => {
 const { index, playing, next, play, pause, reset } = usePlayback(length)
 const selected = computed(() => events.value[index.value])
 const components = ['client', 'router', 'service']
+const componentNames: Record<string, string> = {
+  client: '浏览器',
+  router: 'FastAPI 路由',
+  service: '健康服务',
+  mysql: 'MySQL',
+  redis: 'Redis',
+}
+function stateLabel(value: string) {
+  return (
+    (
+      {
+        idle: '待回放',
+        running: '执行中',
+        success: '成功',
+        failure: '失败',
+        waiting: '等待',
+      } as Record<string, string>
+    )[value] ?? value
+  )
+}
 const dependencies = ['mysql', 'redis']
 const sourcePath = computed(() => {
   const name = selected.value?.component
@@ -95,7 +97,7 @@ async function collect() {
     loading.value = false
   }
 }
-watch(mode, reset)
+watch([mode, scenario], reset)
 function choose(event: TraceEvent) {
   pause()
   index.value = events.value.findIndex((e) => e.id === event.id)
@@ -113,7 +115,7 @@ function choose(event: TraceEvent) {
     }}</span>
   </header>
   <div class="toolbar panel">
-    <el-radio-group v-model="mode">
+    <el-radio-group v-model="mode" :disabled="loading">
       <el-radio-button value="live">真实追踪</el-radio-button
       ><el-radio-button value="simulation">教学模拟</el-radio-button> </el-radio-group
     ><el-button v-if="mode === 'live'" type="primary" :loading="loading" @click="collect">
@@ -123,9 +125,23 @@ function choose(event: TraceEvent) {
     ><span v-if="mode === 'live' && browserMs !== null"
       >浏览器往返 {{ browserMs.toFixed(2) }} ms</span
     >
+    <label v-if="mode === 'simulation'"
+      >假设结果
+      <select v-model="scenario" aria-label="选择探针结果场景">
+        <option v-for="item in probeScenarios" :key="item.value" :value="item.value">
+          {{ item.label }}
+        </option>
+      </select>
+    </label>
   </div>
+  <ProbeWalkthrough />
   <div v-if="error" role="alert" class="state error">
-    {{ error }}<el-button @click="collect">重试</el-button>
+    {{ error }}
+    <p>
+      未取得可显示的探针记录：先检查前端、后端和代理是否运行。网络失败不等于 MySQL 或 Redis
+      已被检查并失败；HTTP 503 的探针响应会在下方保留。
+    </p>
+    <el-button @click="collect">重试</el-button>
   </div>
   <div v-if="!currentTrace && !error" class="empty-hero">
     <span>↗</span>
@@ -133,6 +149,46 @@ function choose(event: TraceEvent) {
     <p>点击采集后，服务端将真实执行 SELECT 1 和 Redis PING。没有记录的区间不会凭空出现。</p>
   </div>
   <template v-if="currentTrace">
+    <section class="panel probe-results" aria-label="本次探针结果">
+      <div class="panel-heading">
+        <h2>{{ mode === 'live' ? '这次请求的实际结果' : '假设场景的结果 · 非实测' }}</h2>
+        <span class="badge" :class="currentTrace.http_status === 200 ? 'measured' : 'simulation'"
+          >HTTP {{ currentTrace.http_status }}</span
+        >
+      </div>
+      <div class="storage-pair">
+        <article
+          v-for="dependency in dependencies"
+          :key="dependency"
+          class="probe-result"
+          :class="currentTrace.checks[dependency] === 'ok' ? 'success' : 'failure'"
+        >
+          <strong>{{ dependency === 'mysql' ? 'MySQL · SELECT 1' : 'Redis · PING' }}</strong
+          ><span :data-testid="`check-${dependency}`">{{ currentTrace.checks[dependency] }}</span>
+          <p>
+            {{
+              currentTrace.checks[dependency] === 'ok'
+                ? '本次检查通过。'
+                : '本次检查未通过；真实响应不公开异常原因。'
+            }}
+          </p>
+        </article>
+      </div>
+      <p>
+        {{
+          currentTrace.http_status === 200
+            ? '两个都 ok，因此返回 200。探针没有查询商品、用户或订单表。'
+            : '至少一项 unavailable，因此返回 503。后端已响应，但依赖没有全部就绪。'
+        }}
+      </p>
+      <p class="muted">这是本次完成结果；下面的节点颜色表示回放到哪一步，两者含义不同。</p>
+      <details>
+        <summary>
+          查看本次完整响应 JSON（{{ mode === 'live' ? '实际服务端返回' : '教学预设' }}）
+        </summary>
+        <pre data-testid="trace-json">{{ JSON.stringify(currentTrace, null, 2) }}</pre>
+      </details>
+    </section>
     <div class="request-lane">
       <div
         v-for="component in components"
@@ -140,8 +196,8 @@ function choose(event: TraceEvent) {
         class="lane-node"
         :class="state(component)"
       >
-        <span class="dot" :class="state(component)"></span>{{ component
-        }}<small>{{ state(component) === 'idle' ? '待回放' : state(component) }}</small>
+        <span class="dot" :class="state(component)"></span>{{ componentNames[component]
+        }}<small>{{ stateLabel(state(component)) }}</small>
       </div>
       <div class="dependency-branch" data-testid="parallel-probes">
         <span class="branch-caption">MySQL ∥ Redis · 并发探针</span>
@@ -151,8 +207,8 @@ function choose(event: TraceEvent) {
           class="lane-node"
           :class="state(component)"
         >
-          <span class="dot" :class="state(component)"></span>{{ component }}
-          <small>{{ state(component) === 'idle' ? '待回放' : state(component) }}</small>
+          <span class="dot" :class="state(component)"></span>{{ componentNames[component] }}
+          <small>{{ stateLabel(state(component)) }}</small>
         </div>
       </div>
     </div>
@@ -174,10 +230,19 @@ function choose(event: TraceEvent) {
           <span class="step-index">{{ String(i + 1).padStart(2, '0') }}</span
           ><span
             ><strong>{{ event.name }}</strong
-            ><small>{{ event.component }} · {{ event.state }}</small></span
+            ><small
+              >{{ componentNames[event.component] ?? event.component }} ·
+              {{ stateLabel(event.state) }}</small
+            ></span
           ><code
-            >{{ event.source.startsWith('browser') ? 'browser' : 'server' }}
-            {{ event.offset_ms.toFixed(2) }} ms</code
+            >{{
+              mode === 'simulation'
+                ? '教学步骤'
+                : event.source.startsWith('browser')
+                  ? 'browser'
+                  : 'server'
+            }}
+            {{ mode === 'simulation' ? i + 1 : event.offset_ms.toFixed(2) + ' ms' }}</code
           >
         </button>
         <div v-if="mode === 'live'" class="flow-footer">
@@ -200,7 +265,7 @@ function choose(event: TraceEvent) {
                 ? selected.source.startsWith('browser')
                   ? '浏览器fetch前后的相对ms'
                   : '服务端handler开始后的相对ms'
-                : 'Simulation虚拟示意时间'
+                : '只有步骤顺序，无性能计时'
             }}
           </dd>
           <dt>不可推断的内容</dt>

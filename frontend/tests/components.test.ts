@@ -9,6 +9,13 @@ import baseline from '../../docs/experiments/002-mysql-index-baseline/runs/concu
 import optimized from '../../docs/experiments/002-mysql-index-baseline/runs/concurrency_lab_exp_002_1000000-optimized.json'
 vi.mock('../src/api', () => ({
   api: {
+    probeGuide: async () => ({
+      mysql_database: 'test_lab',
+      redis_database: 0,
+      readiness_timeout_seconds: 2,
+      io_timeout_seconds: 1,
+      pool_timeout_seconds: 1,
+    }),
     architecture: async () => ({
       nodes: [
         {
