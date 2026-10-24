@@ -26,9 +26,22 @@ async def bounded_check(check: Callable[[], Awaitable[bool]], budget: float) -> 
         return False
 
 
-async def readiness(engine: AsyncEngine, client: Redis, budget: float) -> dict[str, str]:
+async def readiness(
+    engine: AsyncEngine,
+    client: Redis,
+    budget: float,
+    on_event: Callable[[str, str], None] | None = None,
+) -> dict[str, str]:
+    async def observed(name: str, check: Callable[[], Awaitable[bool]]) -> bool:
+        if on_event:
+            on_event(name, "running")
+        result = await bounded_check(check, budget)
+        if on_event:
+            on_event(name, "success" if result else "failure")
+        return result
+
     mysql, redis = await asyncio.gather(
-        bounded_check(lambda: mysql_ping(engine), budget),
-        bounded_check(lambda: redis_ping(client), budget),
+        observed("mysql", lambda: mysql_ping(engine)),
+        observed("redis", lambda: redis_ping(client)),
     )
     return {"mysql": "ok" if mysql else "unavailable", "redis": "ok" if redis else "unavailable"}

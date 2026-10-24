@@ -1,5 +1,8 @@
 name: CI
 on: [push, pull_request]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -42,5 +45,39 @@ jobs:
         env:
           EXPERIMENT_INTEGRATION: "1"
         run: uv run pytest tests/integration/test_index_baseline.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: npx playwright install --with-deps chromium
+        working-directory: frontend
+      - name: Real browser acceptance against MySQL and Redis
+        run: npm run test:e2e
+        working-directory: frontend
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visualization-screenshots
+          path: docs/experiments/003-interactive-system-visualization/*.png
       - if: always()
         run: docker compose -f compose.yaml -f compose.experiments.yaml --profile experiments down
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run check
+      - run: npm run test
+      - run: npm run build
