@@ -948,3 +948,21 @@ summary {
     margin-left: 19px;
   }
 }
+
+.dependency-branch {
+  flex: 2;
+  display: flex;
+  gap: 12px;
+  position: relative;
+  min-width: 250px;
+}
+.branch-caption {
+  position: absolute;
+  top: -19px;
+  left: 3px;
+  color: var(--purple);
+  font-size: 10px;
+}
+.dependency-branch .lane-node::after {
+  display: none;
+}

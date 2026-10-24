@@ -62,7 +62,8 @@ const events = computed<TraceEvent[]>(() => {
   length = computed(() => events.value.length)
 const { index, playing, next, play, pause, reset } = usePlayback(length)
 const selected = computed(() => events.value[index.value])
-const components = ['client', 'router', 'service', 'mysql', 'redis']
+const components = ['client', 'router', 'service']
+const dependencies = ['mysql', 'redis']
 const sourcePath = computed(() => {
   const name = selected.value?.component
   return name === 'client'
@@ -141,6 +142,18 @@ function choose(event: TraceEvent) {
       >
         <span class="dot" :class="state(component)"></span>{{ component
         }}<small>{{ state(component) === 'idle' ? '待回放' : state(component) }}</small>
+      </div>
+      <div class="dependency-branch" data-testid="parallel-probes">
+        <span class="branch-caption">MySQL ∥ Redis · 并发探针</span>
+        <div
+          v-for="component in dependencies"
+          :key="component"
+          class="lane-node"
+          :class="state(component)"
+        >
+          <span class="dot" :class="state(component)"></span>{{ component }}
+          <small>{{ state(component) === 'idle' ? '待回放' : state(component) }}</small>
+        </div>
       </div>
     </div>
     <div class="toolbar">
