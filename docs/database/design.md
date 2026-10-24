@@ -1,4 +1,6 @@
 # Database Design
+## 004 independently owned business data
+The same migrated commerce tables/indexes are reused in concurrency_lab_business and concurrency_lab_business_test. Explicit init uses Alembic0003; no startupDDL. Business ownership purpose is business-lab-v1; generation records loading/ready and refuses nonempty/nonowned/interrupted targets. Separate from every002measured DB. No new004columns/tables; no cache/inventory yet. Schema links: [002ER](../../specs/002-mysql-index-baseline/data-model.md), [004models and trace](../../specs/004-real-business-trace/data-model.md).
 ## 当前已迁移
 lab_marker：id BIGINT AUTO_INCREMENT PRIMARY KEY，仅验证 Alembic；无业务数据、默认行或 API。alembic_version 为迁移工具内部表。InnoDB、utf8mb4。迁移脚本是当前 Schema 事实源。
 ## 原则

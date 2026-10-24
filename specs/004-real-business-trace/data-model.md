@@ -1,0 +1,4 @@
+# Data Model
+Existing commerce tables/indexes reused in separately owned businessDB. Purpose business-lab-v1; dataset loading/ready with seed/count/digest. No004new tables.
+Product{id,sku,name,price:Decimal}; Order{id,user_id,created_at:UTCdatetime6,total:Decimal,status}; Item{id,product_id,product_name,quantity>0,unit_price:Decimal}; Detail header+items; Page items+next_cursor|null. Cursor time/id paired.
+Span{id,parent_id,name,kind,source,start_ms,duration_ms,state,sql|null,parameters,result_count|null}; state success/error/timeout. Trace{request_id,evidence=measured,observed_at,environment,service_elapsed_ms,database,spans,pool_before,pool_after,definitions}. Response{data:Product|Page|Detail|null,error:code/message|null,trace}. No addresses/credentials/raw exception text. Header interval distinct from JSON service interval.

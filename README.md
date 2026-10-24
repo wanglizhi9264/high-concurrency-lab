@@ -2,6 +2,7 @@
 
 用于系统学习高并发、MySQL、Redis、数据库优化、异步任务和后端架构的长期实验工程。
 当前已实现 `001-project-foundation` 基础环境与健康API，`002-mysql-index-baseline` 的关系模型、批量数据和索引/分页实验，以及 `003-interactive-system-visualization` 的交互式学习入口。
+`004-real-business-trace` 新增独立业务库中的真实商品/订单/明细读取、稳定分页和可检查SQL/连接获取/请求ID的实测调用链；初始化及运行见[业务实验指南](docs/guides/business-lab.md)。005–009按独立SDD/PR顺序交付，宪章已正式修订为2.0.0。
 
 技术栈：Python 3.11+（开发/CI 3.12）、FastAPI、Pydantic v2、SQLAlchemy 2/asyncmy、Alembic、MySQL 8.4、Redis 7、uv、pytest/httpx、Ruff、mypy、Locust。解析版本以 uv.lock 为准。
 
@@ -58,8 +59,7 @@ down 保留 MySQL volume，down -v 会删除数据。Redis 当前不承诺持久
 本项目通过 `specify init high-concurrency-lab --integration codex --script ps --non-interactive` 初始化。
 在 Codex 用 `$speckit-constitution`、`$speckit-specify`、`$speckit-clarify`（必要时）、`$speckit-plan`、`$speckit-tasks`、`$speckit-analyze`、`$speckit-implement`、`$speckit-converge`。这些是 Agent skills，不是 CLI 子命令。Linux 可执行同样的 uv/Compose 命令；官方工作流脚本为 PowerShell，需 pwsh，或新项目初始化时选择 --script sh。
 
-后续独立 Feature 顺序：01 MySQL 索引与 EXPLAIN ANALYZE；02 同步/异步 API 和连接池/Locust；03 Cache-Aside 与一致性；04 并发库存与幂等；05 异步队列/Streams/Worker；06 百万数据、覆盖索引、深分页、分区/分表比较。
-每项先保存基线，再做优化；002 已有 SQL 性能实测结果；仍无缓存业务、订单 API、锁或 Worker。
+后续独立Feature顺序：004真实业务查询与Trace；005Locust压测；006Cache-Aside；007库存事务与幂等；008可靠异步任务；009大数据综合实验。每项先保存基线再优化。当前004提供只读业务API；缓存、写订单、库存和Worker尚待对应Feature完成。
 
 详细设计见 [架构](docs/architecture/overview.md)、[ADR](docs/architecture/decisions/0001-foundation.md)、[数据库](docs/database/design.md)、[开发指南](docs/guides/local-development.md)。实际执行结果见 [验收记录](specs/001-project-foundation/validation.md)。
 
@@ -93,3 +93,6 @@ npm run dev -- --host 127.0.0.1 --port 5173
 ```
 打开 http://127.0.0.1:5173/ 。完整[页面/API/可信观测边界/模拟规则/测试指南](docs/guides/visualization-platform.md)。前端执行 npm run check、npm run test、npm run build；真实端到端npm run test:e2e（需浏览器和基础MySQL/Redis健康）。
 仅本地开发，不进行生产部署；002展示直接读取历史JSON，不会重新生成百万数据。Live Trace只报告实测区间，Simulation不是实际MySQL性能。
+
+## 004：真实业务查询
+显式初始化独立业务库并开启BUSINESS_ENABLED，访问`/business`。四类GET经Router→Service→Repository→SQLAlchemy→MySQL，每请求独立Session，不接受SQL输入。商品1价格精确字符串`1.17`，用户500可游标分页，订单1含两条明细。未开启503、无记录404、无效输入422、池耗尽503、请求预算504有明确反馈。命令、口径、源码和测试见[业务指南](docs/guides/business-lab.md)、[004规格](specs/004-real-business-trace/spec.md)及[交付报告](docs/experiments/004-real-business-trace/README.md)。

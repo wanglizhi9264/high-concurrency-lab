@@ -15,6 +15,7 @@ const links = [
   { path: '/database', number: '03', name: '数据与索引', description: 'MYSQL EXPLORER' },
   { path: '/pool', number: '04', name: '连接池实验室', description: 'POOL LAB' },
   { path: '/experiments', number: '05', name: '实验记录与学习', description: 'NOTEBOOK' },
+  { path: '/business', number: '06', name: '真实业务查询', description: 'BUSINESS TRACE' },
 ]
 </script>
 <template>

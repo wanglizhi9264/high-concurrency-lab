@@ -7,6 +7,11 @@ const ExperimentsView = () => import('../views/ExperimentsView.vue')
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
+    {
+      path: '/business',
+      component: () => import('../views/BusinessQueryView.vue'),
+      meta: { title: '真实业务查询' },
+    },
     { path: '/', component: ArchitectureView, meta: { title: '系统全景图' } },
     { path: '/trace', component: TraceView, meta: { title: '请求生命周期' } },
     { path: '/database', component: DatabaseView, meta: { title: 'MySQL数据与索引' } },
