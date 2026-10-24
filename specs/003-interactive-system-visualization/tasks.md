@@ -15,7 +15,7 @@ Input spec/plan/research/data-model/contracts。测试用户明确要求。
 ## Phase6 Validation
 - [X] T008 frontend组件/API错误与数据测试、Playwright E2E、CI前端job/集成E2E；依赖T007；标准既有测试不变且真实端到端；验证全套检查。(FR-009)
 - [X] T009 README/AGENTS/架构/观测指南与截图；依赖T008；标准启动/API/真实边界/未来扩展一致；验证本地实际页面。(FR-010)
-- [ ] T010 执行Converge，更新specs/003.../validation.md和任务、提交PR等待CI后经PR合并；依赖T009；标准所有SC有真实证据。(SC-001..005)
+- [X] T010 执行Converge，更新specs/003.../validation.md和任务、提交PR等待CI后经PR合并；依赖T009；标准所有SC有真实证据。(SC-001..005)
 ## Dependencies and strategy
 顺序T001->T010；先可信API再交互，先单元/组件后真实浏览器。研究按官方Plan技能委派；实现顺序进行，浏览器QA与截图依赖真实服务。
 ## Parallel opportunities
