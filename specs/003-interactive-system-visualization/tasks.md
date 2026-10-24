@@ -28,3 +28,8 @@ API schema与前端类型可在合同稳定后并行编辑；本轮不委派实�
 ## Phase8: Storage learning clarity
 - [X] T013 per FR-002：StorageLearning.vue及ArchitectureView/CSS中增加角色、内容、命令和逐步场景；切换重置、结束可重来、健康并发与缓存教学标识；依赖T012；验证真实浏览器路径与深浅色。
 - [X] T014 per FR-009/010：补E2E场景断言、指南、实际验证与Converge，独立修复PR并保持本地预览可用；依赖T013。
+
+## Phase9: Concrete probe walkthrough
+- [X] T015 per FR-002/003/008：安全运行时ProbeGuide、路由测试、单项失败与预算超时验证；前置T014；无新敏感字段或真实故障注入。
+- [X] T016 per FR-002/003：具体HTTP/目标库/命令/源码/成功失败教程及教学故障分步、真实checks与JSON、网络错误解释；前置T015。
+- [X] T017 per FR-009/010：前后端检查/集成/浏览器验收与截图、指南及合同/Converge/独立PR；前置T016。

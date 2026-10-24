@@ -6,6 +6,7 @@ import type {
   QueryPlan,
   TraceResponse,
   PoolSnapshot,
+  ProbeGuide,
 } from '../types'
 const id = '002-mysql-index-baseline'
 export async function request<T>(path: string, acceptUnavailable = false): Promise<T> {
@@ -38,4 +39,5 @@ export const api = {
     ),
   trace: () => request<TraceResponse>('/observability/health-trace', true),
   pool: () => request<PoolSnapshot>('/observability/pool'),
+  probeGuide: () => request<ProbeGuide>('/observability/probe-guide'),
 }

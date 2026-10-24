@@ -98,3 +98,68 @@ test('storage learning distinguishes actual probes from cache-aside scenarios', 
   await lesson.getByRole('button', { name: '重新演示' }).click()
   await expect(lesson.locator('.storage-step')).toContainText('步骤 1 / 3')
 })
+
+test('detailed probe guide, independent outcomes, and simulation reset', async ({ page }) => {
+  await page.goto('/trace')
+  await expect(page.getByTestId('probe-database')).not.toBeEmpty()
+  const guide = page.locator('.probe-guide')
+  await expect(guide).toContainText('Redis 逻辑库 0')
+  await expect(guide).toContainText('GET /api/v1/observability/health-trace')
+  await expect(guide).toContainText('不查询任何业务表')
+  await guide.screenshot({
+    path: '../docs/experiments/003-interactive-system-visualization/probe-guide.png',
+  })
+  await guide.locator(':scope > summary').click()
+  await page.locator('.el-radio-button').filter({ hasText: '教学模拟' }).click()
+  const scenario = page.getByLabel('选择探针结果场景')
+  await scenario.selectOption('mysql-failure')
+  await expect(page.getByTestId('http-status')).toHaveText('503')
+  await expect(page.getByTestId('check-mysql')).toHaveText('unavailable')
+  await expect(page.getByTestId('check-redis')).toHaveText('ok')
+  await page.locator('.event-row').filter({ hasText: 'MySQL 检查失败' }).click()
+  await expect(page.locator('.inspector')).toContainText('认证异常')
+  await scenario.selectOption('redis-failure')
+  await expect(page.getByTestId('check-mysql')).toHaveText('ok')
+  await expect(page.getByTestId('check-redis')).toHaveText('unavailable')
+  await expect(page.locator('.event-row.active')).toContainText('浏览器发送 GET')
+  await scenario.selectOption('mysql-timeout')
+  await page.locator('.event-row').filter({ hasText: 'MySQL 超过检查预算' }).click()
+  await expect(page.locator('.inspector')).toContainText('asyncio.timeout')
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.screenshot({
+    path: '../docs/experiments/003-interactive-system-visualization/probe-timeout.png',
+    fullPage: true,
+  })
+  await scenario.selectOption('success')
+  await expect(page.getByTestId('http-status')).toHaveText('200')
+  await expect(page.getByTestId('check-mysql')).toHaveText('ok')
+  await expect(page.getByTestId('check-redis')).toHaveText('ok')
+})
+
+test('structured HTTP 503 and failed fetch are different states', async ({ page }) => {
+  await page.route('**/api/v1/observability/health-trace', (route) =>
+    route.fulfill({
+      status: 503,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        mode: 'live',
+        http_status: 503,
+        checks: { mysql: 'unavailable', redis: 'ok' },
+        server_elapsed_ms: 1,
+        events: [],
+        limitations: ['Browser fixture, not real outage evidence'],
+      }),
+    }),
+  )
+  await page.goto('/trace')
+  await page.getByRole('button', { name: '采集真实健康请求' }).click()
+  await expect(page.getByTestId('http-status')).toHaveText('503')
+  await expect(page.getByTestId('check-mysql')).toHaveText('unavailable')
+  await expect(page.getByTestId('check-redis')).toHaveText('ok')
+  await expect(page.getByRole('alert')).toHaveCount(0)
+  await page.unroute('**/api/v1/observability/health-trace')
+  await page.route('**/api/v1/observability/health-trace', (route) => route.abort('failed'))
+  await page.getByRole('button', { name: '采集真实健康请求' }).click()
+  await expect(page.getByRole('alert')).toContainText('网络失败不等于')
+  await expect(page.getByRole('region', { name: '本次探针结果' })).toHaveCount(0)
+})

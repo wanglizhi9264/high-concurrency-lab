@@ -64,3 +64,6 @@ ArchitectureNode、SourceRef、ExperimentResult、PlanNode、TraceEvent（来源
 
 ## Learning clarity correction (2026-10-24)
 FR-002补充：全景首页先展示MySQL权威关系表与Redis临时键值的职责对照；提供真实健康路径说明，以及首次读取/缓存命中/过期的逐步教学路径，显示命令、数据内容、当前访问目标。缓存示例必须标Simulation/尚未实现，不执行真实业务SQL或Redis读写，不提供虚构延迟。切换场景重置步骤。
+
+## Probe detail correction (2026-10-24)
+FR-002/003/008补充：列明当前页面/采集按钮的HTTP方法与路径、Vite代理、路由/服务/共享资源/探针/聚合/浏览器完整过程；从后端安全投影当前数据库名、Redis逻辑库0、探针预算与连接超时，不返回host、凭据或连接串。区分live、ready、health-trace和读取002文件的接口。展示每项实际检查结果与响应JSON；Simulation提供成功、MySQL失败、Redis失败、MySQL超时，不改变真实服务，不伪造失败原因或耗时。真实unavailable只证明检查失败，不能断言具体故障原因。

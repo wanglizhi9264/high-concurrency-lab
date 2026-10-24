@@ -7,6 +7,7 @@ import { api } from '../api'
 import { useRequest } from '../composables/useRequest'
 import AsyncState from '../components/AsyncState.vue'
 import StorageLearning from '../components/StorageLearning.vue'
+import ProbeWalkthrough from '../components/ProbeWalkthrough.vue'
 const { data, loading, error, reload } = useRequest(api.architecture)
 const selectedId = ref('service'),
   showStartup = ref(false)
@@ -45,6 +46,7 @@ function select({ node }: { node: { id: string } }) {
     <span class="badge measured">实际代码拓扑</span>
   </header>
   <StorageLearning />
+  <ProbeWalkthrough compact />
   <AsyncState :loading="loading" :error="error" :empty="!data" @retry="reload">
     <div class="architecture-layout">
       <section class="panel flow-panel">

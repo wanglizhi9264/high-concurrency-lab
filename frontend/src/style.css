@@ -1108,3 +1108,131 @@ summary {
     flex-direction: column;
   }
 }
+
+.probe-guide {
+  margin: 0 0 24px;
+}
+.probe-guide > summary {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 2px 0;
+  line-height: 1.7;
+}
+.probe-guide > p {
+  margin: 18px 0;
+  font-size: 13px;
+}
+.probe-request {
+  background: var(--bg);
+  padding: 18px;
+  border-radius: 8px;
+  margin: 18px 0;
+}
+.probe-request h2 {
+  margin-top: 14px;
+}
+.probe-request code {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+.probe-request p {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.probe-route {
+  display: grid;
+  gap: 15px;
+  padding-left: 24px;
+  margin: 22px 0;
+}
+.probe-route li {
+  padding-left: 6px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.probe-route span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.probe-fields {
+  font-size: 12px;
+  line-height: 1.9;
+}
+.probe-fields dt {
+  color: var(--storage-color);
+  font-weight: 600;
+  margin-top: 12px;
+}
+.probe-fields dd {
+  margin: 4px 0;
+  overflow-wrap: anywhere;
+}
+.probe-table-scroll {
+  overflow: auto;
+}
+.probe-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.probe-table th,
+.probe-table td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.probe-table td:first-child {
+  font-family: Consolas, monospace;
+  min-width: 190px;
+  width: 36%;
+}
+.probe-table th {
+  background: var(--bg);
+}
+.probe-sources {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  margin-top: 20px;
+}
+.probe-results {
+  margin: 22px 0;
+}
+.probe-result {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-left: 4px solid #519574;
+  border-radius: 7px;
+}
+.probe-result.failure {
+  border-left-color: #bd6f66;
+}
+.probe-result span {
+  display: block;
+  font-size: 20px;
+  margin: 12px 0;
+}
+.probe-result p,
+.probe-results > p {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.probe-results pre {
+  max-height: 360px;
+  overflow: auto;
+  background: var(--bg);
+  padding: 14px;
+}
+.toolbar select {
+  font: inherit;
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+}

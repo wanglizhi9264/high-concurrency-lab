@@ -129,3 +129,11 @@ export interface PoolSnapshot {
   observed_at: string
   note: string
 }
+
+export interface ProbeGuide {
+  mysql_database: string
+  redis_database: 0
+  readiness_timeout_seconds: number
+  io_timeout_seconds: number
+  pool_timeout_seconds: number
+}

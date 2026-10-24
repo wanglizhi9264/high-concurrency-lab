@@ -10,3 +10,6 @@
 这些截图是具体时刻的观察，时间不是性能基准。002原始JSON保持不变；003没有重跑造数或写入业务表。
 
 - storage-learning.png：真实浏览器截图，示意商品缓存命中；Simulation标签明确，非实测商品/性能数据。
+
+- probe-guide.png：当前后端安全配置驱动的HTTP/数据库/命令/预算说明，非连接成功证明。
+- probe-timeout.png：MySQL超时、Redis成功的纯前端Simulation；不是实际服务故障证据。
