@@ -1,4 +1,17 @@
 # Architecture Overview
+## 004 business extension
+Original diagrams below describe foundation health. The opt-in business path is separate:
+```mermaid
+flowchart LR
+  Vue[BusinessQueryView] -->|fixed HTTP GET| Router[Business Router + DI]
+  Router --> Service[BusinessService / request Session transaction]
+  Service --> Repository[Product/Order Repository]
+  Repository --> Observation[ObservedDatabase / execute-fetch spans]
+  Observation --> Session[SQLAlchemy Session + lifespan business pool]
+  Session --> MySQL[(Owned business database)]
+  Middleware[Request ID / preparation headers / safe logs] -.observes.-> Router
+```
+Responsibilities, exact observation boundaries and safety decisions: [ADR0002](decisions/0002-business-lab.md), [runbook](../guides/business-lab.md).001/003health traces remain separate;002reads immutable JSON. No businessRedis/queue yet.
 ```mermaid
 flowchart LR
   HTTP --> API[health routes]

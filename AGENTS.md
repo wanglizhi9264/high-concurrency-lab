@@ -2,7 +2,7 @@
 Read .specify/memory/constitution.md, then the active feature under specs/ (including 001-project-foundation and 002-mysql-index-baseline).
 Use installed official .agents/skills/speckit-* for new features. Update spec/plan before scope changes.
 Run uv sync --frozen and uv run python scripts/verify.py. Integration requires Compose and Alembic head; run uv run pytest tests/integration explicitly.
-No create_all, no per-request pools, no shared sessions across tasks, no committed .env. Current schema includes lab_marker and experimental commerce tables; no business order API exists.
+No create_all, no per-request pools, no shared sessions across tasks, no committed .env. Commerce read APIs now use a separately owned business database;002 measured databases remain immutable.
 Do not claim remote CI passed unless executed on GitHub. Keep actual validation evidence and open tasks honest.
 
 ## Git workflow
@@ -22,3 +22,6 @@ Read specs/003-interactive-system-visualization/ and docs/guides/visualization-p
 Frontend lives only in frontend/: npm ci, npm run check, npm run test, npm run build. E2E npm run test:e2e uses actual backend/readiness and requires healthy foundation dependencies; use PLAYWRIGHT_CHANNEL=msedge on Windows when needed.
 Preserve immutable 002 JSON. Public APIs only read allowlisted evidence, return validated DTOs, and never execute user SQL or expose absolute server paths. Treat Live Trace, recorded measurements and Simulation as separate evidence types. Current health probes bypass ORM Session. Never invent pool-wait/router/network timings.
 Backend resources remain lifespan-owned; instrumentation records only observed event intervals. No database migrations in003. Frontend build/test output and node_modules must remain ignored.
+
+## 004 Business queries
+Read specs/004-real-business-trace and docs/guides/business-lab.md. Business mode defaults off; optional lifespan pool only targets concurrency_lab_business or concurrency_lab_business_test. Never use002databases. Explicit provision/init/seed only; no reset. Service owns one Session/read transaction per request, Repository fixed bound SQL/JOIN; ownership guard SQL counts in observedSQL/QPS. Acquisition includes queue/connect/preping, client execute/fetch is not server-only SQL. Header, JSON and browserRTT boundaries differ; pool sample offsets relate to trace UTC start. BUSINESS_INTEGRATION=1 enables isolated real read/pool/cancellation tests. Subsequent features require independent SDD/branch/PR and preserve004read contracts.

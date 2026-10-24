@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy import URL
@@ -20,6 +22,11 @@ class Settings(BaseSettings):
     redis_max_connections: int = Field(default=10, ge=1)
     io_timeout: float = Field(default=1, gt=0)
     readiness_timeout: float = Field(default=2, gt=0)
+    business_enabled: bool = False
+    business_database: Literal["concurrency_lab_business", "concurrency_lab_business_test"] = (
+        "concurrency_lab_business"
+    )
+    business_request_timeout: float = Field(default=5, gt=0, le=60)
 
     @property
     def database_url(self) -> URL:

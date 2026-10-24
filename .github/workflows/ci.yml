@@ -45,6 +45,19 @@ jobs:
         env:
           EXPERIMENT_INTEGRATION: "1"
         run: uv run pytest tests/integration/test_index_baseline.py
+      - name: Initialize isolated business dataset
+        run: |
+          uv run python scripts/provision_business_lab.py
+          uv run python -m concurrency_lab.experiments.business_dataset --database concurrency_lab_business_test init
+          uv run python -m concurrency_lab.experiments.business_dataset --database concurrency_lab_business_test seed --orders 10000
+      - name: Real business transactions, paging, pool exhaustion and recovery
+        env:
+          BUSINESS_INTEGRATION: "1"
+        run: uv run pytest tests/integration/test_business.py
+      - name: Enable isolated business API for browser tests
+        run: |
+          echo "BUSINESS_ENABLED=true" >> .env
+          echo "BUSINESS_DATABASE=concurrency_lab_business_test" >> .env
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -61,7 +74,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: visualization-screenshots
-          path: docs/experiments/003-interactive-system-visualization/*.png
+          path: docs/experiments/**/*.png
       - if: always()
         run: docker compose -f compose.yaml -f compose.experiments.yaml --profile experiments down
 

@@ -3,14 +3,20 @@ from contextlib import AsyncExitStack, asynccontextmanager
 from dataclasses import dataclass
 
 from fastapi import FastAPI
+from fastapi.exceptions import RequestValidationError
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
 
+from concurrency_lab.api.routes.business import business_error_handler, business_validation_handler
+from concurrency_lab.api.routes.business import router as business_router
 from concurrency_lab.api.routes.health import router
 from concurrency_lab.api.routes.visualization import router as visualization_router
 from concurrency_lab.cache.client import create_redis
 from concurrency_lab.core.config import Settings
+from concurrency_lab.core.exceptions import BusinessFailure
+from concurrency_lab.db.business import BusinessResources, validate_business_database
 from concurrency_lab.db.session import create_engine
+from concurrency_lab.observability.http import BusinessObservationMiddleware
 from concurrency_lab.services.tracing import TraceRecorder
 
 
@@ -20,6 +26,7 @@ class Resources:
     engine: AsyncEngine
     redis: Redis
     sessions: async_sessionmaker[AsyncSession]
+    business: BusinessResources | None = None
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -39,11 +46,23 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 "Redis client created (lazy)", "redis", "success", "创建客户端，不代表已执行PING。"
             )
             stack.push_async_callback(client.aclose)
+            business = None
+            if config.business_enabled:
+                validate_business_database(config.business_database)
+                business_config = config.model_copy(
+                    update={"mysql_database": config.business_database}
+                )
+                business_engine = create_engine(business_config)
+                stack.push_async_callback(business_engine.dispose)
+                business = BusinessResources(
+                    business_engine, async_sessionmaker(business_engine, expire_on_commit=False)
+                )
             app.state.resources = Resources(
                 config,
                 engine,
                 client,
                 async_sessionmaker(engine, expire_on_commit=False),
+                business,
             )
             startup.emit(
                 "Session factory registered",
@@ -57,6 +76,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     application = FastAPI(title="High Concurrency Lab", lifespan=lifespan)
     application.include_router(router)
     application.include_router(visualization_router)
+    application.include_router(business_router)
+    application.add_exception_handler(BusinessFailure, business_error_handler)
+    application.add_exception_handler(RequestValidationError, business_validation_handler)
+    application.add_middleware(BusinessObservationMiddleware)
     return application
 
 

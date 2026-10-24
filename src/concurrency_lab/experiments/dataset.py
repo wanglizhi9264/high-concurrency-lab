@@ -29,6 +29,24 @@ def price(product_id: int) -> Decimal:
     return Decimal(100 + product_id * 17) / 100
 
 
+def reference_rows() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Bounded deterministic catalog shared with the isolated business dataset."""
+    users = [
+        {
+            "id": i,
+            "username": f"user{i:04}",
+            "email": f"user{i:04}@example.invalid",
+            "created_at": datetime(2025, 1, 1),
+        }
+        for i in range(1, USER_COUNT + 1)
+    ]
+    products = [
+        {"id": i, "sku": f"SKU{i:04}", "name": f"Product {i}", "price": price(i)}
+        for i in range(1, PRODUCT_COUNT + 1)
+    ]
+    return users, products
+
+
 def order_batches(
     count: int, seed: int, batch_size: int
 ) -> Iterator[tuple[list[dict[str, Any]], list[dict[str, Any]]]]:
@@ -112,25 +130,9 @@ async def seed_database(database: str, count: int, seed: int, batch_size: int) -
                 insert(ExperimentDataset),
                 [{"id": 1, "seed": seed, "order_count": count, "digest": "", "status": "loading"}],
             )
-            await connection.execute(
-                insert(LabUser),
-                [
-                    {
-                        "id": i,
-                        "username": f"user{i:04}",
-                        "email": f"user{i:04}@example.invalid",
-                        "created_at": datetime(2025, 1, 1),
-                    }
-                    for i in range(1, USER_COUNT + 1)
-                ],
-            )
-            await connection.execute(
-                insert(LabProduct),
-                [
-                    {"id": i, "sku": f"SKU{i:04}", "name": f"Product {i}", "price": price(i)}
-                    for i in range(1, PRODUCT_COUNT + 1)
-                ],
-            )
+            users, products = reference_rows()
+            await connection.execute(insert(LabUser), users)
+            await connection.execute(insert(LabProduct), products)
         for orders, items in order_batches(count, seed, batch_size):
             async with engine.begin() as connection:
                 await connection.execute(insert(LabOrder), orders)
