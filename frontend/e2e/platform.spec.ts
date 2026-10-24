@@ -63,3 +63,38 @@ test('API error is visible and recoverable', async ({ page }) => {
   await expect(page.getByRole('alert')).toContainText('API 503')
   await expect(page.getByRole('button', { name: '重试' })).toBeVisible()
 })
+
+test('storage learning distinguishes actual probes from cache-aside scenarios', async ({
+  page,
+}) => {
+  await page.goto('/')
+  const lesson = page.getByRole('region', { name: 'MySQL 与 Redis 交互教学' })
+  await expect(lesson).toContainText('实际代码路径 · 非实时采集')
+  await lesson.getByRole('button', { name: '下一步', exact: true }).click()
+  await expect(lesson.locator('.storage-card.active')).toHaveCount(2)
+  await expect(lesson.locator('.storage-step')).toContainText('并发')
+  await lesson.getByRole('button', { name: '① 首次读取 · 缓存未命中' }).click()
+  await expect(lesson).toContainText('Simulation · 业务缓存尚未实现')
+  await expect(lesson.getByTestId('cache-value')).toContainText('MISS')
+  await lesson.getByRole('button', { name: '下一步', exact: true }).click()
+  await expect(lesson.locator('.mysql-card')).toHaveClass(/active/)
+  await lesson.getByRole('button', { name: '下一步', exact: true }).click()
+  await expect(lesson.getByTestId('cache-value')).toContainText('299')
+  await lesson.getByRole('button', { name: '② 再次读取 · 缓存命中' }).click()
+  await expect(lesson.locator('.storage-step')).toContainText('步骤 1 / 2')
+  await lesson.getByRole('button', { name: '下一步', exact: true }).click()
+  await expect(lesson.locator('.storage-step')).toContainText('此次不查询 MySQL')
+  await expect(lesson.getByRole('button', { name: '下一步', exact: true })).toBeDisabled()
+  await lesson.screenshot({
+    path: '../docs/experiments/003-interactive-system-visualization/storage-learning.png',
+  })
+  await page.getByRole('button', { name: '切换深色模式' }).click()
+  await expect(lesson).toBeVisible()
+  await expect(page.locator('html')).toHaveClass(/dark/)
+  await lesson.getByRole('button', { name: '③ 缓存过期 · 回源' }).click()
+  await expect(lesson.getByTestId('cache-value')).toContainText('MISS')
+  await lesson.getByRole('button', { name: '下一步', exact: true }).click()
+  await expect(lesson.locator('.storage-step')).toContainText('回源')
+  await lesson.getByRole('button', { name: '重新演示' }).click()
+  await expect(lesson.locator('.storage-step')).toContainText('步骤 1 / 3')
+})

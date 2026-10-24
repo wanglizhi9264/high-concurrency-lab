@@ -93,3 +93,6 @@ E2E主流程使用真实API和数据库健康探针，不Mock结果；另外单�
 不是分布式追踪平台；无Router匹配/网络传输/纯队列等待的独立精确计时，无池等待人数时间序列。客户端Schema在关键投影处检查，后端Pydantic是完整证据校验边界。
 前端整包ElementPlus及图表vendor块仍可能触发Vite大chunk警告；已按路由/图表功能拆分，暂不以牺牲教学清晰度引入复杂打包配置。没有生产静态托管、鉴权、Prometheus/Locust或OpenTelemetry部署。
 后续独立Feature：Locust真实负载结果适配RecordedResult；Prometheus新增时间序列DTO与采样间隔/单位/来源，不复用Simulation DTO；若测pool acquire须区分排队/建连/pre-ping，保留source/evidence和观测局限。先建立基线，再增加指标，避免把采集时间混入业务SQL时间。
+
+## MySQL 与 Redis 从哪里看起
+首页顶部提供两种存储的内容对照：MySQL 关系表是权威数据，Redis 商品键值是示意副本。默认健康场景按实际代码展示并发 SELECT 1 / PING，不代表已经实时采集。通过下一步、上一步、重新演示查看命令和访问目标。首次读取、命中、过期三个场景都是独立的纯前端 Simulation，切换重置步骤；示意商品42不来自真实实验库。缓存60秒是示意设置，不是倒计时。当前没有业务缓存、命中率或缓存性能测量；真实健康采集仍在请求生命周期页，真实索引数据仍在数据与索引页。缓存失效与并发一致性需后续单独实验。参考 [Redis官方Cache-Aside](https://redis.io/docs/latest/develop/use-cases/cache-aside/)。

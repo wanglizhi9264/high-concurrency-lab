@@ -56,7 +56,7 @@ describe('component evidence and selection', () => {
       },
     })
     await flushPromises()
-    await wrapper.get('button').trigger('click')
+    await wrapper.get('.flow-panel button').trigger('click')
     expect(wrapper.text()).toContain('真实数据库职责')
     expect(wrapper.text()).toContain('models.py')
   })
