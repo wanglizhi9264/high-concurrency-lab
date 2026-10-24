@@ -29,3 +29,6 @@ appendonlydir/
 secrets/
 credentials.json
 .agents/auth.json
+node_modules/
+frontend/test-results/
+frontend/playwright-report/

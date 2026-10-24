@@ -20,3 +20,7 @@ models/marker.py 仅迁移验证；没有运行时 create_all。迁移独立于�
 ## 002 实验模块
 experiments/ 下 safety.py 是库名/所有权保护，dataset.py 负责有界批量事务，queries.py 定义固定查询与计划解析，runner.py 保存真实测量，index_baseline.py 为 CLI。使用独立 mysql-experiment 实例与 volume，默认13306；不借用应用池，不新增 HTTP 路由。
 commerce.py 中四个关系模型只服务数据/索引实验。Alembic0002提供基线结构，0003新增查询索引；ORM metadata 表示 head。迁移配置支持程序传入 database_url，仍由 Alembic管理全部DDL。安全元数据表仅保存实验身份与 loading/ready状态。
+
+## 003 可视化入口
+Vue3 SPA位于frontend/，以只读DTO API访问架构、经过Pydantic校验的002证据和健康观测。services/visualization.py仅读取固定目录及固定文件名；schemas/visualization.py定义完整证据/响应边界。services/tracing.py为单请求monotonic事件记录器，原health Service只增加可选回调，旧API响应不变。
+真实健康路径直接Engine.connect，不经过Session；启动记录是lazy对象创建；frontend的浏览器往返与服务端时钟分开。池模拟完全在客户端，真实pool快照只读现有gauges。无SQL写入API、无新Schema/缓存/队列。详见 docs/guides/visualization-platform.md。

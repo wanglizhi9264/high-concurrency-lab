@@ -1,7 +1,7 @@
 # High Concurrency Lab
 
 用于系统学习高并发、MySQL、Redis、数据库优化、异步任务和后端架构的长期实验工程。
-当前已实现 `001-project-foundation` 基础环境与健康API，以及 `002-mysql-index-baseline` 的关系模型、批量数据和索引/分页实验。
+当前已实现 `001-project-foundation` 基础环境与健康API，`002-mysql-index-baseline` 的关系模型、批量数据和索引/分页实验，以及 `003-interactive-system-visualization` 的交互式学习入口。
 
 技术栈：Python 3.11+（开发/CI 3.12）、FastAPI、Pydantic v2、SQLAlchemy 2/asyncmy、Alembic、MySQL 8.4、Redis 7、uv、pytest/httpx、Ruff、mypy、Locust。解析版本以 uv.lock 为准。
 
@@ -79,3 +79,17 @@ PR 需附规格、变更说明和实际测试结果，quality 与 integration �
 已实现用于实验的用户、商品、订单及明细表、两阶段 Alembic迁移、确定性分批造数和 SQL计划/分页测量，无新增订单 API。
 独立 MySQL 实验实例默认端口13306；详见 [实验命令与ER图](docs/experiments/002-mysql-index-baseline/README.md)、[DBeaver教程](docs/experiments/002-mysql-index-baseline/dbeaver.md)、[实测报告](docs/experiments/002-mysql-index-baseline/report.md)。
 已提交结果只能读取，新实验指定新 output-dir；已有数据库不会被自动清空。执行 `uv run python scripts/verify_index_lab.py --verify-only` 校验仓库内证据。
+
+## 003：交互式系统实验台
+新增 frontend/ Vue3+TS界面：系统全景图、真实/模拟请求回放、002数据/计划对照、连接池教学模拟和实验笔记。后端只读API及最小健康埋点，无业务API或数据库Schema变化。
+```powershell
+# 仓库根目录，先确保本地.env有效
+uv sync --frozen
+docker compose up -d --wait
+uv run uvicorn concurrency_lab.main:app --host 127.0.0.1 --port 18002
+# 另开终端进入frontend目录
+npm ci
+npm run dev -- --host 127.0.0.1 --port 5173
+```
+打开 http://127.0.0.1:5173/ 。完整[页面/API/可信观测边界/模拟规则/测试指南](docs/guides/visualization-platform.md)。前端执行 npm run check、npm run test、npm run build；真实端到端npm run test:e2e（需浏览器和基础MySQL/Redis健康）。
+仅本地开发，不进行生产部署；002展示直接读取历史JSON，不会重新生成百万数据。Live Trace只报告实测区间，Simulation不是实际MySQL性能。

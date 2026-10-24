@@ -9,5 +9,5 @@ __pycache__
 .agents
 .specify
 tests
-docs
 specs
+frontend/
