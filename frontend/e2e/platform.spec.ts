@@ -8,6 +8,7 @@ test('real architecture, recorded data, live health and pool simulation', async 
   await expect(page.locator('.inspector')).toContainText('EXPLAIN ANALYZE')
   await page.getByRole('button', { name: '查看实际初始化记录' }).click()
   await expect(page.locator('.startup')).toContainText('lazy')
+  await page.evaluate(() => window.scrollTo(0, 0))
   await page.screenshot({
     path: '../docs/experiments/003-interactive-system-visualization/architecture.png',
     fullPage: true,
@@ -20,6 +21,7 @@ test('real architecture, recorded data, live health and pool simulation', async 
     .filter({ hasText: 'Table scan on lab_order' })
     .click()
   await expect(page.locator('.plan-layout .inspector')).toContainText('1,000,000')
+  await page.evaluate(() => window.scrollTo(0, 0))
   await page.screenshot({
     path: '../docs/experiments/003-interactive-system-visualization/database.png',
     fullPage: true,
@@ -27,8 +29,11 @@ test('real architecture, recorded data, live health and pool simulation', async 
   await page.goto('/trace')
   await page.getByRole('button', { name: '采集真实健康请求' }).click()
   await expect(page.getByTestId('http-status')).toHaveText('200')
+  await expect(page.getByTestId('parallel-probes')).toContainText('并发探针')
+  await expect(page.getByTestId('parallel-probes').locator('.lane-node')).toHaveCount(2)
   await expect(page.locator('.page-heading .badge.measured')).toContainText('Live Trace')
   await page.getByRole('button', { name: '单步', exact: true }).click()
+  await page.evaluate(() => window.scrollTo(0, 0))
   await page.screenshot({
     path: '../docs/experiments/003-interactive-system-visualization/live-trace.png',
     fullPage: true,

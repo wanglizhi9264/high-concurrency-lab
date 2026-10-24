@@ -31,3 +31,8 @@ See PR checks for exact remote commit outcomes; local checks alone do not imply 
 ## Converge
 2026-10-24：已逐项评估10FR、5SC、11宪章原则、Plan设计与10Tasks。实现范围内无missing/partial/contradicts/unrequested代码缺口，不追加空Convergence阶段。前端/后端/真实浏览器及容器验证已执行，原002结果保持不变。
 交付PR：[PR#2](https://github.com/wanglizhi9264/high-concurrency-lab/pull/2)。远端CI与合并状态以该PR最终记录为准；此文档更新在合并前提交，不能把本地通过视作远端已通过。所有代码只在独立feature分支提交，main通过受保护PR合并。
+
+## Post-merge visual convergence correction
+Visual review found F1 (HIGH, contradicts FR-003): the lifecycle component lane used a mysql→redis arrow despite actual probes being concurrent. F2 (MEDIUM, partial FR-010): a long-page screenshot taken while scrolled placed the fixed sidebar lower in the stitched image. Appended T011/T012 under Phase7, then implemented on fix/003-parallel-trace-layout; no main edits.
+Trace now shows an explicit MySQL ∥ Redis parallel group with no serial arrow between dependency cards. Screenshot collection scrolls to top before full-page capture. E2E asserts both parallel dependency nodes and actual health200. Stable rerun after HMR settled: npm check passed and2real-browser E2E tests passed. Screenshots re-captured from real pages, not image-edited. Backend/002data/API contracts unchanged. Initial smoke while source HMR was updating did not retain HTTP status; final stable run passed, and required remote CI is checked again before merge.
+Final Converge rechecks all10FR/5SC/11principles and12tasks; no remaining actionable gaps. Publication is via a separate protected-branch correction PR after required checks.

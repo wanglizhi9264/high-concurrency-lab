@@ -20,3 +20,7 @@ Input spec/plan/research/data-model/contracts。测试用户明确要求。
 顺序T001->T010；先可信API再交互，先单元/组件后真实浏览器。研究按官方Plan技能委派；实现顺序进行，浏览器QA与截图依赖真实服务。
 ## Parallel opportunities
 API schema与前端类型可在合同稳定后并行编辑；本轮不委派实现。保留原quality/integration门禁，新增frontend检查；不修改002原始JSON。
+
+## Phase7: Convergence
+- [X] T011 修复生命周期页并发可视化per FR-003（contradicts）：frontend/src/views/TraceView.vue和style.css中将MySQL/Redis显示为明确并行探针分组；前置T010；完成标准：无MySQL→Redis串行箭头；验证E2E分组与真实200。
+- [X] T012 修复真实长页截图的滚动上下文per FR-010（partial）：frontend/e2e/platform.spec.ts截图前回到页顶、重采三张截图；前置T011；完成标准：固定侧栏位于顶部，源码/数据不变；验证实际截图及独立修复PR CI。
