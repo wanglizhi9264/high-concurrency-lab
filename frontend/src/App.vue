@@ -25,6 +25,7 @@ const links = [
     description: 'REAL TRANSACTIONS',
   },
   { path: '/tasks', number: '10', name: '可靠异步任务', description: 'DURABLE WORKER' },
+  { path: '/scale-lab', number: '11', name: '大数据综合实验', description: 'SCALE & PARTITION' },
 ]
 </script>
 <template>

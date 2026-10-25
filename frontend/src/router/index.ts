@@ -8,6 +8,11 @@ export const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: '/scale-lab',
+      component: () => import('../views/ScaleLabView.vue'),
+      meta: { title: '大数据综合实验' },
+    },
+    {
       path: '/tasks',
       component: () => import('../views/TaskLabView.vue'),
       props: (route) => ({ initialOrderId: String(route.query.order_id ?? '') }),

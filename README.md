@@ -104,3 +104,7 @@ npm run dev -- --host 127.0.0.1 --port 5173
 ## 008 可靠异步回执
 
 /tasks 展示真实MySQL Task/Outbox/Attempt/Event/Receipt与Redis Streams观测。按已paid订单创建任务，复制页面的database/scenario限定CLI启动独立worker。显式迁移0005，默认不开写入。参阅[运行与故障恢复](docs/guides/worker-lab.md)、[ER与约束](docs/database/tasks.md)、[ADR0006](docs/architecture/decisions/0006-reliable-worker.md)。受理、发布、提交结果、ACK各自独立；不声称消息exactly-once。
+
+## 009 大数据与完整验收
+
+/scale-lab只读展示独立分析实验的单列/联合/覆盖候选索引、深页、分区、写入/空间/资源证据；普通启动不生成百万/千万数据。[实验命令](docs/guides/scale-lab.md)、[独立Schema](docs/database/scale.md)、[干净克隆流程](docs/guides/clean-clone.md)、[源码阅读顺序](docs/guides/source-reading.md)。实际结果及完整最终交付在009报告/架构文档更新，未执行的验收不标通过。
