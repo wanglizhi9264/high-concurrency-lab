@@ -53,6 +53,7 @@ const hasPoints = computed(() =>
   runs.value.some((run) => loadSeries(run, metric.value).some((point) => point[1] !== null)),
 )
 const option = computed<EChartsOption>(() => ({
+  animation: false,
   color: ['#7964d9', '#379c9a'],
   legend: { textStyle: { color: '#8990a5' } },
   tooltip: {
@@ -263,6 +264,16 @@ async function retryRuns() {
           各次运行按自己的起点对齐。断点保留为未采集；曲线不平滑、不连接缺失值。实例 Questions
           增量包含监测 / 健康 / 事务语句，遇到计数或 Uptime 回退时留空。
         </p>
+        <details>
+          <summary>当前曲线原始采样点（秒、指标值）</summary>
+          <pre data-testid="load-series">{{
+            JSON.stringify(
+              runs.map((run) => ({ id: run.manifest.id, points: loadSeries(run, metric) })),
+              null,
+              2,
+            )
+          }}</pre>
+        </details>
       </section>
       <div class="callout">
         <p>

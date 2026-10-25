@@ -1,6 +1,6 @@
 # ADR 0003: Independent Locust process and immutable measured records
 
-Status: accepted, 2026-10-25, Feature005.
+Status: accepted, 2026-10-25, Feature005. Kept with the existing architecture decisions.
 
 Locust/gevent runs only in a child process. The runner owns an independent single-worker API, configured business pool and cleanup. Existing preview processes are untouched. Each run uses an unused loopback port and the existing owned business dataset; ownership is verified by every business request. No data is reset.
 
