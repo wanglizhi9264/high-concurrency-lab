@@ -4,3 +4,6 @@ docs/experiments/005-real-load-testing/runs/**/*.csv -text
 *.png binary
 *.jpg binary
 *.zip binary
+
+# Preserve copied actual acceptance CSV bytes in009archives.
+docs/experiments/009-scale-comprehensive-lab/end-to-end/**/*.csv -text

@@ -1,0 +1,46 @@
+name: Manual scale experiment
+on:
+  workflow_dispatch:
+    inputs:
+      orders:
+        type: choice
+        options: ['10000', '100000', '1000000', '10000000']
+        default: '10000'
+permissions:
+  contents: read
+jobs:
+  scale:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    env:
+      SCALE_ROWS: ${{ inputs.orders }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.5'
+          python-version: '3.12'
+      - run: uv sync --frozen
+      - name: Disposable local credentials
+        run: |
+          cp .env.example .env
+          echo "MYSQL_PASSWORD=$(openssl rand -hex 24)" >> .env
+          echo "MYSQL_ROOT_PASSWORD=$(openssl rand -hex 24)" >> .env
+          echo "REDIS_PASSWORD=$(openssl rand -hex 24)" >> .env
+      - run: docker compose -f compose.yaml -f compose.experiments.yaml --profile experiments up -d --wait mysql-experiment
+      - run: uv run python scripts/provision_scale_lab.py
+      - name: Explicit actual scale, ten-million opt-in only when selected
+        run: |
+          if [ "$SCALE_ROWS" = "10000000" ]; then
+            uv run python scripts/run_scale_experiment.py --orders "$SCALE_ROWS" --allow-ten-million --max-seconds 5400
+          else
+            uv run python scripts/run_scale_experiment.py --orders "$SCALE_ROWS"
+          fi
+      - run: uv run python scripts/verify_scale_lab.py --require-scales "$SCALE_ROWS"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: actual-scale-evidence
+          path: docs/experiments/009-scale-comprehensive-lab/runs/
+      - if: always()
+        run: docker compose -f compose.yaml -f compose.experiments.yaml --profile experiments stop mysql-experiment

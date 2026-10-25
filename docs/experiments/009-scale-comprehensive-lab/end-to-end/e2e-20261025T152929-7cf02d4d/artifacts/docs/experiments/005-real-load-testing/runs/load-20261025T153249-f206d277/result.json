@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "evidence": "recorded",
+  "complete": true,
+  "manifest": {
+    "id": "load-20261025T153249-f206d277",
+    "start_epoch": 1792942381.587591,
+    "end_epoch": 1792942382.294948,
+    "duration_s": 0.7078713999944739,
+    "parameters": {
+      "users": 10,
+      "seconds": 5,
+      "task_rate": 1.0,
+      "spawn_rate": 10.0,
+      "pool_size": 5,
+      "scenario": "mixed"
+    },
+    "peak_users": 10,
+    "dataset": {
+      "purpose": "business-lab-v1",
+      "order_count": 10000,
+      "seed": 20261023,
+      "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+      "status": "ready"
+    },
+    "environment": {
+      "platform": "Windows-11-10.0.26300-SP0",
+      "python": "3.12.14",
+      "locust": "2.47.0",
+      "psutil": "7.2.2",
+      "revision": "e0b1730cc2d97fa37ccf90d26abb735f89efa5a6",
+      "workload_sources_dirty": false,
+      "workload_sha256": "630eee60ef37cac85eecb39e90e9524ef95eb9bc1965fac2284190683a85d3bb",
+      "mysql": "8.4.13",
+      "application_workers": 1,
+      "pool": {
+        "pool_size": 5,
+        "max_overflow": 0,
+        "pool_timeout_seconds": 1.0,
+        "request_timeout_seconds": 5.0,
+        "inventory_lock_wait_seconds": 1
+      },
+      "csv_history_interval_s": 1
+    },
+    "raw_files": [
+      "locust_exceptions.csv",
+      "locust_failures.csv",
+      "locust_stats.csv",
+      "locust_stats_history.csv",
+      "requests.csv",
+      "resources.jsonl",
+      "starts.csv",
+      "window.json"
+    ]
+  },
+  "summary": {
+    "requests": 10,
+    "failures": 0,
+    "completed_rps": 14.126859765881298,
+    "error_rate": 0.0,
+    "p50_ms": 598.403399984818,
+    "p95_ms": 658.039700007066,
+    "p99_ms": 694.4760200101882,
+    "observed_sql_attempts_per_s": 28.253719531762595,
+    "unknown_sql_responses": 0,
+    "sql_response_coverage": 1.0,
+    "http_504": 0,
+    "pool_timeouts": 0,
+    "transport_timeouts": 0,
+    "client_started": 10,
+    "client_start_rps": 14.126859765881298,
+    "uncompleted_client_calls": 0
+  },
+  "history": [
+    {
+      "elapsed_s": 0.0,
+      "interval_s": 0.7073571681976318,
+      "completed": 10,
+      "completed_rps": 14.137129656125932,
+      "failures": 0,
+      "observed_sql_attempts_per_s": 28.274259312251864,
+      "client_started": 10,
+      "client_start_rps": 14.137129656125932
+    }
+  ],
+  "resources": [],
+  "locust_statistics": [
+    {
+      "Type": "",
+      "Name": "Aggregated",
+      "Request Count": "0",
+      "Failure Count": "0",
+      "Median Response Time": "0",
+      "Average Response Time": "0.0",
+      "Min Response Time": "0",
+      "Max Response Time": "0",
+      "Average Content Size": "0",
+      "Requests/s": "0.0",
+      "Failures/s": "0.0",
+      "50%": "N/A",
+      "66%": "N/A",
+      "75%": "N/A",
+      "80%": "N/A",
+      "90%": "N/A",
+      "95%": "N/A",
+      "98%": "N/A",
+      "99%": "N/A",
+      "99.9%": "N/A",
+      "99.99%": "N/A",
+      "100%": "N/A"
+    }
+  ],
+  "semantics": {
+    "client_starts": "Independent starts.csv records the client get-call point, including unfinished calls. Not server arrival; error_rate covers completed requests only.",
+    "window": "Actual test-start through stop/drain/quitting; ramp and drain included.",
+    "rate": "users is target concurrency; spawn_rate is users/s; task_rate is closed-loop tasks/user/s, one request/task, not guaranteed open arrival rate.",
+    "rps": "Completed observed HTTP requests / actual monotonic test window seconds.",
+    "sql": "Received SQL span attempts / same window; unknown responses counted separately. Excludes internal pre-ping and unreturned traces.",
+    "percentiles": "Linear interpolation over raw response_ms, including failures. Original Locust rounded histogram stats retained separately.",
+    "history": "Actual one-second completion bins, not Locust rolling history. Last bin may be partial.",
+    "locust_csv": "Original history rates/percentiles are rolling; counts cumulative. Do not average percentiles.",
+    "mysql": "Global Questions/Queries include monitoring, health and transactions. Delta/elapsed is instance statement rate, not business SQL QPS; reset on Uptime/counter decrease.",
+    "resources": "psutil process-tree CPU/summed RSS; first CPU null. Docker CLI uses a separate VM/container scope. CPU may exceed100%; RSS may double-count shared pages.",
+    "timeouts": "HTTP504, pool_timeout and transport timeout overlap; do not add as mutually exclusive failures."
+  },
+  "limitations": [
+    "Short ramp-inclusive exploratory run, not a capacity or reliable tail-latency claim.",
+    "Monitoring competes for pool capacity and issues SQL. Docker CLI sampling cadence is measured, not assumed.",
+    "Closed-loop users reduce offered throughput when requests slow; client start is not server arrival.",
+    "CPU intervals may cross window edges; resource observations have distinct process/container scopes."
+  ]
+}

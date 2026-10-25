@@ -1,0 +1,1859 @@
+{
+  "complete": true,
+  "evidence": "measured_functional_journey",
+  "scenario_id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+  "order_id": 26,
+  "task_id": "be4ecb07-d6ef-4347-8317-b3a5f8a7ccc6",
+  "receipt_id": 4,
+  "observations": [
+    {
+      "method": "GET",
+      "path": "/health/ready",
+      "intent": null,
+      "status": 200,
+      "observed_at": "2026-10-25T15:39:57.850372+00:00",
+      "client_rtt_ms": 11.123400006908923,
+      "body": {
+        "status": "ready",
+        "checks": {
+          "mysql": "ok",
+          "redis": "ok"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/observability/business-metrics",
+      "intent": null,
+      "status": 200,
+      "observed_at": "2026-10-25T15:39:57.859415+00:00",
+      "client_rtt_ms": 9.261000028345734,
+      "body": {
+        "evidence": "measured",
+        "observed_at": "2026-10-25T15:39:57.858768+00:00",
+        "collection_ms": 7.645500008948147,
+        "status": "ok",
+        "database": "concurrency_lab_business",
+        "pool": {
+          "configured_size": 5,
+          "checked_out": 0,
+          "overflow": 0
+        },
+        "configuration": {
+          "pool_size": 5,
+          "max_overflow": 5,
+          "pool_timeout_seconds": 1.0,
+          "request_timeout_seconds": 5.0,
+          "inventory_lock_wait_seconds": 1
+        },
+        "dataset": {
+          "purpose": "business-lab-v1",
+          "order_count": 10000,
+          "seed": 20261023,
+          "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+          "status": "ready"
+        },
+        "mysql_version": "8.4.13",
+        "mysql_status": {
+          "Com_select": 749,
+          "Queries": 2560,
+          "Questions": 2361,
+          "Threads_connected": 6,
+          "Threads_running": 2,
+          "Uptime": 155
+        },
+        "error_code": null
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1?mode=cache&ttl_seconds=5",
+      "intent": null,
+      "status": 200,
+      "observed_at": "2026-10-25T15:39:57.883574+00:00",
+      "client_rtt_ms": 24.343800032511353,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:39:57.877130+00:00",
+          "outcome": "miss",
+          "initial_lookup": "miss",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 3,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": true,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "13e1c11c0a89483297a2aa2675e7f96e",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:39:57.860495+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 22.486100031528622,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.8974000229500234,
+              "duration_ms": 16.977299994323403,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 0.9223000379279256,
+              "duration_ms": 16.920599970035255,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 0.929800036828965,
+              "duration_ms": 1.477799960412085,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "EVAL acquire token lease and generation",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 2.4430000339634717,
+              "duration_ms": 1.4692999538965523,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 3.9320000214502215,
+              "duration_ms": 1.367799995932728,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 5.362200026866049,
+              "duration_ms": 9.314399969298393,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.500800034496933,
+              "duration_ms": 1.3444999931380153,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-5",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 6.927600014023483,
+              "duration_ms": 1.877299975603819,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-5",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 8.830800012219697,
+              "duration_ms": 2.551599987782538,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-9",
+              "parent_id": "span-8",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 9.24069999018684,
+              "duration_ms": 2.122500038240105,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-10",
+              "parent_id": "span-1",
+              "name": "EVAL publish only current generation and lease owner",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 14.749000023584813,
+              "duration_ms": 1.6605000128038228,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_3": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-11",
+              "parent_id": "span-1",
+              "name": "Cache fill accepted",
+              "kind": "cache_fence",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 16.42370002809912,
+              "duration_ms": 0.025499961338937283,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "published": true,
+                "generation": 3
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-12",
+              "parent_id": "span-1",
+              "name": "EVAL release only matching token",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 16.45749999443069,
+              "duration_ms": 1.3717000256292522,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 5.344900011550635,
+          "pool_after_offset_ms": 14.697899983730167,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/business/inventory/scenarios",
+      "intent": {
+        "scenario_id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+        "product_id": 1,
+        "initial": 2
+      },
+      "status": 201,
+      "observed_at": "2026-10-25T15:39:57.912238+00:00",
+      "client_rtt_ms": 28.367899998556823,
+      "body": {
+        "data": {
+          "scenario": {
+            "id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+            "product_id": 1,
+            "initial": 2,
+            "available": 2,
+            "reserved": 0,
+            "sold": 0,
+            "created_at": "2026-10-25T15:39:57.892082"
+          },
+          "replayed": false
+        },
+        "error": null,
+        "trace": {
+          "request_id": "fce53190d61b423792e309ae6c3ab19e",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:39:57.883574+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 26.826900022570044,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP POST new stock scenario",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/inventory.py",
+              "start_ms": 0.28500001644715667,
+              "duration_ms": 21.7619999893941,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Inventory workflow",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/inventory_service.py",
+              "start_ms": 0.32160000409930944,
+              "duration_ms": 21.697300020605326,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Explicit transaction (includes exit/commit)",
+              "kind": "transaction",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.3647000412456691,
+              "duration_ms": 21.43459999933839,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.4524000105448067,
+              "duration_ms": 4.8593999817967415,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.395599990151823,
+              "duration_ms": 2.2240999969653785,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_change",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 8.044800022616982,
+              "duration_ms": 2.0527999731712043,
+              "state": "success",
+              "sql": "INSERT INTO inventory_scenario (id, product_id, initial, available, reserved, sold, created_at) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+              "parameters": {
+                "id": "cce4cf5d41b74368b8593a9414b3a80c",
+                "product_id": 1,
+                "initial": 2,
+                "available": 2,
+                "reserved": 0,
+                "sold": 0,
+                "created_at": "2026-10-25 15:39:57.892082"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 10.563299991190434,
+              "duration_ms": 2.3117000237107277,
+              "state": "success",
+              "sql": "SELECT inventory_scenario.id, inventory_scenario.product_id, inventory_scenario.initial, inventory_scenario.available, inventory_scenario.reserved, inventory_scenario.sold, inventory_scenario.created_at \nFROM inventory_scenario \nWHERE inventory_scenario.id = %s",
+              "parameters": {
+                "id_1": "cce4cf5d41b74368b8593a9414b3a80c"
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.30830001924186945,
+          "pool_after_offset_ms": 22.04340003663674,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/business/purchases/orders",
+      "intent": {
+        "scenario_id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+        "user_id": 1,
+        "quantity": 1
+      },
+      "status": 201,
+      "observed_at": "2026-10-25T15:39:57.952226+00:00",
+      "client_rtt_ms": 40.51880002953112,
+      "body": {
+        "data": {
+          "order": {
+            "id": 26,
+            "scenario_id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+            "user_id": 1,
+            "idempotency_key": "2c8cd73c-baed-4769-81bc-bd2ad6a7fbca",
+            "quantity": 1,
+            "unit_price": "1.17",
+            "total": "1.17",
+            "status": "reserved",
+            "created_at": "2026-10-25T15:39:57.929571",
+            "updated_at": "2026-10-25T15:39:57.929571"
+          },
+          "replayed": false,
+          "applied": true
+        },
+        "error": null,
+        "trace": {
+          "request_id": "ffceefff5e9844fe9182469454f86a1e",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:39:57.913254+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 38.75389997847378,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP POST idempotent purchase order",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/inventory.py",
+              "start_ms": 0.5688999663107097,
+              "duration_ms": 33.81270001409575,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Inventory workflow",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/inventory_service.py",
+              "start_ms": 0.6833999650552869,
+              "duration_ms": 33.676200022455305,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Explicit transaction (includes exit/commit)",
+              "kind": "transaction",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.7580999517813325,
+              "duration_ms": 33.471800037659705,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.9048999636434019,
+              "duration_ms": 5.09380002040416,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 6.084299995563924,
+              "duration_ms": 2.022499975282699,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 8.630800002720207,
+              "duration_ms": 2.4071999941952527,
+              "state": "success",
+              "sql": "SELECT purchase_order.id, purchase_order.scenario_id, purchase_order.user_id, purchase_order.idempotency_key, purchase_order.payload_sha256, purchase_order.quantity, purchase_order.unit_price, purchase_order.total, purchase_order.status, purchase_order.created_at, purchase_order.updated_at \nFROM purchase_order \nWHERE purchase_order.idempotency_key = %s",
+              "parameters": {
+                "idempotency_key_1": "2c8cd73c-baed-4769-81bc-bd2ad6a7fbca"
+              },
+              "result_count": 0
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 11.481299996376038,
+              "duration_ms": 2.1231999853625894,
+              "state": "success",
+              "sql": "SELECT inventory_scenario.id, inventory_scenario.product_id, inventory_scenario.initial, inventory_scenario.available, inventory_scenario.reserved, inventory_scenario.sold, inventory_scenario.created_at \nFROM inventory_scenario \nWHERE inventory_scenario.id = %s FOR UPDATE",
+              "parameters": {
+                "id_1": "cce4cf5d41b74368b8593a9414b3a80c"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 14.00689996080473,
+              "duration_ms": 2.1378000383265316,
+              "state": "success",
+              "sql": "SELECT lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_change",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 16.640699992422014,
+              "duration_ms": 2.507800003513694,
+              "state": "success",
+              "sql": "INSERT INTO purchase_order (scenario_id, user_id, idempotency_key, payload_sha256, quantity, unit_price, total, status, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+              "parameters": {
+                "scenario_id": "cce4cf5d41b74368b8593a9414b3a80c",
+                "user_id": 1,
+                "idempotency_key": "2c8cd73c-baed-4769-81bc-bd2ad6a7fbca",
+                "payload_sha256": "81b7ec606f109b7cbcd33549a1ce449b4d31f837f9174f0c826a215bc3527d5a",
+                "quantity": 1,
+                "unit_price": "1.17",
+                "total": "1.17",
+                "status": "reserved",
+                "created_at": "2026-10-25 15:39:57.929571",
+                "updated_at": "2026-10-25 15:39:57.929571"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-9",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_change",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 19.723999954294413,
+              "duration_ms": 2.270700002554804,
+              "state": "success",
+              "sql": "UPDATE inventory_scenario SET available=(inventory_scenario.available - %s), reserved=(inventory_scenario.reserved + %s) WHERE inventory_scenario.id = %s AND inventory_scenario.available >= %s",
+              "parameters": {
+                "available_1": 1,
+                "reserved_1": 1,
+                "id_1": "cce4cf5d41b74368b8593a9414b3a80c",
+                "available_2": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-10",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 22.44769997196272,
+              "duration_ms": 2.1194000146351755,
+              "state": "success",
+              "sql": "SELECT purchase_order.id, purchase_order.scenario_id, purchase_order.user_id, purchase_order.idempotency_key, purchase_order.payload_sha256, purchase_order.quantity, purchase_order.unit_price, purchase_order.total, purchase_order.status, purchase_order.created_at, purchase_order.updated_at \nFROM purchase_order \nWHERE purchase_order.id = %s",
+              "parameters": {
+                "id_1": 26
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.6568999961018562,
+          "pool_after_offset_ms": 34.378399956040084,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/business/purchases/orders/26/state",
+      "intent": {
+        "target": "paid"
+      },
+      "status": 200,
+      "observed_at": "2026-10-25T15:39:57.990500+00:00",
+      "client_rtt_ms": 37.61469997698441,
+      "body": {
+        "data": {
+          "order": {
+            "id": 26,
+            "scenario_id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+            "user_id": 1,
+            "idempotency_key": "2c8cd73c-baed-4769-81bc-bd2ad6a7fbca",
+            "quantity": 1,
+            "unit_price": "1.17",
+            "total": "1.17",
+            "status": "paid",
+            "created_at": "2026-10-25T15:39:57.929571",
+            "updated_at": "2026-10-25T15:39:57.970656"
+          },
+          "replayed": false,
+          "applied": true
+        },
+        "error": null,
+        "trace": {
+          "request_id": "9a2dbfd6d71a42329d5d388719e8b902",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:39:57.952226+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 35.968000011052936,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP POST order terminal state",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/inventory.py",
+              "start_ms": 0.33489998895674944,
+              "duration_ms": 30.964599980507046,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Inventory workflow",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/inventory_service.py",
+              "start_ms": 0.3716999781318009,
+              "duration_ms": 30.909800028894097,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Explicit transaction (includes exit/commit)",
+              "kind": "transaction",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.41500001680105925,
+              "duration_ms": 30.766699986997992,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.5035999929532409,
+              "duration_ms": 3.9152000099420547,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 4.4994999771006405,
+              "duration_ms": 1.7192999948747456,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 6.7134000128135085,
+              "duration_ms": 1.9426000071689487,
+              "state": "success",
+              "sql": "SELECT purchase_order.id, purchase_order.scenario_id, purchase_order.user_id, purchase_order.idempotency_key, purchase_order.payload_sha256, purchase_order.quantity, purchase_order.unit_price, purchase_order.total, purchase_order.status, purchase_order.created_at, purchase_order.updated_at \nFROM purchase_order \nWHERE purchase_order.id = %s",
+              "parameters": {
+                "id_1": 26
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 9.08809999236837,
+              "duration_ms": 2.008099982049316,
+              "state": "success",
+              "sql": "SELECT inventory_scenario.id, inventory_scenario.product_id, inventory_scenario.initial, inventory_scenario.available, inventory_scenario.reserved, inventory_scenario.sold, inventory_scenario.created_at \nFROM inventory_scenario \nWHERE inventory_scenario.id = %s FOR UPDATE",
+              "parameters": {
+                "id_1": "cce4cf5d41b74368b8593a9414b3a80c"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 11.555599980056286,
+              "duration_ms": 2.1702999947592616,
+              "state": "success",
+              "sql": "SELECT purchase_order.id, purchase_order.scenario_id, purchase_order.user_id, purchase_order.idempotency_key, purchase_order.payload_sha256, purchase_order.quantity, purchase_order.unit_price, purchase_order.total, purchase_order.status, purchase_order.created_at, purchase_order.updated_at \nFROM purchase_order \nWHERE purchase_order.id = %s FOR UPDATE",
+              "parameters": {
+                "id_1": 26
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_change",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 14.536299975588918,
+              "duration_ms": 2.3388999979943037,
+              "state": "success",
+              "sql": "UPDATE inventory_scenario SET reserved=(inventory_scenario.reserved - %s), sold=(inventory_scenario.sold + %s) WHERE inventory_scenario.id = %s AND inventory_scenario.reserved >= %s",
+              "parameters": {
+                "reserved_1": 1,
+                "sold_1": 1,
+                "id_1": "cce4cf5d41b74368b8593a9414b3a80c",
+                "reserved_2": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-9",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_change",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 17.32719998108223,
+              "duration_ms": 2.5710000190883875,
+              "state": "success",
+              "sql": "UPDATE purchase_order SET status=%s, updated_at=%s WHERE purchase_order.id = %s AND purchase_order.status = %s",
+              "parameters": {
+                "status": "paid",
+                "updated_at": "2026-10-25 15:39:57.970656",
+                "id_1": 26,
+                "status_1": "reserved"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-10",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 20.37039998685941,
+              "duration_ms": 1.9376000273041427,
+              "state": "success",
+              "sql": "SELECT purchase_order.id, purchase_order.scenario_id, purchase_order.user_id, purchase_order.idempotency_key, purchase_order.payload_sha256, purchase_order.quantity, purchase_order.unit_price, purchase_order.total, purchase_order.status, purchase_order.created_at, purchase_order.updated_at \nFROM purchase_order \nWHERE purchase_order.id = %s FOR UPDATE",
+              "parameters": {
+                "id_1": 26
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.35859999479725957,
+          "pool_after_offset_ms": 31.29720001015812,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/business/tasks",
+      "intent": {
+        "task_id": "be4ecb07-d6ef-4347-8317-b3a5f8a7ccc6",
+        "order_id": 26
+      },
+      "status": 201,
+      "observed_at": "2026-10-25T15:39:58.028448+00:00",
+      "client_rtt_ms": 37.963900016620755,
+      "body": {
+        "data": {
+          "task": {
+            "id": "be4ecb07-d6ef-4347-8317-b3a5f8a7ccc6",
+            "scenario_id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+            "order_id": 26,
+            "kind": "order_receipt",
+            "fault_plan": null,
+            "max_attempts": 3,
+            "attempts": 0,
+            "state": "queued",
+            "available_at": "2026-10-25T15:39:58.006080Z",
+            "lease_until": null,
+            "last_error": null,
+            "result_receipt_id": null,
+            "retry_of": null,
+            "created_at": "2026-10-25T15:39:58.006080Z",
+            "updated_at": "2026-10-25T15:39:58.006080Z",
+            "finished_at": null
+          },
+          "replayed": false
+        },
+        "error": null,
+        "trace": {
+          "request_id": "39156680e92d4313abce3ce18aa6c625",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:39:57.991541+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 35.889699996914715,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "Task HTTP workflow",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/tasks.py",
+              "start_ms": 0.3347999881953001,
+              "duration_ms": 31.439999991562217,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Explicit transaction (includes exit/commit)",
+              "kind": "transaction",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.38539996603503823,
+              "duration_ms": 31.288900005165488,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.47719996655359864,
+              "duration_ms": 4.412400012370199,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.019199976231903,
+              "duration_ms": 2.0136000239290297,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 7.734899991191924,
+              "duration_ms": 2.245799987576902,
+              "state": "success",
+              "sql": "SELECT durable_task.id, durable_task.scenario_id, durable_task.order_id, durable_task.kind, durable_task.payload_sha256, durable_task.fault_plan, durable_task.max_attempts, durable_task.attempts, durable_task.state, durable_task.available_at, durable_task.lease_token, durable_task.lease_until, durable_task.last_error, durable_task.result_receipt_id, durable_task.retry_of, durable_task.created_at, durable_task.updated_at, durable_task.finished_at \nFROM durable_task \nWHERE durable_task.id = %s",
+              "parameters": {
+                "id_1": "be4ecb07d6ef43478317b3a5f8a7ccc6"
+              },
+              "result_count": 0
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 10.478599986527115,
+              "duration_ms": 1.9355000113137066,
+              "state": "success",
+              "sql": "SELECT purchase_order.id, purchase_order.scenario_id, purchase_order.user_id, purchase_order.idempotency_key, purchase_order.payload_sha256, purchase_order.quantity, purchase_order.unit_price, purchase_order.total, purchase_order.status, purchase_order.created_at, purchase_order.updated_at \nFROM purchase_order \nWHERE purchase_order.id = %s",
+              "parameters": {
+                "id_1": 26
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_change",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 13.008899986743927,
+              "duration_ms": 2.207099983934313,
+              "state": "success",
+              "sql": "INSERT INTO durable_task (id, scenario_id, order_id, kind, payload_sha256, fault_plan, max_attempts, attempts, state, available_at, retry_of, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, utc_timestamp(%s), %s, utc_timestamp(%s), utc_timestamp(%s))",
+              "parameters": {
+                "id": "be4ecb07d6ef43478317b3a5f8a7ccc6",
+                "scenario_id": "cce4cf5d41b74368b8593a9414b3a80c",
+                "order_id": 26,
+                "kind": "order_receipt",
+                "payload_sha256": "50ca4d3f9f5e9ec1406b05c8c6f25c8c1b9c69eb87f14974145c6cb11b8cd2cf",
+                "fault_plan": null,
+                "max_attempts": 3,
+                "attempts": 0,
+                "state": "queued",
+                "utc_timestamp_1": 6,
+                "retry_of": null
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_change",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 15.577899990603328,
+              "duration_ms": 1.8512000096961856,
+              "state": "success",
+              "sql": "INSERT INTO task_outbox (task_id, next_publish_at, publish_count) VALUES (%s, utc_timestamp(%s), %s)",
+              "parameters": {
+                "task_id": "be4ecb07d6ef43478317b3a5f8a7ccc6",
+                "utc_timestamp_1": 6,
+                "publish_count": 0
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_change",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 17.831599980127066,
+              "duration_ms": 1.872900000307709,
+              "state": "success",
+              "sql": "INSERT INTO task_event (task_id, occurred_at, kind, source, details) VALUES (%s, utc_timestamp(%s), %s, %s, %s)",
+              "parameters": {
+                "task_id": "be4ecb07d6ef43478317b3a5f8a7ccc6",
+                "utc_timestamp_1": 6,
+                "kind": "created",
+                "source": "api",
+                "details": "{}"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-9",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 20.261799974832684,
+              "duration_ms": 1.9505000091157854,
+              "state": "success",
+              "sql": "SELECT durable_task.id, durable_task.scenario_id, durable_task.order_id, durable_task.kind, durable_task.payload_sha256, durable_task.fault_plan, durable_task.max_attempts, durable_task.attempts, durable_task.state, durable_task.available_at, durable_task.lease_token, durable_task.lease_until, durable_task.last_error, durable_task.result_receipt_id, durable_task.retry_of, durable_task.created_at, durable_task.updated_at, durable_task.finished_at \nFROM durable_task \nWHERE durable_task.id = %s",
+              "parameters": {
+                "id_1": "be4ecb07d6ef43478317b3a5f8a7ccc6"
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.3160999622195959,
+          "pool_after_offset_ms": 31.789799977559596,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/business/tasks/be4ecb07-d6ef-4347-8317-b3a5f8a7ccc6",
+      "intent": null,
+      "status": 200,
+      "observed_at": "2026-10-25T15:40:02.305063+00:00",
+      "client_rtt_ms": 34.390299988444895,
+      "body": {
+        "data": {
+          "task": {
+            "id": "be4ecb07-d6ef-4347-8317-b3a5f8a7ccc6",
+            "scenario_id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+            "order_id": 26,
+            "kind": "order_receipt",
+            "fault_plan": null,
+            "max_attempts": 3,
+            "attempts": 1,
+            "state": "succeeded",
+            "available_at": "2026-10-25T15:39:58.006080Z",
+            "lease_until": null,
+            "last_error": null,
+            "result_receipt_id": 4,
+            "retry_of": null,
+            "created_at": "2026-10-25T15:39:58.006080Z",
+            "updated_at": "2026-10-25T15:40:00.819247Z",
+            "finished_at": "2026-10-25T15:40:00.819247Z"
+          },
+          "outbox": {
+            "task_id": "be4ecb07-d6ef-4347-8317-b3a5f8a7ccc6",
+            "next_publish_at": "2026-10-25T15:40:05.758621Z",
+            "publish_count": 1,
+            "last_message_id": "1792942800725-0",
+            "last_published_at": "2026-10-25T15:40:00.719309Z"
+          },
+          "attempts": [
+            {
+              "number": 1,
+              "worker_id": "receipt-8a7cad5b25604ff9aa6cc7cb9ea0f787",
+              "status": "succeeded",
+              "started_at": "2026-10-25T15:40:00.758621Z",
+              "finished_at": "2026-10-25T15:40:00.822789Z",
+              "abandoned_at": null,
+              "handler_ms": 14.8723,
+              "error": null,
+              "timeout_seconds": 1.0,
+              "lease_seconds": 5.0
+            }
+          ],
+          "events": [
+            {
+              "id": 33,
+              "occurred_at": "2026-10-25T15:39:58.010806Z",
+              "kind": "created",
+              "source": "api",
+              "details": {}
+            },
+            {
+              "id": 34,
+              "occurred_at": "2026-10-25T15:40:00.731168Z",
+              "kind": "published",
+              "source": "dispatcher",
+              "details": {
+                "message_id": "1792942800725-0"
+              }
+            },
+            {
+              "id": 35,
+              "occurred_at": "2026-10-25T15:40:00.770597Z",
+              "kind": "claimed",
+              "source": "worker",
+              "details": {
+                "attempt": 1,
+                "worker_id": "receipt-8a7cad5b25604ff9aa6cc7cb9ea0f787",
+                "lease_seconds": 5,
+                "timeout_seconds": 1
+              }
+            },
+            {
+              "id": 36,
+              "occurred_at": "2026-10-25T15:40:00.825612Z",
+              "kind": "succeeded",
+              "source": "worker",
+              "details": {
+                "error": null,
+                "attempt": 1,
+                "handler_ms": 14.87229997292161
+              }
+            },
+            {
+              "id": 37,
+              "occurred_at": "2026-10-25T15:40:00.846032Z",
+              "kind": "ack_observed",
+              "source": "redis",
+              "details": {
+                "outcome": "acknowledged",
+                "message_id": "1792942800725-0"
+              }
+            }
+          ],
+          "events_truncated": false,
+          "receipt": {
+            "id": 4,
+            "order_id": 26,
+            "total": "1.17",
+            "snapshot": {
+              "id": 26,
+              "total": "1.17",
+              "status": "paid",
+              "user_id": 1,
+              "quantity": 1,
+              "unit_price": "1.17",
+              "scenario_id": "cce4cf5d41b74368b8593a9414b3a80c"
+            },
+            "created_at": "2026-10-25T15:40:00.810383Z"
+          },
+          "worker_command": "uv run python -m concurrency_lab.workers.receipts --database concurrency_lab_business --scenario cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+          "source": "MySQL persisted task/attempt/event/outbox/receipt",
+          "definitions": [
+            "handler_ms: monotonic handler phase only; excludes claim/finalization/ACK",
+            "abandoned_at: recovery observation, not worker finish; crash duration stays unknown",
+            "publication confirmation and ACK observation can be absent after a real side effect",
+            "lease_until does not prove the worker process is alive"
+          ]
+        },
+        "error": null,
+        "trace": {
+          "request_id": "c8998408aca247f487988ea97054765f",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:40:02.271783+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 31.91700001480058,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "Task HTTP workflow",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/tasks.py",
+              "start_ms": 0.38129999302327633,
+              "duration_ms": 25.90010000858456,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Explicit transaction (includes exit/commit)",
+              "kind": "transaction",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.5104999872855842,
+              "duration_ms": 25.43340000556782,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.6612999713979661,
+              "duration_ms": 4.394400049932301,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.138700013048947,
+              "duration_ms": 1.6887999954633415,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 7.3794000199995935,
+              "duration_ms": 2.4242999497801065,
+              "state": "success",
+              "sql": "SELECT durable_task.id, durable_task.scenario_id, durable_task.order_id, durable_task.kind, durable_task.payload_sha256, durable_task.fault_plan, durable_task.max_attempts, durable_task.attempts, durable_task.state, durable_task.available_at, durable_task.lease_token, durable_task.lease_until, durable_task.last_error, durable_task.result_receipt_id, durable_task.retry_of, durable_task.created_at, durable_task.updated_at, durable_task.finished_at \nFROM durable_task \nWHERE durable_task.id = %s",
+              "parameters": {
+                "id_1": "be4ecb07d6ef43478317b3a5f8a7ccc6"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 10.520200012251735,
+              "duration_ms": 2.0983999711461365,
+              "state": "success",
+              "sql": "SELECT task_event.id, task_event.task_id, task_event.occurred_at, task_event.kind, task_event.source, task_event.details \nFROM task_event \nWHERE task_event.task_id = %s ORDER BY task_event.id DESC \n LIMIT %s",
+              "parameters": {
+                "task_id_1": "be4ecb07d6ef43478317b3a5f8a7ccc6",
+                "param_1": 101
+              },
+              "result_count": 5
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 13.04109999909997,
+              "duration_ms": 1.960999972652644,
+              "state": "success",
+              "sql": "SELECT order_receipt.id, order_receipt.order_id, order_receipt.total, order_receipt.snapshot, order_receipt.created_at \nFROM order_receipt \nWHERE order_receipt.id = %s",
+              "parameters": {
+                "id_1": 4
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 15.431299980264157,
+              "duration_ms": 2.0067000295966864,
+              "state": "success",
+              "sql": "SELECT task_outbox.task_id, task_outbox.next_publish_at, task_outbox.publish_count, task_outbox.last_message_id, task_outbox.last_published_at \nFROM task_outbox \nWHERE task_outbox.task_id = %s",
+              "parameters": {
+                "task_id_1": "be4ecb07d6ef43478317b3a5f8a7ccc6"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 18.063199997413903,
+              "duration_ms": 2.0798000041395426,
+              "state": "success",
+              "sql": "SELECT task_attempt.id, task_attempt.task_id, task_attempt.number, task_attempt.worker_id, task_attempt.status, task_attempt.started_at, task_attempt.finished_at, task_attempt.abandoned_at, task_attempt.handler_ms, task_attempt.error, task_attempt.timeout_seconds, task_attempt.lease_seconds \nFROM task_attempt \nWHERE task_attempt.task_id = %s ORDER BY task_attempt.number \n LIMIT %s",
+              "parameters": {
+                "task_id_1": "be4ecb07d6ef43478317b3a5f8a7ccc6",
+                "param_1": 5
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.3407999756745994,
+          "pool_after_offset_ms": 26.318099990021437,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/business/inventory/scenarios/cce4cf5d-41b7-4368-b859-3a9414b3a80c/audit",
+      "intent": null,
+      "status": 200,
+      "observed_at": "2026-10-25T15:40:02.329347+00:00",
+      "client_rtt_ms": 24.214500037487596,
+      "body": {
+        "data": {
+          "scenario": {
+            "id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+            "product_id": 1,
+            "initial": 2,
+            "available": 1,
+            "reserved": 0,
+            "sold": 1,
+            "created_at": "2026-10-25T15:39:57.892082"
+          },
+          "observed_at": "2026-10-25T15:40:02.318510+00:00",
+          "order_units": {
+            "reserved": 0,
+            "paid": 1,
+            "cancelled": 0
+          },
+          "order_counts": {
+            "reserved": 0,
+            "paid": 1,
+            "cancelled": 0
+          },
+          "checks": {
+            "nonnegative": true,
+            "balance": true,
+            "reserved_matches": true,
+            "paid_matches": true
+          },
+          "all_pass": true
+        },
+        "error": null,
+        "trace": {
+          "request_id": "1024f79328bc42fa9a0da95bc0484776",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:40:02.305984+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 22.287399973720312,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET persisted inventory audit",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/inventory.py",
+              "start_ms": 0.41470001451671124,
+              "duration_ms": 17.75090000592172,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Inventory workflow",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/inventory_service.py",
+              "start_ms": 0.4751000087708235,
+              "duration_ms": 17.67269999254495,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Explicit transaction (includes exit/commit)",
+              "kind": "transaction",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.5251999828033149,
+              "duration_ms": 17.520800000056624,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.615999975707382,
+              "duration_ms": 4.3738000094890594,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.076900008134544,
+              "duration_ms": 1.860499964095652,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 7.418099965434521,
+              "duration_ms": 2.465900033712387,
+              "state": "success",
+              "sql": "SELECT inventory_scenario.id, inventory_scenario.product_id, inventory_scenario.initial, inventory_scenario.available, inventory_scenario.reserved, inventory_scenario.sold, inventory_scenario.created_at \nFROM inventory_scenario \nWHERE inventory_scenario.id = %s",
+              "parameters": {
+                "id_1": "cce4cf5d41b74368b8593a9414b3a80c"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-2",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/inventory_repository.py",
+              "start_ms": 10.496100003365427,
+              "duration_ms": 2.0422000088728964,
+              "state": "success",
+              "sql": "SELECT purchase_order.status, count(purchase_order.id) AS orders, sum(purchase_order.quantity) AS units \nFROM purchase_order \nWHERE purchase_order.scenario_id = %s GROUP BY purchase_order.status",
+              "parameters": {
+                "scenario_id_1": "cce4cf5d41b74368b8593a9414b3a80c"
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.4521000082604587,
+          "pool_after_offset_ms": 18.163800006732345,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/business/task-queues/cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+      "intent": null,
+      "status": 200,
+      "observed_at": "2026-10-25T15:40:02.362799+00:00",
+      "client_rtt_ms": 33.308900019619614,
+      "body": {
+        "data": {
+          "scenario_id": "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+          "observed_at": "2026-10-25T15:40:02.344319Z",
+          "collection_ms": 25.946600013412535,
+          "database_counts": {
+            "succeeded": 1
+          },
+          "redis_available": true,
+          "group_ready": true,
+          "retained_entries": 1,
+          "pending": 0,
+          "group_lag": 0,
+          "pttl_ms": 86399563,
+          "source": "Independent MySQL counts and Redis XLEN/XPENDING/XINFO GROUPS/PTTL; not atomic",
+          "definitions": [
+            "retained_entries is XLEN, including acknowledged history; not backlog",
+            "pending is delivered but not acknowledged; group_lag may be unknown",
+            "unavailable observations remain null; database state is authoritative"
+          ]
+        },
+        "error": null,
+        "trace": {
+          "request_id": "8e1e734d3a7046b28faac084a1f6d3be",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:40:02.329869+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 30.80110001610592,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "Task HTTP workflow",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/tasks.py",
+              "start_ms": 0.36619999445974827,
+              "duration_ms": 26.009099965449423,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Explicit transaction (includes exit/commit)",
+              "kind": "transaction",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.43289997847750783,
+              "duration_ms": 19.36600002227351,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.5543999723158777,
+              "duration_ms": 4.6521000331267715,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.296999996062368,
+              "duration_ms": 1.7185999895446002,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 7.419999979902059,
+              "duration_ms": 2.3859000066295266,
+              "state": "success",
+              "sql": "SELECT inventory_scenario.id \nFROM inventory_scenario \nWHERE inventory_scenario.id = %s",
+              "parameters": {
+                "id_1": "cce4cf5d41b74368b8593a9414b3a80c"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 10.333099984563887,
+              "duration_ms": 1.9955000025220215,
+              "state": "success",
+              "sql": "SELECT durable_task.state, count(*) AS count \nFROM durable_task \nWHERE durable_task.scenario_id = %s GROUP BY durable_task.state",
+              "parameters": {
+                "scenario_id_1": "cce4cf5d41b74368b8593a9414b3a80c"
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/task_repository.py",
+              "start_ms": 12.568200007081032,
+              "duration_ms": 1.624199969228357,
+              "state": "success",
+              "sql": "SELECT utc_timestamp(%s) AS now",
+              "parameters": {
+                "utc_timestamp_1": 6
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-0",
+              "name": "Redis queue snapshot commands",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/task_stream.py",
+              "start_ms": 19.914800010155886,
+              "duration_ms": 6.410299974959344,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.3420999855734408,
+          "pool_after_offset_ms": 26.39049995923415,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    }
+  ]
+}

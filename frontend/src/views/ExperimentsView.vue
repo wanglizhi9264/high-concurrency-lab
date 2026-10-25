@@ -17,6 +17,7 @@ const { data, loading, error, reload } = useRequest(api.experiment)
     </div>
     <span class="badge measured">Recorded experiment</span>
   </header>
+  <p><router-link to="/scale-lab">009 大数据、覆盖索引、分区与写入代价 →</router-link></p>
   <AsyncState :loading="loading" :error="error" :empty="!data" @retry="reload">
     <template v-if="data">
       <router-link v-if="!detail" :to="`/experiments/${data.id}`" class="experiment-card panel">

@@ -1,0 +1,941 @@
+{
+  "id": "e2e-20261025T153607-971e7371",
+  "complete": true,
+  "evidence": "actual_clean_clone_acceptance",
+  "source": {
+    "revision": "7af410b3d466eea46a1336162e8ba5181c01cc93",
+    "sha256": "be23d7190f52745d4addcc387b73a67b551043e5bb2886d45000fb3eca06bed1",
+    "sources_dirty": false,
+    "files": 103
+  },
+  "project": "hcl-e2e-009-971e7371",
+  "ports": {
+    "mysql": 15006,
+    "redis": 15379,
+    "experiment": 15306,
+    "api": 18004,
+    "load": 18005,
+    "frontend": 5175
+  },
+  "credentials_generated": true,
+  "prior_project": {
+    "project": "high-concurrency-lab",
+    "containers": [
+      {
+        "id": "00c6e8d3ffb8d78f2950d17dd7affba51da56f54bd40641efbe6df4a39fc52e1",
+        "service": "mysql-experiment",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "high-concurrency-lab_mysql_experiment_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "13306"
+            }
+          ]
+        }
+      },
+      {
+        "id": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "service": "redis",
+        "image": "sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b",
+        "running": true,
+        "volumes": [
+          "afa7649915a1f5f1afe165a839ff9c9bf5bd44451c66175416b84c69d11fbd53"
+        ],
+        "ports": {
+          "6379/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "16379"
+            }
+          ]
+        }
+      },
+      {
+        "id": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "service": "mysql",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "high-concurrency-lab_mysql_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "3306"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "old002_before": {
+    "status": "verified",
+    "databases": {
+      "concurrency_lab_exp_002_10000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2404724479,
+          "lab_order_item": 1127435545
+        },
+        "seed": 20261023,
+        "order_count": 10000,
+        "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 10000,
+          "lab_order_item": 20000
+        }
+      },
+      "concurrency_lab_exp_002_100000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2897962911,
+          "lab_order_item": 1192454962
+        },
+        "seed": 20261023,
+        "order_count": 100000,
+        "digest": "0360de7c8d974742118e302f9dc77ef869a6769bf2cab3b085e1ffd954cd3189",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 100000,
+          "lab_order_item": 200000
+        }
+      },
+      "concurrency_lab_exp_002_1000000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2420932873,
+          "lab_order_item": 2447009193
+        },
+        "seed": 20261023,
+        "order_count": 1000000,
+        "digest": "730a1166f900b73426cdbdc01f4ece9f1c6abc5704ee437b2ceec1b26bec72ad",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 1000000,
+          "lab_order_item": 2000000
+        }
+      }
+    }
+  },
+  "started_at": "2026-10-25T15:36:12.625548+00:00",
+  "steps": [
+    {
+      "label": "clean-git-clone",
+      "argv": [
+        "git",
+        "clone",
+        "-c",
+        "core.longpaths=true",
+        "--no-local",
+        "<source-repository>",
+        "<clean-clone>"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:36:12.625548+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "01-clean-git-clone.log",
+      "finished_at": "2026-10-25T15:36:14.142724+00:00",
+      "duration_seconds": 1.5174702999647707
+    },
+    {
+      "label": "ignored-env",
+      "argv": [
+        "git",
+        "check-ignore",
+        ".env"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:36:15.552098+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "02-ignored-env.log",
+      "finished_at": "2026-10-25T15:36:15.652450+00:00",
+      "duration_seconds": 0.09755589999258518
+    },
+    {
+      "label": "frozen-python-install",
+      "argv": [
+        "uv",
+        "sync",
+        "--frozen"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:36:15.652450+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "03-frozen-python-install.log",
+      "finished_at": "2026-10-25T15:36:27.485528+00:00",
+      "duration_seconds": 11.8325116999913
+    },
+    {
+      "label": "npm-ci",
+      "argv": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "ci"
+      ],
+      "cwd": "frontend",
+      "started_at": "2026-10-25T15:36:27.514265+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "04-npm-ci.log",
+      "finished_at": "2026-10-25T15:37:09.341510+00:00",
+      "duration_seconds": 41.82956510002259
+    },
+    {
+      "label": "owned-dependencies",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "hcl-e2e-009-971e7371",
+        "-f",
+        "compose.yaml",
+        "-f",
+        "compose.experiments.yaml",
+        "--profile",
+        "experiments",
+        "up",
+        "-d",
+        "--wait"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:37:09.341510+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "05-owned-dependencies.log",
+      "finished_at": "2026-10-25T15:37:26.005568+00:00",
+      "duration_seconds": 16.65830160002224
+    },
+    {
+      "label": "foundation-migration",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "alembic",
+        "upgrade",
+        "head"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:37:26.761859+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "06-foundation-migration.log",
+      "finished_at": "2026-10-25T15:37:37.074033+00:00",
+      "duration_seconds": 10.312102299998514
+    },
+    {
+      "label": "business-provision",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/provision_business_lab.py"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:37:37.074033+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "07-business-provision.log",
+      "finished_at": "2026-10-25T15:37:41.505105+00:00",
+      "duration_seconds": 4.43593580002198
+    },
+    {
+      "label": "business-concurrency_lab_business-init",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "concurrency_lab.experiments.business_dataset",
+        "--database",
+        "concurrency_lab_business",
+        "init"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:37:41.505105+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "08-business-concurrency_lab_business-init.log",
+      "finished_at": "2026-10-25T15:37:45.089636+00:00",
+      "duration_seconds": 3.579123499977868
+    },
+    {
+      "label": "business-concurrency_lab_business-seed",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "concurrency_lab.experiments.business_dataset",
+        "--database",
+        "concurrency_lab_business",
+        "seed",
+        "--orders",
+        "10000"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:37:45.089636+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "09-business-concurrency_lab_business-seed.log",
+      "finished_at": "2026-10-25T15:37:49.669053+00:00",
+      "duration_seconds": 4.579358299961314
+    },
+    {
+      "label": "upgrade-concurrency_lab_business",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "concurrency_lab.experiments.business_schema",
+        "--database",
+        "concurrency_lab_business",
+        "--revision",
+        "0005"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:37:49.669053+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "10-upgrade-concurrency_lab_business.log",
+      "finished_at": "2026-10-25T15:37:53.372113+00:00",
+      "duration_seconds": 3.7040949999936856
+    },
+    {
+      "label": "business-concurrency_lab_business_test-init",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "concurrency_lab.experiments.business_dataset",
+        "--database",
+        "concurrency_lab_business_test",
+        "init"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:37:53.372113+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "11-business-concurrency_lab_business_test-init.log",
+      "finished_at": "2026-10-25T15:37:56.914808+00:00",
+      "duration_seconds": 3.541377699992154
+    },
+    {
+      "label": "business-concurrency_lab_business_test-seed",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "concurrency_lab.experiments.business_dataset",
+        "--database",
+        "concurrency_lab_business_test",
+        "seed",
+        "--orders",
+        "10000"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:37:56.914808+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "12-business-concurrency_lab_business_test-seed.log",
+      "finished_at": "2026-10-25T15:38:01.671697+00:00",
+      "duration_seconds": 4.756890500022564
+    },
+    {
+      "label": "upgrade-concurrency_lab_business_test",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "concurrency_lab.experiments.business_schema",
+        "--database",
+        "concurrency_lab_business_test",
+        "--revision",
+        "0005"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:38:01.672179+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "13-upgrade-concurrency_lab_business_test.log",
+      "finished_at": "2026-10-25T15:38:05.347733+00:00",
+      "duration_seconds": 3.675386399962008
+    },
+    {
+      "label": "index-provision",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/provision_index_lab.py",
+        "--project-name",
+        "hcl-e2e-009-971e7371"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:38:05.347733+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "14-index-provision.log",
+      "finished_at": "2026-10-25T15:38:06.257657+00:00",
+      "duration_seconds": 0.9098280999460258
+    },
+    {
+      "label": "scale-provision",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/provision_scale_lab.py",
+        "--project-name",
+        "hcl-e2e-009-971e7371"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:38:06.257657+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "15-scale-provision.log",
+      "finished_at": "2026-10-25T15:38:08.681816+00:00",
+      "duration_seconds": 2.427327800018247
+    },
+    {
+      "label": "prior-index-evidence",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/verify_index_lab.py",
+        "--verify-only"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:38:08.681816+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "16-prior-index-evidence.log",
+      "finished_at": "2026-10-25T15:38:09.049294+00:00",
+      "duration_seconds": 0.3647895000176504
+    },
+    {
+      "label": "new-index-smoke",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/verify_index_lab.py",
+        "--orders",
+        "10000",
+        "--output-dir",
+        "docs/experiments/009-scale-comprehensive-lab/clone-index-smoke"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:38:09.049294+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "17-new-index-smoke.log",
+      "finished_at": "2026-10-25T15:38:24.705415+00:00",
+      "duration_seconds": 15.655452600040007
+    },
+    {
+      "label": "new009smoke",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/run_scale_experiment.py",
+        "--orders",
+        "10000",
+        "--project-name",
+        "hcl-e2e-009-971e7371"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:38:24.705415+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "18-new009smoke.log",
+      "finished_at": "2026-10-25T15:38:50.102556+00:00",
+      "duration_seconds": 25.398095799959265
+    },
+    {
+      "label": "real-business-trace",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/verify_business_lab.py",
+        "--base-url",
+        "http://127.0.0.1:18004"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:38:55.638722+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "19-real-business-trace.log",
+      "finished_at": "2026-10-25T15:38:58.435969+00:00",
+      "duration_seconds": 2.801144499971997
+    },
+    {
+      "label": "short-real-locust",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/run_load_test.py",
+        "--users",
+        "10",
+        "--seconds",
+        "5",
+        "--spawn-rate",
+        "10",
+        "--port",
+        "18005"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:38:58.435969+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "20-short-real-locust.log",
+      "finished_at": "2026-10-25T15:39:14.829278+00:00",
+      "duration_seconds": 16.391801699995995
+    },
+    {
+      "label": "real-cache",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/verify_cache_lab.py",
+        "--base-url",
+        "http://127.0.0.1:18004"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:39:14.829278+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "21-real-cache.log",
+      "finished_at": "2026-10-25T15:39:18.894043+00:00",
+      "duration_seconds": 4.062246399989817
+    },
+    {
+      "label": "real-inventory",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/verify_inventory_lab.py",
+        "--base-url",
+        "http://127.0.0.1:18004"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:39:18.894043+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "22-real-inventory.log",
+      "finished_at": "2026-10-25T15:39:22.855387+00:00",
+      "duration_seconds": 3.9613735000020824
+    },
+    {
+      "label": "real-worker-recovery",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/verify_worker_lab.py",
+        "--base-url",
+        "http://127.0.0.1:18004"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:39:22.855387+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "23-real-worker-recovery.log",
+      "finished_at": "2026-10-25T15:39:57.822202+00:00",
+      "duration_seconds": 34.96690679999301
+    },
+    {
+      "label": "journey-worker",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "concurrency_lab.workers.receipts",
+        "--database",
+        "concurrency_lab_business",
+        "--scenario",
+        "cce4cf5d-41b7-4368-b859-3a9414b3a80c",
+        "--max-cycles",
+        "5"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:39:58.028991+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "24-journey-worker.log",
+      "finished_at": "2026-10-25T15:40:02.269487+00:00",
+      "duration_seconds": 4.24139149999246
+    },
+    {
+      "label": "python-quality",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "scripts/verify.py"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:40:02.370725+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "25-python-quality.log",
+      "finished_at": "2026-10-25T15:40:30.878593+00:00",
+      "duration_seconds": 28.507688299985602
+    },
+    {
+      "label": "all-real-integration",
+      "argv": [
+        "<clean-clone>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/integration"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:40:30.878593+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "26-all-real-integration.log",
+      "finished_at": "2026-10-25T15:41:21.962455+00:00",
+      "duration_seconds": 51.08397229999537
+    },
+    {
+      "label": "frontend-check",
+      "argv": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "check"
+      ],
+      "cwd": "frontend",
+      "started_at": "2026-10-25T15:41:21.988405+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "27-frontend-check.log",
+      "finished_at": "2026-10-25T15:41:42.405277+00:00",
+      "duration_seconds": 20.418198200000916
+    },
+    {
+      "label": "frontend-unit",
+      "argv": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test"
+      ],
+      "cwd": "frontend",
+      "started_at": "2026-10-25T15:41:42.442419+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "28-frontend-unit.log",
+      "finished_at": "2026-10-25T15:41:54.182615+00:00",
+      "duration_seconds": 11.74005170003511
+    },
+    {
+      "label": "frontend-build",
+      "argv": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "build"
+      ],
+      "cwd": "frontend",
+      "started_at": "2026-10-25T15:41:54.205842+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "29-frontend-build.log",
+      "finished_at": "2026-10-25T15:42:05.829595+00:00",
+      "duration_seconds": 11.617134700005408
+    },
+    {
+      "label": "real-browser-e2e",
+      "argv": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:e2e"
+      ],
+      "cwd": "frontend",
+      "started_at": "2026-10-25T15:42:05.891905+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "30-real-browser-e2e.log",
+      "finished_at": "2026-10-25T15:42:37.729428+00:00",
+      "duration_seconds": 31.83900449995417
+    },
+    {
+      "label": "stop-owned-project",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "hcl-e2e-009-971e7371",
+        "-f",
+        "compose.yaml",
+        "-f",
+        "compose.experiments.yaml",
+        "--profile",
+        "experiments",
+        "stop"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:42:38.154813+00:00",
+      "passed": true,
+      "exit_code": 0,
+      "log": "31-stop-owned-project.log",
+      "finished_at": "2026-10-25T15:42:40.389394+00:00",
+      "duration_seconds": 2.2354365999926813
+    }
+  ],
+  "limitations": [
+    "Local Git clone --no-local of exact frozen commit; no workspace/env/venv/node_modules copied; not a network-download benchmark",
+    "Functional feature acceptance and short Locust, not production capacity",
+    "Logs redact generated secrets/local paths; exported measurement artifacts retain original bytes"
+  ],
+  "clone_proof": {
+    "head": "7af410b3d466eea46a1336162e8ba5181c01cc93",
+    "initial_git_status": "",
+    "copied_local_environment": false
+  },
+  "owned_dependencies": {
+    "project": "hcl-e2e-009-971e7371",
+    "containers": [
+      {
+        "id": "0cb8feb6092be48f64c967ee2a27067a70ab366ed209f546fc9c7057df9a00ee",
+        "service": "mysql",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "hcl-e2e-009-971e7371_mysql_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "15006"
+            }
+          ]
+        }
+      },
+      {
+        "id": "290fa33de7b96f9134cc0ba020c1c40f9d73658fa6d00a9799273a05929bba0d",
+        "service": "mysql-experiment",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "hcl-e2e-009-971e7371_mysql_experiment_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "15306"
+            }
+          ]
+        }
+      },
+      {
+        "id": "36816ce5d0377ed49cd2cbc0532b8701e739ac96178985e8ceaf13e65d957170",
+        "service": "redis",
+        "image": "sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b",
+        "running": true,
+        "volumes": [
+          "8bec8fefc263decace3a8f7e7db630195b5e6ef3f21f853b0e7fe97adc688c3d"
+        ],
+        "ports": {
+          "6379/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "15379"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "journey": {
+    "order_id": 26,
+    "task_id": "be4ecb07-d6ef-4347-8317-b3a5f8a7ccc6",
+    "receipt_id": 4,
+    "inventory_audit_pass": true
+  },
+  "exported_artifacts": [
+    "artifacts/docs/experiments/003-interactive-system-visualization/architecture.png",
+    "artifacts/docs/experiments/003-interactive-system-visualization/database.png",
+    "artifacts/docs/experiments/003-interactive-system-visualization/live-trace.png",
+    "artifacts/docs/experiments/003-interactive-system-visualization/probe-timeout.png",
+    "artifacts/docs/experiments/003-interactive-system-visualization/storage-learning.png",
+    "artifacts/docs/experiments/004-real-business-trace/business-query.png",
+    "artifacts/docs/experiments/004-real-business-trace/runs/requests-20261025T153858-3cc33bb2.json",
+    "artifacts/docs/experiments/005-real-load-testing/load-comparison.png",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/locust_exceptions.csv",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/locust_failures.csv",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/locust_stats.csv",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/locust_stats_history.csv",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/requests.csv",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/resources.jsonl",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/result.json",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/starts.csv",
+    "artifacts/docs/experiments/005-real-load-testing/runs/load-20261025T153859-bdbe6553/window.json",
+    "artifacts/docs/experiments/006-redis-cache-aside/cache-lab.png",
+    "artifacts/docs/experiments/006-redis-cache-aside/runs/cache-20261025T153916-fa34d65a/result.json",
+    "artifacts/docs/experiments/007-inventory-idempotency/inventory-lab.png",
+    "artifacts/docs/experiments/007-inventory-idempotency/runs/inventory-20261025T153920-598f3736/result.json",
+    "artifacts/docs/experiments/008-reliable-receipt-worker/runs/worker-20261025T153924-be3322cd/result.json",
+    "artifacts/docs/experiments/008-reliable-receipt-worker/task-lab.png",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/clone-index-smoke/concurrency_lab_exp_002_10000-baseline.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/clone-index-smoke/concurrency_lab_exp_002_10000-optimized.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/clone-index-smoke/concurrency_lab_exp_002_10000-seed.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/runs/scale-20261025T153828-5dc7983d/baseline.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/runs/scale-20261025T153828-5dc7983d/composite.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/runs/scale-20261025T153828-5dc7983d/covering.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/runs/scale-20261025T153828-5dc7983d/database-result.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/runs/scale-20261025T153828-5dc7983d/resources.jsonl",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/runs/scale-20261025T153828-5dc7983d/result.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/runs/scale-20261025T153828-5dc7983d/seed.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/runs/scale-20261025T153828-5dc7983d/writes.json",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/scale-overview.png",
+    "artifacts/docs/experiments/009-scale-comprehensive-lab/scale-plan.png"
+  ],
+  "owned_dependencies_after_stop": {
+    "project": "hcl-e2e-009-971e7371",
+    "containers": [
+      {
+        "id": "0cb8feb6092be48f64c967ee2a27067a70ab366ed209f546fc9c7057df9a00ee",
+        "service": "mysql",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": false,
+        "volumes": [
+          "hcl-e2e-009-971e7371_mysql_data"
+        ],
+        "ports": {}
+      },
+      {
+        "id": "290fa33de7b96f9134cc0ba020c1c40f9d73658fa6d00a9799273a05929bba0d",
+        "service": "mysql-experiment",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": false,
+        "volumes": [
+          "hcl-e2e-009-971e7371_mysql_experiment_data"
+        ],
+        "ports": {}
+      },
+      {
+        "id": "36816ce5d0377ed49cd2cbc0532b8701e739ac96178985e8ceaf13e65d957170",
+        "service": "redis",
+        "image": "sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b",
+        "running": false,
+        "volumes": [
+          "8bec8fefc263decace3a8f7e7db630195b5e6ef3f21f853b0e7fe97adc688c3d"
+        ],
+        "ports": {}
+      }
+    ]
+  },
+  "prior_project_after": {
+    "project": "high-concurrency-lab",
+    "containers": [
+      {
+        "id": "00c6e8d3ffb8d78f2950d17dd7affba51da56f54bd40641efbe6df4a39fc52e1",
+        "service": "mysql-experiment",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "high-concurrency-lab_mysql_experiment_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "13306"
+            }
+          ]
+        }
+      },
+      {
+        "id": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "service": "redis",
+        "image": "sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b",
+        "running": true,
+        "volumes": [
+          "afa7649915a1f5f1afe165a839ff9c9bf5bd44451c66175416b84c69d11fbd53"
+        ],
+        "ports": {
+          "6379/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "16379"
+            }
+          ]
+        }
+      },
+      {
+        "id": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "service": "mysql",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "high-concurrency-lab_mysql_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "3306"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "old002_after": {
+    "status": "verified",
+    "databases": {
+      "concurrency_lab_exp_002_10000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2404724479,
+          "lab_order_item": 1127435545
+        },
+        "seed": 20261023,
+        "order_count": 10000,
+        "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 10000,
+          "lab_order_item": 20000
+        }
+      },
+      "concurrency_lab_exp_002_100000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2897962911,
+          "lab_order_item": 1192454962
+        },
+        "seed": 20261023,
+        "order_count": 100000,
+        "digest": "0360de7c8d974742118e302f9dc77ef869a6769bf2cab3b085e1ffd954cd3189",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 100000,
+          "lab_order_item": 200000
+        }
+      },
+      "concurrency_lab_exp_002_1000000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2420932873,
+          "lab_order_item": 2447009193
+        },
+        "seed": 20261023,
+        "order_count": 1000000,
+        "digest": "730a1166f900b73426cdbdc01f4ece9f1c6abc5704ee437b2ceec1b26bec72ad",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 1000000,
+          "lab_order_item": 2000000
+        }
+      }
+    }
+  },
+  "finished_at": "2026-10-25T15:42:45.585554+00:00"
+}

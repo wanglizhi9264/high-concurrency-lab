@@ -1,0 +1,277 @@
+{
+  "id": "e2e-20261025T153523-9faf944b",
+  "complete": false,
+  "evidence": "actual_clean_clone_acceptance",
+  "source": {
+    "revision": "87bcdd04be2feaded6e9de2f2f726f30f16d3d93",
+    "sha256": "26e184e84bc3cc37402c2e83ff59df0abd4be5c2f89805abb3a2544b4674b5af",
+    "sources_dirty": false,
+    "files": 103
+  },
+  "project": "hcl-e2e-009-9faf944b",
+  "ports": {
+    "mysql": 15006,
+    "redis": 15379,
+    "experiment": 15306,
+    "api": 18004,
+    "load": 18005,
+    "frontend": 5175
+  },
+  "credentials_generated": true,
+  "prior_project": {
+    "project": "high-concurrency-lab",
+    "containers": [
+      {
+        "id": "00c6e8d3ffb8d78f2950d17dd7affba51da56f54bd40641efbe6df4a39fc52e1",
+        "service": "mysql-experiment",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "high-concurrency-lab_mysql_experiment_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "13306"
+            }
+          ]
+        }
+      },
+      {
+        "id": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "service": "redis",
+        "image": "sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b",
+        "running": true,
+        "volumes": [
+          "afa7649915a1f5f1afe165a839ff9c9bf5bd44451c66175416b84c69d11fbd53"
+        ],
+        "ports": {
+          "6379/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "16379"
+            }
+          ]
+        }
+      },
+      {
+        "id": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "service": "mysql",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "high-concurrency-lab_mysql_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "3306"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "old002_before": {
+    "status": "verified",
+    "databases": {
+      "concurrency_lab_exp_002_10000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2404724479,
+          "lab_order_item": 1127435545
+        },
+        "seed": 20261023,
+        "order_count": 10000,
+        "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 10000,
+          "lab_order_item": 20000
+        }
+      },
+      "concurrency_lab_exp_002_100000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2897962911,
+          "lab_order_item": 1192454962
+        },
+        "seed": 20261023,
+        "order_count": 100000,
+        "digest": "0360de7c8d974742118e302f9dc77ef869a6769bf2cab3b085e1ffd954cd3189",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 100000,
+          "lab_order_item": 200000
+        }
+      },
+      "concurrency_lab_exp_002_1000000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2420932873,
+          "lab_order_item": 2447009193
+        },
+        "seed": 20261023,
+        "order_count": 1000000,
+        "digest": "730a1166f900b73426cdbdc01f4ece9f1c6abc5704ee437b2ceec1b26bec72ad",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 1000000,
+          "lab_order_item": 2000000
+        }
+      }
+    }
+  },
+  "started_at": "2026-10-25T15:35:27.915654+00:00",
+  "steps": [
+    {
+      "label": "clean-git-clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-local",
+        "<source-repository>",
+        "<clean-clone>"
+      ],
+      "cwd": "<clean-clone>",
+      "started_at": "2026-10-25T15:35:27.916232+00:00",
+      "passed": false,
+      "exit_code": 128,
+      "log": "01-clean-git-clone.log",
+      "finished_at": "2026-10-25T15:35:29.536036+00:00",
+      "duration_seconds": 1.6202702999580652
+    }
+  ],
+  "limitations": [
+    "Local Git clone --no-local of exact frozen commit; no workspace/env/venv/node_modules copied; not a network-download benchmark",
+    "Functional feature acceptance and short Locust, not production capacity",
+    "Logs redact generated secrets/local paths; exported measurement artifacts retain original bytes"
+  ],
+  "prior_project_after": {
+    "project": "high-concurrency-lab",
+    "containers": [
+      {
+        "id": "00c6e8d3ffb8d78f2950d17dd7affba51da56f54bd40641efbe6df4a39fc52e1",
+        "service": "mysql-experiment",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "high-concurrency-lab_mysql_experiment_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "13306"
+            }
+          ]
+        }
+      },
+      {
+        "id": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "service": "redis",
+        "image": "sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b",
+        "running": true,
+        "volumes": [
+          "afa7649915a1f5f1afe165a839ff9c9bf5bd44451c66175416b84c69d11fbd53"
+        ],
+        "ports": {
+          "6379/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "16379"
+            }
+          ]
+        }
+      },
+      {
+        "id": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "service": "mysql",
+        "image": "sha256:76f0358884cb92d9a086d24e5671c38048d3fef40f2588703d73eb55392d6b69",
+        "running": true,
+        "volumes": [
+          "high-concurrency-lab_mysql_data"
+        ],
+        "ports": {
+          "3306/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "3306"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "old002_after": {
+    "status": "verified",
+    "databases": {
+      "concurrency_lab_exp_002_10000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2404724479,
+          "lab_order_item": 1127435545
+        },
+        "seed": 20261023,
+        "order_count": 10000,
+        "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 10000,
+          "lab_order_item": 20000
+        }
+      },
+      "concurrency_lab_exp_002_100000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2897962911,
+          "lab_order_item": 1192454962
+        },
+        "seed": 20261023,
+        "order_count": 100000,
+        "digest": "0360de7c8d974742118e302f9dc77ef869a6769bf2cab3b085e1ffd954cd3189",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 100000,
+          "lab_order_item": 200000
+        }
+      },
+      "concurrency_lab_exp_002_1000000": {
+        "table_checksums": {
+          "lab_user": 2062112869,
+          "lab_product": 3647997267,
+          "lab_order": 2420932873,
+          "lab_order_item": 2447009193
+        },
+        "seed": 20261023,
+        "order_count": 1000000,
+        "digest": "730a1166f900b73426cdbdc01f4ece9f1c6abc5704ee437b2ceec1b26bec72ad",
+        "generator_version": 1,
+        "counts": {
+          "lab_user": 1000,
+          "lab_product": 100,
+          "lab_order": 1000000,
+          "lab_order_item": 2000000
+        }
+      }
+    }
+  },
+  "finished_at": "2026-10-25T15:35:33.755520+00:00"
+}

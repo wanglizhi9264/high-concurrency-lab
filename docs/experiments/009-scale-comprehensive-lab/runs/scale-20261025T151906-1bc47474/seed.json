@@ -1,0 +1,4054 @@
+{
+  "dataset": {
+    "seed": 20261025,
+    "order_count": 1000000,
+    "generator_version": 1,
+    "digest": "26e7029bddbb0ad126fb723d3534c38510402485a21601db7d0817d3f95fb700",
+    "tables": {
+      "scale_order": {
+        "count": 1000000,
+        "digest": "26e7029bddbb0ad126fb723d3534c38510402485a21601db7d0817d3f95fb700",
+        "monthly_counts": {
+          "2025-01": 84876,
+          "2025-02": 76432,
+          "2025-03": 84755,
+          "2025-04": 82399,
+          "2025-05": 85568,
+          "2025-06": 82440,
+          "2025-07": 84866,
+          "2025-08": 84752,
+          "2025-09": 81984,
+          "2025-10": 84599,
+          "2025-11": 82614,
+          "2025-12": 84715
+        },
+        "id_unique": true
+      },
+      "scale_order_partitioned": {
+        "count": 1000000,
+        "digest": "26e7029bddbb0ad126fb723d3534c38510402485a21601db7d0817d3f95fb700",
+        "monthly_counts": {
+          "2025-01": 84876,
+          "2025-02": 76432,
+          "2025-03": 84755,
+          "2025-04": 82399,
+          "2025-05": 85568,
+          "2025-06": 82440,
+          "2025-07": 84866,
+          "2025-08": 84752,
+          "2025-09": 81984,
+          "2025-10": 84599,
+          "2025-11": 82614,
+          "2025-12": 84715
+        },
+        "id_unique": true
+      }
+    }
+  },
+  "batch_size": 1000,
+  "generation_insert_validation_wall_seconds": 125.815622300026,
+  "sql_transaction_ms": 80309.42959914682,
+  "batches": [
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 168.91830001259223
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 149.53180000884458
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 192.3114000237547
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 103.43550000106916
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 133.6529000545852
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 97.42790000746027
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 94.73630000138655
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 109.64949999470264
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 134.1169000370428
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 136.92989997798577
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 175.29550002655014
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.08499999856576
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 95.71320004761219
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.71920001180843
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.33630001265556
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.79050002619624
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.276700009126216
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.70270003471524
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.08319998020306
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.774399957153946
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.47629996202886
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.29130001319572
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.14099999610335
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.82859998848289
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.124200001358986
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.89850003365427
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.14569996902719
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.52600003872067
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.61270002648234
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 84.99010000377893
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 95.52979998989031
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 98.98839995730668
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.40789996972308
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.20339999953285
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.04580000648275
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.75620000716299
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.32649997947738
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.71670005097985
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.7135999952443
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.0933999568224
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.37609998648986
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.56869998108596
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.5074000027962
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.89399996260181
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.47970003075898
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.29650000995025
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.83410000894219
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.24619997758418
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.95299998298287
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.08950003283098
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.00319998851046
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.91229998553172
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.29690001904964
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.98119999561459
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.36649996554479
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.23820002237335
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.84739998308942
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.71670004632324
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 139.44810000248253
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.07319998694584
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.70480000926182
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.77000002330169
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 85.29640000779182
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.09030002215877
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.17180000850931
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.62560000363737
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.07080004969612
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.65859997458756
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.86800000676885
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.32809999771416
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.50379998004064
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.72259996877983
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.28450001496822
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.8429999970831
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.17520002974197
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.59619998838753
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.39270002255216
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.58209997275844
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 85.14699997613207
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.42100001592189
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.44459999492392
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.98110001161695
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.42120000207797
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.98380000470206
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.57360000442713
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.13280001329258
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.55790002271533
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.57680000271648
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.3462999924086
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.34909996623173
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 86.36700001079589
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.25769996875897
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.72460002079606
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.22409995645285
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.79259998723865
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 77.46729999780655
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.88259999547154
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.95450002979487
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.13440002547577
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.86029996955767
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.77680000616238
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 93.5388999641873
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.06139999814332
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.73329999204725
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.49619996966794
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.73149998299778
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.32500001555309
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.24850001512095
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.66909996420145
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.5154999801889
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.60360002610832
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.087900031358
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.2047999734059
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 77.89739995496348
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.36509999306872
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.45289999060333
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.92619999637827
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.98099999548867
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.43779998132959
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.42919999547303
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.83670003339648
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.99139995826408
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.21270000282675
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.98850003117695
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.11549999797717
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.911400036886334
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 86.81379997869954
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.1798000279814
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.79730000440031
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.30439999653026
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.23169994540513
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.82580003608018
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.64790001884103
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.41519999923185
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.18899999698624
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.62539998069406
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.90959998033941
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.01260001864284
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.9293999671936
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 89.24830000614747
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.96329997712746
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.7890999680385
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.29499998921528
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.48400001460686
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.07759998831898
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.0850000246428
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.5646999841556
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.76010004291311
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.80290001956746
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.61999999312684
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.75420001335442
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 101.5198000241071
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.42240004334599
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 91.33810002822429
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.29819997679442
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.023599981330335
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.50310001289472
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.702299958094954
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.894599999301136
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.67159998323768
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.26480001350865
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.55759998830035
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.19979997677729
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.47220000298694
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.22349999798462
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.98259998019785
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.04100003745407
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.35470002423972
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.75060003949329
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.74290000693873
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.2204000018537
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.08449994586408
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.14959998661652
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.14849999500439
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.31630000751466
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.20339998882264
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.66730000404641
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.875499996356666
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.72140000248328
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.03400002839044
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.8893999857828
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.841299990192056
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.76290000602603
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 116.69329996220767
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.88289998378605
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.46339999092743
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.85650000488386
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.59449999360368
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.9012999967672
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.63249999657273
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.97469999967143
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.7879000431858
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.91539997700602
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.55289994645864
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.52420000359416
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.85139997676015
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.87940001534298
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 163.35220000473782
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.342500012367964
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.52839997597039
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.36320001678541
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.05600003199652
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.502099979203194
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.246200035791844
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.43729995610192
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.99049999890849
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.50449997605756
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.844600015319884
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.728700005915016
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.8838000013493
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.2914999932982
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.83989997347817
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 105.12190003646538
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.982400032226
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.80189999658614
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.05180000932887
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.94870003452525
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.26700001955032
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.53889998374507
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.74300001841038
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.699300004169345
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.92120001651347
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.45240003429353
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.20949999988079
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.32949998229742
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 133.8790999725461
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.0601000203751
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.23540001641959
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.64779999665916
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.23000001208857
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.08869999926537
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.37170001585037
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.11719997879118
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.44909997098148
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.34229997871444
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.91580001683906
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.2205999926664
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.21619998663664
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.79689996922389
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.94760003685951
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.22689999919385
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.83929996890947
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.02640002733096
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.87199998041615
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.85379999503493
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.03669998468831
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.62419996690005
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 59.96449996018782
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.49869996868074
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.73559998814017
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.62590002734214
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.02870000200346
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.15809999452904
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.25510002393275
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.88080002600327
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.58999999146909
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.53179997717962
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.4546999768354
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.41530003212392
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.01280000479892
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.96080001629889
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.9639999717474
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 104.33269996428862
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.63059999421239
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.2140000234358
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 125.32329995883629
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.19540003500879
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.109699985943735
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.31360001442954
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.96569998469204
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.82520000403747
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.481400010176
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.22589994873852
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.72350004455075
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 98.50439999718219
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.377999991644174
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.52740002796054
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.405999972019345
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.09830002626404
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.23960001626983
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.09990003239363
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.86340000387281
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.94140000035986
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.41409996477887
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.20390000939369
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.54600001173094
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.50209997780621
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.92980002844706
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.038900018204
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.71529997745529
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.65850002132356
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.58880000375211
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.06230001104996
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.0745999822393
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.37569998949766
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.40019996929914
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.8617000002414
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.75940000405535
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.10919994721189
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.7984999967739
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.95969998044893
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.04959998792037
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.12249998701736
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.57329997001216
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.39890001295134
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.40400003036484
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.12079996941611
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.37690000329167
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.58990000141785
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.90960001712665
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.80640002479777
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.0792999798432
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.17669997690246
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.69830001657829
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.284599989652634
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.76359996991232
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.24319998081774
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.09410002501681
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.04099999601021
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.1858000094071
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.82899995939806
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.949700000695884
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.10529999993742
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.88740001805127
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 98.41189999133348
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.53130002086982
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.326500011608
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.33109996234998
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.711300037335604
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.926000005565584
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.61159997060895
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.78429998969659
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.296199972275645
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.90509998286143
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.98230001470074
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.78479999816045
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 110.9137999592349
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.40649999724701
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.73399995593354
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.32280001556501
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.1857999986969
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.41250001080334
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.42590003926307
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.59489999199286
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.201699987985194
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 101.56550002284348
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.35139998514205
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.31209997693077
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.091900025028735
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.66110002296045
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.18240004172549
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.50789999589324
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.57790004182607
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.76709999656305
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 173.15859999507666
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.33220000751317
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.90830000722781
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.93719999445602
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.19900000886992
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.99350002640858
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 115.26150000281632
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 77.6729000499472
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.75489998050034
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.32489998731762
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 103.72389998519793
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.04390002414584
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.96980000520125
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.41029998799786
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.27610001992434
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.78379997517914
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.09480002569035
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 111.17889999877661
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.87500000186265
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.654400031548
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.70139999734238
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.12099997699261
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.72260002233088
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.89750002603978
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.90659998962656
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.49040001118556
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.14619999425486
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.11820001387969
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.520100025925785
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.26390001131222
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.39869997790083
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.136100033763796
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 59.18839998776093
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.17870001960546
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.1652999650687
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.954300014302135
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.30420000106096
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.54459999501705
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.950899951625615
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.414899981580675
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.00219997158274
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.02470002649352
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.95870002172887
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 95.50540003692731
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.16499995673075
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.755500013940036
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 58.90420003561303
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.46169997798279
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.66920000175014
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.55320000834763
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.52449996443465
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.14860000181943
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.09570000646636
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.87800003681332
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.05110000539571
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.44400002853945
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 98.17090001888573
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.13890002295375
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.476800033357
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.16639999952167
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.26340002892539
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.78120003500953
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.46009999187663
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.05749995307997
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.81369998538867
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.82150000333786
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.851700011175126
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.02500003948808
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.01119994511828
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 104.60950003471226
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.58019998576492
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.30549997882918
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.69610003801063
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.23220000276342
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.83469999814406
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.13830000162125
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.7646999983117
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.6303999912925
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.76920001581311
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 121.22809997526929
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 123.21669998345897
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.55790003202856
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 94.3834999925457
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.43469998380169
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.15159998647869
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.77570000849664
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.26849999278784
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.76680002035573
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.30039999354631
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.94289999641478
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.93349999375641
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.91359998472035
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 108.99959999369457
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.05890004336834
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.07810004707426
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.100399994757026
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.4122999724932
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.6404999839142
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.12440002290532
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.40720000723377
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.43909998983145
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.22309996420518
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.42800003383309
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.50279996311292
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.89270001417026
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.7764000017196
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.34869996458292
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.73129998287186
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.47669999115169
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.09220000589266
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.90920000942424
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.20340000092983
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.32449995493516
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.47480004094541
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.93810001807287
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.81420002132654
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.35730000259355
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 124.28469996666536
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.729000008199364
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.063700043130666
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.72360001457855
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.204199959523976
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.119599966332316
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.02750002173707
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.2008000286296
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.8685999698937
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.64009996550158
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.42159998975694
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.21509996149689
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.46090001938865
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 100.3946999553591
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.27829996775836
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.73919995268807
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.14309998601675
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.822199971880764
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.90310004260391
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.60230003297329
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.613499991130084
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.25829994259402
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.10000003920868
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.32399999862537
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.743599992245436
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.07579994993284
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 131.02329999674112
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.14699999289587
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.41489999555051
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.51639999635518
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.49010001355782
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.85169998370111
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.37779996870086
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.32890002988279
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.58709999080747
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.50660001207143
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.92199997976422
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 142.88040000246838
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.85830000322312
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.52559997746721
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.00179996853694
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.21540000662208
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.80279995454475
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.11899996642023
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.04389999201521
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.25780001236126
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.29660000139847
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.07609999971464
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.36640000902116
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 87.44579995982349
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.77550003305078
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.45600002957508
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.41430002311245
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.48599997768179
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 104.08540000207722
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.84069997956976
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.983900006860495
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.45659999735653
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.3393999566324
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.32509999489412
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.06409996049479
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 107.74860001401976
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.78959996579215
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.069800009951
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.8920000102371
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.75819999631494
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.2251999815926
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.7717000041157
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.36710001435131
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.20720004057512
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.4785000262782
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.465200015343726
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.73080004192889
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 107.18589997850358
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.67510002059862
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.48399999924004
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.6448999545537
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.35670004086569
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.97500000195578
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.1272999974899
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.02769999578595
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.66029997682199
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 61.96669995551929
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.496400020085275
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.0193000328727
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.3475000243634
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 122.71480000345036
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.99050003429875
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.09089999599382
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.4142000391148
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.4408000302501
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.4575000074692
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.44549999572337
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.54640000732616
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.00670001516119
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.72219999786466
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.70009999349713
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 119.62470004800707
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.12060000933707
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.16080000903457
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.5943999774754
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.2101000030525
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.56730003468692
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.986800039652735
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 99.3715999647975
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 60.1036999723874
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.45000002067536
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.33719998272136
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.44310002634302
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 120.31319999368861
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 62.94470001012087
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.9258999559097
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.12979995366186
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.91420002607629
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 64.91150002693757
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.26350001897663
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 63.63799999235198
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.11019998369738
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.19599997997284
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.49180001113564
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.94859999092296
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 233.13409998081625
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.17850000597537
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.2098999847658
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.40139998914674
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.97960000485182
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.65089999418706
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.76329996157438
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.53160003852099
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.71210003132
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.32380002783611
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 255.65930001903325
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.07070000004023
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.93969998462126
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.97420000517741
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 173.45750000094995
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.53539997711778
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.50859997980297
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.61210001120344
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 101.50960000464693
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 156.95570001844317
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.05259997257963
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.26589997299016
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.67840000288561
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.63509996421635
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.58269999874756
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.1346999942325
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.7801999845542
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.40219997847453
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.78930000960827
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 223.6202999483794
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.99080001050606
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.50709999445826
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 89.17849999852479
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.96510002017021
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.67890001134947
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.90889999037609
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.659000008367
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.6696000462398
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 100.84550001192838
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 203.83630000287667
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 91.13840002100915
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 84.63990001473576
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 77.5419999845326
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 99.64950004359707
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.4964000293985
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.96929996320978
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.70299997273833
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.13879996864125
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 188.59620002331212
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.36989999748766
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.75830003991723
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 84.28989996900782
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.94399996194988
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.94650002848357
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.454299967736
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 114.002599962987
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.44789999397472
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.52450002124533
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 120.24530000053346
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 156.38389997184277
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.85950000630692
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.73469998734072
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.99399995990098
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.87650000257418
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.64650003425777
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.20180000877008
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.74650002364069
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.97739999881014
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.25910001154989
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 206.62750001065433
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.32689998717979
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.72629998624325
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.26869997754693
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.1610000366345
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.84120002016425
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.33779999660328
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.91530001768842
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.51099998736754
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.71519997995347
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 180.77350000385195
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.07049999851733
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.8050000295043
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 86.06649999273941
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 89.07630003523082
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.47589998366311
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.10400002077222
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.79029999719933
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.05230000708252
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.86189997429028
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 227.63710003346205
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.985700013116
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.41559997480363
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.2888999581337
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.07040001312271
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.18819998949766
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.54580003488809
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.49829996423796
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.30149999586865
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.69140000082552
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 181.83930002851412
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.12979999370873
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 174.7516999603249
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.33679998898879
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.78119994793087
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.09850001102313
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.84359996952116
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.9834999977611
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.96900001913309
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 232.92059998493642
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.17210002616048
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.4997999924235
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.71960002556443
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.99769998947158
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.02910003252327
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.33840000117198
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.34230001550168
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 87.66199997626245
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.97940001264215
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 203.2935000024736
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.977100007236
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.1196999871172
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.4812000147067
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.23109998367727
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.83529999991879
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.91489996248856
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.6688999994658
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.31759999133646
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 84.86400003312156
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 251.49130000500008
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.4676000108011
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.3355999905616
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.25879998784512
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.82929998775944
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.24779998837039
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.59919999726117
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 87.63329999055713
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.66429998911917
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 101.11310001229867
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 204.65379999950528
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.22069997806102
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.16969999112189
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.11290005035698
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.87069999519736
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 97.1181999775581
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.17990001058206
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.2986000305973
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.74059998942539
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 157.63119998155162
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 87.48250000644475
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.64120001532137
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.27200003014877
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.75319996895269
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.31240000994876
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.22640001075342
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.23940002545714
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.59799998812377
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.75120000122115
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.29069996112958
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 193.72549996478483
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.59499995457008
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.30169999599457
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.3794000162743
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.19180001085624
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.57149999309331
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.98090002406389
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.1835000119172
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.64410001598299
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.58389997109771
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 254.26130002597347
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.7422999702394
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.0485000316985
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.95480003813282
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.6701999665238
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.16199999675155
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.45729996450245
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.72289995569736
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.10730002913624
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.19999997830018
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 194.6905999793671
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 89.37629999127239
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.94740001857281
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.20540003152564
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 374.4509000098333
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.3174000158906
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.23329997761175
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 175.34240003442392
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 85.0553999771364
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 93.73850002884865
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.86179997352883
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.85399999516085
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.95539998449385
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.51479997346178
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.14570000441745
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.31559998076409
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 260.9964999719523
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.96110004326329
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.34250002773479
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.69510001223534
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.47759998589754
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.12019997881725
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.5047999555245
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.01610001781955
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.44890000624582
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.4480999740772
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 245.79149996861815
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.46129995817319
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.01950001297519
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.92329996824265
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.9634999986738
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.11429996602237
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.12339997850358
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.80019999900833
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.74210002226755
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.21939995745197
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 234.91549998288974
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.80970000242814
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.60699997702613
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.63479997729883
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.5162999574095
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 89.82090000063181
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.22989999921992
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.82359999185428
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.13829999091104
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.75729997875169
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 186.08039995888248
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.36819999525324
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.51330003561452
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.64960001641884
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.12340001994744
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.36280000628904
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.67339999089018
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.08489998104051
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.02479999978095
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.32459996500984
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 224.08939996967092
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.42999998945743
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.1573999770917
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 92.19020005548373
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.53719996474683
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 90.64369997940958
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 90.35579999908805
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 85.69209999404848
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.89579999959096
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 271.04780002264306
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.71650000056252
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.87380001880229
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.6381999924779
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.96200003800914
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.94740002928302
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.20190000487491
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.61610005097464
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.40219997381791
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 273.7945999833755
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.56820000475273
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.80190001055598
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.46520000929013
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.59759998042136
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.16540004406124
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 84.08999996026978
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 77.51989999087527
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.0378999938257
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.80820001708344
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 224.07859994564205
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.9268000209704
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.20080000115559
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.23810002626851
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 95.23540001828223
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.83250002283603
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.95289996545762
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.35079996241257
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.54500000271946
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.58489999407902
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 213.9358000131324
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.80629997653887
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.43340002605692
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.48789997398853
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.40050003444776
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.43300003372133
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.44550001248717
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.76060002529994
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.30489997752011
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.8298999555409
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 241.7153000133112
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.15480001550168
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.99410000350326
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.6660000034608
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.95739995222539
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.39920001849532
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.13210003869608
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.53609999315813
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.72589998319745
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.36269999481738
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 235.11229996802285
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.14619997609407
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.55840001441538
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.99119996931404
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 94.68270000070333
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 97.80119999777526
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 79.24079999793321
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.4231000058353
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 186.40419997973368
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 128.6600999883376
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 84.56859999569133
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.07339994702488
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.42369999503717
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.22380003845319
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.3785000462085
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.43079999089241
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.91579999541864
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.52589999977499
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.16840001335368
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 192.40659999195486
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.87070001661777
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.84919998468831
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.92360000731423
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.14760001283139
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.05010000243783
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.28829999035224
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.22359997406602
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.03049999568611
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.99380001192912
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 259.45760001195595
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.70289999200031
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.2502999859862
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 85.94770001946017
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 259.7767999977805
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.73140001436695
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.24569997237995
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 88.30010000383481
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 148.0849999934435
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.83669999055564
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.65850001526996
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.17989997984841
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.46579996636137
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.84479998936877
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 84.93339997949079
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.91979998908937
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.5848000254482
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.86429997393861
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 178.37559996405616
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 96.20789997279644
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.07030003983527
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.5234999768436
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.73299999907613
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.19149998715147
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.19009997649118
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.18930003931746
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.51289999112487
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.10570003371686
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 198.38100002380088
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.5561999976635
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.22700004139915
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.08500004000962
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.5660999994725
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.42280000355095
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.30370000656694
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 87.13060000445694
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 80.79819998238236
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.44379999954253
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 241.3181999581866
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.37479999801144
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 85.73059999616817
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.95490002818406
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 74.72360000247136
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.51770001230761
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 66.95659999968484
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.58479998866096
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.47709996206686
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.37579999351874
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 216.56630001962185
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.88980000279844
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.3357000281103
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 73.67520005209371
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.14169995859265
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.0626999605447
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.59760004933923
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 83.34670000476763
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 67.87379999877885
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.16610003868118
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 186.0613999888301
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 97.4234000314027
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 71.3304000091739
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 65.9690999891609
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.94929994735867
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.75320003647357
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 68.74159997096285
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 69.29939996916801
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.93250000616536
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 70.96440001623705
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.28629997372627
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 253.6728999693878
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 78.85430002352223
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.51989998621866
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.82639999175444
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 72.31459999457002
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.14960002806038
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 82.7220999635756
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.17359998403117
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 85.52909997524694
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 155.15249996678904
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 130.962900002487
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 75.52810001652688
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 90.3241999913007
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.71580004272982
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 81.89359999960288
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 111.22700001578778
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 86.9681999902241
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 76.18049997836351
+    }
+  ],
+  "semantics": "Per batch ownership checks + two INSERTs + COMMIT; generation/hash/readback validation excluded from sql_transaction_ms"
+}

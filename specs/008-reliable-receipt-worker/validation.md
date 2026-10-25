@@ -15,3 +15,5 @@ Code review: inspected resource disposal, inventory RR regression, RC Task→Out
 Protected PR and remote required checks remain open until executed. T017 is publication workflow work, not hidden implementation completion.
 
 ConvergenceT018 completed: actual cancellation leaves pending+committed running lease without false completion, recovery abandons old attempt with unknown timing and succeeds. Actual failure afterTask+OutboxINSERT rolls back both; sameUUID can subsequently create. Final task suite11passed25.20s;no source change from measured checkpoint. Second Converge found0buildable gaps; publicationT017 remains open.
+
+Publication verified:PR10 merged2026-10-25T09:40:29Z,main8ecb687ad7e8557d5e31510b6f63cae82a6bb159. Push40181360204 andPR40181383906 quality/integration/frontend allsuccess;integration2m27/2m16. Original exact commits13ed68b/20030cc uploaded via authenticatedGitHubAPI with blob/tree/commit hashes verified after normalGittransport failure; main synchronized via normalfetch/ff. PRattached.

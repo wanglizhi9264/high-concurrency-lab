@@ -1,0 +1,17 @@
+# Specification quality checklist
+- [x] User value and observable independent stories
+- [x] Priorities and independently testable outcomes
+- [x] No unresolved clarification
+- [x] Deterministic bounded data requirements
+- [x] Safe target/no-reset boundaries
+- [x] Baseline first and comparable results
+- [x] Covering index proof from real plan
+- [x] Partition limitations and actual pruning
+- [x] Space/write/resource measurement definitions
+- [x] Raw evidence and honest unknowns
+- [x] Heavy work explicit, ten-million optional
+- [x] Read-only visualization and prior compatibility
+- [x] Real integration/browser/evidence tests
+- [x] Actual clean-clone final acceptance
+- [x] Documentation/review/Converge/protectedPR
+- [x] All success criteria verifiable

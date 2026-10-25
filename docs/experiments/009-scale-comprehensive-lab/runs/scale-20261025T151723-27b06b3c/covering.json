@@ -1,0 +1,3020 @@
+{
+  "phase": "covering",
+  "revision": "scale003",
+  "started_at": "2026-10-25T15:17:33.732211+00:00",
+  "finished_at": "2026-10-25T15:17:34.770938+00:00",
+  "source": {
+    "revision": "f716852fc86f3be5a5c1812837c26e0f01b82123",
+    "sha256": "26e184e84bc3cc37402c2e83ff59df0abd4be5c2f89805abb3a2544b4674b5af",
+    "sources_dirty": false,
+    "files": 103
+  },
+  "dataset": {
+    "seed": 20261025,
+    "order_count": 10000,
+    "generator_version": 1,
+    "digest": "b0d1806e26839507e25a01c04b3fe73f8000e54002b02755f77ff651dfd107cd",
+    "tables": {
+      "scale_order": {
+        "count": 10000,
+        "digest": "b0d1806e26839507e25a01c04b3fe73f8000e54002b02755f77ff651dfd107cd",
+        "monthly_counts": {
+          "2025-01": 832,
+          "2025-02": 769,
+          "2025-03": 886,
+          "2025-04": 792,
+          "2025-05": 853,
+          "2025-06": 816,
+          "2025-07": 849,
+          "2025-08": 836,
+          "2025-09": 836,
+          "2025-10": 844,
+          "2025-11": 825,
+          "2025-12": 862
+        },
+        "id_unique": true
+      },
+      "scale_order_partitioned": {
+        "count": 10000,
+        "digest": "b0d1806e26839507e25a01c04b3fe73f8000e54002b02755f77ff651dfd107cd",
+        "monthly_counts": {
+          "2025-01": 832,
+          "2025-02": 769,
+          "2025-03": 886,
+          "2025-04": 792,
+          "2025-05": 853,
+          "2025-06": 816,
+          "2025-07": 849,
+          "2025-08": 836,
+          "2025-09": 836,
+          "2025-10": 844,
+          "2025-11": 825,
+          "2025-12": 862
+        },
+        "id_unique": true
+      }
+    }
+  },
+  "repeats": 7,
+  "tables": {
+    "scale_order": {
+      "cursor_lookup_ms": 4.110200039576739,
+      "cursor": {
+        "created_at": "2025-03-14 03:45:00",
+        "id": 9238
+      },
+      "offset": 8000,
+      "page_ids": {
+        "offset": [
+          5540,
+          9821,
+          2917,
+          7152,
+          3896,
+          1752,
+          8738,
+          7155,
+          8731,
+          5771,
+          2821,
+          5825,
+          8536,
+          5174,
+          2412,
+          7691,
+          7324,
+          6241,
+          3354,
+          606
+        ],
+        "keyset": [
+          5540,
+          9821,
+          2917,
+          7152,
+          3896,
+          1752,
+          8738,
+          7155,
+          8731,
+          5771,
+          2821,
+          5825,
+          8536,
+          5174,
+          2412,
+          7691,
+          7324,
+          6241,
+          3354,
+          606
+        ]
+      },
+      "queries": {
+        "primary_key": {
+          "sql": "SELECT id,total FROM scale_order WHERE id=:id AND created_at=:time",
+          "parameters": {
+            "id": 9238,
+            "time": "2025-03-14 03:45:00"
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            1.7475999775342643,
+            2.1865000016987324,
+            1.8754999618977308,
+            1.881800009869039,
+            1.7724999925121665,
+            2.0685999770648777,
+            1.965500006917864
+          ],
+          "p50_ms": 1.881800009869039,
+          "p95_ms": 2.151129994308576,
+          "p99_ms": 2.179426000220701,
+          "serial_selects_per_second": 518.5953502445492,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 1,
+          "result_rows": [
+            [
+              9238,
+              "501.55"
+            ]
+          ],
+          "result_sha256": "d134a5b0b44b4e9e0df3a6ef253fc2db97546c46dfcec341d565da64e8d9206c",
+          "tree": "-> Rows fetched before execution  (cost=0..0 rows=1) (actual time=341e-6..371e-6 rows=1 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "1.00"
+              },
+              "table": {
+                "table_name": "scale_order",
+                "access_type": "const",
+                "possible_keys": [
+                  "PRIMARY",
+                  "ix_time"
+                ],
+                "key": "PRIMARY",
+                "used_key_parts": [
+                  "id",
+                  "created_at"
+                ],
+                "key_length": "16",
+                "ref": [
+                  "const",
+                  "const"
+                ],
+                "rows_examined_per_scan": 1,
+                "rows_produced_per_join": 1,
+                "filtered": "100.00",
+                "cost_info": {
+                  "read_cost": "0.00",
+                  "eval_cost": "0.10",
+                  "prefix_cost": "0.00",
+                  "data_read_per_join": "744"
+                },
+                "used_columns": [
+                  "id",
+                  "created_at",
+                  "total"
+                ]
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Rows fetched before execution  (cost=0..0 rows=1)",
+              "first_row_ms": 0.000341,
+              "iterator_ms_per_loop": 0.000371,
+              "actual_rows_per_loop": 1.0,
+              "loops": 1.0,
+              "access_rows": 1.0
+            }
+          ],
+          "access_operator_rows": 1.0,
+          "selected_partitions": null,
+          "covering_observed": false
+        },
+        "by_user": {
+          "sql": "SELECT id FROM scale_order WHERE user_id=:user ORDER BY id LIMIT 20",
+          "parameters": {
+            "user": 500
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            1.6521000070497394,
+            1.8634999869391322,
+            1.8458999693393707,
+            2.0998999825678766,
+            1.7042999970726669,
+            1.6867999802343547,
+            1.976999978069216
+          ],
+          "p50_ms": 1.8458999693393707,
+          "p95_ms": 2.0630299812182784,
+          "p99_ms": 2.092525982297957,
+          "serial_selects_per_second": 545.6175263157202,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 9,
+          "result_rows": [
+            [
+              3997
+            ],
+            [
+              4437
+            ],
+            [
+              6569
+            ],
+            [
+              6589
+            ],
+            [
+              8117
+            ],
+            [
+              8766
+            ],
+            [
+              9420
+            ],
+            [
+              9498
+            ],
+            [
+              9968
+            ]
+          ],
+          "result_sha256": "985019e217e813f8c003033fb67610c9749e6ae3e50384bc610d110b7c0bf40a",
+          "tree": "-> Limit: 20 row(s)  (cost=1.98 rows=9) (actual time=0.0225..0.0232 rows=9 loops=1)\n    -> Sort: scale_order.id, limit input to 20 row(s) per chunk  (cost=1.98 rows=9) (actual time=0.0218..0.0221 rows=9 loops=1)\n        -> Covering index lookup on scale_order using ix_user_cover (user_id=500)  (cost=1.98 rows=9) (actual time=0.00971..0.0127 rows=9 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "1.98"
+              },
+              "ordering_operation": {
+                "using_filesort": true,
+                "table": {
+                  "table_name": "scale_order",
+                  "access_type": "ref",
+                  "possible_keys": [
+                    "ix_user_cover"
+                  ],
+                  "key": "ix_user_cover",
+                  "used_key_parts": [
+                    "user_id"
+                  ],
+                  "key_length": "8",
+                  "ref": [
+                    "const"
+                  ],
+                  "rows_examined_per_scan": 9,
+                  "rows_produced_per_join": 9,
+                  "filtered": "100.00",
+                  "using_index": true,
+                  "cost_info": {
+                    "read_cost": "1.08",
+                    "eval_cost": "0.90",
+                    "prefix_cost": "1.98",
+                    "data_read_per_join": "6K"
+                  },
+                  "used_columns": [
+                    "id",
+                    "created_at",
+                    "user_id"
+                  ]
+                }
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Limit: 20 row(s)  (cost=1.98 rows=9)",
+              "first_row_ms": 0.0225,
+              "iterator_ms_per_loop": 0.0232,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Sort: scale_order.id, limit input to 20 row(s) per chunk  (cost=1.98 rows=9)",
+              "first_row_ms": 0.0218,
+              "iterator_ms_per_loop": 0.0221,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index lookup on scale_order using ix_user_cover (user_id=500)  (cost=1.98 rows=9)",
+              "first_row_ms": 0.00971,
+              "iterator_ms_per_loop": 0.0127,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": 9.0
+            }
+          ],
+          "access_operator_rows": 9.0,
+          "selected_partitions": null,
+          "covering_observed": true
+        },
+        "user_projection": {
+          "sql": "SELECT id,created_at,total,status FROM scale_order WHERE user_id=:user ORDER BY created_at DESC,id DESC LIMIT 20",
+          "parameters": {
+            "user": 500
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            2.514699997846037,
+            1.979399996344,
+            2.0779999904334545,
+            1.867300015874207,
+            2.325399953406304,
+            1.879399991594255,
+            1.7933000344783068
+          ],
+          "p50_ms": 1.979399996344,
+          "p95_ms": 2.4579099845141172,
+          "p99_ms": 2.503341995179653,
+          "serial_selects_per_second": 484.8484855209235,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 9,
+          "result_rows": [
+            [
+              6569,
+              "2025-11-18 19:00:00",
+              "466.27",
+              "created"
+            ],
+            [
+              8766,
+              "2025-11-13 18:45:00",
+              "895.70",
+              "cancelled"
+            ],
+            [
+              9968,
+              "2025-11-01 17:15:00",
+              "651.70",
+              "cancelled"
+            ],
+            [
+              4437,
+              "2025-10-26 15:00:00",
+              "247.55",
+              "paid"
+            ],
+            [
+              9498,
+              "2025-08-04 21:30:00",
+              "741.58",
+              "paid"
+            ],
+            [
+              6589,
+              "2025-07-15 18:30:00",
+              "136.85",
+              "created"
+            ],
+            [
+              9420,
+              "2025-05-03 02:30:00",
+              "278.19",
+              "created"
+            ],
+            [
+              8117,
+              "2025-04-01 10:30:00",
+              "575.35",
+              "paid"
+            ],
+            [
+              3997,
+              "2025-02-25 23:45:00",
+              "821.30",
+              "created"
+            ]
+          ],
+          "result_sha256": "d1f4b9d850f612bd5165df3d7d495a3bd6c342f8d9ccf554cf44a606f1707bae",
+          "tree": "-> Limit: 20 row(s)  (cost=1.98 rows=9) (actual time=0.0115..0.0177 rows=9 loops=1)\n    -> Covering index lookup on scale_order using ix_user_cover (user_id=500) (reverse)  (cost=1.98 rows=9) (actual time=0.0104..0.0161 rows=9 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "1.98"
+              },
+              "ordering_operation": {
+                "using_filesort": false,
+                "table": {
+                  "table_name": "scale_order",
+                  "access_type": "ref",
+                  "possible_keys": [
+                    "ix_user_cover"
+                  ],
+                  "key": "ix_user_cover",
+                  "used_key_parts": [
+                    "user_id"
+                  ],
+                  "key_length": "8",
+                  "ref": [
+                    "const"
+                  ],
+                  "rows_examined_per_scan": 9,
+                  "rows_produced_per_join": 9,
+                  "filtered": "100.00",
+                  "backward_index_scan": true,
+                  "using_index": true,
+                  "cost_info": {
+                    "read_cost": "1.08",
+                    "eval_cost": "0.90",
+                    "prefix_cost": "1.98",
+                    "data_read_per_join": "6K"
+                  },
+                  "used_columns": [
+                    "id",
+                    "created_at",
+                    "user_id",
+                    "total",
+                    "status"
+                  ]
+                }
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Limit: 20 row(s)  (cost=1.98 rows=9)",
+              "first_row_ms": 0.0115,
+              "iterator_ms_per_loop": 0.0177,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index lookup on scale_order using ix_user_cover (user_id=500) (reverse)  (cost=1.98 rows=9)",
+              "first_row_ms": 0.0104,
+              "iterator_ms_per_loop": 0.0161,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": 9.0
+            }
+          ],
+          "access_operator_rows": 9.0,
+          "selected_partitions": null,
+          "covering_observed": true
+        },
+        "offset": {
+          "sql": "SELECT id,created_at FROM scale_order ORDER BY created_at DESC,id DESC LIMIT 20 OFFSET :offset",
+          "parameters": {
+            "offset": 8000
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            3.625700017437339,
+            3.463299944996834,
+            3.7105000228621066,
+            3.9552999660372734,
+            3.532900009304285,
+            3.6053999792784452,
+            3.021500015165657
+          ],
+          "p50_ms": 3.6053999792784452,
+          "p95_ms": 3.8818599830847234,
+          "p99_ms": 3.9406119694467634,
+          "serial_selects_per_second": 280.95975904169313,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 20,
+          "result_rows": [
+            [
+              5540,
+              "2025-03-14 03:00:00"
+            ],
+            [
+              9821,
+              "2025-03-14 02:45:00"
+            ],
+            [
+              2917,
+              "2025-03-13 23:30:00"
+            ],
+            [
+              7152,
+              "2025-03-13 23:15:00"
+            ],
+            [
+              3896,
+              "2025-03-13 23:00:00"
+            ],
+            [
+              1752,
+              "2025-03-13 21:45:00"
+            ],
+            [
+              8738,
+              "2025-03-13 21:15:00"
+            ],
+            [
+              7155,
+              "2025-03-13 20:30:00"
+            ],
+            [
+              8731,
+              "2025-03-13 19:45:00"
+            ],
+            [
+              5771,
+              "2025-03-13 19:15:00"
+            ],
+            [
+              2821,
+              "2025-03-13 19:15:00"
+            ],
+            [
+              5825,
+              "2025-03-13 18:30:00"
+            ],
+            [
+              8536,
+              "2025-03-13 18:00:00"
+            ],
+            [
+              5174,
+              "2025-03-13 17:45:00"
+            ],
+            [
+              2412,
+              "2025-03-13 16:15:00"
+            ],
+            [
+              7691,
+              "2025-03-13 16:00:00"
+            ],
+            [
+              7324,
+              "2025-03-13 14:15:00"
+            ],
+            [
+              6241,
+              "2025-03-13 13:30:00"
+            ],
+            [
+              3354,
+              "2025-03-13 13:30:00"
+            ],
+            [
+              606,
+              "2025-03-13 13:30:00"
+            ]
+          ],
+          "result_sha256": "c9498acf7e678d6e55a2cfd2023cc4ee691740dedaab1d766f590ce3c7512885",
+          "tree": "-> Limit/Offset: 20/8000 row(s)  (cost=680 rows=20) (actual time=1.47..1.47 rows=20 loops=1)\n    -> Covering index scan on scale_order using ix_time (reverse)  (cost=680 rows=8020) (actual time=0.105..1.27 rows=8020 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "1033.75"
+              },
+              "ordering_operation": {
+                "using_filesort": false,
+                "table": {
+                  "table_name": "scale_order",
+                  "access_type": "index",
+                  "key": "ix_time",
+                  "used_key_parts": [
+                    "created_at",
+                    "id"
+                  ],
+                  "key_length": "16",
+                  "rows_examined_per_scan": 8020,
+                  "rows_produced_per_join": 9935,
+                  "filtered": "100.00",
+                  "backward_index_scan": true,
+                  "using_index": true,
+                  "cost_info": {
+                    "read_cost": "40.25",
+                    "eval_cost": "993.50",
+                    "prefix_cost": "1033.75",
+                    "data_read_per_join": "7M"
+                  },
+                  "used_columns": [
+                    "id",
+                    "created_at"
+                  ]
+                }
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Limit/Offset: 20/8000 row(s)  (cost=680 rows=20)",
+              "first_row_ms": 1.47,
+              "iterator_ms_per_loop": 1.47,
+              "actual_rows_per_loop": 20.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index scan on scale_order using ix_time (reverse)  (cost=680 rows=8020)",
+              "first_row_ms": 0.105,
+              "iterator_ms_per_loop": 1.27,
+              "actual_rows_per_loop": 8020.0,
+              "loops": 1.0,
+              "access_rows": 8020.0
+            }
+          ],
+          "access_operator_rows": 8020.0,
+          "selected_partitions": null,
+          "covering_observed": true
+        },
+        "keyset": {
+          "sql": "SELECT id,created_at FROM scale_order WHERE created_at<:time OR (created_at=:time AND id<:id) ORDER BY created_at DESC,id DESC LIMIT 20",
+          "parameters": {
+            "time": "2025-03-14 03:45:00",
+            "id": 9238
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            2.153199980966747,
+            2.073700015898794,
+            2.2309000487439334,
+            2.035199955571443,
+            2.3170000058598816,
+            2.3219999857246876,
+            2.0345000084489584
+          ],
+          "p50_ms": 2.153199980966747,
+          "p95_ms": 2.320499991765246,
+          "p99_ms": 2.321699986932799,
+          "serial_selects_per_second": 461.5435334084648,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 20,
+          "result_rows": [
+            [
+              5540,
+              "2025-03-14 03:00:00"
+            ],
+            [
+              9821,
+              "2025-03-14 02:45:00"
+            ],
+            [
+              2917,
+              "2025-03-13 23:30:00"
+            ],
+            [
+              7152,
+              "2025-03-13 23:15:00"
+            ],
+            [
+              3896,
+              "2025-03-13 23:00:00"
+            ],
+            [
+              1752,
+              "2025-03-13 21:45:00"
+            ],
+            [
+              8738,
+              "2025-03-13 21:15:00"
+            ],
+            [
+              7155,
+              "2025-03-13 20:30:00"
+            ],
+            [
+              8731,
+              "2025-03-13 19:45:00"
+            ],
+            [
+              5771,
+              "2025-03-13 19:15:00"
+            ],
+            [
+              2821,
+              "2025-03-13 19:15:00"
+            ],
+            [
+              5825,
+              "2025-03-13 18:30:00"
+            ],
+            [
+              8536,
+              "2025-03-13 18:00:00"
+            ],
+            [
+              5174,
+              "2025-03-13 17:45:00"
+            ],
+            [
+              2412,
+              "2025-03-13 16:15:00"
+            ],
+            [
+              7691,
+              "2025-03-13 16:00:00"
+            ],
+            [
+              7324,
+              "2025-03-13 14:15:00"
+            ],
+            [
+              6241,
+              "2025-03-13 13:30:00"
+            ],
+            [
+              3354,
+              "2025-03-13 13:30:00"
+            ],
+            [
+              606,
+              "2025-03-13 13:30:00"
+            ]
+          ],
+          "result_sha256": "c9498acf7e678d6e55a2cfd2023cc4ee691740dedaab1d766f590ce3c7512885",
+          "tree": "-> Limit: 20 row(s)  (cost=409 rows=20) (actual time=0.0664..0.0704 rows=20 loops=1)\n    -> Filter: ((scale_order.created_at < TIMESTAMP'2025-03-14 03:45:00') or ((scale_order.created_at = TIMESTAMP'2025-03-14 03:45:00') and (scale_order.id < 9238)))  (cost=409 rows=2001) (actual time=0.0655..0.0685 rows=20 loops=1)\n        -> Covering index range scan on scale_order using ix_time over (created_at < '2025-03-14 03:45:00.000000') OR (created_at = '2025-03-14 03:45:00.000000' AND id < 9238) (reverse)  (cost=409 rows=2001) (actual time=0.0637..0.0653 rows=20 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "408.52"
+              },
+              "ordering_operation": {
+                "using_filesort": false,
+                "table": {
+                  "table_name": "scale_order",
+                  "access_type": "range",
+                  "possible_keys": [
+                    "PRIMARY",
+                    "ix_time"
+                  ],
+                  "key": "ix_time",
+                  "used_key_parts": [
+                    "created_at",
+                    "id"
+                  ],
+                  "key_length": "16",
+                  "rows_examined_per_scan": 2001,
+                  "rows_produced_per_join": 2001,
+                  "filtered": "100.00",
+                  "backward_index_scan": true,
+                  "using_index": true,
+                  "cost_info": {
+                    "read_cost": "208.42",
+                    "eval_cost": "200.10",
+                    "prefix_cost": "408.52",
+                    "data_read_per_join": "1M"
+                  },
+                  "used_columns": [
+                    "id",
+                    "created_at"
+                  ],
+                  "attached_condition": "((`concurrency_lab_exp_009_10000`.`scale_order`.`created_at` < TIMESTAMP'2025-03-14 03:45:00') or ((`concurrency_lab_exp_009_10000`.`scale_order`.`created_at` = TIMESTAMP'2025-03-14 03:45:00') and (`concurrency_lab_exp_009_10000`.`scale_order`.`id` < 9238)))"
+                }
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Limit: 20 row(s)  (cost=409 rows=20)",
+              "first_row_ms": 0.0664,
+              "iterator_ms_per_loop": 0.0704,
+              "actual_rows_per_loop": 20.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Filter: ((scale_order.created_at < TIMESTAMP'2025-03-14 03:45:00') or ((scale_order.created_at = TIMESTAMP'2025-03-14 03:45:00') and (scale_order.id < 9238)))  (cost=409 rows=2001)",
+              "first_row_ms": 0.0655,
+              "iterator_ms_per_loop": 0.0685,
+              "actual_rows_per_loop": 20.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index range scan on scale_order using ix_time over (created_at < '2025-03-14 03:45:00.000000') OR (created_at = '2025-03-14 03:45:00.000000' AND id < 9238) (reverse)  (cost=409 rows=2001)",
+              "first_row_ms": 0.0637,
+              "iterator_ms_per_loop": 0.0653,
+              "actual_rows_per_loop": 20.0,
+              "loops": 1.0,
+              "access_rows": 20.0
+            }
+          ],
+          "access_operator_rows": 20.0,
+          "selected_partitions": null,
+          "covering_observed": true
+        },
+        "time_range": {
+          "sql": "SELECT COUNT(*) AS orders,SUM(total) AS total FROM scale_order WHERE created_at>=:start AND created_at<:end",
+          "parameters": {
+            "start": "2025-07-01 00:00:00",
+            "end": "2025-08-01 00:00:00"
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            2.9375000158324838,
+            3.125699993688613,
+            3.1512000132352114,
+            3.161500033456832,
+            2.9696999699808657,
+            2.8663999983109534,
+            3.560699988156557
+          ],
+          "p50_ms": 3.125699993688613,
+          "p95_ms": 3.440940001746639,
+          "p99_ms": 3.5367479908745736,
+          "serial_selects_per_second": 321.5035340554583,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 1,
+          "result_rows": [
+            [
+              849,
+              "420112.52"
+            ]
+          ],
+          "result_sha256": "bb5e8dfba0663401c498699ba645c9c5298b0be4b7f29494b044b4812cd084ad",
+          "tree": "-> Aggregate: count(0), sum(scale_order.total)  (cost=467 rows=1) (actual time=1.2..1.2 rows=1 loops=1)\n    -> Index range scan on scale_order using ix_time over ('2025-07-01 00:00:00.000000' <= created_at < '2025-08-01 00:00:00.000000'), with index condition: ((scale_order.created_at >= TIMESTAMP'2025-07-01 00:00:00') and (scale_order.created_at < TIMESTAMP'2025-08-01 00:00:00'))  (cost=382 rows=849) (actual time=0.245..1.14 rows=849 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "382.31"
+              },
+              "table": {
+                "table_name": "scale_order",
+                "access_type": "range",
+                "possible_keys": [
+                  "ix_time",
+                  "ix_user_cover"
+                ],
+                "key": "ix_time",
+                "used_key_parts": [
+                  "created_at"
+                ],
+                "key_length": "8",
+                "rows_examined_per_scan": 849,
+                "rows_produced_per_join": 849,
+                "filtered": "100.00",
+                "index_condition": "((`concurrency_lab_exp_009_10000`.`scale_order`.`created_at` >= TIMESTAMP'2025-07-01 00:00:00') and (`concurrency_lab_exp_009_10000`.`scale_order`.`created_at` < TIMESTAMP'2025-08-01 00:00:00'))",
+                "cost_info": {
+                  "read_cost": "297.41",
+                  "eval_cost": "84.90",
+                  "prefix_cost": "382.31",
+                  "data_read_per_join": "616K"
+                },
+                "used_columns": [
+                  "created_at",
+                  "total"
+                ]
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Aggregate: count(0), sum(scale_order.total)  (cost=467 rows=1)",
+              "first_row_ms": 1.2,
+              "iterator_ms_per_loop": 1.2,
+              "actual_rows_per_loop": 1.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Index range scan on scale_order using ix_time over ('2025-07-01 00:00:00.000000' <= created_at < '2025-08-01 00:00:00.000000'), with index condition: ((scale_order.created_at >= TIMESTAMP'2025-07-01 00:00:00') and (scale_order.created_at < TIMESTAMP'2025-08-01 00:00:00'))  (cost=382 rows=849)",
+              "first_row_ms": 0.245,
+              "iterator_ms_per_loop": 1.14,
+              "actual_rows_per_loop": 849.0,
+              "loops": 1.0,
+              "access_rows": 849.0
+            }
+          ],
+          "access_operator_rows": 849.0,
+          "selected_partitions": null,
+          "covering_observed": false
+        },
+        "id_without_time": {
+          "sql": "SELECT id,total FROM scale_order WHERE id=:id",
+          "parameters": {
+            "id": 5000
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            1.8084999755956233,
+            1.655799977015704,
+            1.9166000420227647,
+            1.7645000480115414,
+            1.6731999930925667,
+            1.8707000417634845,
+            1.8992999684996903
+          ],
+          "p50_ms": 1.8084999755956233,
+          "p95_ms": 1.9114100199658424,
+          "p99_ms": 1.9155620376113802,
+          "serial_selects_per_second": 556.0586542125842,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 1,
+          "result_rows": [
+            [
+              5000,
+              "47.73"
+            ]
+          ],
+          "result_sha256": "4564b7fb928d8bb312459b3643865aa813acc3b4ddc05ff45b83902c99582c58",
+          "tree": "-> Index lookup on scale_order using PRIMARY (id=5000)  (cost=0.35 rows=1) (actual time=0.00638..0.00837 rows=1 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "0.35"
+              },
+              "table": {
+                "table_name": "scale_order",
+                "access_type": "ref",
+                "possible_keys": [
+                  "PRIMARY",
+                  "ix_user_cover"
+                ],
+                "key": "PRIMARY",
+                "used_key_parts": [
+                  "id"
+                ],
+                "key_length": "8",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 1,
+                "rows_produced_per_join": 1,
+                "filtered": "100.00",
+                "cost_info": {
+                  "read_cost": "0.25",
+                  "eval_cost": "0.10",
+                  "prefix_cost": "0.35",
+                  "data_read_per_join": "744"
+                },
+                "used_columns": [
+                  "id",
+                  "total"
+                ]
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Index lookup on scale_order using PRIMARY (id=5000)  (cost=0.35 rows=1)",
+              "first_row_ms": 0.00638,
+              "iterator_ms_per_loop": 0.00837,
+              "actual_rows_per_loop": 1.0,
+              "loops": 1.0,
+              "access_rows": 1.0
+            }
+          ],
+          "access_operator_rows": 1.0,
+          "selected_partitions": null,
+          "covering_observed": false
+        }
+      }
+    },
+    "scale_order_partitioned": {
+      "cursor_lookup_ms": 5.2399999694898725,
+      "cursor": {
+        "created_at": "2025-03-14 03:45:00",
+        "id": 9238
+      },
+      "offset": 8000,
+      "page_ids": {
+        "offset": [
+          5540,
+          9821,
+          2917,
+          7152,
+          3896,
+          1752,
+          8738,
+          7155,
+          8731,
+          5771,
+          2821,
+          5825,
+          8536,
+          5174,
+          2412,
+          7691,
+          7324,
+          6241,
+          3354,
+          606
+        ],
+        "keyset": [
+          5540,
+          9821,
+          2917,
+          7152,
+          3896,
+          1752,
+          8738,
+          7155,
+          8731,
+          5771,
+          2821,
+          5825,
+          8536,
+          5174,
+          2412,
+          7691,
+          7324,
+          6241,
+          3354,
+          606
+        ]
+      },
+      "queries": {
+        "primary_key": {
+          "sql": "SELECT id,total FROM scale_order_partitioned WHERE id=:id AND created_at=:time",
+          "parameters": {
+            "id": 9238,
+            "time": "2025-03-14 03:45:00"
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            1.6557000344619155,
+            1.5529999509453773,
+            2.1637000027112663,
+            1.8426000024192035,
+            1.7011999734677374,
+            1.6083000227808952,
+            2.141500008292496
+          ],
+          "p50_ms": 1.7011999734677374,
+          "p95_ms": 2.1570400043856353,
+          "p99_ms": 2.16236800304614,
+          "serial_selects_per_second": 552.6606665655853,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 1,
+          "result_rows": [
+            [
+              9238,
+              "501.55"
+            ]
+          ],
+          "result_sha256": "d134a5b0b44b4e9e0df3a6ef253fc2db97546c46dfcec341d565da64e8d9206c",
+          "tree": "-> Rows fetched before execution  (cost=0..0 rows=1) (actual time=371e-6..402e-6 rows=1 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "1.00"
+              },
+              "table": {
+                "table_name": "scale_order_partitioned",
+                "partitions": [
+                  "p1"
+                ],
+                "access_type": "const",
+                "possible_keys": [
+                  "PRIMARY",
+                  "ix_time"
+                ],
+                "key": "PRIMARY",
+                "used_key_parts": [
+                  "id",
+                  "created_at"
+                ],
+                "key_length": "16",
+                "ref": [
+                  "const",
+                  "const"
+                ],
+                "rows_examined_per_scan": 1,
+                "rows_produced_per_join": 1,
+                "filtered": "100.00",
+                "cost_info": {
+                  "read_cost": "0.00",
+                  "eval_cost": "0.10",
+                  "prefix_cost": "0.00",
+                  "data_read_per_join": "744"
+                },
+                "used_columns": [
+                  "id",
+                  "created_at",
+                  "total"
+                ]
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Rows fetched before execution  (cost=0..0 rows=1)",
+              "first_row_ms": 0.000371,
+              "iterator_ms_per_loop": 0.000402,
+              "actual_rows_per_loop": 1.0,
+              "loops": 1.0,
+              "access_rows": 1.0
+            }
+          ],
+          "access_operator_rows": 1.0,
+          "selected_partitions": [
+            "p1"
+          ],
+          "covering_observed": false
+        },
+        "by_user": {
+          "sql": "SELECT id FROM scale_order_partitioned WHERE user_id=:user ORDER BY id LIMIT 20",
+          "parameters": {
+            "user": 500
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            1.898599963169545,
+            2.0323999924585223,
+            1.94089999422431,
+            1.8435000092722476,
+            2.1923999884165823,
+            1.8807000014930964,
+            1.7467999714426696
+          ],
+          "p50_ms": 1.898599963169545,
+          "p95_ms": 2.1443999896291643,
+          "p99_ms": 2.1827999886590987,
+          "serial_selects_per_second": 517.166227651151,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 9,
+          "result_rows": [
+            [
+              3997
+            ],
+            [
+              4437
+            ],
+            [
+              6569
+            ],
+            [
+              6589
+            ],
+            [
+              8117
+            ],
+            [
+              8766
+            ],
+            [
+              9420
+            ],
+            [
+              9498
+            ],
+            [
+              9968
+            ]
+          ],
+          "result_sha256": "985019e217e813f8c003033fb67610c9749e6ae3e50384bc610d110b7c0bf40a",
+          "tree": "-> Limit: 20 row(s)  (cost=1.18 rows=9) (actual time=0.0284..0.0291 rows=9 loops=1)\n    -> Sort: scale_order_partitioned.id, limit input to 20 row(s) per chunk  (cost=1.18 rows=9) (actual time=0.0275..0.0278 rows=9 loops=1)\n        -> Covering index lookup on scale_order_partitioned using ix_user_cover (user_id=500)  (cost=1.18 rows=9) (actual time=0.0112..0.0191 rows=9 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "1.18"
+              },
+              "ordering_operation": {
+                "using_filesort": true,
+                "table": {
+                  "table_name": "scale_order_partitioned",
+                  "partitions": [
+                    "p1",
+                    "p2",
+                    "p3",
+                    "p4",
+                    "p_future"
+                  ],
+                  "access_type": "ref",
+                  "possible_keys": [
+                    "ix_user_cover"
+                  ],
+                  "key": "ix_user_cover",
+                  "used_key_parts": [
+                    "user_id"
+                  ],
+                  "key_length": "8",
+                  "ref": [
+                    "const"
+                  ],
+                  "rows_examined_per_scan": 9,
+                  "rows_produced_per_join": 9,
+                  "filtered": "100.00",
+                  "using_index": true,
+                  "cost_info": {
+                    "read_cost": "0.28",
+                    "eval_cost": "0.90",
+                    "prefix_cost": "1.18",
+                    "data_read_per_join": "6K"
+                  },
+                  "used_columns": [
+                    "id",
+                    "created_at",
+                    "user_id"
+                  ]
+                }
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Limit: 20 row(s)  (cost=1.18 rows=9)",
+              "first_row_ms": 0.0284,
+              "iterator_ms_per_loop": 0.0291,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Sort: scale_order_partitioned.id, limit input to 20 row(s) per chunk  (cost=1.18 rows=9)",
+              "first_row_ms": 0.0275,
+              "iterator_ms_per_loop": 0.0278,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index lookup on scale_order_partitioned using ix_user_cover (user_id=500)  (cost=1.18 rows=9)",
+              "first_row_ms": 0.0112,
+              "iterator_ms_per_loop": 0.0191,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": 9.0
+            }
+          ],
+          "access_operator_rows": 9.0,
+          "selected_partitions": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p_future"
+          ],
+          "covering_observed": true
+        },
+        "user_projection": {
+          "sql": "SELECT id,created_at,total,status FROM scale_order_partitioned WHERE user_id=:user ORDER BY created_at DESC,id DESC LIMIT 20",
+          "parameters": {
+            "user": 500
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            2.248200005851686,
+            2.321499981917441,
+            1.7832000157795846,
+            1.749899995047599,
+            2.520899986848235,
+            2.0525999716483057,
+            1.8313999753445387
+          ],
+          "p50_ms": 2.0525999716483057,
+          "p95_ms": 2.461079985368997,
+          "p99_ms": 2.5089359865523875,
+          "serial_selects_per_second": 482.50239752677,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 9,
+          "result_rows": [
+            [
+              6569,
+              "2025-11-18 19:00:00",
+              "466.27",
+              "created"
+            ],
+            [
+              8766,
+              "2025-11-13 18:45:00",
+              "895.70",
+              "cancelled"
+            ],
+            [
+              9968,
+              "2025-11-01 17:15:00",
+              "651.70",
+              "cancelled"
+            ],
+            [
+              4437,
+              "2025-10-26 15:00:00",
+              "247.55",
+              "paid"
+            ],
+            [
+              9498,
+              "2025-08-04 21:30:00",
+              "741.58",
+              "paid"
+            ],
+            [
+              6589,
+              "2025-07-15 18:30:00",
+              "136.85",
+              "created"
+            ],
+            [
+              9420,
+              "2025-05-03 02:30:00",
+              "278.19",
+              "created"
+            ],
+            [
+              8117,
+              "2025-04-01 10:30:00",
+              "575.35",
+              "paid"
+            ],
+            [
+              3997,
+              "2025-02-25 23:45:00",
+              "821.30",
+              "created"
+            ]
+          ],
+          "result_sha256": "d1f4b9d850f612bd5165df3d7d495a3bd6c342f8d9ccf554cf44a606f1707bae",
+          "tree": "-> Limit: 20 row(s)  (cost=1.18 rows=9) (actual time=0.0184..0.027 rows=9 loops=1)\n    -> Covering index lookup on scale_order_partitioned using ix_user_cover (user_id=500) (reverse)  (cost=1.18 rows=9) (actual time=0.0172..0.0253 rows=9 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "1.18"
+              },
+              "ordering_operation": {
+                "using_filesort": false,
+                "table": {
+                  "table_name": "scale_order_partitioned",
+                  "partitions": [
+                    "p1",
+                    "p2",
+                    "p3",
+                    "p4",
+                    "p_future"
+                  ],
+                  "access_type": "ref",
+                  "possible_keys": [
+                    "ix_user_cover"
+                  ],
+                  "key": "ix_user_cover",
+                  "used_key_parts": [
+                    "user_id"
+                  ],
+                  "key_length": "8",
+                  "ref": [
+                    "const"
+                  ],
+                  "rows_examined_per_scan": 9,
+                  "rows_produced_per_join": 9,
+                  "filtered": "100.00",
+                  "backward_index_scan": true,
+                  "using_index": true,
+                  "cost_info": {
+                    "read_cost": "0.28",
+                    "eval_cost": "0.90",
+                    "prefix_cost": "1.18",
+                    "data_read_per_join": "6K"
+                  },
+                  "used_columns": [
+                    "id",
+                    "created_at",
+                    "user_id",
+                    "total",
+                    "status"
+                  ]
+                }
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Limit: 20 row(s)  (cost=1.18 rows=9)",
+              "first_row_ms": 0.0184,
+              "iterator_ms_per_loop": 0.027,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index lookup on scale_order_partitioned using ix_user_cover (user_id=500) (reverse)  (cost=1.18 rows=9)",
+              "first_row_ms": 0.0172,
+              "iterator_ms_per_loop": 0.0253,
+              "actual_rows_per_loop": 9.0,
+              "loops": 1.0,
+              "access_rows": 9.0
+            }
+          ],
+          "access_operator_rows": 9.0,
+          "selected_partitions": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p_future"
+          ],
+          "covering_observed": true
+        },
+        "offset": {
+          "sql": "SELECT id,created_at FROM scale_order_partitioned ORDER BY created_at DESC,id DESC LIMIT 20 OFFSET :offset",
+          "parameters": {
+            "offset": 8000
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            4.599099978804588,
+            5.688300007022917,
+            5.00940001802519,
+            4.927599977236241,
+            5.109300022013485,
+            5.051300046034157,
+            4.9517000443302095
+          ],
+          "p50_ms": 5.00940001802519,
+          "p95_ms": 5.514600011520088,
+          "p99_ms": 5.653560007922351,
+          "serial_selects_per_second": 198.09433199718023,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 20,
+          "result_rows": [
+            [
+              5540,
+              "2025-03-14 03:00:00"
+            ],
+            [
+              9821,
+              "2025-03-14 02:45:00"
+            ],
+            [
+              2917,
+              "2025-03-13 23:30:00"
+            ],
+            [
+              7152,
+              "2025-03-13 23:15:00"
+            ],
+            [
+              3896,
+              "2025-03-13 23:00:00"
+            ],
+            [
+              1752,
+              "2025-03-13 21:45:00"
+            ],
+            [
+              8738,
+              "2025-03-13 21:15:00"
+            ],
+            [
+              7155,
+              "2025-03-13 20:30:00"
+            ],
+            [
+              8731,
+              "2025-03-13 19:45:00"
+            ],
+            [
+              5771,
+              "2025-03-13 19:15:00"
+            ],
+            [
+              2821,
+              "2025-03-13 19:15:00"
+            ],
+            [
+              5825,
+              "2025-03-13 18:30:00"
+            ],
+            [
+              8536,
+              "2025-03-13 18:00:00"
+            ],
+            [
+              5174,
+              "2025-03-13 17:45:00"
+            ],
+            [
+              2412,
+              "2025-03-13 16:15:00"
+            ],
+            [
+              7691,
+              "2025-03-13 16:00:00"
+            ],
+            [
+              7324,
+              "2025-03-13 14:15:00"
+            ],
+            [
+              6241,
+              "2025-03-13 13:30:00"
+            ],
+            [
+              3354,
+              "2025-03-13 13:30:00"
+            ],
+            [
+              606,
+              "2025-03-13 13:30:00"
+            ]
+          ],
+          "result_sha256": "c9498acf7e678d6e55a2cfd2023cc4ee691740dedaab1d766f590ce3c7512885",
+          "tree": "-> Limit/Offset: 20/8000 row(s)  (cost=696 rows=20) (actual time=3.09..3.1 rows=20 loops=1)\n    -> Covering index scan on scale_order_partitioned using ix_time (reverse)  (cost=696 rows=8020) (actual time=0.0355..2.81 rows=8020 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "1065.25"
+              },
+              "ordering_operation": {
+                "using_filesort": false,
+                "table": {
+                  "table_name": "scale_order_partitioned",
+                  "partitions": [
+                    "p1",
+                    "p2",
+                    "p3",
+                    "p4",
+                    "p_future"
+                  ],
+                  "access_type": "index",
+                  "key": "ix_time",
+                  "used_key_parts": [
+                    "created_at",
+                    "id"
+                  ],
+                  "key_length": "16",
+                  "rows_examined_per_scan": 8020,
+                  "rows_produced_per_join": 10000,
+                  "filtered": "100.00",
+                  "backward_index_scan": true,
+                  "using_index": true,
+                  "cost_info": {
+                    "read_cost": "65.25",
+                    "eval_cost": "1000.00",
+                    "prefix_cost": "1065.25",
+                    "data_read_per_join": "7M"
+                  },
+                  "used_columns": [
+                    "id",
+                    "created_at"
+                  ]
+                }
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Limit/Offset: 20/8000 row(s)  (cost=696 rows=20)",
+              "first_row_ms": 3.09,
+              "iterator_ms_per_loop": 3.1,
+              "actual_rows_per_loop": 20.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index scan on scale_order_partitioned using ix_time (reverse)  (cost=696 rows=8020)",
+              "first_row_ms": 0.0355,
+              "iterator_ms_per_loop": 2.81,
+              "actual_rows_per_loop": 8020.0,
+              "loops": 1.0,
+              "access_rows": 8020.0
+            }
+          ],
+          "access_operator_rows": 8020.0,
+          "selected_partitions": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p_future"
+          ],
+          "covering_observed": true
+        },
+        "keyset": {
+          "sql": "SELECT id,created_at FROM scale_order_partitioned WHERE created_at<:time OR (created_at=:time AND id<:id) ORDER BY created_at DESC,id DESC LIMIT 20",
+          "parameters": {
+            "time": "2025-03-14 03:45:00",
+            "id": 9238
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            1.8674999591894448,
+            2.1845000446774065,
+            2.284600050188601,
+            2.1856999956071377,
+            1.9033999997191131,
+            1.9860999891534448,
+            2.329799986910075
+          ],
+          "p50_ms": 2.1845000446774065,
+          "p95_ms": 2.3162400058936328,
+          "p99_ms": 2.3270879907067865,
+          "serial_selects_per_second": 474.8466915339868,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 20,
+          "result_rows": [
+            [
+              5540,
+              "2025-03-14 03:00:00"
+            ],
+            [
+              9821,
+              "2025-03-14 02:45:00"
+            ],
+            [
+              2917,
+              "2025-03-13 23:30:00"
+            ],
+            [
+              7152,
+              "2025-03-13 23:15:00"
+            ],
+            [
+              3896,
+              "2025-03-13 23:00:00"
+            ],
+            [
+              1752,
+              "2025-03-13 21:45:00"
+            ],
+            [
+              8738,
+              "2025-03-13 21:15:00"
+            ],
+            [
+              7155,
+              "2025-03-13 20:30:00"
+            ],
+            [
+              8731,
+              "2025-03-13 19:45:00"
+            ],
+            [
+              5771,
+              "2025-03-13 19:15:00"
+            ],
+            [
+              2821,
+              "2025-03-13 19:15:00"
+            ],
+            [
+              5825,
+              "2025-03-13 18:30:00"
+            ],
+            [
+              8536,
+              "2025-03-13 18:00:00"
+            ],
+            [
+              5174,
+              "2025-03-13 17:45:00"
+            ],
+            [
+              2412,
+              "2025-03-13 16:15:00"
+            ],
+            [
+              7691,
+              "2025-03-13 16:00:00"
+            ],
+            [
+              7324,
+              "2025-03-13 14:15:00"
+            ],
+            [
+              6241,
+              "2025-03-13 13:30:00"
+            ],
+            [
+              3354,
+              "2025-03-13 13:30:00"
+            ],
+            [
+              606,
+              "2025-03-13 13:30:00"
+            ]
+          ],
+          "result_sha256": "c9498acf7e678d6e55a2cfd2023cc4ee691740dedaab1d766f590ce3c7512885",
+          "tree": "-> Limit: 20 row(s)  (cost=403 rows=20) (actual time=0.0177..0.0294 rows=20 loops=1)\n    -> Filter: ((scale_order_partitioned.created_at < TIMESTAMP'2025-03-14 03:45:00') or ((scale_order_partitioned.created_at = TIMESTAMP'2025-03-14 03:45:00') and (scale_order_partitioned.id < 9238)))  (cost=403 rows=2001) (actual time=0.0168..0.0275 rows=20 loops=1)\n        -> Covering index range scan on scale_order_partitioned using ix_time over (created_at < '2025-03-14 03:45:00.000000') OR (created_at = '2025-03-14 03:45:00.000000' AND id < 9238) (reverse)  (cost=403 rows=2001) (actual time=0.015..0.0243 rows=20 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "402.53"
+              },
+              "ordering_operation": {
+                "using_filesort": false,
+                "table": {
+                  "table_name": "scale_order_partitioned",
+                  "partitions": [
+                    "p1"
+                  ],
+                  "access_type": "range",
+                  "possible_keys": [
+                    "PRIMARY",
+                    "ix_time"
+                  ],
+                  "key": "ix_time",
+                  "used_key_parts": [
+                    "created_at",
+                    "id"
+                  ],
+                  "key_length": "16",
+                  "rows_examined_per_scan": 2001,
+                  "rows_produced_per_join": 2001,
+                  "filtered": "100.00",
+                  "backward_index_scan": true,
+                  "using_index": true,
+                  "cost_info": {
+                    "read_cost": "202.43",
+                    "eval_cost": "200.10",
+                    "prefix_cost": "402.53",
+                    "data_read_per_join": "1M"
+                  },
+                  "used_columns": [
+                    "id",
+                    "created_at"
+                  ],
+                  "attached_condition": "((`concurrency_lab_exp_009_10000`.`scale_order_partitioned`.`created_at` < TIMESTAMP'2025-03-14 03:45:00') or ((`concurrency_lab_exp_009_10000`.`scale_order_partitioned`.`created_at` = TIMESTAMP'2025-03-14 03:45:00') and (`concurrency_lab_exp_009_10000`.`scale_order_partitioned`.`id` < 9238)))"
+                }
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Limit: 20 row(s)  (cost=403 rows=20)",
+              "first_row_ms": 0.0177,
+              "iterator_ms_per_loop": 0.0294,
+              "actual_rows_per_loop": 20.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Filter: ((scale_order_partitioned.created_at < TIMESTAMP'2025-03-14 03:45:00') or ((scale_order_partitioned.created_at = TIMESTAMP'2025-03-14 03:45:00') and (scale_order_partitioned.id < 9238)))  (cost=403 rows=2001)",
+              "first_row_ms": 0.0168,
+              "iterator_ms_per_loop": 0.0275,
+              "actual_rows_per_loop": 20.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index range scan on scale_order_partitioned using ix_time over (created_at < '2025-03-14 03:45:00.000000') OR (created_at = '2025-03-14 03:45:00.000000' AND id < 9238) (reverse)  (cost=403 rows=2001)",
+              "first_row_ms": 0.015,
+              "iterator_ms_per_loop": 0.0243,
+              "actual_rows_per_loop": 20.0,
+              "loops": 1.0,
+              "access_rows": 20.0
+            }
+          ],
+          "access_operator_rows": 20.0,
+          "selected_partitions": [
+            "p1"
+          ],
+          "covering_observed": true
+        },
+        "time_range": {
+          "sql": "SELECT COUNT(*) AS orders,SUM(total) AS total FROM scale_order_partitioned WHERE created_at>=:start AND created_at<:end",
+          "parameters": {
+            "start": "2025-07-01 00:00:00",
+            "end": "2025-08-01 00:00:00"
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            2.8691000188700855,
+            2.513199986424297,
+            2.6543999556452036,
+            2.2390999947674572,
+            2.2684000432491302,
+            2.519100031349808,
+            2.3278999724425375
+          ],
+          "p50_ms": 2.513199986424297,
+          "p95_ms": 2.804689999902621,
+          "p99_ms": 2.8562180150765926,
+          "serial_selects_per_second": 402.5024149508783,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 1,
+          "result_rows": [
+            [
+              849,
+              "420112.52"
+            ]
+          ],
+          "result_sha256": "bb5e8dfba0663401c498699ba645c9c5298b0be4b7f29494b044b4812cd084ad",
+          "tree": "-> Aggregate: count(0), sum(scale_order_partitioned.total)  (cost=361 rows=1) (actual time=0.621..0.621 rows=1 loops=1)\n    -> Filter: ((scale_order_partitioned.created_at >= TIMESTAMP'2025-07-01 00:00:00') and (scale_order_partitioned.created_at < TIMESTAMP'2025-08-01 00:00:00'))  (cost=276 rows=849) (actual time=0.0268..0.561 rows=849 loops=1)\n        -> Covering index scan on scale_order_partitioned using ix_user_cover  (cost=276 rows=2521) (actual time=0.0227..0.333 rows=2521 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "276.35"
+              },
+              "table": {
+                "table_name": "scale_order_partitioned",
+                "partitions": [
+                  "p3"
+                ],
+                "access_type": "index",
+                "possible_keys": [
+                  "ix_time",
+                  "ix_user_cover"
+                ],
+                "key": "ix_user_cover",
+                "used_key_parts": [
+                  "user_id",
+                  "created_at",
+                  "id",
+                  "total",
+                  "status"
+                ],
+                "key_length": "97",
+                "rows_examined_per_scan": 2521,
+                "rows_produced_per_join": 849,
+                "filtered": "33.68",
+                "using_index": true,
+                "cost_info": {
+                  "read_cost": "191.45",
+                  "eval_cost": "84.90",
+                  "prefix_cost": "276.35",
+                  "data_read_per_join": "616K"
+                },
+                "used_columns": [
+                  "created_at",
+                  "total"
+                ],
+                "attached_condition": "((`concurrency_lab_exp_009_10000`.`scale_order_partitioned`.`created_at` >= TIMESTAMP'2025-07-01 00:00:00') and (`concurrency_lab_exp_009_10000`.`scale_order_partitioned`.`created_at` < TIMESTAMP'2025-08-01 00:00:00'))"
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Aggregate: count(0), sum(scale_order_partitioned.total)  (cost=361 rows=1)",
+              "first_row_ms": 0.621,
+              "iterator_ms_per_loop": 0.621,
+              "actual_rows_per_loop": 1.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Filter: ((scale_order_partitioned.created_at >= TIMESTAMP'2025-07-01 00:00:00') and (scale_order_partitioned.created_at < TIMESTAMP'2025-08-01 00:00:00'))  (cost=276 rows=849)",
+              "first_row_ms": 0.0268,
+              "iterator_ms_per_loop": 0.561,
+              "actual_rows_per_loop": 849.0,
+              "loops": 1.0,
+              "access_rows": null
+            },
+            {
+              "operator": "-> Covering index scan on scale_order_partitioned using ix_user_cover  (cost=276 rows=2521)",
+              "first_row_ms": 0.0227,
+              "iterator_ms_per_loop": 0.333,
+              "actual_rows_per_loop": 2521.0,
+              "loops": 1.0,
+              "access_rows": 2521.0
+            }
+          ],
+          "access_operator_rows": 2521.0,
+          "selected_partitions": [
+            "p3"
+          ],
+          "covering_observed": true
+        },
+        "id_without_time": {
+          "sql": "SELECT id,total FROM scale_order_partitioned WHERE id=:id",
+          "parameters": {
+            "id": 5000
+          },
+          "warmups": 1,
+          "repeats": 7,
+          "client_ms_samples": [
+            1.6496999887749553,
+            1.9687999738380313,
+            2.1776999928988516,
+            1.8986999639309943,
+            1.8649999983608723,
+            2.0034000044688582,
+            2.1900999709032476
+          ],
+          "p50_ms": 1.9687999738380313,
+          "p95_ms": 2.186379977501929,
+          "p99_ms": 2.189355972222984,
+          "serial_selects_per_second": 508.96505986663516,
+          "attempts": 7,
+          "failures": 0,
+          "error_rate": 0.0,
+          "result_count": 1,
+          "result_rows": [
+            [
+              5000,
+              "47.73"
+            ]
+          ],
+          "result_sha256": "4564b7fb928d8bb312459b3643865aa813acc3b4ddc05ff45b83902c99582c58",
+          "tree": "-> Index lookup on scale_order_partitioned using PRIMARY (id=5000)  (cost=0.35 rows=1) (actual time=0.0119..0.0146 rows=1 loops=1)\n",
+          "json_plan": {
+            "query_block": {
+              "select_id": 1,
+              "cost_info": {
+                "query_cost": "0.35"
+              },
+              "table": {
+                "table_name": "scale_order_partitioned",
+                "partitions": [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4",
+                  "p_future"
+                ],
+                "access_type": "ref",
+                "possible_keys": [
+                  "PRIMARY",
+                  "ix_user_cover"
+                ],
+                "key": "PRIMARY",
+                "used_key_parts": [
+                  "id"
+                ],
+                "key_length": "8",
+                "ref": [
+                  "const"
+                ],
+                "rows_examined_per_scan": 1,
+                "rows_produced_per_join": 1,
+                "filtered": "100.00",
+                "cost_info": {
+                  "read_cost": "0.25",
+                  "eval_cost": "0.10",
+                  "prefix_cost": "0.35",
+                  "data_read_per_join": "744"
+                },
+                "used_columns": [
+                  "id",
+                  "total"
+                ]
+              }
+            }
+          },
+          "iterators": [
+            {
+              "operator": "-> Index lookup on scale_order_partitioned using PRIMARY (id=5000)  (cost=0.35 rows=1)",
+              "first_row_ms": 0.0119,
+              "iterator_ms_per_loop": 0.0146,
+              "actual_rows_per_loop": 1.0,
+              "loops": 1.0,
+              "access_rows": 1.0
+            }
+          ],
+          "access_operator_rows": 1.0,
+          "selected_partitions": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p_future"
+          ],
+          "covering_observed": false
+        }
+      }
+    }
+  },
+  "statistics": {
+    "observed_at": "2026-10-25T15:17:34.766638+00:00",
+    "show_create": {
+      "scale_order": "CREATE TABLE `scale_order` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_time` (`created_at`,`id`),\n  KEY `ix_user_cover` (`user_id`,`created_at`,`id`,`total`,`status`),\n  CONSTRAINT `ck_scale_order_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_order_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "scale_order_partitioned": "CREATE TABLE `scale_order_partitioned` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_time` (`created_at`,`id`),\n  KEY `ix_user_cover` (`user_id`,`created_at`,`id`,`total`,`status`),\n  CONSTRAINT `ck_scale_order_partitioned_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_order_partitioned_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci\n/*!50500 PARTITION BY RANGE  COLUMNS(created_at)\n(PARTITION p1 VALUES LESS THAN ('2025-04-01') ENGINE = InnoDB,\n PARTITION p2 VALUES LESS THAN ('2025-07-01') ENGINE = InnoDB,\n PARTITION p3 VALUES LESS THAN ('2025-10-01') ENGINE = InnoDB,\n PARTITION p4 VALUES LESS THAN ('2026-01-01') ENGINE = InnoDB,\n PARTITION p_future VALUES LESS THAN (MAXVALUE) ENGINE = InnoDB) */",
+      "scale_write_composite": "CREATE TABLE `scale_write_composite` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_user_time` (`user_id`,`created_at`,`id`),\n  KEY `ix_time` (`created_at`,`id`),\n  CONSTRAINT `ck_scale_write_composite_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_write_composite_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "scale_write_covering": "CREATE TABLE `scale_write_covering` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_time` (`created_at`,`id`),\n  KEY `ix_user_cover` (`user_id`,`created_at`,`id`,`total`,`status`),\n  CONSTRAINT `ck_scale_write_covering_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_write_covering_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "scale_write_single": "CREATE TABLE `scale_write_single` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_user` (`user_id`),\n  CONSTRAINT `ck_scale_write_single_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_write_single_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci"
+    },
+    "indexes": {
+      "scale_order": [
+        {
+          "Table": "scale_order",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 9916,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 1,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 8709,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 2,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 1000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 3,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 4,
+          "Column_name": "total",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 5,
+          "Column_name": "status",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ],
+      "scale_order_partitioned": [
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 1,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 8593,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 2,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 3607,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 3,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 4,
+          "Column_name": "total",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 5,
+          "Column_name": "status",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ],
+      "scale_write_composite": [
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_user_time",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_user_time",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_user_time",
+          "Seq_in_index": 3,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 1,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 2,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ],
+      "scale_write_covering": [
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 1,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 2,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 3,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 4,
+          "Column_name": "total",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 5,
+          "Column_name": "status",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ],
+      "scale_write_single": [
+        {
+          "Table": "scale_write_single",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_single",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_single",
+          "Non_unique": 1,
+          "Key_name": "ix_user",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 0,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ]
+    },
+    "tables": [
+      {
+        "table_name": "scale_alembic_version",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_dataset",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_order",
+        "estimated_rows": 9935,
+        "clustered_bytes_estimate": 2637824,
+        "secondary_bytes_estimate": 720896
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "estimated_rows": 10000,
+        "clustered_bytes_estimate": 4276224,
+        "secondary_bytes_estimate": 884736
+      },
+      {
+        "table_name": "scale_ownership",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_write_composite",
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_write_covering",
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_write_single",
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      }
+    ],
+    "partitions": [
+      {
+        "table_name": "scale_alembic_version",
+        "partition_name": null,
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_dataset",
+        "partition_name": null,
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_order",
+        "partition_name": null,
+        "estimated_rows": 9935,
+        "clustered_bytes_estimate": 2637824,
+        "secondary_bytes_estimate": 720896
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p1",
+        "estimated_rows": 2487,
+        "clustered_bytes_estimate": 540672,
+        "secondary_bytes_estimate": 212992
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p2",
+        "estimated_rows": 2461,
+        "clustered_bytes_estimate": 540672,
+        "secondary_bytes_estimate": 212992
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p3",
+        "estimated_rows": 2521,
+        "clustered_bytes_estimate": 1589248,
+        "secondary_bytes_estimate": 212992
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p4",
+        "estimated_rows": 2531,
+        "clustered_bytes_estimate": 1589248,
+        "secondary_bytes_estimate": 212992
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p_future",
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 32768
+      },
+      {
+        "table_name": "scale_ownership",
+        "partition_name": null,
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_write_composite",
+        "partition_name": null,
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_write_covering",
+        "partition_name": null,
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_write_single",
+        "partition_name": null,
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      }
+    ],
+    "index_pages": [
+      {
+        "table": "scale_alembic_version",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_dataset",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_order",
+        "index": "PRIMARY",
+        "pages": 161,
+        "bytes_estimate": 2637824
+      },
+      {
+        "table": "scale_order",
+        "index": "ix_time",
+        "pages": 15,
+        "bytes_estimate": 245760
+      },
+      {
+        "table": "scale_order",
+        "index": "ix_user_cover",
+        "pages": 29,
+        "bytes_estimate": 475136
+      },
+      {
+        "table": "scale_order_partitioned#p#p1",
+        "index": "PRIMARY",
+        "pages": 33,
+        "bytes_estimate": 540672
+      },
+      {
+        "table": "scale_order_partitioned#p#p1",
+        "index": "ix_time",
+        "pages": 5,
+        "bytes_estimate": 81920
+      },
+      {
+        "table": "scale_order_partitioned#p#p1",
+        "index": "ix_user_cover",
+        "pages": 8,
+        "bytes_estimate": 131072
+      },
+      {
+        "table": "scale_order_partitioned#p#p2",
+        "index": "PRIMARY",
+        "pages": 33,
+        "bytes_estimate": 540672
+      },
+      {
+        "table": "scale_order_partitioned#p#p2",
+        "index": "ix_time",
+        "pages": 5,
+        "bytes_estimate": 81920
+      },
+      {
+        "table": "scale_order_partitioned#p#p2",
+        "index": "ix_user_cover",
+        "pages": 8,
+        "bytes_estimate": 131072
+      },
+      {
+        "table": "scale_order_partitioned#p#p3",
+        "index": "PRIMARY",
+        "pages": 97,
+        "bytes_estimate": 1589248
+      },
+      {
+        "table": "scale_order_partitioned#p#p3",
+        "index": "ix_time",
+        "pages": 5,
+        "bytes_estimate": 81920
+      },
+      {
+        "table": "scale_order_partitioned#p#p3",
+        "index": "ix_user_cover",
+        "pages": 8,
+        "bytes_estimate": 131072
+      },
+      {
+        "table": "scale_order_partitioned#p#p4",
+        "index": "PRIMARY",
+        "pages": 97,
+        "bytes_estimate": 1589248
+      },
+      {
+        "table": "scale_order_partitioned#p#p4",
+        "index": "ix_time",
+        "pages": 5,
+        "bytes_estimate": 81920
+      },
+      {
+        "table": "scale_order_partitioned#p#p4",
+        "index": "ix_user_cover",
+        "pages": 8,
+        "bytes_estimate": 131072
+      },
+      {
+        "table": "scale_order_partitioned#p#p_future",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_order_partitioned#p#p_future",
+        "index": "ix_time",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_order_partitioned#p#p_future",
+        "index": "ix_user_cover",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_ownership",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_composite",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_composite",
+        "index": "ix_time",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_composite",
+        "index": "ix_user_time",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_covering",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_covering",
+        "index": "ix_time",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_covering",
+        "index": "ix_user_cover",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_single",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_single",
+        "index": "ix_user",
+        "pages": 1,
+        "bytes_estimate": 16384
+      }
+    ],
+    "index_pages_error": null,
+    "semantics": "InnoDB allocated-page estimates, not physical file bytes. TABLE_ROWS/cardinality estimates differ from exact streamed count. Partition index table names retained verbatim."
+  },
+  "mysql_before": {
+    "observed_at": "2026-10-25T15:17:34.360737+00:00",
+    "configuration": {
+      "mysql_version": "8.4.13",
+      "buffer_pool_bytes": 134217728,
+      "page_bytes": 16384,
+      "isolation_level": "REPEATABLE-READ"
+    },
+    "global_status": {
+      "Queries": 5499,
+      "Questions": 5425,
+      "Threads_connected": 2,
+      "Threads_running": 2,
+      "Uptime": 3027
+    },
+    "semantics": "Whole experiment-instance counters, including monitoring/other DBs; not workload-attributed QPS"
+  },
+  "mysql_after": {
+    "observed_at": "2026-10-25T15:17:34.770938+00:00",
+    "configuration": {
+      "mysql_version": "8.4.13",
+      "buffer_pool_bytes": 134217728,
+      "page_bytes": 16384,
+      "isolation_level": "REPEATABLE-READ"
+    },
+    "global_status": {
+      "Queries": 5671,
+      "Questions": 5597,
+      "Threads_connected": 2,
+      "Threads_running": 2,
+      "Uptime": 3027
+    },
+    "semantics": "Whole experiment-instance counters, including monitoring/other DBs; not workload-attributed QPS"
+  },
+  "environment": {
+    "client_os": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.14",
+    "sqlalchemy": "2.1.6",
+    "asyncmy": "0.2.17",
+    "clients": 1,
+    "cache": "warm; one warmup; no buffer pool flush"
+  }
+}

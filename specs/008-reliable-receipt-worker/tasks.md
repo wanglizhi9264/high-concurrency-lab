@@ -30,7 +30,7 @@ Independent test: actual UI task/attempt/receipt values match APIs; queue fields
 - [x] T014 Extend existing .github/workflows/ci.yml with explicit0005/task integration and actual worker E2E while retaining prior gates; no heavy performance in normal CI.
 - [x] T015 Update README.md, AGENTS.md, docs/architecture/, docs/database/tasks.md ER and docs/guides/worker-lab.md with transaction/queue/ACK/failure semantics and exact commands.
 - [x] T016 Run local quality/integration/frontend/E2E/prior-evidence gates, review and Converge; record real results in specs/008-reliable-receipt-worker/validation.md and converge.md.
-- [ ] T017 Push independent branch, create/attach protected PR, verify remote required checks, merge and update main before009; record publication in specs/008-reliable-receipt-worker/validation.md.
+- [x] T017 Push independent branch, create/attach protected PR, verify remote required checks, merge and update main before009; record publication in specs/008-reliable-receipt-worker/validation.md.
 
 ## Dependencies and execution
 T001→T002→T003→T004→T005→T006→T007→T008→T009→T010; US3 tests/UI follow API contracts; final gates follow all stories. Test specifications precede corresponding source. No delegated implementation. Independent read-only unit and frontend checks may run concurrently after source stabilizes; measured acceptance runs alone. MVP is US1 durable acceptance, then complete US2 and US3 before publication. FR001:T002–005; FR002:T006–007; FR003:T008–010; FR004:T005/T008–010; FR005:T005/T011–012; FR006:T001/T003–004/T006/T009; FR007:T002/T005–014; FR008:T013–017. SC001–005 covered by the story independent tests and final gates.
