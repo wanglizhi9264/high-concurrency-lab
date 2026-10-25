@@ -13,6 +13,7 @@ from uuid import uuid4
 import httpx
 
 from concurrency_lab.experiments.load_recording import source_identity
+from concurrency_lab.schemas.benchmarks import BusinessMetrics
 from concurrency_lab.schemas.business import BusinessResponse
 from concurrency_lab.schemas.inventory import InventoryResponse
 
@@ -43,6 +44,7 @@ async def record_inventory(base_url: str, output_root: Path) -> Path:
     identity = source_identity(ROOT)
     started, clock = datetime.now(UTC).isoformat(), time.perf_counter()
     complete = False
+    monitor_before = monitor_after = None
     async with httpx.AsyncClient(base_url=base_url, trust_env=False, timeout=15) as client:
 
         async def call(
@@ -104,6 +106,9 @@ async def record_inventory(base_url: str, output_root: Path) -> Path:
             return data
 
         try:
+            monitor_before = BusinessMetrics.model_validate(
+                (await client.get("/api/v1/observability/business-metrics")).json()
+            ).model_dump(mode="json")
             identifier = await create(5)
             intents = [
                 (str(uuid4()), {"scenario_id": identifier, "user_id": 1, "quantity": 1})
@@ -204,6 +209,9 @@ async def record_inventory(base_url: str, output_root: Path) -> Path:
             if len({row["body"]["data"]["order"]["id"] for row in matching}) != 1:
                 raise ValueError("Matching intent created multiple orders")
             await audit(duplicate_scenario, "after_matching_contest")
+            monitor_after = BusinessMetrics.model_validate(
+                (await client.get("/api/v1/observability/business-metrics")).json()
+            ).model_dump(mode="json")
             if source_identity(ROOT)["workload_sha256"] != identity["workload_sha256"]:
                 raise ValueError("Sources changed during experiment")
             complete = True
@@ -216,6 +224,8 @@ async def record_inventory(base_url: str, output_root: Path) -> Path:
                 "ended_at": datetime.now(UTC).isoformat(),
                 "duration_s": time.perf_counter() - clock,
                 "local_sources": identity,
+                "monitor_before": monitor_before,
+                "monitor_after": monitor_after,
                 "observations": observations,
                 "audits": audits,
                 "definitions": {

@@ -34,8 +34,23 @@ test('real inventory intent replay, conflicts, terminal states and audit', async
   await page.getByTestId('inventory-audit').click()
   await expect(page.getByTestId('inventory-audit-result')).toContainText('所有审计项通过')
   await expect(page.getByTestId('inventory-audit-result')).toContainText('"paid": 1')
+  await page.evaluate(() => window.scrollTo(0, 0))
   await page.screenshot({
     path: '../docs/experiments/007-inventory-idempotency/inventory-lab.png',
     fullPage: true,
   })
+})
+
+test('bounded client contest checks persisted audit and does not count replays as new stock', async ({
+  page,
+}) => {
+  await page.goto('/inventory-lab')
+  await page.getByLabel('初始库存', { exact: true }).fill('3')
+  await page.getByTestId('inventory-new-scenario').click()
+  await expect(page.getByTestId('inventory-result')).toContainText('"initial": 3')
+  await page.getByTestId('inventory-contest').click()
+  await expect(page.getByTestId('inventory-audit-result')).toContainText('所有审计项通过')
+  await expect(page.getByText('确认唯一订单 3', { exact: false })).toBeVisible()
+  await expect(page.getByTestId('inventory-stock')).toContainText('可用 0')
+  await expect(page.getByTestId('inventory-stock')).toContainText('预留 3')
 })

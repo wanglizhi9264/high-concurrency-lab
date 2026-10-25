@@ -4,6 +4,12 @@ import BusinessTracePanel from '../components/BusinessTracePanel.vue'
 import { contestSummary, useInventoryLab } from '../composables/useInventoryLab'
 
 const lab = useInventoryLab()
+const checkLabels: Record<string, string> = {
+  nonnegative: '库存数量非负',
+  balance: '可用 + 预留 + 已售 = 初始',
+  reserved_matches: '预留量 = reserved 订单量',
+  paid_matches: '已售量 = paid 订单量',
+}
 const {
   productId,
   initial,
@@ -225,22 +231,25 @@ const sqlCount = computed(
       <table class="data-table">
         <tbody>
           <tr v-for="(passed, name) in audit.checks" :key="name">
-            <td>{{ name }}</td>
+            <td>{{ checkLabels[name] ?? name }}</td>
             <td :class="passed ? '' : 'error-text'">{{ passed ? '通过' : '失败' }}</td>
           </tr>
         </tbody>
       </table>
-      <pre>{{
-        JSON.stringify(
-          {
-            stock: audit.scenario,
-            order_units: audit.order_units,
-            order_counts: audit.order_counts,
-          },
-          null,
-          2,
-        )
-      }}</pre>
+      <details>
+        <summary>库存与订单聚合的原始审计数据</summary>
+        <pre>{{
+          JSON.stringify(
+            {
+              stock: audit.scenario,
+              order_units: audit.order_units,
+              order_counts: audit.order_counts,
+            },
+            null,
+            2,
+          )
+        }}</pre>
+      </details>
       <p class="muted">
         核对可用+预留+已售=初始、reserved订单量=预留、paid订单量=已售。cancelled只是历史量；取消后再下单合法，全部历史订单数量可以超过初始库存。
       </p>
@@ -264,9 +273,10 @@ const sqlCount = computed(
       {{ result.browserMs.toFixed(3) }} ms · 服务端准备 {{ result.preparationMs ?? '未知' }} ms ·
       实际返回的 SQL 尝试 {{ sqlCount }}
     </p>
-    <pre v-if="result.body?.data" data-testid="inventory-result">{{
-      JSON.stringify(result.body.data, null, 2)
-    }}</pre>
+    <details v-if="result.body?.data">
+      <summary>本次完整响应数据（展开查看结构、金额与状态）</summary>
+      <pre data-testid="inventory-result">{{ JSON.stringify(result.body.data, null, 2) }}</pre>
+    </details>
     <p v-if="result.body?.data && 'order' in result.body.data">
       applied={{ result.body.data.applied }} · replayed={{
         result.body.data.replayed
