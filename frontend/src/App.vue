@@ -17,6 +17,7 @@ const links = [
   { path: '/experiments', number: '05', name: '实验记录与学习', description: 'NOTEBOOK' },
   { path: '/business', number: '06', name: '真实业务查询', description: 'BUSINESS TRACE' },
   { path: '/load-tests', number: '07', name: '真实并发压测', description: 'LOCUST EVIDENCE' },
+  { path: '/cache-lab', number: '08', name: 'Redis 缓存实验', description: 'REAL CACHE-ASIDE' },
 ]
 </script>
 <template>
@@ -58,7 +59,7 @@ const links = [
       <div class="topbar">
         <span>HIGH CONCURRENCY LAB <b>/</b> {{ $route.meta.title }}</span>
         <div>
-          <span class="local-tag">LOCAL · READ ONLY</span
+          <span class="local-tag">LOCAL · 实验环境</span
           ><button
             class="theme-toggle"
             :aria-label="theme === 'light' ? '切换深色模式' : '切换浅色模式'"

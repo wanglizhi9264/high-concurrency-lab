@@ -1,20 +1,11 @@
 """Recorded load evidence and live monitoring use distinct validated models."""
 
-from datetime import datetime
-from typing import Annotated, Literal, Self
+from typing import Literal, Self
 
-from pydantic import AfterValidator, Field, JsonValue, model_validator
+from pydantic import Field, JsonValue, model_validator
 
+from concurrency_lab.schemas.observations import CollectionTimestamp
 from concurrency_lab.schemas.visualization import DTO
-
-
-def _validate_timestamp(value: str) -> str:
-    if datetime.fromisoformat(value).tzinfo is None:
-        raise ValueError("A timezone-aware collection timestamp is required")
-    return value
-
-
-CollectionTimestamp = Annotated[str, AfterValidator(_validate_timestamp)]
 
 
 class LoadParameters(DTO):

@@ -15,6 +15,6 @@ User explicitly requires tests and real evidence; spec/plan/research/contracts a
 ## Phase5 US3 Reproduce and maintain
 - [X] T009 [US3] Add manual performance workflow, ordinary parser/API/frontend/real-record E2E regression; runbook/docs/limits, preserve existing CI (FR-006).
 ## Phase6 Validation
-- [ ] T010 Run related gates, record actual tests/review/metric definitions/results, fix findings, Converge against allFR/SC/tasks and publish separate PR; merge only after required CI, update main before006 (FR-006; SC004).
+- [X] T010 Run related gates, record actual tests/review/metric definitions/results, fix findings, Converge against allFR/SC/tasks and publish separate PR; merge only after required CI, update main before006 (FR-006; SC004).
 ## Dependencies and strategy
 T001→T002→T003→T004→T005→T006→T007→T008→T009→T010. US1 CLI works withoutUI; US2 inspects real data independently; US3 gates follow both. Pure tests can be authored independently, but benchmark runs never parallelize to avoid interference. Official research ran in parallel read-only; implementation sequential. No stage stops at documentation.

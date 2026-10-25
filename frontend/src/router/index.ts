@@ -8,6 +8,11 @@ export const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: '/cache-lab',
+      component: () => import('../views/CacheLabView.vue'),
+      meta: { title: 'Redis 缓存实验' },
+    },
+    {
       path: '/load-tests',
       component: () => import('../views/LoadTestView.vue'),
       meta: { title: '真实并发压测' },

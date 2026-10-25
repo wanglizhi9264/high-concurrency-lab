@@ -1,4 +1,9 @@
-import type { BusinessCursor, BusinessQuery, BusinessRequestResult } from '../types/business'
+import type {
+  BusinessCursor,
+  BusinessQuery,
+  BusinessRequestResult,
+  BusinessResponse,
+} from '../types/business'
 
 export function businessQueryPath(
   query: BusinessQuery,
@@ -17,12 +22,15 @@ export function businessQueryPath(
   } else parameters.set('offset', String(offset))
   return `${base}/users/${id}/${query === 'order_page' ? 'order-page' : 'orders'}?${parameters}`
 }
-export async function executeBusinessRequest(path: string): Promise<BusinessRequestResult> {
+export async function executeBusinessRequest<T extends BusinessResponse = BusinessResponse>(
+  path: string,
+  method: 'GET' | 'DELETE' = 'GET',
+): Promise<BusinessRequestResult<T>> {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 65000)
   const started = performance.now()
   try {
-    const response = await fetch(path, { signal: controller.signal })
+    const response = await fetch(path, { method, signal: controller.signal })
     const body = await response.json()
     if (!body.trace?.request_id || !Array.isArray(body.trace.spans)) {
       throw new Error(`HTTP ${response.status}：请求未进入业务执行；请检查参数、代理和后端。`)

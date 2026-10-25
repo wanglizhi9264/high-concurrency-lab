@@ -54,8 +54,8 @@ export interface BusinessResponse {
   error: { code: string; message: string } | null
   trace: BusinessTrace
 }
-export interface BusinessRequestResult {
-  body: BusinessResponse | null
+export interface BusinessRequestResult<T extends BusinessResponse = BusinessResponse> {
+  body: T | null
   status: number
   path: string
   browserMs: number

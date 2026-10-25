@@ -54,6 +54,10 @@ jobs:
         env:
           BUSINESS_INTEGRATION: "1"
         run: uv run pytest tests/integration/test_business.py
+      - name: Real Redis cache expiry, invalidation, concurrency and fallback
+        env:
+          CACHE_INTEGRATION: "1"
+        run: uv run pytest tests/integration/test_product_cache.py
       - name: Enable isolated business API for browser tests
         run: |
           echo "BUSINESS_ENABLED=true" >> .env
