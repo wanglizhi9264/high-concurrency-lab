@@ -18,9 +18,9 @@ def validate_run_id(run_id: str) -> str:
     return run_id
 
 
-def load_benchmark(run_id: str, directory: Path = LOAD_ROOT) -> RecordedLoadRun:
+def load_benchmark(run_id: str, directory: Path | None = None) -> RecordedLoadRun:
     validate_run_id(run_id)
-    root = directory.resolve()
+    root = (directory or LOAD_ROOT).resolve()
     folder = root / run_id
     path = folder / "result.json"
     try:

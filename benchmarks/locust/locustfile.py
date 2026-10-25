@@ -66,6 +66,7 @@ def initialize_recording(environment: Environment, **kwargs: Any) -> None:
                 "request_id": request_id,
                 "name": name,
                 "started_epoch": kwargs.get("start_time", ""),
+                "call_id": (kwargs.get("context") or {}).get("lab_call_id", ""),
             },
             environment.runner.user_count if environment.runner else 0,
         )
@@ -115,4 +116,7 @@ class BusinessLoadUser(HttpUser):
             path, name = f"/users/{self.rng.randint(1, 1000)}/orders?limit=20", "user_orders"
         else:
             path, name = f"/products/{self.rng.randint(1, 100)}", "normal_product"
-        self.client.get("/api/v1/business" + path, name=name, timeout=(2, 7))
+        call_id = self.environment.lab_recorder.start_call(name)
+        self.client.get(
+            "/api/v1/business" + path, name=name, timeout=(2, 7), context={"lab_call_id": call_id}
+        )

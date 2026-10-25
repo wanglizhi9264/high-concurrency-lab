@@ -18,7 +18,7 @@ from uuid import uuid4
 import httpx
 import psutil
 
-from concurrency_lab.experiments.load_recording import aggregate_requests
+from concurrency_lab.experiments.load_recording import aggregate_requests, source_identity
 from concurrency_lab.schemas.benchmarks import (
     BusinessMetrics,
     LoadManifest,
@@ -60,7 +60,8 @@ class ProcessSampler:
     def collect(self, process: subprocess.Popen[Any], scope: str) -> ResourceSample:
         cpu = 0.0
         rss = 0
-        known_cpu = False
+        all_cpu_known = True
+        known_members = 0
         result = ResourceSample(
             observed_at=datetime.now(UTC).isoformat(),
             elapsed_s=0,
@@ -69,17 +70,20 @@ class ProcessSampler:
         )
         try:
             root = psutil.Process(process.pid)
-            for member in [root, *root.children(recursive=True)]:
+            members = [root, *root.children(recursive=True)]
+            for member in members:
                 cached = self.processes.get(member.pid)
                 if cached is None:
                     member.cpu_percent(None)
                     self.processes[member.pid] = member
+                    all_cpu_known = False
                 else:
                     cpu += float(cached.cpu_percent(None))
-                    known_cpu = True
+                    known_members += 1
                 rss += int(member.memory_info().rss)
-            result.cpu_percent = cpu if known_cpu else None
+            result.cpu_percent = cpu if all_cpu_known else None
             result.memory_bytes = rss
+            result.raw = {"members": len(members), "cpu_members_with_baseline": known_members}
         except (psutil.NoSuchProcess, psutil.AccessDenied):
             result.error_code = "process_unavailable"
         return result
@@ -175,10 +179,13 @@ def publish_record(
     parameters: LoadParameters,
     initial: BusinessMetrics,
     resources: list[ResourceSample],
+    identity: dict[str, str | bool],
 ) -> RecordedLoadRun:
     window = json.loads((directory / "window.json").read_text(encoding="utf-8"))
     start, end, duration = window["start_epoch"], window["end_epoch"], window["duration_s"]
-    summary, history = aggregate_requests(directory / "requests.csv", start, end, duration)
+    summary, history = aggregate_requests(
+        directory / "requests.csv", start, end, duration, directory / "starts.csv"
+    )
     selected_resources = []
     for sample in resources:
         epoch = datetime.fromisoformat(sample.observed_at).timestamp()
@@ -186,7 +193,6 @@ def publish_record(
             selected_resources.append(sample.model_copy(update={"elapsed_s": epoch - start}))
     with (directory / "locust_stats.csv").open(encoding="utf-8", newline="") as source:
         locust_statistics = list(csv.DictReader(source))
-    revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     result = RecordedLoadRun(
         manifest=LoadManifest(
             id=run_id,
@@ -201,7 +207,7 @@ def publish_record(
                 "python": platform.python_version(),
                 "locust": version("locust"),
                 "psutil": version("psutil"),
-                "revision": revision,
+                **identity,
                 "mysql": initial.mysql_version,
                 "application_workers": 1,
                 "pool": initial.configuration,
@@ -218,6 +224,10 @@ def publish_record(
         resources=selected_resources,
         locust_statistics=locust_statistics,
         semantics={
+            "client_starts": (
+                "Independent starts.csv records the client get-call point, including unfinished "
+                "calls. Not server arrival; error_rate covers completed requests only."
+            ),
             "window": ("Actual test-start through stop/drain/quitting; ramp and drain included."),
             "rate": (
                 "users is target concurrency; spawn_rate is users/s; task_rate is closed-loop "
@@ -285,6 +295,7 @@ def execute_load_run(parameters: LoadParameters, port: int, output_root: Path) -
     run_id = "load-" + datetime.now(UTC).strftime("%Y%m%dT%H%M%S") + "-" + uuid4().hex[:8]
     directory = output_root / run_id
     directory.mkdir(parents=True, exist_ok=False)
+    identity = source_identity(ROOT)
     environment = dict(
         os.environ,
         BUSINESS_ENABLED="true",
@@ -322,6 +333,11 @@ def execute_load_run(parameters: LoadParameters, port: int, output_root: Path) -
                 base_url=f"http://127.0.0.1:{port}", trust_env=False, timeout=2
             ) as client:
                 initial = wait_for_owned_api(client, api_process)
+                if (
+                    initial.configuration.get("pool_size") != parameters.pool_size
+                    or initial.configuration.get("max_overflow") != 0
+                ):
+                    raise ValueError("Owned API pool configuration does not match requested run")
                 containers = subprocess.run(
                     ["docker", "compose", "ps", "-q", "mysql", "redis"],
                     cwd=ROOT,
@@ -410,7 +426,11 @@ def execute_load_run(parameters: LoadParameters, port: int, output_root: Path) -
                         time.sleep(max(0, 1 - (time.monotonic() - cycle)))
                 if locust_process.returncode != 0:
                     raise ValueError("Locust did not complete normally; raw files retained")
-                result = publish_record(directory, run_id, parameters, initial, samples)
+                if source_identity(ROOT)["workload_sha256"] != identity["workload_sha256"]:
+                    raise ValueError(
+                        "Workload source changed during measurement; raw data retained"
+                    )
+                result = publish_record(directory, run_id, parameters, initial, samples, identity)
                 print(
                     json.dumps(
                         {

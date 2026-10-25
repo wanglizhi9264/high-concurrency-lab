@@ -1,10 +1,20 @@
 """Recorded load evidence and live monitoring use distinct validated models."""
 
-from typing import Literal, Self
+from datetime import datetime
+from typing import Annotated, Literal, Self
 
-from pydantic import Field, JsonValue, model_validator
+from pydantic import AfterValidator, Field, JsonValue, model_validator
 
 from concurrency_lab.schemas.visualization import DTO
+
+
+def _validate_timestamp(value: str) -> str:
+    if datetime.fromisoformat(value).tzinfo is None:
+        raise ValueError("A timezone-aware collection timestamp is required")
+    return value
+
+
+CollectionTimestamp = Annotated[str, AfterValidator(_validate_timestamp)]
 
 
 class LoadParameters(DTO):
@@ -18,7 +28,7 @@ class LoadParameters(DTO):
 
 class BusinessMetrics(DTO):
     evidence: Literal["measured"] = "measured"
-    observed_at: str
+    observed_at: CollectionTimestamp
     collection_ms: float = Field(ge=0)
     status: Literal["ok", "unavailable", "disabled"]
     database: str
@@ -44,6 +54,9 @@ class LoadSummary(DTO):
     http_504: int = Field(ge=0)
     pool_timeouts: int = Field(ge=0)
     transport_timeouts: int = Field(ge=0)
+    client_started: int | None = Field(default=None, ge=0)
+    client_start_rps: float | None = Field(default=None, ge=0)
+    uncompleted_client_calls: int | None = Field(default=None, ge=0)
 
     @model_validator(mode="after")
     def validate_counts(self) -> Self:
@@ -59,10 +72,12 @@ class LoadHistorySample(DTO):
     completed_rps: float = Field(ge=0)
     failures: int = Field(ge=0)
     observed_sql_attempts_per_s: float | None
+    client_started: int | None = Field(default=None, ge=0)
+    client_start_rps: float | None = Field(default=None, ge=0)
 
 
 class ResourceSample(DTO):
-    observed_at: str
+    observed_at: CollectionTimestamp
     elapsed_s: float = Field(ge=0)
     scope: str
     source: str
@@ -89,6 +104,11 @@ class LoadManifest(DTO):
     def validate_window(self) -> Self:
         if self.end_epoch <= self.start_epoch:
             raise ValueError("Invalid measurement window")
+        if self.peak_users > self.parameters.users:
+            raise ValueError("Observed users exceed configured target")
+        pool = self.environment.get("pool")
+        if isinstance(pool, dict) and pool.get("pool_size") != self.parameters.pool_size:
+            raise ValueError("Actual pool configuration differs from requested setup")
         return self
 
 
@@ -111,6 +131,9 @@ class RecordedLoadRun(DTO):
             raise ValueError("History must have distinct increasing offsets")
         if sum(point.completed for point in self.history) != self.summary.requests:
             raise ValueError("History count mismatch")
+        window = self.manifest.end_epoch - self.manifest.start_epoch
+        if any(sample.elapsed_s > window for sample in self.resources):
+            raise ValueError("Resource sample is outside the measurement window")
         return self
 
 

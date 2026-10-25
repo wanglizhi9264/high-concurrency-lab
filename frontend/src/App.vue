@@ -16,6 +16,7 @@ const links = [
   { path: '/pool', number: '04', name: '连接池实验室', description: 'POOL LAB' },
   { path: '/experiments', number: '05', name: '实验记录与学习', description: 'NOTEBOOK' },
   { path: '/business', number: '06', name: '真实业务查询', description: 'BUSINESS TRACE' },
+  { path: '/load-tests', number: '07', name: '真实并发压测', description: 'LOCUST EVIDENCE' },
 ]
 </script>
 <template>

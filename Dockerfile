@@ -9,6 +9,7 @@ RUN uv sync --frozen --no-dev --no-editable
 COPY alembic.ini ./
 COPY migrations ./migrations
 COPY docs/experiments/002-mysql-index-baseline/runs ./docs/experiments/002-mysql-index-baseline/runs
+COPY docs/experiments/005-real-load-testing/runs ./docs/experiments/005-real-load-testing/runs
 RUN useradd --create-home app
 USER app
 EXPOSE 8000
