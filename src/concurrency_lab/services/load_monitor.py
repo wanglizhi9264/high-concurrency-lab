@@ -28,6 +28,9 @@ async def collect_business_metrics(
             "max_overflow": settings.db_max_overflow,
             "pool_timeout_seconds": settings.db_pool_timeout,
             "request_timeout_seconds": settings.business_request_timeout,
+            "inventory_lock_wait_seconds": (
+                settings.business_lock_wait_timeout if settings.business_writes_enabled else None
+            ),
         },
     )
     if resources is not None:

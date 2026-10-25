@@ -18,6 +18,12 @@ const links = [
   { path: '/business', number: '06', name: '真实业务查询', description: 'BUSINESS TRACE' },
   { path: '/load-tests', number: '07', name: '真实并发压测', description: 'LOCUST EVIDENCE' },
   { path: '/cache-lab', number: '08', name: 'Redis 缓存实验', description: 'REAL CACHE-ASIDE' },
+  {
+    path: '/inventory-lab',
+    number: '09',
+    name: '库存事务与幂等',
+    description: 'REAL TRANSACTIONS',
+  },
 ]
 </script>
 <template>

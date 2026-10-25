@@ -31,7 +31,22 @@ ERRORS: dict[FailureCode, tuple[int, str]] = {
         503,
         "Business connection acquisition timed out; retry after capacity recovers.",
     ),
-    FailureCode.BUDGET: (504, "Business request budget exhausted; retry only this read operation."),
+    FailureCode.BUDGET: (
+        504,
+        "Request budget exhausted; repeat writes only with the original intent/key.",
+    ),
+    FailureCode.WRITES_DISABLED: (
+        503,
+        "Enable BUSINESS_WRITES_ENABLED after migrating the owned business lab.",
+    ),
+    FailureCode.STOCK: (409, "Insufficient available stock; no reservation committed."),
+    FailureCode.IDEMPOTENCY: (409, "This intent key already belongs to a different payload."),
+    FailureCode.TRANSITION: (409, "Order is already in a different terminal state."),
+    FailureCode.CONFLICT: (
+        409,
+        "Transaction lock conflict; retry with the same intent/key after recovery.",
+    ),
+    FailureCode.INVARIANT: (503, "Inventory consistency check failed; transaction stopped."),
 }
 
 
@@ -57,7 +72,11 @@ async def business_error_handler(request: Request, error: Exception) -> JSONResp
         error=BusinessErrorDTO(code=failure.code.value, message=message),
         trace=observation.snapshot(),
     )
-    return JSONResponse(status_code=status, content=response.model_dump(mode="json"))
+    return JSONResponse(
+        status_code=status,
+        content=response.model_dump(mode="json"),
+        headers={"Retry-After": "1"} if failure.code == FailureCode.CONFLICT else None,
+    )
 
 
 async def business_validation_handler(request: Request, error: Exception) -> JSONResponse:

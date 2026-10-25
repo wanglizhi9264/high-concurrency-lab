@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     io_timeout: float = Field(default=1, gt=0)
     readiness_timeout: float = Field(default=2, gt=0)
     business_enabled: bool = False
+    business_writes_enabled: bool = False
+    business_lock_wait_timeout: int = Field(default=1, ge=1, le=10)
     business_database: Literal["concurrency_lab_business", "concurrency_lab_business_test"] = (
         "concurrency_lab_business"
     )

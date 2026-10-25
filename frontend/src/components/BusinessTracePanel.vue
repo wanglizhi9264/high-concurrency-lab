@@ -17,6 +17,8 @@ const labels: Record<string, string> = {
   repository: '查询仓储',
   acquire: 'SQLAlchemy 获取连接',
   sql_execute_fetch: 'MySQL SQL + 取数',
+  sql_execute_change: 'MySQL SQL + 变更',
+  transaction: '显式数据库事务',
   request_budget: '请求预算',
   redis_command: 'Redis 命令往返',
   cache_coordination: '缓存回填协调',
@@ -58,7 +60,9 @@ const labels: Record<string, string> = {
         <pre v-if="selected.sql" data-testid="business-sql">{{ selected.sql }}</pre>
         <pre v-if="selected.sql">
 绑定参数 {{ JSON.stringify(selected.parameters, null, 2) }}
-实际取得 {{ selected.result_count ?? '未完成' }} 行</pre>
+{{ selected.kind === 'sql_execute_change' ? '实际影响' : '实际取得' }} {{
+            selected.result_count ?? '未完成'
+          }} 行</pre>
         <pre v-else-if="Object.keys(selected.parameters).length" data-testid="business-command">
 命令 / 事件参数 {{ JSON.stringify(selected.parameters, null, 2) }}</pre>
         <a

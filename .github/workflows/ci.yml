@@ -58,10 +58,17 @@ jobs:
         env:
           CACHE_INTEGRATION: "1"
         run: uv run pytest tests/integration/test_product_cache.py
+      - name: Explicit owned-business inventory migration
+        run: uv run python -m concurrency_lab.experiments.business_schema --database concurrency_lab_business_test
+      - name: Real inventory constraints, idempotency, lock timeout and deadlock recovery
+        env:
+          INVENTORY_INTEGRATION: "1"
+        run: uv run pytest tests/integration/test_inventory.py
       - name: Enable isolated business API for browser tests
         run: |
           echo "BUSINESS_ENABLED=true" >> .env
           echo "BUSINESS_DATABASE=concurrency_lab_business_test" >> .env
+          echo "BUSINESS_WRITES_ENABLED=true" >> .env
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

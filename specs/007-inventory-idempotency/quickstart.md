@@ -1,0 +1,4 @@
+# Quickstart Validation
+Preserve004businessinit/seed0003. Explicitlymigrateownedbusiness/testDBusingnewbusiness_schemaCLI0004, thenenableBUSINESS_WRITES_ENABLEDandBUSINESS_ENABLED/startAPI/frontend. Runcommandsfinalizedinguide.
+Open /inventory-lab, createfreshscenario(stock5), submitorderquantity1, replayoriginalUUID/body(sameorder), trychangedpayloadsamekey(conflict), cancelandrepeatcancel(noadditionalrelease), auditpersistedcounters. Createanotherorder/pay/cancelrejected. Newscenarioisnewexperiment, neverreset.
+INVENTORY_INTEGRATION=1 testsrealtransactions/constraints/unique/lockwait/deadlock/cancellationwithfreshUUIDscenarios. verify_inventory_lab.py executesboundedactualcontestandrecordsoutcomes/audit. Fullunit/frontend/E2E/CIgatesandConvergerequired; seecontracts/data-modelandtasks.
