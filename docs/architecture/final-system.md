@@ -12,9 +12,11 @@
 | 006 | `/cache-lab`：商品 Cache-Aside、TTL、失效与实际回源 | [PR8](https://github.com/wanglizhi9264/high-concurrency-lab/pull/8) | [指南](../guides/cache-lab.md)、[报告](../experiments/006-redis-cache-aside/README.md) |
 | 007 | `/inventory-lab`：库存预留/支付/取消、幂等与审计 | [PR9](https://github.com/wanglizhi9264/high-concurrency-lab/pull/9) | [指南](../guides/inventory-lab.md)、[报告](../experiments/007-inventory-idempotency/README.md) |
 | 008 | `/tasks`：持久任务、独立 worker、失败/重试/崩溃恢复 | [PR10](https://github.com/wanglizhi9264/high-concurrency-lab/pull/10) | [指南](../guides/worker-lab.md)、[报告](../experiments/008-reliable-receipt-worker/report.md) |
-| 009 | `/scale-lab`：百万行索引/分页/分区/写入对照 | 独立 feature 分支，保护 CI 后 PR 合并 | [实测报告](../experiments/009-scale-comprehensive-lab/report.md)、[克隆验收](../guides/clean-clone.md) |
+| 009 | `/scale-lab`：百万行索引/分页/分区/写入对照 | [PR11](https://github.com/wanglizhi9264/high-concurrency-lab/pull/11) | [实测报告](../experiments/009-scale-comprehensive-lab/report.md)、[克隆验收](../guides/clean-clone.md) |
 
 所有阶段使用 Specify→Plan→Tasks→Analyze→Implement→验证/审查→Converge；规格、任务、验证和收敛记录位于各自 `specs/`。001–008 历史 JSON/CSV 和 002 已测数据保持不变。009 的源码、原始记录与后续验收检查点分别明确标识，不给历史结果换源码身份。
+
+004–009 已依次通过各自独立 PR 合并。009 在 2026-10-25 15:56:04 UTC 合并，主分支提交 `92ea38dc25274905d379814de914bb785dcfd6d2`，本地主分支已快进到该提交。[PR CI](https://github.com/wanglizhi9264/high-concurrency-lab/actions/runs/40209014518) 和 [分支 CI](https://github.com/wanglizhi9264/high-concurrency-lab/actions/runs/40208998725) 的 quality/integration/frontend 六项全部实际成功，审查/Converge 完成后才合并。最终状态记录在此后的独立文档修复分支维护，未直接修改 main。
 
 ## 结构与资源所有权
 
