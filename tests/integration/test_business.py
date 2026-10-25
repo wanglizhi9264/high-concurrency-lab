@@ -171,3 +171,23 @@ async def test_real_ownership_guard_and_reseed_refusal_preserve_data():
         async with resources.engine.connect() as connection:
             assert await connection.scalar(text("SELECT COUNT(*) FROM lab_order")) == 10000
             assert await connection.scalar(text("SELECT status FROM experiment_dataset")) == "ready"
+
+
+async def test_global_deep_page_and_live_business_monitor():
+    app = create_app(configuration())
+    async with app.router.lifespan_context(app):
+        async with httpx.AsyncClient(
+            transport=httpx.ASGITransport(app), base_url="http://lab"
+        ) as api:
+            response = await api.get("/api/v1/business/orders?limit=20&offset=8000")
+            assert response.status_code == 200
+            data = response.json()["data"]
+            assert len(data["items"]) == 20 and data["next_cursor"]
+            assert len([s for s in response.json()["trace"]["spans"] if s["sql"]]) == 2
+            metrics = await api.get("/api/v1/observability/business-metrics")
+            assert metrics.status_code == 200
+            snapshot = metrics.json()
+            assert snapshot["status"] == "ok" and snapshot["dataset"]["order_count"] == 10000
+            assert snapshot["pool"]["configured_size"] == 1
+            assert snapshot["mysql_status"]["Threads_connected"] >= 1
+            assert "password" not in metrics.text and "127.0.0.1" not in metrics.text

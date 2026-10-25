@@ -2,11 +2,11 @@
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import * as echarts from 'echarts/core'
 import type { EChartsOption } from 'echarts'
-import { BarChart } from 'echarts/charts'
+import { BarChart, LineChart } from 'echarts/charts'
 import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
-echarts.use([BarChart, GridComponent, LegendComponent, TooltipComponent, CanvasRenderer])
-const props = defineProps<{ option: EChartsOption }>()
+echarts.use([BarChart, LineChart, GridComponent, LegendComponent, TooltipComponent, CanvasRenderer])
+const props = defineProps<{ option: EChartsOption; ariaLabel?: string }>()
 const element = ref<HTMLElement>()
 let chart: ReturnType<typeof echarts.init> | undefined, observer: ResizeObserver | undefined
 onMounted(() => {
@@ -31,6 +31,6 @@ onUnmounted(() => {
     ref="element"
     class="chart"
     role="img"
-    aria-label="Baseline 与 Optimized 的真实指标对照图"
+    :aria-label="props.ariaLabel ?? 'Baseline 与 Optimized 的真实指标对照图'"
   ></div>
 </template>

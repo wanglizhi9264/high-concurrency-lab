@@ -1,0 +1,52 @@
+name: Manual performance experiment
+on:
+  workflow_dispatch:
+    inputs:
+      users:
+        type: choice
+        options: ['10', '50', '100', '500']
+        default: '10'
+      seconds:
+        type: choice
+        options: ['15', '30', '60', '120', '300']
+        default: '15'
+permissions:
+  contents: read
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      LOAD_USERS: ${{ inputs.users }}
+      LOAD_SECONDS: ${{ inputs.seconds }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.5'
+          python-version: '3.12'
+      - run: uv sync --frozen
+      - name: Disposable credentials
+        run: |
+          cp .env.example .env
+          echo "MYSQL_PASSWORD=$(openssl rand -hex 24)" >> .env
+          echo "MYSQL_ROOT_PASSWORD=$(openssl rand -hex 24)" >> .env
+          echo "REDIS_PASSWORD=$(openssl rand -hex 24)" >> .env
+      - run: docker compose up -d --wait
+      - name: Initialize owned business lab
+        run: |
+          uv run python scripts/provision_business_lab.py
+          uv run python -m concurrency_lab.experiments.business_dataset --database concurrency_lab_business init
+          uv run python -m concurrency_lab.experiments.business_dataset --database concurrency_lab_business seed --orders 10000
+      - name: Actual bounded workload
+        run: uv run python scripts/run_load_test.py --users "$LOAD_USERS" --seconds "$LOAD_SECONDS" --port 18110
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: actual-performance-records
+          path: |
+            docs/experiments/005-real-load-testing/runs/**/*.csv
+            docs/experiments/005-real-load-testing/runs/**/*.json
+            docs/experiments/005-real-load-testing/runs/**/*.jsonl
+      - if: always()
+        run: docker compose down

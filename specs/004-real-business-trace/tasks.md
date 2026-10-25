@@ -21,7 +21,7 @@ Input spec/plan/research/data-model/contracts; user requires tests and real acce
 ## Phase6 Validation and polish
 - [X] T014 Run full related local gates and independent DB/browser acceptance, record real evidence/screenshots in docs/experiments/004-real-business-trace/ and specs/004-real-business-trace/validation.md (FR-006/007; SC001-004).
 - [X] T015 Review layer boundaries/concurrency/errors/safety, fix findings with regression tests, Converge against all FR/SC/tasks; update README/AGENTS/architecture/database docs (FR-007).
-- [ ] T016 Publish separate PR, verify required CI/review and merge; update local main before005 (FR-007).
+- [X] T016 Publish separate PR, verify required CI/review and merge; update local main before005 (FR-007).
 ## Dependencies and execution
 T001→T002→T003/T004→T005→T006→T007→T008→T009→T010→T011→T012→T013→T014→T015→T016. US1 testable by HTTP real DB withoutUI; US2 independent failure/resource tests; US3 real-browser scenario afterUS1. Tests precede code. Research was parallel read-only; implementation remains sequential. Different test files could be prepared in parallel, but no delegated implementation needed. MVP is real read+safe trace, not a stopping point for requested scope.
 

@@ -2,7 +2,7 @@
 
 用于系统学习高并发、MySQL、Redis、数据库优化、异步任务和后端架构的长期实验工程。
 当前已实现 `001-project-foundation` 基础环境与健康API，`002-mysql-index-baseline` 的关系模型、批量数据和索引/分页实验，以及 `003-interactive-system-visualization` 的交互式学习入口。
-`004-real-business-trace` 新增独立业务库中的真实商品/订单/明细读取、稳定分页和可检查SQL/连接获取/请求ID的实测调用链；初始化及运行见[业务实验指南](docs/guides/business-lab.md)。005–009按独立SDD/PR顺序交付，宪章已正式修订为2.0.0。
+`004-real-business-trace` 新增独立业务库中的真实商品/订单/明细读取、稳定分页和可检查SQL/连接获取/请求ID的实测调用链；初始化及运行见[业务实验指南](docs/guides/business-lab.md)。`005-real-load-testing` 增加独立 Locust 进程、原始请求/资源记录和两次实验对照，见[压测指南](docs/guides/load-testing.md)。006–009按独立SDD/PR顺序交付，宪章已正式修订为2.0.0。
 
 技术栈：Python 3.11+（开发/CI 3.12）、FastAPI、Pydantic v2、SQLAlchemy 2/asyncmy、Alembic、MySQL 8.4、Redis 7、uv、pytest/httpx、Ruff、mypy、Locust。解析版本以 uv.lock 为准。
 
@@ -52,7 +52,7 @@ down 保留 MySQL volume，down -v 会删除数据。Redis 当前不承诺持久
 - `src/concurrency_lab/`：main 生命周期；api 路由；core 配置；db Session/engine；cache 客户端；services 探针；models 最小表。
 - `migrations/`：Alembic；`tests/unit/`、`tests/integration/`：隔离测试和真实服务测试。
 - `docs/architecture/`、`docs/database/`、`docs/experiments/`、`docs/guides/`：设计、ADR、实验模板、操作指南。
-- `scripts/`：质量检查；`benchmarks/`：未来负载实验约定；`.github/workflows/`：CI。
+- `scripts/`：质量检查、隔离压测启动器；`benchmarks/locust/`：真实业务负载；`.github/workflows/`：普通CI及手动性能实验。
 
 ## SDD 与后续路线
 官方安装：`uv tool install specify-cli==1.2.3`；检查：`specify version`、`specify check`。

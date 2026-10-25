@@ -1,0 +1,903 @@
+{
+  "schema_version": 1,
+  "evidence": "recorded",
+  "complete": true,
+  "manifest": {
+    "id": "load-20261025T043903-06e51fd9",
+    "start_epoch": 1792903150.1504369,
+    "end_epoch": 1792903164.802283,
+    "duration_s": 14.64902070001699,
+    "parameters": {
+      "users": 100,
+      "seconds": 15,
+      "task_rate": 1.0,
+      "spawn_rate": 500.0,
+      "pool_size": 1,
+      "scenario": "mixed"
+    },
+    "peak_users": 100,
+    "dataset": {
+      "purpose": "business-lab-v1",
+      "order_count": 10000,
+      "seed": 20261023,
+      "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+      "status": "ready"
+    },
+    "environment": {
+      "platform": "Windows-11-10.0.26300-SP0",
+      "python": "3.12.14",
+      "locust": "2.47.0",
+      "psutil": "7.2.2",
+      "revision": "202cb16699a81ef15dee3b930680e162eba477cf",
+      "workload_sources_dirty": false,
+      "workload_sha256": "40cdf1843ef3ee7a70714d491a6e633419cb1560fe4909b5a97c88edb55d412b",
+      "mysql": "8.4.13",
+      "application_workers": 1,
+      "pool": {
+        "pool_size": 1,
+        "max_overflow": 0,
+        "pool_timeout_seconds": 1.0,
+        "request_timeout_seconds": 5.0
+      },
+      "csv_history_interval_s": 1
+    },
+    "raw_files": [
+      "locust_exceptions.csv",
+      "locust_failures.csv",
+      "locust_stats.csv",
+      "locust_stats_history.csv",
+      "requests.csv",
+      "resources.jsonl",
+      "starts.csv",
+      "window.json"
+    ]
+  },
+  "summary": {
+    "requests": 1335,
+    "failures": 805,
+    "completed_rps": 91.1323717358425,
+    "error_rate": 0.602996254681648,
+    "p50_ms": 1044.2347999778576,
+    "p95_ms": 1294.5058300043456,
+    "p99_ms": 1508.838630017127,
+    "observed_sql_attempts_per_s": 72.3597857977476,
+    "unknown_sql_responses": 0,
+    "sql_response_coverage": 1.0,
+    "http_504": 0,
+    "pool_timeouts": 805,
+    "transport_timeouts": 0,
+    "client_started": 1389,
+    "client_start_rps": 94.81862497459568,
+    "uncompleted_client_calls": 54
+  },
+  "history": [
+    {
+      "elapsed_s": 0.0,
+      "interval_s": 1.0,
+      "completed": 47,
+      "completed_rps": 47.0,
+      "failures": 0,
+      "observed_sql_attempts_per_s": 94.0,
+      "client_started": 100,
+      "client_start_rps": 100.0
+    },
+    {
+      "elapsed_s": 1.0,
+      "interval_s": 1.0,
+      "completed": 81,
+      "completed_rps": 81.0,
+      "failures": 37,
+      "observed_sql_attempts_per_s": 88.0,
+      "client_started": 100,
+      "client_start_rps": 100.0
+    },
+    {
+      "elapsed_s": 2.0,
+      "interval_s": 1.0,
+      "completed": 92,
+      "completed_rps": 92.0,
+      "failures": 57,
+      "observed_sql_attempts_per_s": 70.0,
+      "client_started": 100,
+      "client_start_rps": 100.0
+    },
+    {
+      "elapsed_s": 3.0,
+      "interval_s": 1.0,
+      "completed": 94,
+      "completed_rps": 94.0,
+      "failures": 58,
+      "observed_sql_attempts_per_s": 72.0,
+      "client_started": 100,
+      "client_start_rps": 100.0
+    },
+    {
+      "elapsed_s": 4.0,
+      "interval_s": 1.0,
+      "completed": 93,
+      "completed_rps": 93.0,
+      "failures": 54,
+      "observed_sql_attempts_per_s": 78.0,
+      "client_started": 100,
+      "client_start_rps": 100.0
+    },
+    {
+      "elapsed_s": 5.0,
+      "interval_s": 1.0,
+      "completed": 96,
+      "completed_rps": 96.0,
+      "failures": 64,
+      "observed_sql_attempts_per_s": 64.0,
+      "client_started": 100,
+      "client_start_rps": 100.0
+    },
+    {
+      "elapsed_s": 6.0,
+      "interval_s": 1.0,
+      "completed": 92,
+      "completed_rps": 92.0,
+      "failures": 50,
+      "observed_sql_attempts_per_s": 84.0,
+      "client_started": 94,
+      "client_start_rps": 94.0
+    },
+    {
+      "elapsed_s": 7.0,
+      "interval_s": 1.0,
+      "completed": 95,
+      "completed_rps": 95.0,
+      "failures": 72,
+      "observed_sql_attempts_per_s": 46.0,
+      "client_started": 95,
+      "client_start_rps": 95.0
+    },
+    {
+      "elapsed_s": 8.0,
+      "interval_s": 1.0,
+      "completed": 101,
+      "completed_rps": 101.0,
+      "failures": 66,
+      "observed_sql_attempts_per_s": 70.0,
+      "client_started": 100,
+      "client_start_rps": 100.0
+    },
+    {
+      "elapsed_s": 9.0,
+      "interval_s": 1.0,
+      "completed": 99,
+      "completed_rps": 99.0,
+      "failures": 60,
+      "observed_sql_attempts_per_s": 78.0,
+      "client_started": 99,
+      "client_start_rps": 99.0
+    },
+    {
+      "elapsed_s": 10.0,
+      "interval_s": 1.0,
+      "completed": 93,
+      "completed_rps": 93.0,
+      "failures": 54,
+      "observed_sql_attempts_per_s": 78.0,
+      "client_started": 94,
+      "client_start_rps": 94.0
+    },
+    {
+      "elapsed_s": 11.0,
+      "interval_s": 1.0,
+      "completed": 93,
+      "completed_rps": 93.0,
+      "failures": 54,
+      "observed_sql_attempts_per_s": 78.0,
+      "client_started": 88,
+      "client_start_rps": 88.0
+    },
+    {
+      "elapsed_s": 12.0,
+      "interval_s": 1.0,
+      "completed": 98,
+      "completed_rps": 98.0,
+      "failures": 69,
+      "observed_sql_attempts_per_s": 58.0,
+      "client_started": 100,
+      "client_start_rps": 100.0
+    },
+    {
+      "elapsed_s": 13.0,
+      "interval_s": 1.0,
+      "completed": 62,
+      "completed_rps": 62.0,
+      "failures": 42,
+      "observed_sql_attempts_per_s": 40.0,
+      "client_started": 65,
+      "client_start_rps": 65.0
+    },
+    {
+      "elapsed_s": 14.0,
+      "interval_s": 0.651846170425415,
+      "completed": 99,
+      "completed_rps": 151.8763237274057,
+      "failures": 68,
+      "observed_sql_attempts_per_s": 95.11446536463791,
+      "client_started": 54,
+      "client_start_rps": 82.84163112403947
+    }
+  ],
+  "resources": [
+    {
+      "observed_at": "2026-10-25T04:39:11.628447+00:00",
+      "elapsed_s": 1.4780101776123047,
+      "scope": "docker:high-concurrency-lab-mysql-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 10.36,
+      "memory_bytes": 520932556,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "223MB / 133MB",
+        "CPUPerc": "10.36%",
+        "Container": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "ID": "f10c93242799",
+        "MemPerc": "3.12%",
+        "MemUsage": "496.8MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-mysql-1",
+        "NetIO": "6.92MB / 7.57MB",
+        "PIDs": "45"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:11.628447+00:00",
+      "elapsed_s": 1.4780101776123047,
+      "scope": "docker:high-concurrency-lab-redis-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 0.26,
+      "memory_bytes": 9499049,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "79.5MB / 0B",
+        "CPUPerc": "0.26%",
+        "Container": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "ID": "5a8bd0956820",
+        "MemPerc": "0.06%",
+        "MemUsage": "9.059MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-redis-1",
+        "NetIO": "37.7kB / 31.6kB",
+        "PIDs": "6"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:11.628447+00:00",
+      "elapsed_s": 1.4780101776123047,
+      "scope": "api_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 55.8,
+      "memory_bytes": 111984640,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:11.646401+00:00",
+      "elapsed_s": 1.4959640502929688,
+      "scope": "locust_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 30.2,
+      "memory_bytes": 88838144,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:12.644191+00:00",
+      "elapsed_s": 2.4937541484832764,
+      "scope": "business_pool_mysql_instance",
+      "source": "live business monitor",
+      "cpu_percent": null,
+      "memory_bytes": null,
+      "memory_limit_bytes": null,
+      "business": {
+        "evidence": "measured",
+        "observed_at": "2026-10-25T04:39:12.640866+00:00",
+        "collection_ms": 972.553700034041,
+        "status": "unavailable",
+        "database": "concurrency_lab_business",
+        "pool": {
+          "configured_size": 1,
+          "checked_out": 1,
+          "overflow": 0
+        },
+        "configuration": {
+          "pool_size": 1,
+          "max_overflow": 0,
+          "pool_timeout_seconds": 1.0,
+          "request_timeout_seconds": 5.0
+        },
+        "dataset": null,
+        "mysql_version": null,
+        "mysql_status": null,
+        "error_code": "monitor_unavailable"
+      },
+      "raw": null,
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:14.837260+00:00",
+      "elapsed_s": 4.686823129653931,
+      "scope": "docker:high-concurrency-lab-mysql-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 12.86,
+      "memory_bytes": 522924851,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "223MB / 133MB",
+        "CPUPerc": "12.86%",
+        "Container": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "ID": "f10c93242799",
+        "MemPerc": "3.13%",
+        "MemUsage": "498.7MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-mysql-1",
+        "NetIO": "7MB / 7.71MB",
+        "PIDs": "45"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:14.837260+00:00",
+      "elapsed_s": 4.686823129653931,
+      "scope": "docker:high-concurrency-lab-redis-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 3.29,
+      "memory_bytes": 11345592,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "79.5MB / 0B",
+        "CPUPerc": "3.29%",
+        "Container": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "ID": "5a8bd0956820",
+        "MemPerc": "0.07%",
+        "MemUsage": "10.82MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-redis-1",
+        "NetIO": "37.7kB / 31.6kB",
+        "PIDs": "6"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:14.837812+00:00",
+      "elapsed_s": 4.687375068664551,
+      "scope": "api_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 82.4,
+      "memory_bytes": 112746496,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:14.852320+00:00",
+      "elapsed_s": 4.70188307762146,
+      "scope": "locust_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 15.6,
+      "memory_bytes": 89366528,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:15.845640+00:00",
+      "elapsed_s": 5.695203065872192,
+      "scope": "business_pool_mysql_instance",
+      "source": "live business monitor",
+      "cpu_percent": null,
+      "memory_bytes": null,
+      "memory_limit_bytes": null,
+      "business": {
+        "evidence": "measured",
+        "observed_at": "2026-10-25T04:39:15.844573+00:00",
+        "collection_ms": 978.3154000178911,
+        "status": "unavailable",
+        "database": "concurrency_lab_business",
+        "pool": {
+          "configured_size": 1,
+          "checked_out": 1,
+          "overflow": 0
+        },
+        "configuration": {
+          "pool_size": 1,
+          "max_overflow": 0,
+          "pool_timeout_seconds": 1.0,
+          "request_timeout_seconds": 5.0
+        },
+        "dataset": null,
+        "mysql_version": null,
+        "mysql_status": null,
+        "error_code": "monitor_unavailable"
+      },
+      "raw": null,
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:17.036991+00:00",
+      "elapsed_s": 6.886554002761841,
+      "scope": "docker:high-concurrency-lab-mysql-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 6.0,
+      "memory_bytes": 522715136,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "223MB / 133MB",
+        "CPUPerc": "6.00%",
+        "Container": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "ID": "f10c93242799",
+        "MemPerc": "3.13%",
+        "MemUsage": "498.5MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-mysql-1",
+        "NetIO": "7.06MB / 7.8MB",
+        "PIDs": "45"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:17.036991+00:00",
+      "elapsed_s": 6.886554002761841,
+      "scope": "docker:high-concurrency-lab-redis-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 0.3,
+      "memory_bytes": 11093934,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "79.5MB / 0B",
+        "CPUPerc": "0.30%",
+        "Container": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "ID": "5a8bd0956820",
+        "MemPerc": "0.07%",
+        "MemUsage": "10.58MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-redis-1",
+        "NetIO": "37.7kB / 31.6kB",
+        "PIDs": "6"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:17.036991+00:00",
+      "elapsed_s": 6.886554002761841,
+      "scope": "api_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 84.4,
+      "memory_bytes": 112758784,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:17.050674+00:00",
+      "elapsed_s": 6.900237083435059,
+      "scope": "locust_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 18.4,
+      "memory_bytes": 89358336,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:18.063802+00:00",
+      "elapsed_s": 7.913365125656128,
+      "scope": "business_pool_mysql_instance",
+      "source": "live business monitor",
+      "cpu_percent": null,
+      "memory_bytes": null,
+      "memory_limit_bytes": null,
+      "business": {
+        "evidence": "measured",
+        "observed_at": "2026-10-25T04:39:18.062554+00:00",
+        "collection_ms": 996.4531000005081,
+        "status": "unavailable",
+        "database": "concurrency_lab_business",
+        "pool": {
+          "configured_size": 1,
+          "checked_out": 1,
+          "overflow": 0
+        },
+        "configuration": {
+          "pool_size": 1,
+          "max_overflow": 0,
+          "pool_timeout_seconds": 1.0,
+          "request_timeout_seconds": 5.0
+        },
+        "dataset": null,
+        "mysql_version": null,
+        "mysql_status": null,
+        "error_code": "monitor_unavailable"
+      },
+      "raw": null,
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:20.262283+00:00",
+      "elapsed_s": 10.111846208572388,
+      "scope": "docker:high-concurrency-lab-mysql-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 6.02,
+      "memory_bytes": 523029708,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "223MB / 133MB",
+        "CPUPerc": "6.02%",
+        "Container": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "ID": "f10c93242799",
+        "MemPerc": "3.13%",
+        "MemUsage": "498.8MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-mysql-1",
+        "NetIO": "7.13MB / 7.92MB",
+        "PIDs": "45"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:20.262283+00:00",
+      "elapsed_s": 10.111846208572388,
+      "scope": "docker:high-concurrency-lab-redis-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 3.36,
+      "memory_bytes": 11114905,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "79.5MB / 0B",
+        "CPUPerc": "3.36%",
+        "Container": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "ID": "5a8bd0956820",
+        "MemPerc": "0.07%",
+        "MemUsage": "10.6MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-redis-1",
+        "NetIO": "37.7kB / 31.6kB",
+        "PIDs": "6"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:20.262817+00:00",
+      "elapsed_s": 10.112380027770996,
+      "scope": "api_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 90.3,
+      "memory_bytes": 112779264,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:20.273585+00:00",
+      "elapsed_s": 10.123148202896118,
+      "scope": "locust_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 22.3,
+      "memory_bytes": 89784320,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:21.265866+00:00",
+      "elapsed_s": 11.115429162979126,
+      "scope": "business_pool_mysql_instance",
+      "source": "live business monitor",
+      "cpu_percent": null,
+      "memory_bytes": null,
+      "memory_limit_bytes": null,
+      "business": {
+        "evidence": "measured",
+        "observed_at": "2026-10-25T04:39:21.263527+00:00",
+        "collection_ms": 972.2495999885723,
+        "status": "unavailable",
+        "database": "concurrency_lab_business",
+        "pool": {
+          "configured_size": 1,
+          "checked_out": 1,
+          "overflow": 0
+        },
+        "configuration": {
+          "pool_size": 1,
+          "max_overflow": 0,
+          "pool_timeout_seconds": 1.0,
+          "request_timeout_seconds": 5.0
+        },
+        "dataset": null,
+        "mysql_version": null,
+        "mysql_status": null,
+        "error_code": "monitor_unavailable"
+      },
+      "raw": null,
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:22.456027+00:00",
+      "elapsed_s": 12.305590152740479,
+      "scope": "docker:high-concurrency-lab-mysql-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 5.77,
+      "memory_bytes": 523134566,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "223MB / 133MB",
+        "CPUPerc": "5.77%",
+        "Container": "f10c93242799fca2dc5c542870d0346c2125a497d14c9a0a37ff2462dc9c0572",
+        "ID": "f10c93242799",
+        "MemPerc": "3.13%",
+        "MemUsage": "498.9MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-mysql-1",
+        "NetIO": "7.18MB / 8.01MB",
+        "PIDs": "45"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:22.456027+00:00",
+      "elapsed_s": 12.305590152740479,
+      "scope": "docker:high-concurrency-lab-redis-1",
+      "source": "docker stats CLI / Docker Linux VM",
+      "cpu_percent": 0.32,
+      "memory_bytes": 11072962,
+      "memory_limit_bytes": 16696685363,
+      "business": null,
+      "raw": {
+        "BlockIO": "79.5MB / 0B",
+        "CPUPerc": "0.32%",
+        "Container": "5a8bd09568209239d4ef516f9c2ba18e1b446103244ea80651a40ed7cef91f88",
+        "ID": "5a8bd0956820",
+        "MemPerc": "0.07%",
+        "MemUsage": "10.56MiB / 15.55GiB",
+        "Name": "high-concurrency-lab-redis-1",
+        "NetIO": "37.7kB / 31.6kB",
+        "PIDs": "6"
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:22.456027+00:00",
+      "elapsed_s": 12.305590152740479,
+      "scope": "api_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 87.2,
+      "memory_bytes": 112635904,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:22.469761+00:00",
+      "elapsed_s": 12.319324016571045,
+      "scope": "locust_process_tree",
+      "source": "psutil owned process tree: CPU since previous poll, summed RSS",
+      "cpu_percent": 19.9,
+      "memory_bytes": 89825280,
+      "memory_limit_bytes": null,
+      "business": null,
+      "raw": {
+        "members": 3,
+        "cpu_members_with_baseline": 3
+      },
+      "error_code": null
+    },
+    {
+      "observed_at": "2026-10-25T04:39:23.494672+00:00",
+      "elapsed_s": 13.344235181808472,
+      "scope": "business_pool_mysql_instance",
+      "source": "live business monitor",
+      "cpu_percent": null,
+      "memory_bytes": null,
+      "memory_limit_bytes": null,
+      "business": {
+        "evidence": "measured",
+        "observed_at": "2026-10-25T04:39:23.493537+00:00",
+        "collection_ms": 1007.6410999754444,
+        "status": "unavailable",
+        "database": "concurrency_lab_business",
+        "pool": {
+          "configured_size": 1,
+          "checked_out": 1,
+          "overflow": 0
+        },
+        "configuration": {
+          "pool_size": 1,
+          "max_overflow": 0,
+          "pool_timeout_seconds": 1.0,
+          "request_timeout_seconds": 5.0
+        },
+        "dataset": null,
+        "mysql_version": null,
+        "mysql_status": null,
+        "error_code": "monitor_unavailable"
+      },
+      "raw": null,
+      "error_code": null
+    }
+  ],
+  "locust_statistics": [
+    {
+      "Type": "GET",
+      "Name": "deep_offset",
+      "Request Count": "120",
+      "Failure Count": "70",
+      "Median Response Time": "1000",
+      "Average Response Time": "1028.2791991698712",
+      "Min Response Time": "285.9990000142716",
+      "Max Response Time": "1433.1265999935567",
+      "Average Content Size": "3325.3083333333334",
+      "Requests/s": "8.414751088928936",
+      "Failures/s": "4.908604801875213",
+      "50%": "1000",
+      "66%": "1100",
+      "75%": "1100",
+      "80%": "1100",
+      "90%": "1200",
+      "95%": "1200",
+      "98%": "1400",
+      "99%": "1400",
+      "99.9%": "1400",
+      "99.99%": "1400",
+      "100%": "1400"
+    },
+    {
+      "Type": "GET",
+      "Name": "hot_product",
+      "Request Count": "647",
+      "Failure Count": "391",
+      "Median Response Time": "1000",
+      "Average Response Time": "1031.3026129849827",
+      "Min Response Time": "26.383399963378906",
+      "Max Response Time": "1544.230500003323",
+      "Average Content Size": "2452.8021638330756",
+      "Requests/s": "45.36953295447518",
+      "Failures/s": "27.418063964760115",
+      "50%": "1000",
+      "66%": "1100",
+      "75%": "1100",
+      "80%": "1100",
+      "90%": "1200",
+      "95%": "1300",
+      "98%": "1500",
+      "99%": "1500",
+      "99.9%": "1500",
+      "99.99%": "1500",
+      "100%": "1500"
+    },
+    {
+      "Type": "GET",
+      "Name": "normal_product",
+      "Request Count": "388",
+      "Failure Count": "224",
+      "Median Response Time": "1000",
+      "Average Response Time": "1034.0717208761357",
+      "Min Response Time": "59.88589994376525",
+      "Max Response Time": "1573.96740000695",
+      "Average Content Size": "2483.417525773196",
+      "Requests/s": "27.207695187536892",
+      "Failures/s": "15.70753536600068",
+      "50%": "1000",
+      "66%": "1100",
+      "75%": "1100",
+      "80%": "1100",
+      "90%": "1200",
+      "95%": "1200",
+      "98%": "1400",
+      "99%": "1400",
+      "99.9%": "1600",
+      "99.99%": "1600",
+      "100%": "1600"
+    },
+    {
+      "Type": "GET",
+      "Name": "user_orders",
+      "Request Count": "134",
+      "Failure Count": "85",
+      "Median Response Time": "1000",
+      "Average Response Time": "1049.3954955187535",
+      "Min Response Time": "37.975699990056455",
+      "Max Response Time": "1539.2647000262514",
+      "Average Content Size": "2790.223880597015",
+      "Requests/s": "9.396472049303979",
+      "Failures/s": "5.960448687991329",
+      "50%": "1000",
+      "66%": "1100",
+      "75%": "1100",
+      "80%": "1100",
+      "90%": "1200",
+      "95%": "1300",
+      "98%": "1500",
+      "99%": "1500",
+      "99.9%": "1500",
+      "99.99%": "1500",
+      "100%": "1500"
+    },
+    {
+      "Type": "",
+      "Name": "Aggregated",
+      "Request Count": "1289",
+      "Failure Count": "770",
+      "Median Response Time": "1000",
+      "Average Response Time": "1033.7355458503662",
+      "Min Response Time": "26.383399963378906",
+      "Max Response Time": "1573.96740000695",
+      "Average Content Size": "2578.321179208689",
+      "Requests/s": "90.388451280245",
+      "Failures/s": "53.99465282062734",
+      "50%": "1000",
+      "66%": "1100",
+      "75%": "1100",
+      "80%": "1100",
+      "90%": "1200",
+      "95%": "1300",
+      "98%": "1400",
+      "99%": "1500",
+      "99.9%": "1500",
+      "99.99%": "1600",
+      "100%": "1600"
+    }
+  ],
+  "semantics": {
+    "client_starts": "Independent starts.csv records the client get-call point, including unfinished calls. Not server arrival; error_rate covers completed requests only.",
+    "window": "Actual test-start through stop/drain/quitting; ramp and drain included.",
+    "rate": "users is target concurrency; spawn_rate is users/s; task_rate is closed-loop tasks/user/s, one request/task, not guaranteed open arrival rate.",
+    "rps": "Completed observed HTTP requests / actual monotonic test window seconds.",
+    "sql": "Received SQL span attempts / same window; unknown responses counted separately. Excludes internal pre-ping and unreturned traces.",
+    "percentiles": "Linear interpolation over raw response_ms, including failures. Original Locust rounded histogram stats retained separately.",
+    "history": "Actual one-second completion bins, not Locust rolling history. Last bin may be partial.",
+    "locust_csv": "Original history rates/percentiles are rolling; counts cumulative. Do not average percentiles.",
+    "mysql": "Global Questions/Queries include monitoring, health and transactions. Delta/elapsed is instance statement rate, not business SQL QPS; reset on Uptime/counter decrease.",
+    "resources": "psutil process-tree CPU/summed RSS; first CPU null. Docker CLI uses a separate VM/container scope. CPU may exceed100%; RSS may double-count shared pages.",
+    "timeouts": "HTTP504, pool_timeout and transport timeout overlap; do not add as mutually exclusive failures."
+  },
+  "limitations": [
+    "Short ramp-inclusive exploratory run, not a capacity or reliable tail-latency claim.",
+    "Monitoring competes for pool capacity and issues SQL. Docker CLI sampling cadence is measured, not assumed.",
+    "Closed-loop users reduce offered throughput when requests slow; client start is not server arrival.",
+    "CPU intervals may cross window edges; resource observations have distinct process/container scopes."
+  ]
+}
