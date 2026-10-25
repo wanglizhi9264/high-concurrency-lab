@@ -23,19 +23,19 @@ Independenttest: baseline→composite→covering,actualplans/coverage/pruning,eq
 Independenttest: safeAPI/UIagreewithactualrecord,invalid/oversize/path/symlink503/404,unknowns/staleselectionhonest.
 - [x] T010 [US3] Write recordedDTO/API security/statistic/identity tests first in tests/unit/test_scale_results.py; implement schemas/scale_experiments.py,services/scale_results.py and api/routes/scale_experiments.py strict50catalogue/8MBID/containment/manifestguards;updateDockerfile009records.
 - [x] T011 [US3] Write frontend/tests/scaleLab.test.ts first; implement frontend/src/types/scaleExperiments.ts,api/scaleExperiments.ts,composables/useScaleLab.ts,views/ScaleLabView.vue androute/nav/notebooklink; originalSQL/plans/coverage/partition/write/space/resourceunits/nulls/sourceandlimits; clearlate/stale states.
-- [ ] T012 [US3] Add frontend/e2e/scaleLab.spec.ts comparing actualcommittedresult withAPI/selection, retainallpreviouspages/E2E; verifyvisuals andtypes/lint/build.
+- [x] T012 [US3] Add frontend/e2e/scaleLab.spec.ts comparing actualcommittedresult withAPI/selection, retainallpreviouspages/E2E; verifyvisuals andtypes/lint/build.
 
 ## Phase 6 US4 complete isolated acceptance
 Independenttest: trulynewclone/project/ports/volumes runsactualfulljourneyandgates,oldresourcespreserved.
 - [x] T013 [US4] Test and configure validatedE2EAPI/frontendports/proxy/reuse in frontend/playwright.config.ts, defaultsunchanged; implement scripts/verify_end_to_end.py uniqueclone/project/freeports/newignoredsecrets/safesteps/processcleanup/completefalseonfailure; never useoldacceptance_local.py ordown-v.
 - [x] T014 [US4] ExtendexistingCIwithsmall009realDB/evidence/UI checks; addmanual009heavyworkflow with explicit10000..10million choice/optin,normalCInevermilliongeneration; retain3requiredjobs.
-- [ ] T015 [US4] Actually run source-frozen10000smoke and1000000formal serialexperiments, preserveunique docs/experiments/009-scale-comprehensive-lab/runs/ rawresults/resources/source; addverify_scale_lab.py evidenceacceptance andactualreport with supportedlimits/shardingassessment.
-- [ ] T016 [US4] Actuallyexecute clean-clone installation/newdependencies/ownedbusiness+testdata/API/Trace/002smoke/shortLocust/pool/cache/inventory/worker/paidreceipt thenfullquality/integration/frontend/E2E; recordallargv/outcomes/resources/evidence in docs/experiments/009-scale-comprehensive-lab/end-to-end/; preserveoldvolumes/data andstoponlyownedservices.
-- [ ] T017 [US4] Deliver docs/database/scale.md,docs/guides/scale-lab.md,clean-clone.md,source-reading.md and docs/architecture/final-system.md finaltree/architecture/callchain/ER/stageresults/modules/limits;updateREADME/AGENTS/overview andspecquickstart accuratecommands.
+- [x] T015 [US4] Actually run source-frozen10000smoke and1000000formal serialexperiments, preserveunique docs/experiments/009-scale-comprehensive-lab/runs/ rawresults/resources/source; addverify_scale_lab.py evidenceacceptance andactualreport with supportedlimits/shardingassessment.
+- [x] T016 [US4] Actuallyexecute clean-clone installation/newdependencies/ownedbusiness+testdata/API/Trace/002smoke/shortLocust/pool/cache/inventory/worker/paidreceipt thenfullquality/integration/frontend/E2E; recordallargv/outcomes/resources/evidence in docs/experiments/009-scale-comprehensive-lab/end-to-end/; preserveoldvolumes/data andstoponlyownedservices.
+- [x] T017 [US4] Deliver docs/database/scale.md,docs/guides/scale-lab.md,clean-clone.md,source-reading.md and docs/architecture/final-system.md finaltree/architecture/callchain/ER/stageresults/modules/limits;updateREADME/AGENTS/overview andspecquickstart accuratecommands.
 
 ## Phase 7 Review and publication
-- [ ] T018 Runlocalrelatedquality/allrealintegration/frontend/evidencechecks,reviewcorrectness/resources/security/meaningfulassertions;fixandretestfindings andrecord specs/009-scale-comprehensive-lab/validation.md.
-- [ ] T019 Convergecurrentimplementationagainst9FR/5SC/allstories/plan/constitution;appendonlyremainingtasksifgaps,implement/retestthenrecordcleanassessmentin specs/009-scale-comprehensive-lab/converge.md.
+- [x] T018 Runlocalrelatedquality/allrealintegration/frontend/evidencechecks,reviewcorrectness/resources/security/meaningfulassertions;fixandretestfindings andrecord specs/009-scale-comprehensive-lab/validation.md.
+- [x] T019 Convergecurrentimplementationagainst9FR/5SC/allstories/plan/constitution;appendonlyremainingtasksifgaps,implement/retestthenrecordcleanassessmentin specs/009-scale-comprehensive-lab/converge.md.
 - [ ] T020 Publish/attachindependent009PR,verifyactualprotectedCI,mergeandupdatemain;recordpublicationandfinal004–009handoff in docs/architecture/final-system.md.
 
 ## Dependencies / parallel opportunities / strategy

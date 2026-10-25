@@ -167,6 +167,8 @@ sequenceDiagram
 
 完整独立重建运行 `uv run python scripts/verify_end_to_end.py`；它使用新 Git 克隆、新依赖安装、新端口/卷/凭据，实际执行所有业务、短 Locust、故障恢复、paid→receipt、质量/真实集成/浏览器流程，结束只 stop 自有资源，保留卷和原始证据。实际运行编号及结果在 009 报告与 validation 中记录，失败不会伪装为完成。
 
+实际完整运行 [e2e-20261025T153607-971e7371](../experiments/009-scale-comprehensive-lab/end-to-end/e2e-20261025T153607-971e7371/result.json)：31 步通过，87 Python 单元、49 真实集成、40 前端单元、12 Edge 浏览器用例通过。paid 订单26→任务→回执4、库存审计通过；旧002摘要与旧项目资源身份前后相同，新项目三个容器已停止、卷保留。初始两次失败记录与修复同样保留，详见[实际验收说明](../experiments/009-scale-comprehensive-lab/report.md#实际干净克隆验收)。
+
 正常检查：`uv run python scripts/verify.py`、`uv run pytest tests/integration`（相应显式 opt-in 与隔离库）、`uv run python scripts/verify_index_lab.py --verify-only`、`uv run python scripts/verify_scale_lab.py`；frontend 下 `npm run check`、`npm run test`、`npm run build`、`npm run test:e2e`。正常 CI 保持 quality/integration/frontend 三个保护 job；百万/千万只允许独立手动 workflow/CLI。
 
 阅读顺序见 [源码指南](../guides/source-reading.md)。人工重点掌握 SQL 访问路径/最左前缀/覆盖与 ICP、稳定排序和游标、Session 与事务隔离/current read、数据库唯一约束与幂等、缓存双 fence、outbox/at-least-once/lease 与最终 fence、百分位/错误率/资源边界。没有测量跨片与持续生产工作负载，不建议仅凭行数加入分库分表。

@@ -207,7 +207,7 @@ const source = (path: string) =>
                 <th>阶段 / 表</th>
                 <th>P50 / P95 / P99 ms</th>
                 <th>访问输出行 × loops</th>
-                <th>实际覆盖</th>
+                <th>JSON 覆盖标志</th>
                 <th>优化器选中分区</th>
               </tr>
             </thead>
@@ -220,7 +220,11 @@ const source = (path: string) =>
                 </td>
                 <td>{{ number(row.observation.access_operator_rows) }}</td>
                 <td>
-                  {{ row.observation.covering_observed ? 'using_index=true' : '未观察到覆盖' }}
+                  {{
+                    row.observation.covering_observed
+                      ? 'using_index=true'
+                      : '未报告 using_index=true（另看 TREE）'
+                  }}
                 </td>
                 <td>
                   {{ row.observation.selected_partitions?.join(', ') ?? '未分区 / JSON 未报告' }}
@@ -232,7 +236,8 @@ const source = (path: string) =>
         <p class="muted">
           客户端执行/取数含网络；暖缓存，预热 1 次，重复 {{ record.manifest.repeats }} 次。小样本
           P95/P99 不代表生产尾延迟。访问算子输出行不是物理
-          I/O。表名或“覆盖候选”标签不证明优化器实际采用。
+          I/O。表名或“覆盖候选”标签不证明优化器实际采用。JSON 未报告标志时仍需查看原始 TREE；例如
+          covering index skip scan 可在 TREE 中明确出现，当前通用解析汇总行数可能为未知。
         </p>
       </section>
       <section v-if="activeQuery && activeTable && activePhase" class="panel section-space">
@@ -260,8 +265,11 @@ const source = (path: string) =>
           选中分区：{{
             activeQuery.selected_partitions?.join(', ') ??
             (table === 'scale_order' ? '普通表未分区' : '未知 / JSON 未报告')
-          }}；实际覆盖：{{ activeQuery.covering_observed ? 'using_index=true' : '未观察到' }}。Using
-          index condition 是 ICP，不是覆盖证明。
+          }}；JSON 覆盖标志：{{
+            activeQuery.covering_observed
+              ? 'using_index=true'
+              : '未报告 using_index=true（另看 TREE）'
+          }}。Using index condition 是 ICP，不是覆盖证明。
         </p>
         <PlanTree v-if="plan" :plan="plan" />
         <details>

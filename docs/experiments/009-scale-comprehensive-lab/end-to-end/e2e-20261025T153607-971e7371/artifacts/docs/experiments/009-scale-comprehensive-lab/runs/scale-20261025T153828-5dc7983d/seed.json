@@ -1,0 +1,94 @@
+{
+  "dataset": {
+    "seed": 20261025,
+    "order_count": 10000,
+    "generator_version": 1,
+    "digest": "b0d1806e26839507e25a01c04b3fe73f8000e54002b02755f77ff651dfd107cd",
+    "tables": {
+      "scale_order": {
+        "count": 10000,
+        "digest": "b0d1806e26839507e25a01c04b3fe73f8000e54002b02755f77ff651dfd107cd",
+        "monthly_counts": {
+          "2025-01": 832,
+          "2025-02": 769,
+          "2025-03": 886,
+          "2025-04": 792,
+          "2025-05": 853,
+          "2025-06": 816,
+          "2025-07": 849,
+          "2025-08": 836,
+          "2025-09": 836,
+          "2025-10": 844,
+          "2025-11": 825,
+          "2025-12": 862
+        },
+        "id_unique": true
+      },
+      "scale_order_partitioned": {
+        "count": 10000,
+        "digest": "b0d1806e26839507e25a01c04b3fe73f8000e54002b02755f77ff651dfd107cd",
+        "monthly_counts": {
+          "2025-01": 832,
+          "2025-02": 769,
+          "2025-03": 886,
+          "2025-04": 792,
+          "2025-05": 853,
+          "2025-06": 816,
+          "2025-07": 849,
+          "2025-08": 836,
+          "2025-09": 836,
+          "2025-10": 844,
+          "2025-11": 825,
+          "2025-12": 862
+        },
+        "id_unique": true
+      }
+    }
+  },
+  "batch_size": 1000,
+  "generation_insert_validation_wall_seconds": 1.836493699986022,
+  "sql_transaction_ms": 1364.5491999923252,
+  "batches": [
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 162.2236999683082
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 143.75530002871528
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 207.68009999301285
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 105.91800004476681
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 123.79499996313825
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 97.81549999024719
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 108.05989999789745
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 118.56119998265058
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 164.8315000347793
+    },
+    {
+      "rows_per_twin": 1000,
+      "execute_commit_ms": 131.90899998880923
+    }
+  ],
+  "semantics": "Per batch ownership checks + two INSERTs + COMMIT; generation/hash/readback validation excluded from sql_transaction_ms"
+}

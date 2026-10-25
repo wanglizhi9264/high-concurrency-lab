@@ -24,6 +24,11 @@ test('actual009 evidence agrees with selected SQL, plan, partitions and writes',
   await expect(page.getByTestId('scale-partitions')).toContainText(
     observation.selected_partitions!.join(', '),
   )
+  await expect(page.getByTestId('scale-partitions')).toContainText(
+    observation.covering_observed
+      ? 'JSON 覆盖标志：using_index=true'
+      : '未报告 using_index=true（另看 TREE）',
+  )
   await page.getByText('原始 TREE / JSON 计划', { exact: true }).click()
   await expect(page.getByTestId('scale-tree')).toHaveText(observation.tree)
   await expect(page.getByTestId('scale-writes')).toContainText(

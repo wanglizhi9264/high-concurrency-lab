@@ -1,0 +1,652 @@
+{
+  "schema_version": 1,
+  "evidence": "measured",
+  "observed_at": "2026-10-25T15:38:58.275462+00:00",
+  "environment": "Windows-11-10.0.26300-SP0",
+  "concurrency": 1,
+  "unit": "ms",
+  "load_rps": null,
+  "limitations": [
+    "Single actual request per operation; not a load/percentile experiment.",
+    "HTTP client JSON interval is not browser or server-only SQL timing."
+  ],
+  "requests": [
+    {
+      "path": "products/1",
+      "http_status": 200,
+      "client_http_json_ms": 249.30750002386048,
+      "response_preparation_ms": 235.18,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "trace": {
+          "request_id": "f0c3dbf618cb4adc974cbd379bc436b7",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:38:57.927572+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 234.36060000676662,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/business.py",
+              "start_ms": 202.58759998250753,
+              "duration_ms": 27.489100000821054,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 202.65759999165311,
+              "duration_ms": 27.388599992264062,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 202.90159998694435,
+              "duration_ms": 17.064800020307302,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 220.08130000904202,
+              "duration_ms": 1.8566999933682382,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 221.9654999789782,
+              "duration_ms": 4.485199984628707,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-4",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 222.95379999559373,
+              "duration_ms": 3.461299987975508,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 202.63580000028014,
+          "pool_after_offset_ms": 230.0688999821432,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "path": "users/500/orders?limit=3&offset=0",
+      "http_status": 200,
+      "client_http_json_ms": 24.69380002003163,
+      "response_preparation_ms": 22.686,
+      "body": {
+        "data": {
+          "items": [
+            {
+              "id": 51,
+              "user_id": 500,
+              "created_at": "2025-01-01T11:09:00",
+              "total": "21.85",
+              "status": "created"
+            },
+            {
+              "id": 209,
+              "user_id": 500,
+              "created_at": "2025-01-01T01:37:00",
+              "total": "35.81",
+              "status": "created"
+            },
+            {
+              "id": 1261,
+              "user_id": 500,
+              "created_at": "2025-01-01T17:08:00",
+              "total": "30.65",
+              "status": "created"
+            }
+          ],
+          "next_cursor": null
+        },
+        "error": null,
+        "trace": {
+          "request_id": "bddd6a73a3c94761a3a5a0ef1f3cff62",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:38:58.165681+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 21.72749995952472,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET user_orders",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/business.py",
+              "start_ms": 2.388899971265346,
+              "duration_ms": 15.093300025910139,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "BusinessService.user_orders",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 2.4324999540112913,
+              "duration_ms": 15.020299993921071,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 2.5712999631650746,
+              "duration_ms": 5.161100008990616,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 7.817799982149154,
+              "duration_ms": 1.7806999967433512,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "OrderRepository.list_orders",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/order_repository.py",
+              "start_ms": 9.925899968948215,
+              "duration_ms": 4.331899981480092,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-4",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/order_repository.py",
+              "start_ms": 10.486299986951053,
+              "duration_ms": 3.750199975911528,
+              "state": "success",
+              "sql": "SELECT lab_order.id, lab_order.user_id, lab_order.created_at, lab_order.total, lab_order.status \nFROM lab_order \nWHERE lab_order.user_id = %s ORDER BY lab_order.id \n LIMIT %s, %s",
+              "parameters": {
+                "user_id_1": 500,
+                "param_1": 0,
+                "param_2": 4
+              },
+              "result_count": 4
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 2.41499999538064,
+          "pool_after_offset_ms": 17.474399995990098,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "path": "users/500/order-page?limit=3&offset=0",
+      "http_status": 200,
+      "client_http_json_ms": 19.38660000450909,
+      "response_preparation_ms": 17.59,
+      "body": {
+        "data": {
+          "items": [
+            {
+              "id": 5118,
+              "user_id": 500,
+              "created_at": "2025-01-01T22:46:00",
+              "total": "15.77",
+              "status": "cancelled"
+            },
+            {
+              "id": 1261,
+              "user_id": 500,
+              "created_at": "2025-01-01T17:08:00",
+              "total": "30.65",
+              "status": "created"
+            },
+            {
+              "id": 4307,
+              "user_id": 500,
+              "created_at": "2025-01-01T14:23:00",
+              "total": "70.43",
+              "status": "paid"
+            }
+          ],
+          "next_cursor": {
+            "before_time": "2025-01-01T14:23:00",
+            "before_id": 4307
+          }
+        },
+        "error": null,
+        "trace": {
+          "request_id": "039ad637958d4f099a79adde1d3172eb",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:38:58.190260+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 17.41940004285425,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET order_page",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/business.py",
+              "start_ms": 1.4485000283457339,
+              "duration_ms": 11.849400005303323,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "BusinessService.order_page",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 1.5101000317372382,
+              "duration_ms": 11.74749998608604,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 1.6926000243984163,
+              "duration_ms": 2.1567000076174736,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 3.9464000146836042,
+              "duration_ms": 1.9819000153802335,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "OrderRepository.list_orders",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/order_repository.py",
+              "start_ms": 6.224700016900897,
+              "duration_ms": 3.315499983727932,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-4",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/order_repository.py",
+              "start_ms": 6.5821000025607646,
+              "duration_ms": 2.9272999963723123,
+              "state": "success",
+              "sql": "SELECT lab_order.id, lab_order.user_id, lab_order.created_at, lab_order.total, lab_order.status \nFROM lab_order \nWHERE lab_order.user_id = %s ORDER BY lab_order.created_at DESC, lab_order.id DESC \n LIMIT %s, %s",
+              "parameters": {
+                "user_id_1": 500,
+                "param_1": 0,
+                "param_2": 4
+              },
+              "result_count": 4
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 1.4863000251352787,
+          "pool_after_offset_ms": 13.289900030940771,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    },
+    {
+      "path": "orders/1",
+      "http_status": 200,
+      "client_http_json_ms": 65.0739999837242,
+      "response_preparation_ms": 62.919,
+      "body": {
+        "data": {
+          "id": 1,
+          "user_id": 798,
+          "created_at": "2025-01-01T06:53:00",
+          "total": "26.61",
+          "status": "cancelled",
+          "items": [
+            {
+              "id": 1,
+              "product_id": 33,
+              "product_name": "Product 33",
+              "quantity": 3,
+              "unit_price": "6.61"
+            },
+            {
+              "id": 2,
+              "product_id": 34,
+              "product_name": "Product 34",
+              "quantity": 1,
+              "unit_price": "6.78"
+            }
+          ]
+        },
+        "error": null,
+        "trace": {
+          "request_id": "98d6ab17aeec482a8f6284f588a5a9c6",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T15:38:58.209982+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 62.64419999206439,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET order_detail",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/business.py",
+              "start_ms": 1.0821999749168754,
+              "duration_ms": 57.03399999765679,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "BusinessService.order_detail",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 1.1468000011518598,
+              "duration_ms": 56.93820002488792,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 1.3842000043950975,
+              "duration_ms": 1.9348000059835613,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 3.398599976208061,
+              "duration_ms": 2.0035000052303076,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "OrderRepository.get_order_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/order_repository.py",
+              "start_ms": 5.4444000124931335,
+              "duration_ms": 2.827599993906915,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-4",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/order_repository.py",
+              "start_ms": 6.014799990225583,
+              "duration_ms": 2.2385999909602106,
+              "state": "success",
+              "sql": "SELECT lab_order.id, lab_order.user_id, lab_order.created_at, lab_order.total, lab_order.status \nFROM lab_order \nWHERE lab_order.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-1",
+              "name": "OrderRepository.get_order_items JOIN product",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/order_repository.py",
+              "start_ms": 8.639600011520088,
+              "duration_ms": 46.304000017698854,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-6",
+              "name": "Execute fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/order_repository.py",
+              "start_ms": 51.24260002048686,
+              "duration_ms": 3.677200002130121,
+              "state": "success",
+              "sql": "SELECT lab_order_item.id, lab_order_item.product_id, lab_product.name AS product_name, lab_order_item.quantity, lab_order_item.unit_price \nFROM lab_order_item INNER JOIN lab_product ON lab_product.id = lab_order_item.product_id \nWHERE lab_order_item.order_id = %s ORDER BY lab_order_item.id \n LIMIT %s",
+              "parameters": {
+                "order_id_1": 1,
+                "param_1": 101
+              },
+              "result_count": 2
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 1.1200999724678695,
+          "pool_after_offset_ms": 58.10889997519553,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision.",
+            "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+            "transaction": "Explicit transaction including exit/commit/rollback cost. Error/timeout alone does not establish commit outcome."
+          }
+        }
+      }
+    }
+  ]
+}
