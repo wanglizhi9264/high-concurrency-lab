@@ -1,0 +1,1917 @@
+{
+  "started_at": "2026-10-25T15:17:35.018422+00:00",
+  "finished_at": "2026-10-25T15:17:44.240885+00:00",
+  "wall_seconds": 9.222394399985205,
+  "rows_per_probe": 50000,
+  "batch_size": 1000,
+  "layout_order_per_batch": [
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ],
+    [
+      "covering",
+      "single",
+      "composite"
+    ],
+    [
+      "single",
+      "composite",
+      "covering"
+    ],
+    [
+      "composite",
+      "covering",
+      "single"
+    ]
+  ],
+  "probes": {
+    "single": {
+      "table": "scale_write_single",
+      "identity": {
+        "count": 50000,
+        "digest": "caeba32349f9a66a453fb17bbe32e4dd3b67653519d797518aa1a1656cc469ed",
+        "monthly_counts": {
+          "2025-01": 4301,
+          "2025-02": 3762,
+          "2025-03": 4241,
+          "2025-04": 4115,
+          "2025-05": 4227,
+          "2025-06": 4208,
+          "2025-07": 4265,
+          "2025-08": 4247,
+          "2025-09": 4107,
+          "2025-10": 4229,
+          "2025-11": 4089,
+          "2025-12": 4209
+        },
+        "id_unique": true
+      },
+      "batches": [
+        {
+          "rows": 1000,
+          "execute_commit_ms": 85.77509998576716
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 92.80739998212084
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 169.56409998238087
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.69189996737987
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 44.060599990189075
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 32.58300002198666
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.71539997169748
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.56030002841726
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 32.74049999890849
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.563699996098876
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 39.23729999223724
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.47839998686686
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.44500001287088
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 30.812100041657686
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 31.809700012672693
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.75890001188964
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.70219998760149
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.11849997146055
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 31.43059997819364
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 30.437700042966753
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.94700001506135
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.688099964521825
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 35.142800014000386
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.75479998532683
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.937399989459664
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 32.13300002971664
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.3037999807857
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.00189997814596
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.15209998982027
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 32.89450000738725
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.60489994985983
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 30.843499989714473
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.806400024332106
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 41.466299968305975
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 31.151700008194894
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.208200024906546
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 31.988699978683144
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.35429997323081
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 41.50890000164509
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.78669995861128
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 32.754600048065186
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 32.23399998387322
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.48300000652671
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 53.5336000029929
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 31.342700007371604
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.8188000023365
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.613999945577234
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 44.27009995561093
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 44.10450003342703
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.931000031065196
+        }
+      ],
+      "total_execute_commit_ms": 2034.0536998119205,
+      "rows_per_sql_second": 24581.455250971627,
+      "p50_batch_ms": 35.03690002253279,
+      "p95_batch_ms": 71.26642499351865,
+      "p99_batch_ms": 131.9533169822533,
+      "failures": 0
+    },
+    "composite": {
+      "table": "scale_write_composite",
+      "identity": {
+        "count": 50000,
+        "digest": "caeba32349f9a66a453fb17bbe32e4dd3b67653519d797518aa1a1656cc469ed",
+        "monthly_counts": {
+          "2025-01": 4301,
+          "2025-02": 3762,
+          "2025-03": 4241,
+          "2025-04": 4115,
+          "2025-05": 4227,
+          "2025-06": 4208,
+          "2025-07": 4265,
+          "2025-08": 4247,
+          "2025-09": 4107,
+          "2025-10": 4229,
+          "2025-11": 4089,
+          "2025-12": 4209
+        },
+        "id_unique": true
+      },
+      "batches": [
+        {
+          "rows": 1000,
+          "execute_commit_ms": 85.19850001903251
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 88.51750002941117
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 115.04449998028576
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 32.913100032601506
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.107299987226725
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 40.325499954633415
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.39289997611195
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 40.45779997250065
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 35.27689998736605
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.967799972742796
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 35.75460001593456
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.534499995876104
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.679600053001195
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 41.706099989824
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.91740005463362
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.1618000054732
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.81160000571981
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 69.55469999229535
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.92539998842403
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.83159999875352
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.802400019951165
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.63450000062585
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.00480003701523
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.09109999099746
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 32.75349998148158
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.12639999482781
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 40.35909997764975
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 39.99540000222623
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.79559996817261
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.08140002284199
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.16330000618473
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.69070003181696
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.54999998211861
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 42.12040000129491
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.94089999003336
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.15079999528825
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 40.3585999738425
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.84170001745224
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.40930003207177
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.76300000026822
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.27440003724769
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.54639999149367
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.40170001704246
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 39.450099982786924
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.60720002558082
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 41.891800006851554
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 45.83690001163632
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 51.5908999950625
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 47.14640002930537
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 41.65229998761788
+        }
+      ],
+      "total_execute_commit_ms": 2094.1101001226343,
+      "rows_per_sql_second": 23876.490542246047,
+      "p50_batch_ms": 37.79729999951087,
+      "p95_batch_ms": 78.15879000700075,
+      "p99_batch_ms": 102.04627000435715,
+      "failures": 0
+    },
+    "covering": {
+      "table": "scale_write_covering",
+      "identity": {
+        "count": 50000,
+        "digest": "caeba32349f9a66a453fb17bbe32e4dd3b67653519d797518aa1a1656cc469ed",
+        "monthly_counts": {
+          "2025-01": 4301,
+          "2025-02": 3762,
+          "2025-03": 4241,
+          "2025-04": 4115,
+          "2025-05": 4227,
+          "2025-06": 4208,
+          "2025-07": 4265,
+          "2025-08": 4247,
+          "2025-09": 4107,
+          "2025-10": 4229,
+          "2025-11": 4089,
+          "2025-12": 4209
+        },
+        "id_unique": true
+      },
+      "batches": [
+        {
+          "rows": 1000,
+          "execute_commit_ms": 90.11609997833148
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 95.43879999546334
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 115.50880002323538
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 35.78820003895089
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 44.07080000964925
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 44.66309997951612
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.4180999933742
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 48.74499997822568
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.77319997223094
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.73299998929724
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.58639998361468
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.952000016346574
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 39.47450005216524
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.3913000067696
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.04760001366958
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.83079996658489
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.77300000283867
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 47.10359999444336
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.63710000505671
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.891000028233975
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.96999998949468
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.562199984677136
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 45.401600014884025
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 35.77800001949072
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.54959998978302
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.413899993523955
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.113200010731816
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 49.41320000216365
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 33.517699979711324
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.68039998551831
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.96909997193143
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 35.75020004063845
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.98089994536713
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 37.509199988562614
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 38.214100000914186
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 62.37229995895177
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 35.15290003269911
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 35.88539996417239
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 39.02110003400594
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 51.45019997144118
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.597800033632666
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.94789998512715
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 34.184600051958114
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 48.77890000352636
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 39.23330001998693
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 44.89119997015223
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 44.81719998875633
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 47.42740001529455
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 48.075700004119426
+        },
+        {
+          "rows": 1000,
+          "execute_commit_ms": 36.179999995511025
+        }
+      ],
+      "total_execute_commit_ms": 2145.7815999747254,
+      "rows_per_sql_second": 23301.532644603223,
+      "p50_batch_ms": 37.09564998280257,
+      "p95_batch_ms": 77.63138996961052,
+      "p99_batch_ms": 105.67450000962704,
+      "failures": 0
+    }
+  },
+  "statistics": {
+    "observed_at": "2026-10-25T15:17:44.239815+00:00",
+    "show_create": {
+      "scale_order": "CREATE TABLE `scale_order` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_time` (`created_at`,`id`),\n  KEY `ix_user_cover` (`user_id`,`created_at`,`id`,`total`,`status`),\n  CONSTRAINT `ck_scale_order_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_order_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "scale_order_partitioned": "CREATE TABLE `scale_order_partitioned` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_time` (`created_at`,`id`),\n  KEY `ix_user_cover` (`user_id`,`created_at`,`id`,`total`,`status`),\n  CONSTRAINT `ck_scale_order_partitioned_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_order_partitioned_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci\n/*!50500 PARTITION BY RANGE  COLUMNS(created_at)\n(PARTITION p1 VALUES LESS THAN ('2025-04-01') ENGINE = InnoDB,\n PARTITION p2 VALUES LESS THAN ('2025-07-01') ENGINE = InnoDB,\n PARTITION p3 VALUES LESS THAN ('2025-10-01') ENGINE = InnoDB,\n PARTITION p4 VALUES LESS THAN ('2026-01-01') ENGINE = InnoDB,\n PARTITION p_future VALUES LESS THAN (MAXVALUE) ENGINE = InnoDB) */",
+      "scale_write_composite": "CREATE TABLE `scale_write_composite` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_user_time` (`user_id`,`created_at`,`id`),\n  KEY `ix_time` (`created_at`,`id`),\n  CONSTRAINT `ck_scale_write_composite_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_write_composite_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "scale_write_covering": "CREATE TABLE `scale_write_covering` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_time` (`created_at`,`id`),\n  KEY `ix_user_cover` (`user_id`,`created_at`,`id`,`total`,`status`),\n  CONSTRAINT `ck_scale_write_covering_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_write_covering_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci",
+      "scale_write_single": "CREATE TABLE `scale_write_single` (\n  `id` bigint NOT NULL,\n  `created_at` datetime(6) NOT NULL,\n  `user_id` bigint NOT NULL,\n  `total` decimal(14,2) NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `payload` varchar(160) NOT NULL,\n  PRIMARY KEY (`id`,`created_at`),\n  KEY `ix_user` (`user_id`),\n  CONSTRAINT `ck_scale_write_single_status` CHECK ((`status` in (_utf8mb4'created',_utf8mb4'paid',_utf8mb4'cancelled'))),\n  CONSTRAINT `ck_scale_write_single_values` CHECK (((`id` > 0) and (`user_id` > 0) and (`total` >= 0)))\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci"
+    },
+    "indexes": {
+      "scale_order": [
+        {
+          "Table": "scale_order",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 9916,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 1,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 8709,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 2,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 1000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 3,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 4,
+          "Column_name": "total",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 5,
+          "Column_name": "status",
+          "Collation": "A",
+          "Cardinality": 9935,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ],
+      "scale_order_partitioned": [
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 1,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 8593,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 2,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 3607,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 3,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 4,
+          "Column_name": "total",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_order_partitioned",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 5,
+          "Column_name": "status",
+          "Collation": "A",
+          "Cardinality": 10000,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ],
+      "scale_write_composite": [
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 49437,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 49437,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_user_time",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 1014,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_user_time",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 48308,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_user_time",
+          "Seq_in_index": 3,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 49437,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 1,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 26368,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_composite",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 2,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 44625,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ],
+      "scale_write_covering": [
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 49437,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 49437,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 1,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 26227,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_time",
+          "Seq_in_index": 2,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 49437,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 1070,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 45537,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 3,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 49437,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 4,
+          "Column_name": "total",
+          "Collation": "A",
+          "Cardinality": 48823,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_covering",
+          "Non_unique": 1,
+          "Key_name": "ix_user_cover",
+          "Seq_in_index": 5,
+          "Column_name": "status",
+          "Collation": "A",
+          "Cardinality": 48548,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ],
+      "scale_write_single": [
+        {
+          "Table": "scale_write_single",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 1,
+          "Column_name": "id",
+          "Collation": "A",
+          "Cardinality": 49405,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_single",
+          "Non_unique": 0,
+          "Key_name": "PRIMARY",
+          "Seq_in_index": 2,
+          "Column_name": "created_at",
+          "Collation": "A",
+          "Cardinality": 49468,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        },
+        {
+          "Table": "scale_write_single",
+          "Non_unique": 1,
+          "Key_name": "ix_user",
+          "Seq_in_index": 1,
+          "Column_name": "user_id",
+          "Collation": "A",
+          "Cardinality": 1040,
+          "Sub_part": null,
+          "Packed": null,
+          "Null": "",
+          "Index_type": "BTREE",
+          "Comment": "",
+          "Index_comment": "",
+          "Visible": "YES",
+          "Expression": null
+        }
+      ]
+    },
+    "tables": [
+      {
+        "table_name": "scale_alembic_version",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_dataset",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_order",
+        "estimated_rows": 9935,
+        "clustered_bytes_estimate": 2637824,
+        "secondary_bytes_estimate": 720896
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "estimated_rows": 10000,
+        "clustered_bytes_estimate": 4276224,
+        "secondary_bytes_estimate": 884736
+      },
+      {
+        "table_name": "scale_ownership",
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_write_composite",
+        "estimated_rows": 49437,
+        "clustered_bytes_estimate": 11026432,
+        "secondary_bytes_estimate": 5275648
+      },
+      {
+        "table_name": "scale_write_covering",
+        "estimated_rows": 49437,
+        "clustered_bytes_estimate": 11026432,
+        "secondary_bytes_estimate": 7372800
+      },
+      {
+        "table_name": "scale_write_single",
+        "estimated_rows": 49468,
+        "clustered_bytes_estimate": 11026432,
+        "secondary_bytes_estimate": 2637824
+      }
+    ],
+    "partitions": [
+      {
+        "table_name": "scale_alembic_version",
+        "partition_name": null,
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_dataset",
+        "partition_name": null,
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_order",
+        "partition_name": null,
+        "estimated_rows": 9935,
+        "clustered_bytes_estimate": 2637824,
+        "secondary_bytes_estimate": 720896
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p1",
+        "estimated_rows": 2487,
+        "clustered_bytes_estimate": 540672,
+        "secondary_bytes_estimate": 212992
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p2",
+        "estimated_rows": 2461,
+        "clustered_bytes_estimate": 540672,
+        "secondary_bytes_estimate": 212992
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p3",
+        "estimated_rows": 2521,
+        "clustered_bytes_estimate": 1589248,
+        "secondary_bytes_estimate": 212992
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p4",
+        "estimated_rows": 2531,
+        "clustered_bytes_estimate": 1589248,
+        "secondary_bytes_estimate": 212992
+      },
+      {
+        "table_name": "scale_order_partitioned",
+        "partition_name": "p_future",
+        "estimated_rows": 0,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 32768
+      },
+      {
+        "table_name": "scale_ownership",
+        "partition_name": null,
+        "estimated_rows": 1,
+        "clustered_bytes_estimate": 16384,
+        "secondary_bytes_estimate": 0
+      },
+      {
+        "table_name": "scale_write_composite",
+        "partition_name": null,
+        "estimated_rows": 49437,
+        "clustered_bytes_estimate": 11026432,
+        "secondary_bytes_estimate": 5275648
+      },
+      {
+        "table_name": "scale_write_covering",
+        "partition_name": null,
+        "estimated_rows": 49437,
+        "clustered_bytes_estimate": 11026432,
+        "secondary_bytes_estimate": 7372800
+      },
+      {
+        "table_name": "scale_write_single",
+        "partition_name": null,
+        "estimated_rows": 49468,
+        "clustered_bytes_estimate": 11026432,
+        "secondary_bytes_estimate": 2637824
+      }
+    ],
+    "index_pages": [
+      {
+        "table": "scale_alembic_version",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_dataset",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_order",
+        "index": "PRIMARY",
+        "pages": 161,
+        "bytes_estimate": 2637824
+      },
+      {
+        "table": "scale_order",
+        "index": "ix_time",
+        "pages": 15,
+        "bytes_estimate": 245760
+      },
+      {
+        "table": "scale_order",
+        "index": "ix_user_cover",
+        "pages": 29,
+        "bytes_estimate": 475136
+      },
+      {
+        "table": "scale_order_partitioned#p#p1",
+        "index": "PRIMARY",
+        "pages": 33,
+        "bytes_estimate": 540672
+      },
+      {
+        "table": "scale_order_partitioned#p#p1",
+        "index": "ix_time",
+        "pages": 5,
+        "bytes_estimate": 81920
+      },
+      {
+        "table": "scale_order_partitioned#p#p1",
+        "index": "ix_user_cover",
+        "pages": 8,
+        "bytes_estimate": 131072
+      },
+      {
+        "table": "scale_order_partitioned#p#p2",
+        "index": "PRIMARY",
+        "pages": 33,
+        "bytes_estimate": 540672
+      },
+      {
+        "table": "scale_order_partitioned#p#p2",
+        "index": "ix_time",
+        "pages": 5,
+        "bytes_estimate": 81920
+      },
+      {
+        "table": "scale_order_partitioned#p#p2",
+        "index": "ix_user_cover",
+        "pages": 8,
+        "bytes_estimate": 131072
+      },
+      {
+        "table": "scale_order_partitioned#p#p3",
+        "index": "PRIMARY",
+        "pages": 97,
+        "bytes_estimate": 1589248
+      },
+      {
+        "table": "scale_order_partitioned#p#p3",
+        "index": "ix_time",
+        "pages": 5,
+        "bytes_estimate": 81920
+      },
+      {
+        "table": "scale_order_partitioned#p#p3",
+        "index": "ix_user_cover",
+        "pages": 8,
+        "bytes_estimate": 131072
+      },
+      {
+        "table": "scale_order_partitioned#p#p4",
+        "index": "PRIMARY",
+        "pages": 97,
+        "bytes_estimate": 1589248
+      },
+      {
+        "table": "scale_order_partitioned#p#p4",
+        "index": "ix_time",
+        "pages": 5,
+        "bytes_estimate": 81920
+      },
+      {
+        "table": "scale_order_partitioned#p#p4",
+        "index": "ix_user_cover",
+        "pages": 8,
+        "bytes_estimate": 131072
+      },
+      {
+        "table": "scale_order_partitioned#p#p_future",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_order_partitioned#p#p_future",
+        "index": "ix_time",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_order_partitioned#p#p_future",
+        "index": "ix_user_cover",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_ownership",
+        "index": "PRIMARY",
+        "pages": 1,
+        "bytes_estimate": 16384
+      },
+      {
+        "table": "scale_write_composite",
+        "index": "PRIMARY",
+        "pages": 673,
+        "bytes_estimate": 11026432
+      },
+      {
+        "table": "scale_write_composite",
+        "index": "ix_time",
+        "pages": 161,
+        "bytes_estimate": 2637824
+      },
+      {
+        "table": "scale_write_composite",
+        "index": "ix_user_time",
+        "pages": 161,
+        "bytes_estimate": 2637824
+      },
+      {
+        "table": "scale_write_covering",
+        "index": "PRIMARY",
+        "pages": 673,
+        "bytes_estimate": 11026432
+      },
+      {
+        "table": "scale_write_covering",
+        "index": "ix_time",
+        "pages": 161,
+        "bytes_estimate": 2637824
+      },
+      {
+        "table": "scale_write_covering",
+        "index": "ix_user_cover",
+        "pages": 289,
+        "bytes_estimate": 4734976
+      },
+      {
+        "table": "scale_write_single",
+        "index": "PRIMARY",
+        "pages": 673,
+        "bytes_estimate": 11026432
+      },
+      {
+        "table": "scale_write_single",
+        "index": "ix_user",
+        "pages": 161,
+        "bytes_estimate": 2637824
+      }
+    ],
+    "index_pages_error": null,
+    "semantics": "InnoDB allocated-page estimates, not physical file bytes. TABLE_ROWS/cardinality estimates differ from exact streamed count. Partition index table names retained verbatim."
+  },
+  "semantics": "Initially empty tables, same prepared rows, rotating layout order. Batch execute+COMMIT only, generation/hash/readback excluded. Not million-existing-row write amplification; shared cache/order remain confounders."
+}
