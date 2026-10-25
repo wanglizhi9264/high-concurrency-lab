@@ -74,7 +74,7 @@ class RequestObservation:
             pool_after_offset_ms=self.pool_after_offset_ms,
             definitions={
                 "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
-                "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+                "acquire": "Queue/connect/pre-ping/session setup; not pure queue time; ms.",
                 "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
                 "pool": "Instantaneous per-process gauges; no queue-length measurement.",
                 "nested": "Parent spans include children; do not sum overlapping intervals.",
@@ -83,5 +83,10 @@ class RequestObservation:
                 "redis_command": "Client Redis command/script round trip, including network; ms.",
                 "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
                 "cache_fence": "Observed atomic generation/token publication decision.",
+                "sql_execute_change": "Client fixed DML interval; result_count is affected rows.",
+                "transaction": (
+                    "Explicit transaction including exit/commit/rollback cost. "
+                    "Error/timeout alone does not establish commit outcome."
+                ),
             },
         )

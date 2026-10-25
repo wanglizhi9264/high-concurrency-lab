@@ -5,7 +5,10 @@ from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from concurrency_lab.core.config import Settings
-from concurrency_lab.models import commerce  # noqa: F401
+from concurrency_lab.models import (
+    commerce,  # noqa: F401
+    inventory,  # noqa: F401
+)
 from concurrency_lab.models.marker import Base
 
 

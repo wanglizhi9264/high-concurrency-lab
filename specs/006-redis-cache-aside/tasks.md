@@ -17,6 +17,6 @@
 ## Phase 6: Validation and publication
 - [X] T010 Extend existingCI isolatedcacheintegration withoutheavyload; update README/AGENTS/architecture/guides/cache-lab.md and actualreport, document consistency/penetration/stampede/avalanche/duplicatefill/degradation limits (FR-005/006).
 - [X] T011 Run related Ruff/format/mypy/unit/realintegration/frontend/build/E2E gates, code review and fix findings; record evidence in specs/006-redis-cache-aside/validation.md; Converge allFR/SC/plan/tasks/constitution (FR-005/006; SC001-004).
-- [ ] T012 Publish independentPR, verifyprotectedCI thenmerge; update latestmain before007 (FR-006; SC004).
+- [X] T012 Publish independentPR, verifyprotectedCI thenmerge; update latestmain before007 (FR-006; SC004).
 ## Dependencies and execution
 T001→T002→T003→T004→T005→T006→T007→T008→T009→T010→T011→T012. US1 works byrealAPI withoutUI; US2 verifieshardcases separately; US3 explains provenbehavior. Readonlyresearch mayrunparallel perPlan skill; implementationsequential. No heavybenchmark run alongsideDBtests/builds. Completion ofonejourney isnot a stoppingpoint forauthorized006–009scope.

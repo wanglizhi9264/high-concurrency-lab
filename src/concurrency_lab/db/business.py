@@ -1,15 +1,18 @@
 """Business DB isolation and one measured execute/fetch boundary."""
 
+from collections.abc import Iterator
+from contextlib import contextmanager
 from dataclasses import dataclass
-from typing import cast
+from typing import Any, cast
 
-from sqlalchemy import Executable, RowMapping, text
+from sqlalchemy import CursorResult, Executable, RowMapping, event, text
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
 from sqlalchemy.pool import QueuePool
 from sqlalchemy.sql import ClauseElement
 
 from concurrency_lab.core.exceptions import BusinessFailure, FailureCode
 from concurrency_lab.observability.recording import RequestObservation
+from concurrency_lab.schemas.business import MeasuredSpan
 
 BUSINESS_DATABASES = frozenset({"concurrency_lab_business", "concurrency_lab_business_test"})
 BUSINESS_PURPOSE = "business-lab-v1"
@@ -27,6 +30,26 @@ class BusinessResources:
     sessions: async_sessionmaker[AsyncSession]
 
 
+def configure_business_lock_timeout(engine: AsyncEngine, seconds: int) -> None:
+    """Uniform business-pool session configuration, part of lazy connection acquisition."""
+    if not 1 <= seconds <= 10:
+        raise ValueError("Business lock timeout outside bounded seconds")
+
+    @event.listens_for(engine.sync_engine, "connect")
+    def configure(connection: Any, record: Any) -> None:
+        cursor = connection.cursor()
+        try:
+            cursor.execute(f"SET SESSION innodb_lock_wait_timeout={seconds}")
+        finally:
+            cursor.close()
+
+
+@dataclass(frozen=True)
+class ChangeResult:
+    affected_rows: int
+    inserted_id: int | None
+
+
 def pool_gauges(engine: AsyncEngine) -> dict[str, int]:
     pool = cast(QueuePool, engine.sync_engine.pool)
     return {
@@ -41,20 +64,33 @@ class ObservedDatabase:
         self.session = session
         self.observation = observation
 
-    async def fetch_rows(self, statement: Executable, source: str) -> list[RowMapping]:
+    @contextmanager
+    def _statement_span(
+        self, statement: Executable, source: str, kind: str
+    ) -> Iterator[MeasuredSpan]:
         compiled = cast(ClauseElement, statement).compile(dialect=self.session.get_bind().dialect)
-        with self.observation.span(
-            "Execute and fetch fixed SQL", "sql_execute_fetch", source
-        ) as span:
+        with self.observation.span("Execute fixed SQL", kind, source) as span:
             span.sql = str(compiled)
             span.parameters = {
                 key: value if isinstance(value, (int, float, bool)) or value is None else str(value)
                 for key, value in (compiled.params or {}).items()
             }
+            yield span
+
+    async def fetch_rows(self, statement: Executable, source: str) -> list[RowMapping]:
+        with self._statement_span(statement, source, "sql_execute_fetch") as span:
             result = await self.session.execute(statement)
             rows = list(result.mappings().all())
             span.result_count = len(rows)
         return rows
+
+    async def execute_change(self, statement: Executable, source: str) -> ChangeResult:
+        with self._statement_span(statement, source, "sql_execute_change") as span:
+            result = cast(CursorResult[Any], await self.session.execute(statement))
+            span.result_count = result.rowcount
+            return ChangeResult(
+                result.rowcount, int(result.lastrowid) if result.lastrowid else None
+            )
 
     async def verify_ownership(self, database: str) -> None:
         rows = await self.fetch_rows(

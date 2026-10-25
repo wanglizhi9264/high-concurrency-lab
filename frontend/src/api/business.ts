@@ -4,6 +4,7 @@ import type {
   BusinessRequestResult,
   BusinessResponse,
 } from '../types/business'
+import { executeObservedRequest } from './observed'
 
 export function businessQueryPath(
   query: BusinessQuery,
@@ -26,24 +27,5 @@ export async function executeBusinessRequest<T extends BusinessResponse = Busine
   path: string,
   method: 'GET' | 'DELETE' = 'GET',
 ): Promise<BusinessRequestResult<T>> {
-  const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), 65000)
-  const started = performance.now()
-  try {
-    const response = await fetch(path, { method, signal: controller.signal })
-    const body = await response.json()
-    if (!body.trace?.request_id || !Array.isArray(body.trace.spans)) {
-      throw new Error(`HTTP ${response.status}：请求未进入业务执行；请检查参数、代理和后端。`)
-    }
-    return {
-      body,
-      status: response.status,
-      path,
-      browserMs: performance.now() - started,
-      preparationMs: response.headers.get('x-process-time-ms'),
-      requestId: response.headers.get('x-request-id'),
-    }
-  } finally {
-    clearTimeout(timeout)
-  }
+  return executeObservedRequest<T>(path, { method })
 }
