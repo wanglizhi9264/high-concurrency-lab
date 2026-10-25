@@ -279,6 +279,33 @@ async def test_cancel_before_commit_rolls_back_reservation_and_order(lab):
     assert (await audit(api, stock))["scenario"]["available"] == 2
 
 
+async def test_actual_request_budget_rolls_back_before_commit_and_same_key_recovers(lab):
+    app, api = lab
+    stock, _ = await scenario(api, 2)
+    key, modified = uuid4(), asyncio.Event()
+    original = InventoryRepository.reserve
+    settings = app.state.resources.settings
+    previous = settings.business_request_timeout
+
+    async def wait_after_real_change(repository, *args):
+        result = await original(repository, *args)
+        modified.set()
+        await asyncio.Event().wait()
+        return result
+
+    try:
+        settings.business_request_timeout = 0.3
+        with patch.object(InventoryRepository, "reserve", wait_after_real_change):
+            response = await asyncio.wait_for(order(api, stock, key), 3)
+        assert modified.is_set()
+        assert response.status_code == 504 and response.json()["error"]["code"] == "request_timeout"
+    finally:
+        settings.business_request_timeout = previous
+    assert (await api.get(f"{ORDERS}/by-key/{key}")).status_code == 404
+    assert (await audit(api, stock))["scenario"]["available"] == 2
+    assert (await order(api, stock, key)).status_code == 201
+
+
 async def test_actual_external_deadlock_records_victim_and_recovers(lab, record_property):
     app, api = lab
     stock, _ = await scenario(api, 5)

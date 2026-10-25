@@ -10,7 +10,7 @@ branch_labels = None
 depends_on = None
 
 
-def upgrade():
+def upgrade() -> None:
     op.create_table(
         "inventory_scenario",
         sa.Column("id", sa.String(32, collation="ascii_bin"), primary_key=True),
@@ -70,6 +70,6 @@ def upgrade():
     op.create_index("ix_purchase_user", "purchase_order", ["user_id"])
 
 
-def downgrade():
+def downgrade() -> None:
     op.drop_table("purchase_order")
     op.drop_table("inventory_scenario")

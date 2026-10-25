@@ -21,3 +21,5 @@ ownership普通SELECT可能建立RR旧快照。1062唯一冲突后退出整个�
 Alembic0004由独立owned-business迁移命令显式执行，基础business初始化仍冻结0003；不升级002实验库。MySQL DDL隐式提交，失败时保留现场，不自动清表重建。写入口默认关闭，需要明确迁移后启用BUSINESS_WRITES_ENABLED。
 
 参考：[RR一致性读](https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html)、[InnoDB锁](https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html)、[错误与回滚](https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html)、[死锁检测](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlock-detection.html)、[DDL隐式提交](https://dev.mysql.com/doc/refman/8.4/en/implicit-commit.html)。
+
+库存事务获取连接时显式指定REPEATABLE READ，不依赖服务器默认隔离级别。真实隔离测试从READ COMMITTED会话开始，验证审计内实际隔离为RR；连接配置与重置包含在资源获取/退出成本中。

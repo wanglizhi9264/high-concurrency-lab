@@ -47,3 +47,8 @@ Business mode显式开启后，lifespan额外拥有一个只连接固定业务�
 独立缓存路由 → ProductCacheService → ProductCache（固定Redis脚本）或原004 BusinessService（显式Session读事务）。命中不进入MySQL，miss/降级才执行所有权检查和商品SQL。Redis客户端继续由lifespan持有；schema/observations.py共享实际时间戳类型，缓存DTO不依赖负载实验DTO。
 
 固定generation与随机lease token共同约束回填发布；失效会撤销在途回填，有界等待后允许无缓存重复读。缓存不是库存正确性工具。浏览器页面逐次展示实际HTTP、Redis命令、SQL、来源和选定key快照；003缓存教学仍是Simulation，健康PING仍不经过业务缓存。详见[ADR0004](decisions/0004-product-cache.md)和[操作指南](../guides/cache-lab.md)。
+
+## 007 库存与幂等
+新的inventory_scenario/purchase_order与生成lab_order分开；新场景是独立批次，重复实验不重置旧库存。Router写开关 → InventoryService显式事务 → InventoryRepository固定SQL → MySQL约束/条件更新。domain/inventory.py保存独立状态与审计规则，ObservedDatabase集中记录读取与DML影响行数。
+
+统一Scenario→Order取锁；唯一键与payload fingerprint控制重放，1062后整个事务结束并用freshSession确认。状态预读只定位场景，最终状态由FOR UPDATE current read决定。审计同一RR快照核对库存和按状态聚合。前端窄ObservedResponse/HTTP执行器共享trace、错误和JSON传输，保持业务/缓存/库存DTO分离。详见[ADR0005](decisions/0005-inventory.md)、[ER](../database/inventory.md)与[操作指南](../guides/inventory-lab.md)。
