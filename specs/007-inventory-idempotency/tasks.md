@@ -19,6 +19,6 @@
 ## Phase 6: Validation and publication
 - [X] T012 Add explicitmigration/inventoryintegration/writeenabledE2EtoexistingCI; update README/AGENTS/architecture/databaseER/guides/inventory-lab.md, commands/results/limits (FR-006/007).
 - [X] T013 Run allrelatedRuff/format/mypy/unit/realintegration/concurrency/frontend/build/E2Egates,reviewandfixfindings,record specs/007-inventory-idempotency/validation.md; ConvergeallFR/SC/tasks/plan/constitution (FR-006/007; SC004).
-- [ ] T014 PublishindependentPR,verifyrequiredCIthenmergeandupdatemainbefore008 (FR-007; SC004).
+- [X] T014 PublishindependentPR,verifyrequiredCIthenmergeandupdatemainbefore008 (FR-007; SC004).
 ## Dependencies and execution
 T001→T002→T003→T004→T005→T006→T007→T008→T009→T010→T011→T012→T013→T014. CoreAPI/auditworkswithoutUI; idempotency/lockingtestsindependentfrombrowser; frontendonlyexplainsprovenpersistedbehavior. OfficialPlanresearchparallelreadonly; implementationsequential. ActualexperimentsneverparallelDBtests/builds. Singlejourneycompletionisnotendofauthorizedscope.

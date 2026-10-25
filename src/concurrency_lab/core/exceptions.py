@@ -16,6 +16,7 @@ class FailureCode(StrEnum):
     IDEMPOTENCY = "idempotency_conflict"
     TRANSITION = "invalid_order_transition"
     CONFLICT = "transaction_conflict"
+    TASK_STATE = "invalid_task_or_order_state"
     INVARIANT = "inventory_invariant_failure"
 
 

@@ -46,6 +46,10 @@ ERRORS: dict[FailureCode, tuple[int, str]] = {
         409,
         "Transaction lock conflict; retry with the same intent/key after recovery.",
     ),
+    FailureCode.TASK_STATE: (
+        409,
+        "Task requires a paid order; manual retry requires a failed original.",
+    ),
     FailureCode.INVARIANT: (503, "Inventory consistency check failed; transaction stopped."),
 }
 

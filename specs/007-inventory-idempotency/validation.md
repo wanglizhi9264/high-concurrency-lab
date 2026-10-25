@@ -29,3 +29,5 @@ Explicit REPEATABLE READ is enforced per inventory transaction, independently of
 
 ## Final gate and Converge
 After explicitRR: Ruff/format/mypy56files and73unit passed; fullintegration27passed/4opt-in skips, then additional real300ms request-budget rollback/retry case passed (28distinct integration tests verified). Frontend final30Vitest/VTU, type/lint/format/build and full10Edge E2E passed. Budget test pauses after actual reservation before commit, verifies504, no order, originalstock and same-key recovery; it does not claim ACK-unknown rollback. Converge readonly assessment covered7FR/4SC/3storygroups/14tasks, plan decisions and11constitutionprinciples. No remaining implementation findings of missing/partial/contradicts/unrequested type, allseverities0. Implementation converged; external publication/check/merge T014 pending. No empty convergence phase or hooks.
+
+Publication verified before008: PR9 merged to protected main c9be2f46099aa07e7810ca1a368011dce1d7573a; required quality/integration/frontend passed in runs40178310514 and40178331182.

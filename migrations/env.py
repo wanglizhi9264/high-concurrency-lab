@@ -8,6 +8,7 @@ from concurrency_lab.core.config import Settings
 from concurrency_lab.models import (
     commerce,  # noqa: F401
     inventory,  # noqa: F401
+    tasks,  # noqa: F401
 )
 from concurrency_lab.models.marker import Base
 

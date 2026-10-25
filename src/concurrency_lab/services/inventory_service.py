@@ -11,7 +11,8 @@ from sqlalchemy.exc import DBAPIError, IntegrityError
 from sqlalchemy.exc import TimeoutError as PoolTimeout
 
 from concurrency_lab.core.exceptions import BusinessFailure, FailureCode
-from concurrency_lab.db.business import BusinessResources, ObservedDatabase, pool_gauges
+from concurrency_lab.db.business import BusinessResources, owned_session, pool_gauges
+from concurrency_lab.db.errors import mysql_error_code as mysql_error_code
 from concurrency_lab.domain.inventory import (
     InvalidTransition,
     OrderState,
@@ -37,11 +38,6 @@ T = TypeVar("T")
 
 class UniqueIntentConflict(Exception):
     """An entire failed transaction must unwind before resolving the committed winner."""
-
-
-def mysql_error_code(error: DBAPIError) -> int | None:
-    arguments = getattr(error.orig, "args", ())
-    return arguments[0] if arguments and isinstance(arguments[0], int) else None
 
 
 def _order(row: RowMapping) -> PurchaseOrderDTO:
@@ -85,22 +81,10 @@ class InventoryService:
 
     async def _transaction(self, operation: Callable[[InventoryRepository], Awaitable[T]]) -> T:
         try:
-            async with self.resources.sessions() as session:
-                with self.observation.span(
-                    "Explicit transaction (includes exit/commit)", "transaction", SOURCE
-                ):
-                    async with session.begin():
-                        with self.observation.span(
-                            "Acquire business connection",
-                            "acquire",
-                            "src/concurrency_lab/db/business.py",
-                        ):
-                            await session.connection(
-                                execution_options={"isolation_level": "REPEATABLE READ"}
-                            )
-                        database = ObservedDatabase(session, self.observation)
-                        await database.verify_ownership(self.observation.database)
-                        return await operation(InventoryRepository(database))
+            async with owned_session(
+                self.resources, self.observation, "REPEATABLE READ"
+            ) as database:
+                return await operation(InventoryRepository(database))
         except IntegrityError as error:
             if mysql_error_code(error) == 1062:
                 raise UniqueIntentConflict() from error

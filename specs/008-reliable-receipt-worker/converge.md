@@ -1,0 +1,7 @@
+# Convergence record — 008
+
+First assessment found medium lifecycle-test gap (FR003/004/007, constitutionIX), appendedT018 only. Implement then added real cancellation after committed claim and controlled post-INSERT creation failure tests. Both use actual MySQL/Redis and verify recoverable lease/pending, no false completion, abandoned durationnull, no partialTask/Outbox. Final task integration11passed in25.20s;Ruff/format passed. No production source changed after measured checkpoint13ed68b.
+
+Second assessment:0 remaining buildable gaps. Existing tasks and all8FR/5SC/user acceptance/edge cases mapped to current source, actual tests, ADR/ER/runbook and raw acceptance. Constitution11principles satisfied; no unrequested framework/API/process controls. Taskfile left unchanged during clean assessment (no empty convergence phase). Implementation bookkeeping follows this report; T017 remains actual protected publication/CI/merge workflow and cannot be marked complete before execution.
+
+Coverage: FR001 creation/replay/atomicrollback;FR002 actualXADD ambiguity/outbox/broker loss;FR003 lease/currentDBUTC/fence/independentCLI;FR004 deadline/exhaustion/actualexit70/cancel/linkedretry;FR005 UI/source/null/attempt/queue/HTTP separation and realEdge;FR006 ownedDB/scenario/writegate/boundedcommands/explicit0005/previousdata;FR007 local tests + CI configuration;FR008 rawrecords/report/architecture/ER/runbook/review. RemoteCI is pending and tracked, never inferred from local pass.

@@ -64,6 +64,12 @@ jobs:
         env:
           INVENTORY_INTEGRATION: "1"
         run: uv run pytest tests/integration/test_inventory.py
+      - name: Explicit owned-business task migration
+        run: uv run python -m concurrency_lab.experiments.business_schema --database concurrency_lab_business_test --revision 0005
+      - name: Real task outbox, duplicate effect, deadlines and subprocess crash recovery
+        env:
+          TASK_INTEGRATION: "1"
+        run: uv run pytest tests/integration/test_tasks.py
       - name: Enable isolated business API for browser tests
         run: |
           echo "BUSINESS_ENABLED=true" >> .env

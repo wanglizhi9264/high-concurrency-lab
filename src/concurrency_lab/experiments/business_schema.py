@@ -17,7 +17,7 @@ from concurrency_lab.db.business import (
 from concurrency_lab.experiments.business_dataset import business_engine
 
 
-async def check_upgrade_target(database: str) -> None:
+async def check_upgrade_target(database: str) -> str:
     engine = business_engine(validate_business_database(database))
     try:
         async with engine.connect() as connection:
@@ -33,32 +33,40 @@ async def check_upgrade_target(database: str) -> None:
                 != "ready"
             ):
                 raise ValueError("Ready business dataset required before migration")
-            if await connection.scalar(text("SELECT version_num FROM alembic_version")) not in (
+            revision = await connection.scalar(text("SELECT version_num FROM alembic_version"))
+            if revision not in (
                 "0003",
                 "0004",
+                "0005",
             ):
                 raise ValueError("Unexpected business schema revision retained")
+            return str(revision)
     finally:
         await engine.dispose()
 
 
-def upgrade_business_schema(database: str) -> None:
-    asyncio.run(check_upgrade_target(database))
+def upgrade_business_schema(database: str, revision: str = "0004") -> None:
+    if revision not in ("0004", "0005"):
+        raise ValueError("Unsupported business revision")
+    current = asyncio.run(check_upgrade_target(database))
+    if current >= revision:
+        return
     configuration = Config("alembic.ini")
     configuration.attributes["database_url"] = (
         Settings()
         .model_copy(update={"mysql_database": validate_business_database(database)})
         .database_url
     )
-    command.upgrade(configuration, "0004")
+    command.upgrade(configuration, revision)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--database", choices=sorted(BUSINESS_DATABASES), required=True)
+    parser.add_argument("--revision", choices=["0004", "0005"], default="0004")
     arguments = parser.parse_args()
     try:
-        upgrade_business_schema(arguments.database)
+        upgrade_business_schema(arguments.database, arguments.revision)
     except ValueError as failure:
         parser.exit(2, str(failure) + "\n")
     except SQLAlchemyError:

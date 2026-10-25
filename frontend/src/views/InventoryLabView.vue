@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import BusinessTracePanel from '../components/BusinessTracePanel.vue'
 import { contestSummary, useInventoryLab } from '../composables/useInventoryLab'
 
@@ -43,6 +44,11 @@ const sqlCount = computed(
     </div>
     <span class="badge measured">Live measured · 真实写入</span>
   </header>
+  <p v-if="currentOrder?.status === 'paid'">
+    <RouterLink :to="{ path: '/tasks', query: { order_id: currentOrder.id } }"
+      >为当前 paid 订单创建可靠回执任务 →</RouterLink
+    >
+  </p>
   <section class="panel section-space">
     <h2>1. 创建新的库存实验</h2>
     <div class="toolbar">

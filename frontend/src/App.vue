@@ -24,6 +24,7 @@ const links = [
     name: '库存事务与幂等',
     description: 'REAL TRANSACTIONS',
   },
+  { path: '/tasks', number: '10', name: '可靠异步任务', description: 'DURABLE WORKER' },
 ]
 </script>
 <template>
