@@ -4,7 +4,9 @@ from pydantic import ValidationError
 from concurrency_lab.core.config import Settings
 
 
-def test_required_passwords():
+def test_required_passwords(monkeypatch):
+    for name in ("MYSQL_PASSWORD", "REDIS_PASSWORD", "mysql_password", "redis_password"):
+        monkeypatch.delenv(name, raising=False)
     with pytest.raises(ValidationError):
         Settings(_env_file=None)
 

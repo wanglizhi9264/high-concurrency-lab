@@ -81,3 +81,9 @@ sequenceDiagram
 ```
 
 API lifespan and CLI each own one businessEngine/sessionmaker and Redis client; owned_session creates fresh guarded transactions. Inventory retainsRR; task writesRC/current locks; detailRR coherent snapshot. Handler never holds claimSession during delay. Redis loss is repaired from indexed DB due/cooldown scans; terminal failed history stays in DB. See ADR0006 and worker-lab guide for partial failure semantics and lease fencing. No in-process queue, HTTP process control or arbitrary handler.
+
+## 009 与完整交付
+
+独立 ScaleBase/Alembic scale001–003，在专属实验库比较同数据普通表/季度分区表。固定源检查点、有界批次/流式SHA、保存基线后才演进联合/覆盖候选索引；空写探针、DDL、统计空间与资源分开计时。HTTP只读取经过有界校验的记录，不执行实验。真实10k/1m证据见[009报告](../experiments/009-scale-comprehensive-lab/report.md)。
+
+最终模块树、ER、资源所有权、完整调用链、004–009结果和源码阅读见[最终系统说明](final-system.md)。新克隆验收使用全新项目/端口/卷/凭据，执行实际业务/压测/缓存/库存/worker/paid回执和全部检查，不复用开发预览或清空历史数据库。

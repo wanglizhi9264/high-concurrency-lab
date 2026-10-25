@@ -28,3 +28,13 @@ uv run python scripts/verify_scale_lab.py
 客户端查询ms含执行/取数与网络；EXPLAIN ANALYZE另一次执行带仪表开销。访问行数是访问算子输出×loops汇总，不是物理I/O，不能相加嵌套算子时间。串行SELECT/s不是并发HTTP RPS。空间/逐索引页为InnoDB分配估算，TABLE_ROWS不是精确COUNT。资源采样按自有runner/实验容器分别显示，CPU首次无基线为null，失败为未知；不是每条SQL资源归因。暖缓存仅指预热，无buffer pool清空或保证全表驻留。
 
 实际数值见[009报告](../experiments/009-scale-comprehensive-lab/report.md)；分表评估结合真实目标、访问路径、写入、空间与运维成本，不由行数直接决定。测试：`SCALE_INTEGRATION=1 uv run pytest tests/integration/test_scale.py`（PowerShell先设置`$env:SCALE_INTEGRATION='1'`）。CI仅小规模，重型实验使用手动workflow。
+
+## Navicat / DBeaver 逐项观察
+
+新建MySQL连接：host `127.0.0.1`、port `13306`、user `lab_exp`，密码使用本机ignored.env的`EXP_MYSQL_PASSWORD`，不要把密码贴到文档或提交。先测试连接，再选择`concurrency_lab_exp_009_1000000`；这与3306的业务库不同。1045先核对用户/密码/端口对应同一实例，不要为排错重置已有数据库。
+
+展开表→`scale_order`→列/约束/索引，对照`scale_order_partitioned`的相同PK和列；在分区页或DDL页查看`PARTITION BY RANGE COLUMNS(created_at)`与p1..p_future。已完成库处于covering阶段，历史baseline/composite结构从运行JSON的`statistics.show_create/indexes`查看，不删索引回放历史。
+
+从`/scale-lab`选择运行、阶段、表、SQL案例，复制**实际SQL和该次参数**到SQL编辑器；替换命名绑定参数为记录中的字面量后执行`EXPLAIN ANALYZE SELECT ...`，再执行`EXPLAIN FORMAT=JSON SELECT ...`。DBeaver可选择语句后点“解释执行计划”，Navicat点“解释”；树形/图形界面与原始TREE/JSON一起阅读。ANALYZE实际执行查询，会有资源开销，正式测量时不要同时操作。
+
+先观察用户投影的covering lookup，再观察OFFSET与keyset访问行数；时间范围看JSON partitions是否p3，id-only看是否所有分区。`Using index condition`不是覆盖索引。当前skip-scan通用解析汇总可能为未知，此时直接看原始TREE实际行数；JSON未给using_index不等于TREE没有覆盖访问。空间与TABLE_ROWS是统计估计，精确数量/SHA以实测校验为准。

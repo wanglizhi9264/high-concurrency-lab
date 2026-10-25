@@ -63,7 +63,7 @@ down 保留 MySQL volume，down -v 会删除数据。Redis 当前不承诺持久
 本项目通过 `specify init high-concurrency-lab --integration codex --script ps --non-interactive` 初始化。
 在 Codex 用 `$speckit-constitution`、`$speckit-specify`、`$speckit-clarify`（必要时）、`$speckit-plan`、`$speckit-tasks`、`$speckit-analyze`、`$speckit-implement`、`$speckit-converge`。这些是 Agent skills，不是 CLI 子命令。Linux 可执行同样的 uv/Compose 命令；官方工作流脚本为 PowerShell，需 pwsh，或新项目初始化时选择 --script sh。
 
-独立Feature顺序：004真实业务查询与Trace；005Locust压测；006Cache-Aside；007库存事务与幂等；008可靠异步任务；009大数据综合实验。每项先保存基线再优化。004生成数据查询和006商品副本保持独立，007使用新库存/订单表，Worker尚待008完成。
+独立Feature顺序：004真实业务查询与Trace；005Locust压测；006Cache-Aside；007库存事务与幂等；008可靠异步任务；009大数据综合实验。每项先保存基线再优化。004生成数据查询和006商品副本保持独立，007使用新库存/订单表，008独立worker以MySQL持久任务/outbox协调Redis运输。完整模块、调用链、ER与阶段结果见[最终系统说明](docs/architecture/final-system.md)。
 
 详细设计见 [架构](docs/architecture/overview.md)、[ADR](docs/architecture/decisions/0001-foundation.md)、[数据库](docs/database/design.md)、[开发指南](docs/guides/local-development.md)。实际执行结果见 [验收记录](specs/001-project-foundation/validation.md)。
 
@@ -107,4 +107,6 @@ npm run dev -- --host 127.0.0.1 --port 5173
 
 ## 009 大数据与完整验收
 
-/scale-lab只读展示独立分析实验的单列/联合/覆盖候选索引、深页、分区、写入/空间/资源证据；普通启动不生成百万/千万数据。[实验命令](docs/guides/scale-lab.md)、[独立Schema](docs/database/scale.md)、[干净克隆流程](docs/guides/clean-clone.md)、[源码阅读顺序](docs/guides/source-reading.md)。实际结果及完整最终交付在009报告/架构文档更新，未执行的验收不标通过。
+/scale-lab只读展示独立分析实验的单列/联合/覆盖候选索引、深页、分区、写入/空间/资源证据；普通启动不生成百万/千万数据。已保存真实10k与1m结果：百万普通表深页P50为433.140→147.355→138.449ms，已知游标154.347→4.494→4.694ms，随机定位游标开销另计；分区并非总是更快。详见[原始记录与报告](docs/experiments/009-scale-comprehensive-lab/report.md)。
+
+[实验命令](docs/guides/scale-lab.md)、[独立Schema](docs/database/scale.md)、[干净克隆流程](docs/guides/clean-clone.md)、[源码阅读顺序](docs/guides/source-reading.md)、[最终架构/ER/调用链](docs/architecture/final-system.md)。`uv run python scripts/verify_scale_lab.py`只读校验证据；`uv run python scripts/verify_end_to_end.py`实际新建独立克隆与服务，串行验证完整流程，保留现场且只停止自有资源。千万级为显式opt-in，本次不声称已执行。

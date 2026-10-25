@@ -62,8 +62,12 @@ def test_nested_measured_spans_and_error_redaction():
     assert "private-secret" not in observation.snapshot().model_dump_json()
 
 
-def test_disabled_business_mode_preserves_health_and_correlation():
-    config = Settings(_env_file=None, mysql_password="test", redis_password="test")
+def test_disabled_business_mode_preserves_health_and_correlation(monkeypatch):
+    monkeypatch.setenv("BUSINESS_ENABLED", "true")
+    config = Settings(
+        _env_file=None, mysql_password="test", redis_password="test", business_enabled=False
+    )
+    assert config.business_enabled is False
     with TestClient(create_app(config)) as api:
         response = api.get("/api/v1/business/products/1")
         assert response.status_code == 503
