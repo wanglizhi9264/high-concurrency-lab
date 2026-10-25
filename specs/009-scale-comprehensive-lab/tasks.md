@@ -36,7 +36,7 @@ Independenttest: trulynewclone/project/ports/volumes runsactualfulljourneyandgat
 ## Phase 7 Review and publication
 - [x] T018 Runlocalrelatedquality/allrealintegration/frontend/evidencechecks,reviewcorrectness/resources/security/meaningfulassertions;fixandretestfindings andrecord specs/009-scale-comprehensive-lab/validation.md.
 - [x] T019 Convergecurrentimplementationagainst9FR/5SC/allstories/plan/constitution;appendonlyremainingtasksifgaps,implement/retestthenrecordcleanassessmentin specs/009-scale-comprehensive-lab/converge.md.
-- [ ] T020 Publish/attachindependent009PR,verifyactualprotectedCI,mergeandupdatemain;recordpublicationandfinal004–009handoff in docs/architecture/final-system.md.
+- [x] T020 Publish/attachindependent009PR,verifyactualprotectedCI,mergeandupdatemain;recordpublicationandfinal004–009handoff in docs/architecture/final-system.md.
 
 ## Dependencies / parallel opportunities / strategy
 T001→T002→T003→T004→T005→T006→T007→T008→T009;typedrecords thenT010→T011→T012;T013/014followfixedcontracts;T015aftercleancheckpoint/stablegates,neverparalleltests/build/sourceedits;T016afterallsourcefrozen;T017–020closeevidence/docs/review/publication. Planresearchagentsread-only,implementationnotdelegated. Independent pure/APItests andfrontendchecks mayrunconcurrentlyafterchangesstabilize. MVPUS1safe1000smoke,thencompleteUS2/US3/US4beforepublication.

@@ -94,3 +94,7 @@
 [实际 journey](end-to-end/e2e-20261025T153607-971e7371/journey.json)：新业务库订单 26、任务 `be4ecb07-d6ef-4347-8317-b3a5f8a7ccc6`、回执 4；库存审计通过。步骤涉及真实 MySQL/Redis 和独立 worker，未用预设成功响应。旧002三规模的精确数量/数据摘要/表 CHECKSUM 前后相同；旧项目容器/镜像/卷/端口身份和运行状态前后相同。新项目三容器结束均为 stopped，卷与克隆保留，没有 down-v 或清库。
 
 两次失败也保留：第一次完成业务链路后发现两个单元测试依赖外部环境；第二次在 Windows Git 检出深目录时失败，未启动新服务。修复后用第三个全新克隆运行上述完整验收，不复用失败数据凑通过。
+
+## PR 与实际 CI
+
+[PR11](https://github.com/wanglizhi9264/high-concurrency-lab/pull/11) 已于 2026-10-25 15:56:04 UTC 合并为 `92ea38dc25274905d379814de914bb785dcfd6d2`，本地 main 已同步。[PR运行40209014518](https://github.com/wanglizhi9264/high-concurrency-lab/actions/runs/40209014518) 与 [分支运行40208998725](https://github.com/wanglizhi9264/high-concurrency-lab/actions/runs/40208998725) 的 quality/integration/frontend 六项实际全部通过，才执行匹配已审查 head 的 squash merge。全范围004–009已各自依次完成独立SDD/审查/Converge/保护PR。最终交付状态在单独文档分支补记，不直接修改main，也不改写任何测量JSON/CSV。
