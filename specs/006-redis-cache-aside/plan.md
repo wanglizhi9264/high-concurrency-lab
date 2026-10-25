@@ -18,7 +18,7 @@ Lookup reads generation/value together. Validated cached entry must match genera
 TTL jitter reduces synchronizedexpiry but cannot prevent avalanche, penetration or fallback overload. Product writes outside006; cache remains eventually consistent withinTTL and explicitinvalidation semantics, not strongconsistency. Nil lookup is only observedmiss; expiry is demonstrated by waiting beyond an actualPTTL snapshot, not fabricated keyspaceevent.
 
 ## Project Structure and responsibilities
-- schemas/cache.py: CacheEntry, CacheObservation, CacheResponse, bounded read parameters; preserve BusinessTrace model.
+- schemas/observations.py shares timestamp validation used by benchmarks and cache; schemas/cache.py: CacheEntry, CacheObservation, CacheResponse, bounded read parameters; preserve BusinessTrace model.
 - cache/products.py: fixed key construction, bounded instrumented Redis operations and atomic Lua scripts; no SQL/HTTP.
 - services/product_cache.py: Cache-Aside/coordination/fallback workflow, delegates guardedSQL to BusinessService; independent request observation.
 - api/routes/product_cache.py: typed read/state/invalidate endpoints under existing business middleware/error envelope.

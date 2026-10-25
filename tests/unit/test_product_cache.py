@@ -100,7 +100,8 @@ async def test_failed_publication_does_not_repeat_mysql_read():
         ("http://127.0.0.1:18002", 21),
     ],
 )
-async def test_recording_script_rejects_unsafe_target_before_output(tmp_path, url, concurrency):
+def test_recording_script_rejects_unsafe_target_before_output(tmp_path, url, concurrency):
+    import asyncio
     import importlib.util
     from pathlib import Path
 
@@ -112,5 +113,5 @@ async def test_recording_script_rejects_unsafe_target_before_output(tmp_path, ur
     runner = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(runner)
     with pytest.raises(ValueError, match="loopback"):
-        await runner.record_experiment(url, tmp_path, concurrency)
+        asyncio.run(runner.record_experiment(url, tmp_path, concurrency))
     assert list(tmp_path.iterdir()) == []

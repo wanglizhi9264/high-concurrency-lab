@@ -1,0 +1,3596 @@
+{
+  "schema_version": 1,
+  "evidence": "recorded",
+  "complete": true,
+  "id": "cache-20261025T050337-76199f7c",
+  "started_at": "2026-10-25T05:03:37.670432+00:00",
+  "ended_at": "2026-10-25T05:03:40.063005+00:00",
+  "duration_s": 2.3928057000157423,
+  "concurrency": 6,
+  "local_sources": {
+    "revision": "01efe1aa1290b4e751621e734f4046bc211963b6",
+    "workload_sources_dirty": false,
+    "workload_sha256": "07abe419123c2950b5760e5c149efc8f6aa509e01b7738e82179ad055698a894"
+  },
+  "observations": [
+    {
+      "label": "bypass",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1?mode=bypass",
+      "observed_at": "2026-10-25T05:03:38.155555+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.213990+00:00",
+          "outcome": "bypass",
+          "initial_lookup": "skipped",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": null,
+          "redis_available": null,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "b21f1f24fe6f407a9aa3f86e323b1fa2",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.161333+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 57.5665999785997,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 38.073499978054315,
+              "duration_ms": 14.665400027297437,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 38.10389997670427,
+              "duration_ms": 14.600199996493757,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 38.160900003276765,
+              "duration_ms": 14.512099965941161,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 38.38869999162853,
+              "duration_ms": 4.4445000239647925,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 42.93589998269454,
+              "duration_ms": 1.9355000113137066,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 44.89660001127049,
+              "duration_ms": 4.371899995021522,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 46.013500017579645,
+              "duration_ms": 3.215599979739636,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 38.151899992953986,
+          "pool_after_offset_ms": 52.69490001956001,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "57.745",
+      "client_rtt_ms": 69.93599998531863
+    },
+    {
+      "label": "bypass",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1?mode=bypass",
+      "observed_at": "2026-10-25T05:03:38.225696+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.241176+00:00",
+          "outcome": "bypass",
+          "initial_lookup": "skipped",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": null,
+          "redis_available": null,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "c348514e26b540348b216e97330bb6c9",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.231375+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 14.898699999321252,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.6621000356972218,
+              "duration_ms": 8.903499983716756,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 0.686999992467463,
+              "duration_ms": 8.858400047756732,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 0.7174999918788671,
+              "duration_ms": 8.794400026090443,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.8513000211678445,
+              "duration_ms": 1.8078999710269272,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 2.7606000076048076,
+              "duration_ms": 1.9766000332310796,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 4.763500008266419,
+              "duration_ms": 2.212700026575476,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 5.231400020420551,
+              "duration_ms": 1.728900009766221,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.7107999990694225,
+          "pool_after_offset_ms": 9.534600016195327,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "15.077",
+      "client_rtt_ms": 27.56069996394217
+    },
+    {
+      "label": "bypass",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1?mode=bypass",
+      "observed_at": "2026-10-25T05:03:38.253103+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.269482+00:00",
+          "outcome": "bypass",
+          "initial_lookup": "skipped",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": null,
+          "redis_available": null,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "956cf0e0a26348a2a9c53d299541edfa",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.259117+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 14.751999988220632,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.0035999584943056,
+              "duration_ms": 9.55930002965033,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.0299999848939478,
+              "duration_ms": 9.515299985650927,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 1.07999995816499,
+              "duration_ms": 9.440599998924881,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 1.208100002259016,
+              "duration_ms": 1.803999999538064,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 3.090999962296337,
+              "duration_ms": 1.8877999973483384,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 5.002699967008084,
+              "duration_ms": 2.6686000055633485,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 5.425999988801777,
+              "duration_ms": 2.229199977591634,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 1.05489999987185,
+          "pool_after_offset_ms": 10.538199974689633,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "14.892",
+      "client_rtt_ms": 27.601199981290847
+    },
+    {
+      "label": "bypass",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1?mode=bypass",
+      "observed_at": "2026-10-25T05:03:38.280970+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.296587+00:00",
+          "outcome": "bypass",
+          "initial_lookup": "skipped",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": null,
+          "redis_available": null,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "49009c5b418e40fcb7b4fb61572fab2b",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.285978+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 14.588500023819506,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.6127000087872148,
+              "duration_ms": 9.714099986013025,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 0.6381000275723636,
+              "duration_ms": 9.669999999459833,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 0.666900014039129,
+              "duration_ms": 9.61559999268502,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.7827000226825476,
+              "duration_ms": 1.7062000115402043,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 2.565000031609088,
+              "duration_ms": 1.8192999996244907,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 4.408600041642785,
+              "duration_ms": 2.892899967264384,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 4.82280005235225,
+              "duration_ms": 2.451699983794242,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.6600000197067857,
+          "pool_after_offset_ms": 10.301200032699853,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "14.780",
+      "client_rtt_ms": 27.12939999764785
+    },
+    {
+      "label": "bypass",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1?mode=bypass",
+      "observed_at": "2026-10-25T05:03:38.307579+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.323627+00:00",
+          "outcome": "bypass",
+          "initial_lookup": "skipped",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": null,
+          "redis_available": null,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "52bd468f97804b3ead1f9eb0041227d8",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.313586+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 14.078999985940754,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.6261999951675534,
+              "duration_ms": 8.996799995657057,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 0.6510000093840063,
+              "duration_ms": 8.953599957749248,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 0.6812000065110624,
+              "duration_ms": 8.899500011466444,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-2",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 0.7989999721758068,
+              "duration_ms": 1.7739000031724572,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-2",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 2.6499999803490937,
+              "duration_ms": 1.8980000168085098,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-2",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 4.572000005282462,
+              "duration_ms": 2.2687999880872667,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 4.988399974536151,
+              "duration_ms": 1.8363000126555562,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 0.6736000068485737,
+          "pool_after_offset_ms": 9.598099975846708,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "14.228",
+      "client_rtt_ms": 27.232900029048324
+    },
+    {
+      "label": "invalidate_before_cold",
+      "method": "DELETE",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:38.335455+00:00",
+      "status": 200,
+      "body": {
+        "data": null,
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.349290+00:00",
+          "outcome": "invalidated",
+          "initial_lookup": "skipped",
+          "served_from": null,
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "58ed709fae2f473dae98c80ea63da250",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.341478+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 12.91950000450015,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP DELETE selected product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.4964000438340008,
+              "duration_ms": 6.311299977824092,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "EVAL advance generation and invalidate value/lease",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.5117000439204276,
+              "duration_ms": 6.2478999607265,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+                "key_3": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "13.035",
+      "client_rtt_ms": 25.926000031176955
+    },
+    {
+      "label": "cold",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1?ttl_seconds=1",
+      "observed_at": "2026-10-25T05:03:38.360863+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.385423+00:00",
+          "outcome": "miss",
+          "initial_lookup": "miss",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": true,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "2b87e19cf1dc454ebaa271ef6553b28a",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.366872+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 22.869699983857572,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.3924000086262822,
+              "duration_ms": 17.174299980979413,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.4202999882400036,
+              "duration_ms": 17.12570001836866,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.4291999978013337,
+              "duration_ms": 1.6058000037446618,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "EVAL acquire token lease and generation",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 3.0940999859012663,
+              "duration_ms": 1.3268000329844654,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 4.44039999274537,
+              "duration_ms": 1.3365999911911786,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 5.835700023453683,
+              "duration_ms": 9.563300001900643,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.969499994534999,
+              "duration_ms": 1.471600029617548,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 7.516000012401491,
+              "duration_ms": 1.8701999797485769,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-5",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 9.411500010173768,
+              "duration_ms": 3.1024999916553497,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-9",
+              "parent_id": "span-8",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 10.021199996117502,
+              "duration_ms": 2.4763999972492456,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-10",
+              "parent_id": "span-1",
+              "name": "EVAL publish only current generation and lease owner",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 15.461799979675561,
+              "duration_ms": 1.627200050279498,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_3": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-11",
+              "parent_id": "span-1",
+              "name": "Cache fill accepted",
+              "kind": "cache_fence",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 17.106099985539913,
+              "duration_ms": 0.033100019209086895,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "published": true,
+                "generation": 5
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-12",
+              "parent_id": "span-1",
+              "name": "EVAL release only matching token",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 17.172700027003884,
+              "duration_ms": 1.3634999631904066,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 5.8188000111840665,
+          "pool_after_offset_ms": 15.416399983223528,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "23.035",
+      "client_rtt_ms": 35.627600038424134
+    },
+    {
+      "label": "hot",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:38.396253+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.405786+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "8807cb5e1ce348e98028a4a88f2d82cc",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.403250+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 7.092799991369247,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.5913999630138278,
+              "duration_ms": 1.9904000218957663,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 0.615999975707382,
+              "duration_ms": 1.9480999908410013,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 0.6237999768927693,
+              "duration_ms": 1.7754000145941973,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "7.255",
+      "client_rtt_ms": 20.731099997647107
+    },
+    {
+      "label": "hot",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:38.417497+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.426502+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "6b5e35df5c35419994c32e13d0ff638e",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.422501+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 7.496500038541853,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.2833000509999692,
+              "duration_ms": 1.886199985165149,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.3080000062473118,
+              "duration_ms": 1.8272000015713274,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.3153000036254525,
+              "duration_ms": 1.7025000415742397,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "7.631",
+      "client_rtt_ms": 19.608500006143004
+    },
+    {
+      "label": "hot",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:38.436970+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.445681+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "d49269db97544c478d1ffee4ef19f107",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.442524+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 7.104899967089295,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.0163999977521598,
+              "duration_ms": 1.8242999794892967,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.0635999497026205,
+              "duration_ms": 1.7588000046089292,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.0781000019051135,
+              "duration_ms": 1.6904999502003193,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "7.236",
+      "client_rtt_ms": 19.13970004534349
+    },
+    {
+      "label": "hot",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:38.456555+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.464361+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "581283ac95d142a68cff3361b05a9a92",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.462156+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 6.773200002498925,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.7820000173524022,
+              "duration_ms": 1.5844000154174864,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 0.818600005004555,
+              "duration_ms": 1.5326000284403563,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 0.8323999936692417,
+              "duration_ms": 1.4715000288560987,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "6.902",
+      "client_rtt_ms": 18.846400023903698
+    },
+    {
+      "label": "hot",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:38.475328+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.484319+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "a182e415315144c0ae2348f08da64821",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.480878+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 7.330499996896833,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.193300005979836,
+              "duration_ms": 1.7718999879434705,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.214299991261214,
+              "duration_ms": 1.7309000249952078,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.2215999886393547,
+              "duration_ms": 1.666500000283122,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "7.467",
+      "client_rtt_ms": 20.29230003245175
+    },
+    {
+      "label": "inspection_before_wait",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1/state",
+      "observed_at": "2026-10-25T05:03:38.495716+00:00",
+      "status": 200,
+      "body": {
+        "data": null,
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.504697+00:00",
+          "outcome": "inspected",
+          "initial_lookup": "skipped",
+          "served_from": null,
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": 934,
+          "memory_bytes": 264,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "2d65871488344c138c9726537db3c3a8",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:38.500723+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 9.275499964132905,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET cache state",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.4399000210687518,
+              "duration_ms": 2.388699969742447,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "EVAL inspect generation/PTTL/MEMORY USAGE",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.4574999804608524,
+              "duration_ms": 2.322999993339181,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "9.433",
+      "client_rtt_ms": 21.51600003708154
+    },
+    {
+      "label": "inspection_after_wait",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1/state",
+      "observed_at": "2026-10-25T05:03:39.557500+00:00",
+      "status": 200,
+      "body": {
+        "data": null,
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.566745+00:00",
+          "outcome": "inspected",
+          "initial_lookup": "skipped",
+          "served_from": null,
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": -2,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "7f57dcaaeeb2449fa17ff077ca5b9883",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.563518+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 7.582399994134903,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET cache state",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.5513000069186091,
+              "duration_ms": 2.5114999734796584,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "EVAL inspect generation/PTTL/MEMORY USAGE",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 0.5682000191882253,
+              "duration_ms": 2.46529997093603,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "7.711",
+      "client_rtt_ms": 22.16009999392554
+    },
+    {
+      "label": "read_after_ttl_wait",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.579428+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.602378+00:00",
+          "outcome": "miss",
+          "initial_lookup": "miss",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 5,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": true,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "355f39cefea74a539c47ce1f251d8cfe",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.585435+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 21.383600018452853,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.6213000160641968,
+              "duration_ms": 16.35390002047643,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 0.6424000021070242,
+              "duration_ms": 16.310099977999926,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 0.6493999972008169,
+              "duration_ms": 1.744000008329749,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "EVAL acquire token lease and generation",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 2.430099993944168,
+              "duration_ms": 1.546100014820695,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 3.9973999955691397,
+              "duration_ms": 1.137399987783283,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 5.190800002310425,
+              "duration_ms": 8.902000030502677,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.327099992427975,
+              "duration_ms": 1.3084000092931092,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 6.718299991916865,
+              "duration_ms": 2.057800011243671,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-5",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 8.805799996480346,
+              "duration_ms": 2.5587999843992293,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-9",
+              "parent_id": "span-8",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 9.253300027921796,
+              "duration_ms": 2.084999985527247,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-10",
+              "parent_id": "span-1",
+              "name": "EVAL publish only current generation and lease owner",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 14.15820000693202,
+              "duration_ms": 1.3614000054076314,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_3": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-11",
+              "parent_id": "span-1",
+              "name": "Cache fill accepted",
+              "kind": "cache_fence",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 15.532899997197092,
+              "duration_ms": 0.024900014977902174,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "published": true,
+                "generation": 5
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-12",
+              "parent_id": "span-1",
+              "name": "EVAL release only matching token",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 15.566600020974874,
+              "duration_ms": 1.3756999978795648,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 5.1753000007011,
+          "pool_after_offset_ms": 14.111900003626943,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "21.542",
+      "client_rtt_ms": 34.37429998302832
+    },
+    {
+      "label": "active_invalidation",
+      "method": "DELETE",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.613313+00:00",
+      "status": 200,
+      "body": {
+        "data": null,
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.622303+00:00",
+          "outcome": "invalidated",
+          "initial_lookup": "skipped",
+          "served_from": null,
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 6,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "71c056f80c574858ab8734acc17f2c9c",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.619323+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 7.296499970834702,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP DELETE selected product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.589100003708154,
+              "duration_ms": 1.8746000132523477,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "EVAL advance generation and invalidate value/lease",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 0.6049000076018274,
+              "duration_ms": 1.8309999722987413,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+                "key_3": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "7.417",
+      "client_rtt_ms": 19.826399977318943
+    },
+    {
+      "label": "read_after_invalidation",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.633632+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.656562+00:00",
+          "outcome": "miss",
+          "initial_lookup": "miss",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 6,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": true,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "23ed37d2ddc54224a977a42314dba425",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.639014+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 21.794800006318837,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 0.8489000028930604,
+              "duration_ms": 16.362299968022853,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 0.873600016348064,
+              "duration_ms": 16.319099988322705,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 0.880700012203306,
+              "duration_ms": 1.5869999770075083,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "EVAL acquire token lease and generation",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 2.4970999802462757,
+              "duration_ms": 1.4232000103220344,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 3.9393000188283622,
+              "duration_ms": 1.5864999732002616,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 5.591799970716238,
+              "duration_ms": 9.035199997015297,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 5.729499971494079,
+              "duration_ms": 1.5536000137217343,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 7.37389997811988,
+              "duration_ms": 1.7069000168703496,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-5",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 9.104600001592189,
+              "duration_ms": 2.5103999651037157,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-9",
+              "parent_id": "span-8",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 9.515999990981072,
+              "duration_ms": 2.076399978250265,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-10",
+              "parent_id": "span-1",
+              "name": "EVAL publish only current generation and lease owner",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 14.703199965879321,
+              "duration_ms": 1.4785000239498913,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_3": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-11",
+              "parent_id": "span-1",
+              "name": "Cache fill accepted",
+              "kind": "cache_fence",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 16.194599971640855,
+              "duration_ms": 0.022299995180219412,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "published": true,
+                "generation": 6
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-12",
+              "parent_id": "span-1",
+              "name": "EVAL release only matching token",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 16.223200014792383,
+              "duration_ms": 0.9615999879315495,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 5.5722999968566,
+          "pool_after_offset_ms": 14.650299970526248,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "21.949",
+      "client_rtt_ms": 35.93489999184385
+    },
+    {
+      "label": "invalidate_before_concurrency",
+      "method": "DELETE",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.669248+00:00",
+      "status": 200,
+      "body": {
+        "data": null,
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.680059+00:00",
+          "outcome": "invalidated",
+          "initial_lookup": "skipped",
+          "served_from": null,
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 7,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "f0978490a31f40cc84088245c5f55502",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.677248+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 8.528900041710585,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP DELETE selected product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.0094000026583672,
+              "duration_ms": 1.8588000093586743,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "EVAL advance generation and invalidate value/lease",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.0316000552847981,
+              "duration_ms": 1.8000999698415399,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+                "key_3": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "8.675",
+      "client_rtt_ms": 25.55170003324747
+    },
+    {
+      "label": "concurrent_cold",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.695363+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.768859+00:00",
+          "outcome": "miss",
+          "initial_lookup": "miss",
+          "served_from": "mysql",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 7,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": true,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "a9c2b3a9f8294355b7d4f1caa4e0837b",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.749087+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 25.84800001932308,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.0636000079102814,
+              "duration_ms": 18.226000014692545,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.1220999876968563,
+              "duration_ms": 18.14230001764372,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.1433999752625823,
+              "duration_ms": 2.1744000259786844,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-3",
+              "parent_id": "span-1",
+              "name": "EVAL acquire token lease and generation",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 3.355699998792261,
+              "duration_ms": 1.5392000204883516,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-4",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 4.91889996919781,
+              "duration_ms": 1.5442000003531575,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-5",
+              "parent_id": "span-1",
+              "name": "BusinessService.product",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/business_service.py",
+              "start_ms": 6.543900002725422,
+              "duration_ms": 9.465600014664233,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-6",
+              "parent_id": "span-5",
+              "name": "Acquire business connection",
+              "kind": "acquire",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 6.723899976350367,
+              "duration_ms": 1.8272000015713274,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-7",
+              "parent_id": "span-5",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/db/business.py",
+              "start_ms": 8.64810001803562,
+              "duration_ms": 2.1539999870583415,
+              "state": "success",
+              "sql": "SELECT DATABASE() AS database_name, purpose, (SELECT status FROM experiment_dataset WHERE id=1) AS dataset_status FROM experiment_ownership WHERE id=1",
+              "parameters": {},
+              "result_count": 1
+            },
+            {
+              "id": "span-8",
+              "parent_id": "span-5",
+              "name": "ProductRepository.get_product_by_id",
+              "kind": "repository",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 10.825600009411573,
+              "duration_ms": 2.3564999573864043,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-9",
+              "parent_id": "span-8",
+              "name": "Execute and fetch fixed SQL",
+              "kind": "sql_execute_fetch",
+              "source": "src/concurrency_lab/repositories/product_repository.py",
+              "start_ms": 11.232400021981448,
+              "duration_ms": 1.9326999899931252,
+              "state": "success",
+              "sql": "SELECT lab_product.id, lab_product.sku, lab_product.name, lab_product.price \nFROM lab_product \nWHERE lab_product.id = %s",
+              "parameters": {
+                "id_1": 1
+              },
+              "result_count": 1
+            },
+            {
+              "id": "span-10",
+              "parent_id": "span-1",
+              "name": "EVAL publish only current generation and lease owner",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 16.08600001782179,
+              "duration_ms": 1.4532000059261918,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_3": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-11",
+              "parent_id": "span-1",
+              "name": "Cache fill accepted",
+              "kind": "cache_fence",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 17.551900004036725,
+              "duration_ms": 0.024900014977902174,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "published": true,
+                "generation": 7
+              },
+              "result_count": null
+            },
+            {
+              "id": "span-12",
+              "parent_id": "span-1",
+              "name": "EVAL release only matching token",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 17.584300017915666,
+              "duration_ms": 1.6672999481670558,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:lease"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_after": {
+            "configured_size": 5,
+            "checked_out": 0,
+            "overflow": 0
+          },
+          "pool_before_offset_ms": 6.519199989270419,
+          "pool_after_offset_ms": 16.033499967306852,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "26.054",
+      "client_rtt_ms": 104.74239999894053
+    },
+    {
+      "label": "concurrent_cold",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.703368+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.807203+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 7,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "4c7ccc511f894b53a9a461cbd51e7893",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.804252+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 9.935799986124039,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.1821999796666205,
+              "duration_ms": 1.9068000256083906,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.224599953275174,
+              "duration_ms": 1.840400043874979,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.2385000009089708,
+              "duration_ms": 1.752799958921969,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "10.085",
+      "client_rtt_ms": 121.22080003609881
+    },
+    {
+      "label": "concurrent_cold",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.711368+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.819789+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 7,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "82ba81908c5e41c5932c8a2214bf10f6",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.815293+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 9.82760003535077,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.0590000310912728,
+              "duration_ms": 3.3081999863497913,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.0856000008061528,
+              "duration_ms": 3.262300044298172,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.0925999958999455,
+              "duration_ms": 3.201700048521161,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "10.009",
+      "client_rtt_ms": 125.04999997327104
+    },
+    {
+      "label": "concurrent_cold",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.735093+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.829195+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 7,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "d222c4c0c33c4c1fa5157eb1a971a7cd",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.819249+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 17.12709997082129,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 8.077199978288263,
+              "duration_ms": 2.0098999957554042,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 8.107099973130971,
+              "duration_ms": 1.9564999965950847,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 8.116799988783896,
+              "duration_ms": 1.8794999923557043,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "17.256",
+      "client_rtt_ms": 110.2369999862276
+    },
+    {
+      "label": "concurrent_cold",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.717880+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.839500+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 7,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "9f25ceff3e1d42e18550cd6be19b548a",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.815832+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 29.526399972382933,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 1.3666999875567853,
+              "duration_ms": 22.249499976169318,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 1.3865999644622207,
+              "duration_ms": 22.211300034541637,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 1.393200014717877,
+              "duration_ms": 22.14249997632578,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "29.661",
+      "client_rtt_ms": 135.83589997142553
+    },
+    {
+      "label": "concurrent_cold",
+      "method": "GET",
+      "path": "/api/v1/business/cache/products/1",
+      "observed_at": "2026-10-25T05:03:39.725882+00:00",
+      "status": 200,
+      "body": {
+        "data": {
+          "id": 1,
+          "sku": "SKU0001",
+          "name": "Product 1",
+          "price": "1.17"
+        },
+        "error": null,
+        "cache": {
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.849092+00:00",
+          "outcome": "hit",
+          "initial_lookup": "hit",
+          "served_from": "redis",
+          "key": "hcl:cache:v1:{concurrency_lab_business}:product:1:value",
+          "generation": 7,
+          "redis_available": true,
+          "ttl_ms": null,
+          "memory_bytes": null,
+          "fill_published": null,
+          "reason": null,
+          "source": "src/concurrency_lab/services/product_cache.py"
+        },
+        "trace": {
+          "request_id": "695160f8dbac4c29ae99f1dc6496d9f1",
+          "evidence": "measured",
+          "observed_at": "2026-10-25T05:03:39.818699+00:00",
+          "unit": "ms",
+          "environment": {
+            "python": "3.12.14",
+            "sqlalchemy": "2.1.6",
+            "scope": "single application process; configured business database"
+          },
+          "service_elapsed_ms": 36.3319999887608,
+          "database": "concurrency_lab_business",
+          "spans": [
+            {
+              "id": "span-0",
+              "parent_id": null,
+              "name": "HTTP GET product cache",
+              "kind": "router",
+              "source": "src/concurrency_lab/api/routes/product_cache.py",
+              "start_ms": 9.029200009535998,
+              "duration_ms": 21.347600035369396,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-1",
+              "parent_id": "span-0",
+              "name": "Product Cache-Aside",
+              "kind": "service",
+              "source": "src/concurrency_lab/services/product_cache.py",
+              "start_ms": 9.06300003407523,
+              "duration_ms": 21.29519998561591,
+              "state": "success",
+              "sql": null,
+              "parameters": {},
+              "result_count": null
+            },
+            {
+              "id": "span-2",
+              "parent_id": "span-1",
+              "name": "MGET generation/value",
+              "kind": "redis_command",
+              "source": "src/concurrency_lab/cache/products.py",
+              "start_ms": 9.07490000827238,
+              "duration_ms": 21.20200003264472,
+              "state": "success",
+              "sql": null,
+              "parameters": {
+                "key_1": "hcl:cache:v1:{concurrency_lab_business}:product:1:generation",
+                "key_2": "hcl:cache:v1:{concurrency_lab_business}:product:1:value"
+              },
+              "result_count": null
+            }
+          ],
+          "pool_before": {},
+          "pool_after": {},
+          "pool_before_offset_ms": null,
+          "pool_after_offset_ms": null,
+          "definitions": {
+            "service_elapsed_ms": "Request start to snapshot before serialization; ms.",
+            "acquire": "Queue/connect/pre-ping included; not pure queue time; ms.",
+            "sql_execute_fetch": "Client execute/fetch includes driver/network/server; ms.",
+            "pool": "Instantaneous per-process gauges; no queue-length measurement.",
+            "nested": "Parent spans include children; do not sum overlapping intervals.",
+            "http_header": "Through response-start preparation; excludes delivery/network; ms.",
+            "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+            "redis_command": "Client Redis command/script round trip, including network; ms.",
+            "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+            "cache_fence": "Observed atomic generation/token publication decision."
+          }
+        }
+      },
+      "process_preparation_ms": "36.458",
+      "client_rtt_ms": 135.90909994672984
+    }
+  ],
+  "groups": {
+    "active_invalidation": {
+      "responses": 1,
+      "initial_hits": 0,
+      "initial_misses": 0,
+      "hit_rate": null,
+      "sql_attempts": 0,
+      "product_sql_attempts": 0,
+      "p50_client_ms": 19.826399977318943,
+      "p95_client_ms": 19.826399977318943,
+      "p99_client_ms": 19.826399977318943
+    },
+    "bypass": {
+      "responses": 5,
+      "initial_hits": 0,
+      "initial_misses": 0,
+      "hit_rate": null,
+      "sql_attempts": 10,
+      "product_sql_attempts": 5,
+      "p50_client_ms": 27.56069996394217,
+      "p95_client_ms": 61.46903998451307,
+      "p99_client_ms": 68.24260798515752
+    },
+    "cold": {
+      "responses": 1,
+      "initial_hits": 0,
+      "initial_misses": 1,
+      "hit_rate": 0.0,
+      "sql_attempts": 2,
+      "product_sql_attempts": 1,
+      "p50_client_ms": 35.627600038424134,
+      "p95_client_ms": 35.627600038424134,
+      "p99_client_ms": 35.627600038424134
+    },
+    "concurrent_cold": {
+      "responses": 6,
+      "initial_hits": 5,
+      "initial_misses": 1,
+      "hit_rate": 0.8333333333333334,
+      "sql_attempts": 2,
+      "product_sql_attempts": 1,
+      "p50_client_ms": 123.13540000468493,
+      "p95_client_ms": 135.89079995290376,
+      "p99_client_ms": 135.90543994796462
+    },
+    "hot": {
+      "responses": 5,
+      "initial_hits": 5,
+      "initial_misses": 0,
+      "hit_rate": 1.0,
+      "sql_attempts": 0,
+      "product_sql_attempts": 0,
+      "p50_client_ms": 19.608500006143004,
+      "p95_client_ms": 20.643340004608035,
+      "p99_client_ms": 20.713547999039292
+    },
+    "inspection_after_wait": {
+      "responses": 1,
+      "initial_hits": 0,
+      "initial_misses": 0,
+      "hit_rate": null,
+      "sql_attempts": 0,
+      "product_sql_attempts": 0,
+      "p50_client_ms": 22.16009999392554,
+      "p95_client_ms": 22.16009999392554,
+      "p99_client_ms": 22.16009999392554
+    },
+    "inspection_before_wait": {
+      "responses": 1,
+      "initial_hits": 0,
+      "initial_misses": 0,
+      "hit_rate": null,
+      "sql_attempts": 0,
+      "product_sql_attempts": 0,
+      "p50_client_ms": 21.51600003708154,
+      "p95_client_ms": 21.51600003708154,
+      "p99_client_ms": 21.51600003708154
+    },
+    "invalidate_before_cold": {
+      "responses": 1,
+      "initial_hits": 0,
+      "initial_misses": 0,
+      "hit_rate": null,
+      "sql_attempts": 0,
+      "product_sql_attempts": 0,
+      "p50_client_ms": 25.926000031176955,
+      "p95_client_ms": 25.926000031176955,
+      "p99_client_ms": 25.926000031176955
+    },
+    "invalidate_before_concurrency": {
+      "responses": 1,
+      "initial_hits": 0,
+      "initial_misses": 0,
+      "hit_rate": null,
+      "sql_attempts": 0,
+      "product_sql_attempts": 0,
+      "p50_client_ms": 25.55170003324747,
+      "p95_client_ms": 25.55170003324747,
+      "p99_client_ms": 25.55170003324747
+    },
+    "read_after_invalidation": {
+      "responses": 1,
+      "initial_hits": 0,
+      "initial_misses": 1,
+      "hit_rate": 0.0,
+      "sql_attempts": 2,
+      "product_sql_attempts": 1,
+      "p50_client_ms": 35.93489999184385,
+      "p95_client_ms": 35.93489999184385,
+      "p99_client_ms": 35.93489999184385
+    },
+    "read_after_ttl_wait": {
+      "responses": 1,
+      "initial_hits": 0,
+      "initial_misses": 1,
+      "hit_rate": 0.0,
+      "sql_attempts": 2,
+      "product_sql_attempts": 1,
+      "p50_client_ms": 34.37429998302832,
+      "p95_client_ms": 34.37429998302832,
+      "p99_client_ms": 34.37429998302832
+    }
+  },
+  "monitor_before": {
+    "evidence": "measured",
+    "observed_at": "2026-10-25T05:03:38.148019+00:00",
+    "collection_ms": 22.92359998682514,
+    "status": "ok",
+    "database": "concurrency_lab_business",
+    "pool": {
+      "configured_size": 5,
+      "checked_out": 0,
+      "overflow": 0
+    },
+    "configuration": {
+      "pool_size": 5,
+      "max_overflow": 5,
+      "pool_timeout_seconds": 1.0,
+      "request_timeout_seconds": 5.0
+    },
+    "dataset": {
+      "purpose": "business-lab-v1",
+      "order_count": 10000,
+      "seed": 20261023,
+      "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+      "status": "ready"
+    },
+    "mysql_version": "8.4.13",
+    "mysql_status": {
+      "Com_select": 35408,
+      "Queries": 78549,
+      "Questions": 71036,
+      "Threads_connected": 1,
+      "Threads_running": 2,
+      "Uptime": 49096
+    },
+    "error_code": null
+  },
+  "monitor_after": {
+    "evidence": "measured",
+    "observed_at": "2026-10-25T05:03:39.874432+00:00",
+    "collection_ms": 6.383200001437217,
+    "status": "ok",
+    "database": "concurrency_lab_business",
+    "pool": {
+      "configured_size": 5,
+      "checked_out": 0,
+      "overflow": 0
+    },
+    "configuration": {
+      "pool_size": 5,
+      "max_overflow": 5,
+      "pool_timeout_seconds": 1.0,
+      "request_timeout_seconds": 5.0
+    },
+    "dataset": {
+      "purpose": "business-lab-v1",
+      "order_count": 10000,
+      "seed": 20261023,
+      "digest": "5f1717c0f85ab7231d831f410262cebdbea96f751060f3343f6e7e95c0d80c34",
+      "status": "ready"
+    },
+    "mysql_version": "8.4.13",
+    "mysql_status": {
+      "Com_select": 35427,
+      "Queries": 78598,
+      "Questions": 71075,
+      "Threads_connected": 1,
+      "Threads_running": 2,
+      "Uptime": 49097
+    },
+    "error_code": null
+  },
+  "definitions": {
+    "latency": "httpx client round trip ms, not browser or server-only time",
+    "hit_rate": "initial hits/(initial hits+misses); exclude bypass, inspection, invalidation and unknown",
+    "sql": "returned actual attempts incl ownership; product count separately",
+    "ttl": "sampled PTTL ms; -2 absent, -1 unbounded, null unavailable",
+    "memory": "selected Redis value key MEMORY USAGE estimate bytes",
+    "sources": "local launch sources; server revision not independently attested"
+  },
+  "limitations": [
+    "Short functional sample, not capacity or reliable tail latency evidence",
+    "Full traces/inspection add overhead; monitor counters include other activity",
+    "Absent key after waiting is an observation, not a keyspace expiry event",
+    "Only received traces counted; unavailable responses have unknown SQL"
+  ]
+}
