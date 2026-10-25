@@ -7,6 +7,7 @@ from fastapi.exceptions import RequestValidationError
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
 
+from concurrency_lab.api.routes.benchmarks import router as benchmarks_router
 from concurrency_lab.api.routes.business import business_error_handler, business_validation_handler
 from concurrency_lab.api.routes.business import router as business_router
 from concurrency_lab.api.routes.health import router
@@ -77,6 +78,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     application.include_router(router)
     application.include_router(visualization_router)
     application.include_router(business_router)
+    application.include_router(benchmarks_router)
     application.add_exception_handler(BusinessFailure, business_error_handler)
     application.add_exception_handler(RequestValidationError, business_validation_handler)
     application.add_middleware(BusinessObservationMiddleware)

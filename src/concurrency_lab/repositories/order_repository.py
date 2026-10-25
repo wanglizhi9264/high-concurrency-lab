@@ -13,10 +13,12 @@ class OrderRepository:
     def __init__(self, database: ObservedDatabase) -> None:
         self.database = database
 
-    async def list_user_orders(
-        self, user_id: int, page: PageParameters, time_ordered: bool
+    async def list_orders(
+        self, user_id: int | None, page: PageParameters, time_ordered: bool
     ) -> list[RowMapping]:
-        statement = select(LabOrder.__table__).where(LabOrder.user_id == user_id)
+        statement = select(LabOrder.__table__)
+        if user_id is not None:
+            statement = statement.where(LabOrder.user_id == user_id)
         if time_ordered:
             if page.before_time is not None:
                 statement = statement.where(
@@ -30,9 +32,7 @@ class OrderRepository:
             statement = statement.order_by(LabOrder.id)
         # One look-ahead row proves whether a following page exists; it is not returned to users.
         statement = statement.limit(page.limit + 1).offset(page.offset)
-        with self.database.observation.span(
-            "OrderRepository.list_user_orders", "repository", SOURCE
-        ):
+        with self.database.observation.span("OrderRepository.list_orders", "repository", SOURCE):
             return await self.database.fetch_rows(statement, SOURCE)
 
     async def get_order_by_id(self, order_id: int) -> RowMapping | None:

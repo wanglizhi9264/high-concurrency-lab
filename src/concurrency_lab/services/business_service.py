@@ -29,6 +29,7 @@ class QueryOperation(StrEnum):
     USER_ORDERS = "user_orders"
     ORDER_PAGE = "order_page"
     ORDER_DETAIL = "order_detail"
+    GLOBAL_ORDER_PAGE = "global_order_page"
 
 
 class BusinessService:
@@ -40,7 +41,7 @@ class BusinessService:
         self.budget = budget
 
     async def execute_read(
-        self, operation: QueryOperation, entity_id: int, page: PageParameters
+        self, operation: QueryOperation, entity_id: int | None, page: PageParameters
     ) -> ProductDTO | OrderPageDTO | OrderDetailDTO:
         observation = self.observation
         observation.pool_before = pool_gauges(self.resources.engine)
@@ -76,9 +77,13 @@ class BusinessService:
         self,
         database: ObservedDatabase,
         operation: QueryOperation,
-        entity_id: int,
+        entity_id: int | None,
         page: PageParameters,
     ) -> ProductDTO | OrderPageDTO | OrderDetailDTO:
+        if operation == QueryOperation.GLOBAL_ORDER_PAGE:
+            return await self._read_order_page(database, None, page, True)
+        if entity_id is None:
+            raise BusinessFailure(FailureCode.INVALID)
         if operation == QueryOperation.PRODUCT:
             row = await ProductRepository(database).get_product_by_id(entity_id)
             if row is None:
@@ -87,14 +92,7 @@ class BusinessService:
         orders = OrderRepository(database)
         if operation in (QueryOperation.USER_ORDERS, QueryOperation.ORDER_PAGE):
             time_ordered = operation == QueryOperation.ORDER_PAGE
-            rows = await orders.list_user_orders(entity_id, page, time_ordered)
-            items = [OrderDTO.model_validate(row) for row in rows[: page.limit]]
-            cursor = (
-                CursorDTO(before_time=items[-1].created_at, before_id=items[-1].id)
-                if time_ordered and len(rows) > page.limit
-                else None
-            )
-            return OrderPageDTO(items=items, next_cursor=cursor)
+            return await self._read_order_page(database, entity_id, page, time_ordered)
         row = await orders.get_order_by_id(entity_id)
         if row is None:
             raise BusinessFailure(FailureCode.NOT_FOUND)
@@ -104,3 +102,19 @@ class BusinessService:
         return OrderDetailDTO(
             **dict(row), items=[ItemDTO.model_validate(item) for item in detail_items]
         )
+
+    async def _read_order_page(
+        self,
+        database: ObservedDatabase,
+        user_id: int | None,
+        page: PageParameters,
+        time_ordered: bool,
+    ) -> OrderPageDTO:
+        rows = await OrderRepository(database).list_orders(user_id, page, time_ordered)
+        items = [OrderDTO.model_validate(row) for row in rows[: page.limit]]
+        cursor = (
+            CursorDTO(before_time=items[-1].created_at, before_id=items[-1].id)
+            if time_ordered and len(rows) > page.limit
+            else None
+        )
+        return OrderPageDTO(items=items, next_cursor=cursor)

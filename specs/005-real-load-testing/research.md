@@ -1,0 +1,8 @@
+# Research: Locust and honest comparison
+Official Plan read-only agents checked installed Locust2.47.0 and004. No new runtime framework.
+- Separate child prevents gevent monkey-patching API/tests. One task issues one HTTP request; constant_throughput is a closed-loop task/user/s target. spawn_rate is users/s, not request arrival.
+- Preserve Locust CSV and add raw completion CSV. Overall exact percentiles use raw response samples; original rounded histogram values retained separately. History rates are rolling (~10s, excluding recent2s), while totals are cumulative; history percentile behavior depends on cache/full-history. Do not average percentiles.
+- Received response SQL span counts can miss disconnected requests: expose coverage/unknowns, not server-total QPS. MySQL Questions/Queries include monitoring/health/transactions. Detect resets/Uptime changes.
+- psutil process CPU/RSS and Docker container CPU/MEM have different scopes; first process CPU sample is unknown, CPU can exceed100%. Docker Desktop host means LinuxVM. Monitoring overhead is real.
+- Separate RecordedLoadRun DTO/page; elapsed-second curves, null gaps, unsmoothed lines and parameter differences. Preserve002/003 contracts and bar charts.
+Sources: https://docs.locust.io/en/stable/api.html#built-in-wait-time-functions ; https://docs.locust.io/en/stable/configuration.html ; https://docs.locust.io/en/stable/_modules/locust/stats.html ; https://docs.locust.io/en/stable/increasing-request-rate.html ; https://docs.docker.com/reference/cli/docker/container/stats/ ; https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html . No unresolved unknowns.

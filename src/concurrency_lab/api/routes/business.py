@@ -75,7 +75,7 @@ async def execute_query(
     request: Request,
     service: BusinessService | None,
     operation: QueryOperation,
-    entity_id: int,
+    entity_id: int | None,
     page: PageParameters,
 ) -> BusinessResponse:
     observation = cast(RequestObservation, request.state.business_observation)
@@ -118,3 +118,10 @@ async def get_order_details(
     return await execute_query(
         request, service, QueryOperation.ORDER_DETAIL, order_id, PageParameters()
     )
+
+
+@router.get("/orders", response_model=BusinessResponse)
+async def get_global_order_page(
+    request: Request, page: Paging, service: ServiceDependency
+) -> BusinessResponse:
+    return await execute_query(request, service, QueryOperation.GLOBAL_ORDER_PAGE, None, page)
