@@ -225,6 +225,11 @@ export function useInventoryLab() {
     retry: async () => {
       if (previous) await previous()
     },
-    selectResponse: (response: InventoryRequestResult) => accept(response, false),
+    selectResponse: (response: InventoryRequestResult) => {
+      result.value = response
+      error.value = response.body?.error
+        ? `${response.body.error.code}: ${response.body.error.message}`
+        : ''
+    },
   }
 }

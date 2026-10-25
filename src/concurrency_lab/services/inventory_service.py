@@ -95,7 +95,9 @@ class InventoryService:
                             "acquire",
                             "src/concurrency_lab/db/business.py",
                         ):
-                            await session.connection()
+                            await session.connection(
+                                execution_options={"isolation_level": "REPEATABLE READ"}
+                            )
                         database = ObservedDatabase(session, self.observation)
                         await database.verify_ownership(self.observation.database)
                         return await operation(InventoryRepository(database))

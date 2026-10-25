@@ -74,6 +74,9 @@ async def test_exact_price_replay_soldout_cancel_and_audit(lab):
     _, api = lab
     stock, intent = await scenario(api, 1)
     assert (await api.post(SCENARIOS, json=intent)).json()["data"]["replayed"]
+    changed_scenario = await api.post(SCENARIOS, json={**intent, "initial": 2})
+    assert changed_scenario.status_code == 409
+    assert changed_scenario.json()["error"]["code"] == "idempotency_conflict"
     key = uuid4()
     first = await order(api, stock, key)
     assert first.status_code == 201, first.text
@@ -145,6 +148,31 @@ async def test_distinct_concurrent_orders_never_oversell(lab):
     )
     report = await audit(api, stock)
     assert report["scenario"]["available"] == 0 and report["order_counts"]["reserved"] == 5
+
+
+async def test_inventory_audit_explicitly_uses_repeatable_read(lab):
+    app, api = lab
+    stock, _ = await scenario(api, 5)
+    async with app.state.resources.business.engine.connect() as connection:
+        await connection.execute(text("SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED"))
+        assert (
+            await connection.scalar(text("SELECT @@SESSION.transaction_isolation"))
+            == "READ-COMMITTED"
+        )
+    original = InventoryRepository.aggregate_orders
+    observed = []
+
+    async def inspect_actual_isolation(repository, identifier):
+        rows = await repository.database.fetch_rows(
+            text("SELECT @@SESSION.transaction_isolation AS isolation_level"),
+            "tests/integration/test_inventory.py",
+        )
+        observed.append(rows[0]["isolation_level"])
+        return await original(repository, identifier)
+
+    with patch.object(InventoryRepository, "aggregate_orders", inspect_actual_isolation):
+        await audit(api, stock)
+    assert observed == ["REPEATABLE-READ"]
 
 
 async def test_concurrent_same_key_old_snapshot_replays_even_when_sold_out(lab):

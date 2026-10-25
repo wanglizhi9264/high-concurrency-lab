@@ -40,6 +40,22 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 describe('transactional inventory UI contracts', () => {
+  it('inspects a historical response without changing active stock or recording another request', () => {
+    const lab = useInventoryLab()
+    lab.scenario.value = {
+      id: uuid,
+      product_id: 1,
+      initial: 5,
+      available: 5,
+      reserved: 0,
+      sold: 0,
+      created_at: 'fixture',
+    }
+    lab.selectResponse(response({ scenario: { id: '22222222-2222-4222-8222-222222222222' } }))
+    expect(lab.scenario.value.id).toBe(uuid)
+    expect(lab.history.value).toHaveLength(0)
+    expect(lab.result.value?.path).toBe('/fixture')
+  })
   it('sends exact POST JSON and intent header while retaining structured conflict', async () => {
     const fetch = vi.fn<typeof globalThis.fetch>().mockResolvedValue(
       new Response(
