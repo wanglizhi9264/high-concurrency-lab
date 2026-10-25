@@ -80,5 +80,8 @@ class RequestObservation:
                 "nested": "Parent spans include children; do not sum overlapping intervals.",
                 "http_header": "Through response-start preparation; excludes delivery/network; ms.",
                 "clock": "Server monotonic clock; browser RTT uses a separate clock.",
+                "redis_command": "Client Redis command/script round trip, including network; ms.",
+                "cache_coordination": "Bounded polling and command time, not pure queueing; ms.",
+                "cache_fence": "Observed atomic generation/token publication decision.",
             },
         )

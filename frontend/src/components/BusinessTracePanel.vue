@@ -18,6 +18,10 @@ const labels: Record<string, string> = {
   acquire: 'SQLAlchemy 获取连接',
   sql_execute_fetch: 'MySQL SQL + 取数',
   request_budget: '请求预算',
+  redis_command: 'Redis 命令往返',
+  cache_coordination: '缓存回填协调',
+  cache_validation: '缓存副本校验',
+  cache_fence: '缓存发布 fencing',
 }
 </script>
 <template>
@@ -55,6 +59,8 @@ const labels: Record<string, string> = {
         <pre v-if="selected.sql">
 绑定参数 {{ JSON.stringify(selected.parameters, null, 2) }}
 实际取得 {{ selected.result_count ?? '未完成' }} 行</pre>
+        <pre v-else-if="Object.keys(selected.parameters).length" data-testid="business-command">
+命令 / 事件参数 {{ JSON.stringify(selected.parameters, null, 2) }}</pre>
         <a
           class="source-link"
           :href="`https://github.com/wanglizhi9264/high-concurrency-lab/blob/main/${selected.source}`"

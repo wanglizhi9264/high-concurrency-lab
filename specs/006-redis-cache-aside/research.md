@@ -1,0 +1,10 @@
+# Research: Product Cache-Aside
+## Decisions and rationale
+- Reuse lifespan Redis7/redis-py7.4.1 and existing guardedBusinessService. Redis is derived; unavailablecache fallback is realMySQL, never emptyfakeproducts. No newframework. PureGETbypass doesnot inspectRedis.
+- Lua atomicgeneration+token fencing, randomSETNX/PX lease, doublecheckafteracquisition. Alternative process-local lock cannotcoordinateworkers; GETthenSET is racy; generation-onlypublication fails onleaseexpired/secondloader races. Waitdeadline permitsfallbackMySQL but no unleasedpublish. Tokenrelease cannotdeleteanotherowner. Invalidation advancesgeneration and revokesvalue/lease atomically.
+- Positivevaluesonly, TTL+jitter; explicitboundedIDs keeps persistentgenerationkeysbounded. No negativecache means repeatedmissingIDs dohitMySQL, disclosedaspenetrationlimit. Jitterdoesnotguaranteeavalancheprotection orredisoutagecapacity.
+- Vuepage reusesBusinessTracePanel but distinctCacheObservation. Initiallookup andfinalsource separate; hitratio initialhits/(initialhits+initialmisses), notRedisglobalkeyspacecounter; excluded/failed/degradedcoverage separate. OwnershipSQL vsproductSQL distinct.
+- A nillookup doesnotproveexpiry. ShowactualPTTL/time, waitinrealworldthenread; no inventedexpiredevent. PTTL=-2absent/-1unbounded/nullunavailable. MEMORYUSAGE describesselectedkey, notwholeprocess. Inspect/invalidate separateHTTPoperations andexcludedfromhitrate.
+- Update stale003globalclaims thatcacheisunimplemented whilepreservingtheteachingmodel andPINGhealthpath. No fakeflow animation.
+## Official sources and local checks
+Plan read-only agents audited existing code, installedredis-py7.4.1 signatures and officialRedis7-compatible behavior. Sources: https://redis.io/docs/latest/develop/use/patterns/distributed-locks/ ; https://redis.io/docs/latest/commands/set/ ; https://redis.io/docs/latest/develop/programmability/eval-intro/ ; https://redis.io/docs/latest/commands/pttl/ ; https://redis.io/docs/latest/commands/memory-usage/ ; https://redis.io/docs/latest/develop/use-cases/cache-aside/ . No unresolvedclarifications.

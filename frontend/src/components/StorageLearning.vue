@@ -118,7 +118,7 @@ function choose(index: number) {
         <h2>同一份商品，为什么会出现在两个地方？</h2>
       </div>
       <span class="badge" :class="scenario.actual ? 'measured' : 'simulation'">
-        {{ scenario.actual ? '实际代码路径 · 非实时采集' : 'Simulation · 业务缓存尚未实现' }}
+        {{ scenario.actual ? '实际代码路径 · 非实时采集' : 'Simulation · 不操作真实缓存' }}
       </span>
     </div>
     <div class="storage-tabs" aria-label="选择请求场景">
@@ -174,7 +174,10 @@ function choose(index: number) {
           <strong>Redis</strong
           ><span>{{ scenario.actual ? '当前：仅健康依赖' : '示例用途：临时缓存副本' }}</span>
         </div>
-        <p>按键访问数据；本项目尚未实现商品缓存，不能从 PING 推断缓存效果。</p>
+        <p>
+          此处按键访问是教学示意，不操作真实缓存。真实商品缓存见
+          <router-link to="/cache-lab">Redis 缓存实验</router-link>；不能从 PING 推断命中效果。
+        </p>
         <template v-if="scenario.actual"
           ><code>PING → PONG</code>
           <p class="muted">当前不会执行商品 GET / SET，也没有业务命中率。</p></template

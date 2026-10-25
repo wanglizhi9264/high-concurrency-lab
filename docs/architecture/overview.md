@@ -42,3 +42,8 @@ Vue3 SPA位于frontend/，以只读DTO API访问架构、经过Pydantic校验的
 Business mode显式开启后，lifespan额外拥有一个只连接固定业务库的共享池。Router映射HTTP，BusinessService拥有单请求Session和显式读事务，Repository发出绑定SQL。ObservedDatabase统一记录取数span，RequestObservation记录monotonic区间与安全的请求ID；所有权检查在同一事务中执行。详见[业务指南](../guides/business-lab.md)。
 
 005为独立Locust子进程，不将gevent引入API。启动器只管理自己的临时单worker API/Locust进程，采集原始调用起点、完成响应、SQL观测覆盖率、进程和容器资源。业务监控读取共享池及MySQL实例状态，监测本身会竞争资源。RecordedLoadRun通过固定目录、ID、大小和schema校验后供Vue对比；HTTP不能启动压测。详见[压测指南](../guides/load-testing.md)和[ADR0003](decisions/0003-load-evidence.md)。
+
+## 006 商品缓存
+独立缓存路由 → ProductCacheService → ProductCache（固定Redis脚本）或原004 BusinessService（显式Session读事务）。命中不进入MySQL，miss/降级才执行所有权检查和商品SQL。Redis客户端继续由lifespan持有；schema/observations.py共享实际时间戳类型，缓存DTO不依赖负载实验DTO。
+
+固定generation与随机lease token共同约束回填发布；失效会撤销在途回填，有界等待后允许无缓存重复读。缓存不是库存正确性工具。浏览器页面逐次展示实际HTTP、Redis命令、SQL、来源和选定key快照；003缓存教学仍是Simulation，健康PING仍不经过业务缓存。详见[ADR0004](decisions/0004-product-cache.md)和[操作指南](../guides/cache-lab.md)。

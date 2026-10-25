@@ -74,7 +74,7 @@ test('storage learning distinguishes actual probes from cache-aside scenarios', 
   await expect(lesson.locator('.storage-card.active')).toHaveCount(2)
   await expect(lesson.locator('.storage-step')).toContainText('并发')
   await lesson.getByRole('button', { name: '① 首次读取 · 缓存未命中' }).click()
-  await expect(lesson).toContainText('Simulation · 业务缓存尚未实现')
+  await expect(lesson).toContainText('Simulation · 不操作真实缓存')
   await expect(lesson.getByTestId('cache-value')).toContainText('MISS')
   await lesson.getByRole('button', { name: '下一步', exact: true }).click()
   await expect(lesson.locator('.mysql-card')).toHaveClass(/active/)

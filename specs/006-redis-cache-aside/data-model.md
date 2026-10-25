@@ -1,0 +1,6 @@
+# Data Model
+CacheEntry schema1: database, generation (nonnegative integer), product (existing exactDECIMAL ProductDTO). No missing-product sentinel. Cache identity must match selectedboundedID/database/currentgeneration.
+CacheObservation: evidence=measured, outcome, initial_lookup(hit/miss/unknown/skipped), served_from(mysql/redis/null), observed_atUTC, key, generation, redis_available, ttl_ms(-2 absent/-1unbounded/nullunknown), memory_bytes(nullable), fill_published(nullable), reason(nullable), source and metricdefinitions. No counter pretendingto be whole-system hitrate.
+CacheResponse: data ProductDTO|null, optionalerror, cache observation|null, existingBusinessTrace. Errors may use existingBusinessResponse safe envelope withoutcachemetadata.
+Keys: :generation persistentboundedcounter; :value finiteTTL(+jitter); :lease randomtoken finiteTTL. Activeinvalidationsadvancegeneration anddeletevalue/lease atomically. Onlyowner+samegeneration publishes; releasecomparetoken. No schema/migration or authoritative data changes.
+Experiment: schema1/evidence=recorded,UTCwindow,environment/source/data identity,rawrequests/status/RTT/trace/outcomes, sampledsummary/definitions/limits. Unique outputfile, no overwrite.
