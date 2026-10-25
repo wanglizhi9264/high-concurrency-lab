@@ -100,3 +100,7 @@ npm run dev -- --host 127.0.0.1 --port 5173
 
 ## 004：真实业务查询
 显式初始化独立业务库并开启BUSINESS_ENABLED，访问`/business`。四类GET经Router→Service→Repository→SQLAlchemy→MySQL，每请求独立Session，不接受SQL输入。商品1价格精确字符串`1.17`，用户500可游标分页，订单1含两条明细。未开启503、无记录404、无效输入422、池耗尽503、请求预算504有明确反馈。命令、口径、源码和测试见[业务指南](docs/guides/business-lab.md)、[004规格](specs/004-real-business-trace/spec.md)及[交付报告](docs/experiments/004-real-business-trace/README.md)。
+
+## 008 可靠异步回执
+
+/tasks 展示真实MySQL Task/Outbox/Attempt/Event/Receipt与Redis Streams观测。按已paid订单创建任务，复制页面的database/scenario限定CLI启动独立worker。显式迁移0005，默认不开写入。参阅[运行与故障恢复](docs/guides/worker-lab.md)、[ER与约束](docs/database/tasks.md)、[ADR0006](docs/architecture/decisions/0006-reliable-worker.md)。受理、发布、提交结果、ACK各自独立；不声称消息exactly-once。

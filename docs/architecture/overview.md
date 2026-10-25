@@ -52,3 +52,32 @@ Business mode显式开启后，lifespan额外拥有一个只连接固定业务�
 新的inventory_scenario/purchase_order与生成lab_order分开；新场景是独立批次，重复实验不重置旧库存。Router写开关 → InventoryService显式事务 → InventoryRepository固定SQL → MySQL约束/条件更新。domain/inventory.py保存独立状态与审计规则，ObservedDatabase集中记录读取与DML影响行数。
 
 统一Scenario→Order取锁；唯一键与payload fingerprint控制重放，1062后整个事务结束并用freshSession确认。状态预读只定位场景，最终状态由FOR UPDATE current read决定。审计同一RR快照核对库存和按状态聚合。前端窄ObservedResponse/HTTP执行器共享trace、错误和JSON传输，保持业务/缓存/库存DTO分离。详见[ADR0005](decisions/0005-inventory.md)、[ER](../database/inventory.md)与[操作指南](../guides/inventory-lab.md)。
+
+## 008 independent worker
+
+```mermaid
+sequenceDiagram
+  participant UI as Vue task lab
+  participant API as FastAPI
+  participant DB as MySQL authority
+  participant D as CLI dispatcher
+  participant R as Redis Stream
+  participant W as CLI consumer
+  UI->>API: POST fixed receipt intent UUID
+  API->>DB: TX Task + Outbox + created event
+  DB-->>API: COMMIT
+  API-->>UI: accepted (not completion)
+  D->>DB: Lock Task then Outbox, check scope/due
+  D->>R: bounded XADD task_id
+  D->>DB: TX publication confirmation
+  W->>R: XREADGROUP / XAUTOCLAIM
+  W->>DB: TX claim token + lease + attempt
+  W->>DB: read paid order (handler deadline)
+  W->>DB: TX unique receipt + fenced success + attempt/event
+  W->>R: XACK after durable disposition
+  UI->>API: GET actual task / independent queue snapshot
+  API->>DB: RR detail snapshot / scoped counts
+  API->>R: readonly queue commands
+```
+
+API lifespan and CLI each own one businessEngine/sessionmaker and Redis client; owned_session creates fresh guarded transactions. Inventory retainsRR; task writesRC/current locks; detailRR coherent snapshot. Handler never holds claimSession during delay. Redis loss is repaired from indexed DB due/cooldown scans; terminal failed history stays in DB. See ADR0006 and worker-lab guide for partial failure semantics and lease fencing. No in-process queue, HTTP process control or arbitrary handler.

@@ -1,0 +1,5 @@
+# Quickstart validation
+Initialize/seed owned business database via004, migrate0004 via007 and explicit business_schema --revision0005. Enable business/write flags, start existing API/Vue. Create a fresh inventory scene/order and mark paid; link to /tasks.
+Save a task UUID, submit while no worker is running, verify durable queued and pending publication confirmation. Copy confirmed database/scenario CLI command, start independent worker, refresh real state until succeeded and receipt exists. Inspect separate queue counters/events/attempts.
+Enable one fail-first probe to observe actual retry; delay beyond handler timeout exercises deadline; failed tasks remain and linked successor can clear faults. Crash-after-claim is explicit test-only child process probe; wait/restart uses actual lease state, no fake timing.
+TASK_INTEGRATION=1 real tests use owned testDB/freshscopedkeys/processes. verify_worker_lab.py records actual success/retry/timeout/crash/duplicate scenarios with unique output, no resets. Full related gates and protected PR merge required. Commands finalized against actual parser during implementation.

@@ -8,6 +8,12 @@ export const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: '/tasks',
+      component: () => import('../views/TaskLabView.vue'),
+      props: (route) => ({ initialOrderId: String(route.query.order_id ?? '') }),
+      meta: { title: '可靠异步任务' },
+    },
+    {
       path: '/inventory-lab',
       component: () => import('../views/InventoryLabView.vue'),
       meta: { title: '库存事务与幂等' },

@@ -1,16 +1,18 @@
 """Business DB isolation and one measured execute/fetch boundary."""
 
-from collections.abc import Iterator
-from contextlib import contextmanager
+from collections.abc import AsyncIterator, Iterator
+from contextlib import asynccontextmanager, contextmanager
 from dataclasses import dataclass
-from typing import Any, cast
+from typing import Any, Literal, cast
 
 from sqlalchemy import CursorResult, Executable, RowMapping, event, text
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
 from sqlalchemy.pool import QueuePool
 from sqlalchemy.sql import ClauseElement
 
+from concurrency_lab.core.config import Settings
 from concurrency_lab.core.exceptions import BusinessFailure, FailureCode
+from concurrency_lab.db.session import create_engine
 from concurrency_lab.observability.recording import RequestObservation
 from concurrency_lab.schemas.business import MeasuredSpan
 
@@ -28,6 +30,41 @@ def validate_business_database(database: str) -> str:
 class BusinessResources:
     engine: AsyncEngine
     sessions: async_sessionmaker[AsyncSession]
+
+
+@asynccontextmanager
+async def open_business_resources(settings: Settings) -> AsyncIterator[BusinessResources]:
+    validate_business_database(settings.business_database)
+    config = settings.model_copy(update={"mysql_database": settings.business_database})
+    engine = create_engine(config)
+    if settings.business_writes_enabled:
+        configure_business_lock_timeout(engine, settings.business_lock_wait_timeout)
+    try:
+        yield BusinessResources(engine, async_sessionmaker(engine, expire_on_commit=False))
+    finally:
+        await engine.dispose()
+
+
+@asynccontextmanager
+async def owned_session(
+    resources: BusinessResources,
+    observation: RequestObservation,
+    isolation: Literal["REPEATABLE READ", "READ COMMITTED"] = "READ COMMITTED",
+) -> AsyncIterator["ObservedDatabase"]:
+    async with resources.sessions() as session:
+        with observation.span(
+            "Explicit transaction (includes exit/commit)",
+            "transaction",
+            "src/concurrency_lab/db/business.py",
+        ):
+            async with session.begin():
+                with observation.span(
+                    "Acquire business connection", "acquire", "src/concurrency_lab/db/business.py"
+                ):
+                    await session.connection(execution_options={"isolation_level": isolation})
+                database = ObservedDatabase(session, observation)
+                await database.verify_ownership(observation.database)
+                yield database
 
 
 def configure_business_lock_timeout(engine: AsyncEngine, seconds: int) -> None:
