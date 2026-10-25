@@ -445,7 +445,7 @@ def verify(workspace: Path, ports: dict[str, int]) -> Path:
         clone.parent.mkdir(parents=True, exist_ok=True)
         acceptance.step(
             "clean-git-clone",
-            ["git", "clone", "--no-local", str(ROOT), str(clone)],
+            ["git", "clone", "-c", "core.longpaths=true", "--no-local", str(ROOT), str(clone)],
             cwd=ROOT,
             timeout=120,
         )

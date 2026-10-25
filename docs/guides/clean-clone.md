@@ -2,6 +2,8 @@
 
 前置：Git、uv/Python3.12、Node/npm、Docker可用；Windows使用已安装Edge，Linux脚本安装Playwright Chromium。源码先提交。此流程不复制工作区、.env、.venv或node_modules；用`git clone --no-local`获取同一冻结提交，验证新工作区HEAD和初始git status。它验证干净安装/运行，不测GitHub下载速度。
 
+历史原始证据归档含较深目录，脚本为**新克隆自身**设置`core.longpaths=true`，避免Windows Git的260字符限制；不修改用户全局Git配置。Windows手动克隆也可用`git clone -c core.longpaths=true <仓库URL>`。逐步脱敏`.log`只保留本地且被忽略，版本库保存步骤argv/exit code/耗时JSON及实际实验JSON/CSV/PNG，不提交运行日志或凭据。
+
 ```powershell
 uv sync --frozen
 uv run python scripts/verify_end_to_end.py

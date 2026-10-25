@@ -8,7 +8,7 @@
 |---|---|---|---|
 | 001–003 | `/`、`/trace`、`/database`、`/experiments`、`/pool`：基础探针、历史索引、教学模拟 | 保留已有实现 | [架构与边界](overview.md) |
 | 004 | `/business`：真实商品/用户订单/明细与 SQL Trace | [PR6](https://github.com/wanglizhi9264/high-concurrency-lab/pull/6) | [指南](../guides/business-lab.md)、[报告](../experiments/004-real-business-trace/README.md) |
-| 005 | `/load-tests`：Locust 真实完成/成功 RPS、错误、SQL/资源 | [PR7](https://github.com/wanglizhi9264/high-concurrency-lab/pull/7) | [指南](../guides/load-testing.md)、[报告](../experiments/005-real-load-testing/report.md) |
+| 005 | `/load-tests`：Locust 真实完成/成功 RPS、错误、SQL/资源 | [PR7](https://github.com/wanglizhi9264/high-concurrency-lab/pull/7) | [指南](../guides/load-testing.md)、[报告](../experiments/005-real-load-testing/README.md) |
 | 006 | `/cache-lab`：商品 Cache-Aside、TTL、失效与实际回源 | [PR8](https://github.com/wanglizhi9264/high-concurrency-lab/pull/8) | [指南](../guides/cache-lab.md)、[报告](../experiments/006-redis-cache-aside/README.md) |
 | 007 | `/inventory-lab`：库存预留/支付/取消、幂等与审计 | [PR9](https://github.com/wanglizhi9264/high-concurrency-lab/pull/9) | [指南](../guides/inventory-lab.md)、[报告](../experiments/007-inventory-idempotency/README.md) |
 | 008 | `/tasks`：持久任务、独立 worker、失败/重试/崩溃恢复 | [PR10](https://github.com/wanglizhi9264/high-concurrency-lab/pull/10) | [指南](../guides/worker-lab.md)、[报告](../experiments/008-reliable-receipt-worker/report.md) |
