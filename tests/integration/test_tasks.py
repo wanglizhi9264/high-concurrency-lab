@@ -374,3 +374,71 @@ async def test_broker_transport_loss_repaired_and_foreign_messages_do_not_mutate
         assert foreign_scope != scope
     finally:
         await app.state.resources.redis.delete(worker.stream.key)
+
+
+async def test_cancel_after_committed_claim_preserves_lease_and_pending_for_recovery(lab):
+    app, api = lab
+    scope, order_id = await paid_order(api)
+    identifier, _ = await create_task(api, order_id)
+    worker = runtime(app, scope)
+    entered, release = asyncio.Event(), asyncio.Event()
+    original = worker.execution.handler
+
+    async def interrupted_handler(claim):
+        entered.set()  # consume reached handler only after claim TX committed.
+        await release.wait()
+        return await original(claim)
+
+    operation = None
+    try:
+        await worker.dispatcher.publish_due()
+        with patch.object(worker.execution, "handler", interrupted_handler):
+            operation = asyncio.create_task(worker.consume())
+            await asyncio.wait_for(entered.wait(), 3)
+            running = await detail(api, identifier)
+            assert running["task"]["state"] == "running"
+            operation.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await operation
+        assert await receipt_count(app, order_id) == 0
+        pending = await app.state.resources.redis.xpending(worker.stream.key, worker.stream.group)
+        assert pending["pending"] == 1  # No ACK or fabricated completion on cancellation.
+        recovered = await until_terminal(runtime(app, scope), api, identifier)
+        assert recovered["task"]["state"] == "succeeded"
+        assert [a["status"] for a in recovered["attempts"]] == ["abandoned", "succeeded"]
+        assert recovered["attempts"][0]["handler_ms"] is None
+    finally:
+        release.set()
+        if operation is not None and not operation.done():
+            operation.cancel()
+            with suppress(asyncio.CancelledError):
+                await operation
+        await app.state.resources.redis.delete(worker.stream.key)
+
+
+async def test_creation_failure_after_task_and_outbox_insert_rolls_back_all(lab):
+    app, api = lab
+    _, order_id = await paid_order(api)
+    identifier = uuid4()
+    original = TaskRepository.event
+
+    async def fail_created(repository, task_id, kind, source, details):
+        if kind == "created":
+            raise RuntimeError("Controlled failure after actual Task and Outbox INSERT")
+        return await original(repository, task_id, kind, source, details)
+
+    with patch.object(TaskRepository, "event", fail_created):
+        with pytest.raises(RuntimeError):
+            await api.post(TASKS, json={"task_id": str(identifier), "order_id": order_id})
+    assert (await api.get(f"{TASKS}/{identifier}")).status_code == 404
+    async with app.state.resources.business.engine.connect() as connection:
+        assert (
+            await connection.scalar(
+                text("SELECT COUNT(*) FROM task_outbox WHERE task_id=:id"), {"id": identifier.hex}
+            )
+            == 0
+        )
+    # Same intent is safe after known rollback, and normal creation still works.
+    assert (
+        await api.post(TASKS, json={"task_id": str(identifier), "order_id": order_id})
+    ).status_code == 201
