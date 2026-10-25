@@ -199,6 +199,31 @@ function ttlText(value: number | null | undefined) {
   </div>
 </template>
 <style scoped>
+button {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 9px 14px;
+  font: inherit;
+}
+button:hover:not(:disabled) {
+  border-color: var(--purple);
+  background: var(--soft);
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+.primary-button {
+  color: white;
+  background: var(--purple);
+  border-color: var(--purple);
+}
+.primary-button:hover:not(:disabled) {
+  background: var(--purple);
+  filter: brightness(1.08);
+}
 input,
 select {
   color: var(--text);

@@ -4,6 +4,8 @@
 当前已实现 `001-project-foundation` 基础环境与健康API，`002-mysql-index-baseline` 的关系模型、批量数据和索引/分页实验，以及 `003-interactive-system-visualization` 的交互式学习入口。
 `004-real-business-trace` 新增独立业务库中的真实商品/订单/明细读取、稳定分页和可检查SQL/连接获取/请求ID的实测调用链；初始化及运行见[业务实验指南](docs/guides/business-lab.md)。`005-real-load-testing` 增加独立 Locust 进程、原始请求/资源记录和两次实验对照，见[压测指南](docs/guides/load-testing.md)。006–009按独立SDD/PR顺序交付，宪章已正式修订为2.0.0。
 
+`006-redis-cache-aside` 新增真实商品缓存、过期/失效/回源、带版本和token检查的回填、有界协调及Redis故障降级，入口 `/cache-lab`，见[缓存实验指南](docs/guides/cache-lab.md)。007–009继续独立交付。
+
 技术栈：Python 3.11+（开发/CI 3.12）、FastAPI、Pydantic v2、SQLAlchemy 2/asyncmy、Alembic、MySQL 8.4、Redis 7、uv、pytest/httpx、Ruff、mypy、Locust。解析版本以 uv.lock 为准。
 
 ## 快速开始
@@ -59,7 +61,7 @@ down 保留 MySQL volume，down -v 会删除数据。Redis 当前不承诺持久
 本项目通过 `specify init high-concurrency-lab --integration codex --script ps --non-interactive` 初始化。
 在 Codex 用 `$speckit-constitution`、`$speckit-specify`、`$speckit-clarify`（必要时）、`$speckit-plan`、`$speckit-tasks`、`$speckit-analyze`、`$speckit-implement`、`$speckit-converge`。这些是 Agent skills，不是 CLI 子命令。Linux 可执行同样的 uv/Compose 命令；官方工作流脚本为 PowerShell，需 pwsh，或新项目初始化时选择 --script sh。
 
-后续独立Feature顺序：004真实业务查询与Trace；005Locust压测；006Cache-Aside；007库存事务与幂等；008可靠异步任务；009大数据综合实验。每项先保存基线再优化。当前004提供只读业务API；缓存、写订单、库存和Worker尚待对应Feature完成。
+独立Feature顺序：004真实业务查询与Trace；005Locust压测；006Cache-Aside；007库存事务与幂等；008可靠异步任务；009大数据综合实验。每项先保存基线再优化。当前004业务API只读，006只改变Redis商品副本；写订单、库存和Worker尚待对应Feature完成。
 
 详细设计见 [架构](docs/architecture/overview.md)、[ADR](docs/architecture/decisions/0001-foundation.md)、[数据库](docs/database/design.md)、[开发指南](docs/guides/local-development.md)。实际执行结果见 [验收记录](specs/001-project-foundation/validation.md)。
 

@@ -90,6 +90,15 @@ async def test_corrupt_and_missing_products_never_return_invented_data(lab):
         response = await api.get(PATH.replace("/1", "/999"))
         assert response.status_code == 404 and sql_count(response) == 2
     assert await redis.exists(product_keys(DATABASE, 999).value) == 0
+    await redis.set(product_keys(DATABASE, 1).generation, "invalid-generation")
+    response = await api.get(PATH)
+    assert response.json()["data"]["price"] == "1.17" and sql_count(response) == 2
+    assert response.json()["cache"]["reason"] == "invalid_generation"
+    assert (
+        response.json()["cache"]["redis_available"] is True
+    )  # Corruption is not connectivity loss.
+    state = (await api.get(PATH + "/state")).json()["cache"]
+    assert state["outcome"] == "degraded" and state["ttl_ms"] is None
 
 
 async def test_real_generation_and_lease_fences(lab):

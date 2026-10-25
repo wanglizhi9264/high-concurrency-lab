@@ -23,9 +23,17 @@ def test_key_scope_and_bounds():
             product_keys(database, identifier)
 
 
-async def test_invalid_cached_product_is_not_returned():
+@pytest.mark.parametrize(
+    "raw",
+    [
+        '{"schema_version":99}',
+        '{"database":"concurrency_lab_business","generation":0,"product":{"id":1,"sku":"s","name":"n","price":"1.17"}}',
+        '{"database":"concurrency_lab_business_test","generation":0,"product":{"id":2,"sku":"s","name":"n","price":"1.17"}}',
+    ],
+)
+async def test_invalid_cached_product_is_not_returned(raw):
     redis = AsyncMock()
-    redis.mget.return_value = ["0", '{"schema_version":99}']
+    redis.mget.return_value = ["0", raw]
     observation = RequestObservation("concurrency_lab_business_test")
     lookup = await ProductCache(redis, observation, 1).lookup()
     assert lookup.product is None and lookup.invalid
@@ -81,3 +89,28 @@ async def test_failed_publication_does_not_repeat_mysql_read():
     assert product.price == ProductDTO(id=1, sku="s", name="n", price="1.17").price
     business.execute_read.assert_awaited_once()
     assert service.metadata.outcome == "degraded" and service.metadata.served_from == "mysql"
+
+
+@pytest.mark.parametrize(
+    "url, concurrency",
+    [
+        ("https://example.com", 6),
+        ("http://127.0.0.1:18002/other", 6),
+        ("http://user:password@127.0.0.1:18002", 6),
+        ("http://127.0.0.1:18002", 21),
+    ],
+)
+async def test_recording_script_rejects_unsafe_target_before_output(tmp_path, url, concurrency):
+    import importlib.util
+    from pathlib import Path
+
+    spec = importlib.util.spec_from_file_location(
+        "cache_acceptance_runner",
+        Path(__file__).resolve().parents[2] / "scripts/verify_cache_lab.py",
+    )
+    assert spec and spec.loader
+    runner = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(runner)
+    with pytest.raises(ValueError, match="loopback"):
+        await runner.record_experiment(url, tmp_path, concurrency)
+    assert list(tmp_path.iterdir()) == []

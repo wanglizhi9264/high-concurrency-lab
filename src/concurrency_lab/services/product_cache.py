@@ -30,7 +30,7 @@ class ProductCacheService:
 
     def _degraded(self, failure: CacheUnavailable) -> None:
         self.metadata.outcome = "degraded"
-        self.metadata.redis_available = False
+        self.metadata.redis_available = str(failure) != "redis_unavailable"
         self.metadata.reason = str(failure)
         if self.metadata.initial_lookup == "skipped":
             self.metadata.initial_lookup = "unknown"
