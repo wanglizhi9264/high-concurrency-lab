@@ -1,6 +1,7 @@
 # High Concurrency Lab
 
 用于系统学习高并发、MySQL、Redis、数据库优化、异步任务和后端架构的长期实验工程。
+学习建议从[中文源码手册](docs/learning/README.md)开始：八章串起请求、异步、SQL、事务、缓存、可靠任务、性能排障和生产缺口，每章有源码、操作、预期现象、反例、自测答案；[经典参考](docs/learning/references.md)限定阅读范围，[维护指南](docs/learning/maintaining.md)说明如何安全修改。
 当前已实现 `001-project-foundation` 基础环境与健康API，`002-mysql-index-baseline` 的关系模型、批量数据和索引/分页实验，以及 `003-interactive-system-visualization` 的交互式学习入口。
 `004-real-business-trace` 新增独立业务库中的真实商品/订单/明细读取、稳定分页和可检查SQL/连接获取/请求ID的实测调用链；初始化及运行见[业务实验指南](docs/guides/business-lab.md)。`005-real-load-testing` 增加独立 Locust 进程、原始请求/资源记录和两次实验对照，见[压测指南](docs/guides/load-testing.md)。006–009按独立SDD/PR顺序交付，宪章已正式修订为2.0.0。
 
