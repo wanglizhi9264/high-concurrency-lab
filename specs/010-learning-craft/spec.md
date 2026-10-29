@@ -1,8 +1,11 @@
 # Feature Specification: 010 学习工程精修
 
-**Feature Branch**: `feature/010-learning-craft`  
-**Created**: 2026-10-29  
-**Status**: Draft  
+**Feature Branch**: `feature/010-learning-craft`
+
+**Created**: 2026-10-29
+
+**Status**: Draft
+
 **Input**: 参考经典项目，打磨代码可读性和策略，并交付通俗、对应源码的高质量学习资料。
 
 ## User Scenarios & Testing
