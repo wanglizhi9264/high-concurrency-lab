@@ -9,6 +9,7 @@ from redis.asyncio import Redis
 
 from concurrency_lab.cache.products import CacheUnavailable, ProductCache
 from concurrency_lab.core.exceptions import BusinessFailure, FailureCode
+from concurrency_lab.domain.cache import CacheTtl
 from concurrency_lab.schemas.business import PageParameters, ProductDTO
 from concurrency_lab.schemas.cache import CacheObservation
 from concurrency_lab.services.business_service import BusinessService, QueryOperation
@@ -71,7 +72,8 @@ class ProductCacheService:
                 self.metadata.served_from = "redis"
                 return lookup.product
             product = await self._mysql()
-            ttl_ms = ttl_seconds * 1000 + secrets.randbelow(ttl_seconds * 100 + 1)
+            ttl = CacheTtl(ttl_seconds)
+            ttl_ms = ttl.expiration_ms(secrets.randbelow(ttl.jitter_limit_ms + 1))
             try:
                 self.metadata.fill_published = await self.cache.publish(
                     product, generation, token, ttl_ms

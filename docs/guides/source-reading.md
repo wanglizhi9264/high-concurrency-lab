@@ -1,9 +1,11 @@
 # 源码阅读顺序
 
+初次学习先读[中文八章手册](../learning/README.md)，它按问题解释源码，并附小实验与答案。以下清单用于回到具体实现。
+
 1. `.specify/memory/constitution.md`与`specs/004...009`：先看每阶段目标、约束、实际验证，分清计划和已测证据。
 2. `core/config.py`、`db/session.py`、`main.py`、`db/business.py`：配置、lifespan资源、一请求/一事务Session、pool和owned库。健康探针直接连接，不经过业务Session。
 3. `models/commerce.py`和迁移0001–0003、`experiments/safety.py/dataset.py/index_baseline.py`：为什么002独立库、基线先保存、分批与稳定游标。
-4. `api/routes/business.py`→`services/business_service.py`→`repositories/business_repository.py`、`observability/recording.py`：一次真实请求实际执行什么SQL，acquire/execute/response/browser各测到哪里。
+4. `api/routes/business.py`→`services/business_service.py`→`repositories/product_repository.py`/`order_repository.py`、`observability/recording.py`：一次真实请求实际执行什么SQL，acquire/execute/response/browser各测到哪里。
 5. `scripts/run_load_test.py`、`benchmarks/locust/locustfile.py`、`experiments/load_recording.py/resource_sampling.py`：开始/完成/成功RPS、原始CSV、百分位、未知CPU和作用域。
 6. `cache/products.py`与`services/product_cache.py`：Cache-Aside回填为什么要generation与lease双fence；命中、合并等待、降级、失效不是同一件事。
 7. `domain/inventory.py`→`services/inventory_service.py`→`repositories/inventory_repository.py`：Scenario→Order锁序、条件库存更新、唯一键/指纹、1062后新事务、RR审计、1205/1213重试。

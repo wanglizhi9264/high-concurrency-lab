@@ -15,6 +15,28 @@ TERMINAL = frozenset({"succeeded", "failed"})
 
 
 @dataclass(frozen=True)
+class FailureDecision:
+    """A decision only: the service persists it using database time and fencing."""
+
+    terminal: bool
+    delay_seconds: float
+
+
+def failure_decision(attempt: int, max_attempts: int, error: str) -> FailureDecision:
+    """Stop on an invalid paid order or exhaustion; otherwise retain bounded backoff."""
+    if (
+        type(attempt) is not int
+        or type(max_attempts) is not int
+        or not 1 <= attempt <= max_attempts <= 5
+    ):
+        raise ValueError("Expected 1 <= attempt <= max_attempts <= 5")
+    return FailureDecision(
+        terminal=attempt == max_attempts or error == "invalid_paid_order",
+        delay_seconds=min(2, 0.2 * 2 ** (attempt - 1)),
+    )
+
+
+@dataclass(frozen=True)
 class WorkerPolicy:
     timeout_seconds: float = 1
     lease_seconds: float = 5

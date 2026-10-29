@@ -13,7 +13,7 @@ from sqlalchemy import RowMapping
 from sqlalchemy.exc import SQLAlchemyError
 
 from concurrency_lab.db.business import BusinessResources, owned_session, validate_business_database
-from concurrency_lab.domain.tasks import TERMINAL, WorkerPolicy
+from concurrency_lab.domain.tasks import TERMINAL, WorkerPolicy, failure_decision
 from concurrency_lab.observability.recording import RequestObservation
 from concurrency_lab.repositories.task_repository import NOW, TaskRepository
 
@@ -195,14 +195,14 @@ class TaskExecution:
                     )
                     status = "succeeded"
                 else:
-                    terminal = claim.number >= row["max_attempts"] or error == "invalid_paid_order"
+                    decision = failure_decision(claim.number, row["max_attempts"], error)
                     status = "timeout" if error == "handler_timeout" else "failed"
-                    due = now + timedelta(seconds=min(2, 0.2 * 2 ** (claim.number - 1)))
+                    due = now + timedelta(seconds=decision.delay_seconds)
                     values.update(
-                        state="failed" if terminal else "retry_wait",
+                        state="failed" if decision.terminal else "retry_wait",
                         last_error=error,
                         available_at=due,
-                        finished_at=NOW if terminal else None,
+                        finished_at=NOW if decision.terminal else None,
                     )
                     await repository.change_outbox(claim.task_id, dict(next_publish_at=due))
                 if await repository.change_task(claim.task_id, values, claim.token) != 1:
