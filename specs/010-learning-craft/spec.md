@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-29
 
-**Status**: Draft
+**Status**: Implemented; release state tracked by PR13
 
 **Input**: 参考经典项目，打磨代码可读性和策略，并交付通俗、对应源码的高质量学习资料。
 

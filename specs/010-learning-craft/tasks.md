@@ -18,6 +18,6 @@
 ## Phase 5: Validation and delivery
 - [x] T008 在 specs/010-learning-craft/validation.md 记录质量与真实缓存/任务回归，核对历史证据未变（FR-001/006/SC-003）。
 - [x] T009 对现有实现执行只读 Converge，在 specs/010-learning-craft/converge.md 记录结果（FR-006）。
-- [ ] T010 通过独立 GitHub PR 交付，远端 CI 与合并状态写入实际报告（FR-006）。
+- [x] T010 通过独立 GitHub PR 交付，远端 CI 与合并状态写入实际报告（FR-006）。
 
 依赖：T001→T002→T003；T004/T005可在规格后独立完成；T006/T007依赖手册；T008依赖实现；T009依赖验证；T010依赖前述工作及实际 CI。无自动重测百万数据。
